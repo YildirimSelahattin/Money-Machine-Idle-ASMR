@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="12e15ff2-c41a-445c-99a6-3e761c781f24" name="Changes" comment="" />
+    <list default="true" id="12e15ff2-c41a-445c-99a6-3e761c781f24" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Money.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Money.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Spawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Spawner.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,6 +19,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Script/GettingTouchManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/MachineManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/MachineTriggerManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/MachinesProcess.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -87,7 +92,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1671707119318</updated>
-      <workItem from="1671707124216" duration="2705000" />
+      <workItem from="1671707124216" duration="3081000" />
     </task>
     <servers />
   </component>
