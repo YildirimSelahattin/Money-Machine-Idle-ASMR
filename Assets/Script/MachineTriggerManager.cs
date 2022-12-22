@@ -28,12 +28,14 @@ public class MachineTriggerManager : MonoBehaviour
             {
 
                 //Instantiate(GameDataManatger.Instance.moneyMachineArray[other.gameObject.GetComponent<MachineManager>().levelIndexOfObject + 1],other.transform.parent);
-                GameDataManager.Instance.gridIndexArrayList[GameDataManager.Instance.dataLists.currentGridMapIndex][other.gameObject.GetComponent<MachineManager>().gridIndexNumberOfObject] = gameObject.GetComponent<MachineManager>().levelIndexOfObject + 1;// save it on the 
-                GameDataManager.Instance.gridIndexArrayList[GameDataManager.Instance.dataLists.currentGridMapIndex][gameObject.transform.parent.tag[transform.parent.tag.Length - 1] - '0'] = 0;
+                GameDataManager.Instance.gridArray[other.gameObject.GetComponent<MachineManager>().gridIndexNumberOfObject] = gameObject.GetComponent<MachineManager>().levelIndexOfObject + 1;// save it on the 
+                GameDataManager.Instance.gridArray[gameObject.transform.parent.tag[transform.parent.tag.Length - 1] - '0'] = 0;
                 Destroy(other.gameObject);
                 Destroy(gameObject);
                 Instantiate(GameDataManager.Instance.moneyMachineArray[other.gameObject.GetComponent<MachineManager>().levelIndexOfObject + 1], other.transform.parent);
+                GameDataManager.Instance.SaveData();
             }
+            
         }
     }
     private void OnTriggerEnter(Collider other)

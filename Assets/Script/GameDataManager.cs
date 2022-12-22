@@ -7,14 +7,12 @@ using UnityEngine;
 //THE ONLY DATA READER , READS FROM JSONTEXT
 public class GameDataManager : MonoBehaviour
 {
-    [SerializeField] TextAsset JSONText;
     public static GameDataManager Instance;
-    public DataList dataLists;
     public int playSound;
     public int playMusic;
     public AudioClip brushMachineMusic;
-    public List<int[]> gridIndexArrayList = new List<int[]>(); // 6 blocks means one grid
     public GameObject[] moneyMachineArray;
+    public int[] gridArray = new int[6];
 
     void Awake()
     {
@@ -24,12 +22,33 @@ public class GameDataManager : MonoBehaviour
             playSound = PlayerPrefs.GetInt("PlaySoundKey", 1);
             playMusic = PlayerPrefs.GetInt("PlayMusicKey", 1);
         }
+        LoadData();
     }
 
+    public void LoadData()
+    {
+        for(int i = 0; i < 6; i++)
+        {
+            gridArray[i] = PlayerPrefs.GetInt("GridValue"+i.ToString(),0);//open default
+            if (i>1)
+            {
+                gridArray[i] = PlayerPrefs.GetInt("GridValue" + i.ToString(), -1);//closed default
+            }
+        }
+    }
+    public void SaveData()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            Debug.Log("B");
+            PlayerPrefs.SetInt("GridValue" + i.ToString(), gridArray[i]);//closed default
+        }
+    }
     private void OnDisable()
     {
         PlayerPrefs.SetInt("PlaySoundKey", playSound);
         PlayerPrefs.SetInt("PlayMusicKey", playMusic);
+
     }
     
 }
