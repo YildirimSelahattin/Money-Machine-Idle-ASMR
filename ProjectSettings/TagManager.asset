@@ -3,15 +3,27 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Grid0
+  - Grid1
+  - Grid2
+  - Grid3
+  - Grid4
+  - Grid5
+  - Level1
+  - Level2
+  - Level3
+  - Level4
+  - Level5
+  - Level6
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - UpgradeButton
   - Water
   - UI
-  - 
+  - Machines
   - 
   - 
   - 
