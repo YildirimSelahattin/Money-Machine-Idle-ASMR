@@ -7,6 +7,7 @@ using UnityEngine;
 //THE ONLY DATA READER , READS FROM JSONTEXT
 public class GameDataManager : MonoBehaviour
 {
+    
     public static GameDataManager Instance;
     public int playSound;
     public int playMusic;

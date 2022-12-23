@@ -8,11 +8,18 @@ public class GettingTouchManager : MonoBehaviour
 {
     float instantiateZ = 0;
     float celSize = 10;
+    [SerializeField] float startScale = 0.1f;
+    [SerializeField] float endScale = 0.5f;
+
     [SerializeField]LayerMask touchableLayerOnlyMachines;
+    [SerializeField]LayerMask touchableLayerOnlyCoins;
+
     [SerializeField] LayerMask touchableLayerExceptMachines;
     [SerializeField] LayerMask touchableLayerOnlyUpgrade;
     // Start is called before the first frame update
     public GameObject objectToDrag;
+    public GameObject objectMoney;  
+
     Vector3 originalPosOrDraggingObject;
     RaycastHit hit;
     Ray ray;
@@ -41,7 +48,29 @@ public class GettingTouchManager : MonoBehaviour
                     objectToDrag.AddComponent<MachineTriggerManager>();
                     originalPosOrDraggingObject = hit.collider.transform.position;
                 }
-
+               else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyCoins))
+                {
+                    //Get the money game object in second plane's child 
+                    objectMoney = hit.collider.gameObject.transform.GetChild(0).gameObject;
+                    //Instantiate a money clone
+                    GameObject cloneMoney = Instantiate(objectMoney,objectMoney.transform.position,objectMoney.transform.rotation,objectMoney.transform.parent);
+                    objectMoney.SetActive(false);
+                    // Scale the instantiated money and destroy
+                    cloneMoney.transform.DOMove(new Vector3(0,2,-8),0.5f).SetEase(Ease.InOutBack).OnComplete(()=>{
+                        cloneMoney.transform.DOScale(startScale,0.2f).SetEase(Ease.Flash).OnComplete(()=>{
+                        Destroy(cloneMoney);
+                        });
+                        
+                        
+                        
+                        // Make it active after X time to collect again
+                        objectMoney.SetActive(true);
+                    });
+                    
+                    
+               
+                    
+                }
                 else if(Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyUpgrade)){
                 }
             }

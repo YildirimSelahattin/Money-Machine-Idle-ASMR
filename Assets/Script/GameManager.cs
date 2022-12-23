@@ -9,12 +9,17 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     [SerializeField] Material openedGridMat;
     // Start is called before the first frame update
-    void Start()
-    {
+
+
+     void Awake() {
         if(Instance == null)
         {
             Instance = this;
         }
+    }
+    void Start()
+    {
+        
         DesignLevel();
     }
 
