@@ -1,66 +1,55 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
+using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    private MachinesProcess Instance;
-    [SerializeField] private GameManager moneyPrefab;
-    
     public GameObject prefab;
- 
-    private Stack<GameObject> objeHavuzu = new Stack<GameObject>();
- 
+    private ObjectPooling _pool;
+    private Vector3 _spwanPos;
+    private Vector3 _endPos;
+    [SerializeField] private GameObject _endPosObject;
+    
     void Start()
     {
-        StartCoroutine( SurekliObjeOlusturVeYokEt() );
+        _spwanPos = gameObject.transform.position;
+
+        _endPos = _endPosObject.GetComponent<Vector3>();
+        
+        // Havuzu oluştur ve 500 obje ile doldur
+        _pool = new ObjectPooling( prefab );
+        _pool.GetPooledObject( 10 );
+ 
+        for( int i = 0; i < 10; i++ )
+        {
+            StartCoroutine( InstatiateAndDestroyWithPool() );
+        }
     }
  
-    IEnumerator SurekliObjeOlusturVeYokEt()
+    IEnumerator InstatiateAndDestroyWithPool()
     {
         while( true )
         {
-            Vector3 konum = Random.insideUnitSphere * 3f;
+            _spwanPos = gameObject.transform.position;
  
             // Havuzdan obje çekip konumunu değiştir
-            GameObject obje = HavuzdanObjeCek();
-            obje.transform.position = konum;
+            GameObject moneyPrefab = _pool.SetPooledObject();
+            moneyPrefab.transform.position = _spwanPos;
  
             // 1 saniye bekle
-            yield return new WaitForSeconds( 1f );
+            yield return new WaitForSeconds( 2f );
  
             // Objeyi havuza geri yolla
-            HavuzaObjeEkle( obje );
+            _pool.AddPoolObject( moneyPrefab );
         }
     }
- 
-    GameObject HavuzdanObjeCek()
+
+    private void Update()
     {
-        // Havuzda obje var mı kontrol et
-        if( objeHavuzu.Count > 0 )
-        {
-            // Havuzdaki en son objeyi çek
-            GameObject obje = objeHavuzu.Pop();
- 
-            // Objeyi aktif hale getir
-            obje.gameObject.SetActive( true );
- 
-            // Objeyi döndür
-            return obje;
-        }
- 
-        // Havuz boş, mecburen yeni bir obje Instantiate et
-        return Instantiate( prefab );
-    }
- 
-    void HavuzaObjeEkle( GameObject obje )
-    {
-        // Objeyi inaktif hale getir (böylece obje artık ekrana çizilmeyecek ve objede
-        // Update vs. fonksiyonlar varsa, bu fonksiyonlar obje havuzdayken çalıştırılmayacak)
-        obje.gameObject.SetActive( false );
- 
-        // Objeyi havuza ekle
-        objeHavuzu.Push( obje );
+        gameObject.transform.DOMove(_endPos, 0.5f);
     }
 }

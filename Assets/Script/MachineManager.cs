@@ -1,14 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MachineManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public static MachineManager Instance;
     public  int levelIndexOfObject;
     public int gridIndexNumberOfObject;
     public bool dropped = true;
     public bool inMergeArea = false;
+
+    private void Awake()
+    {
+                if (Instance == null)
+                {
+                    Instance = this;
+                }
+    }
+
     void Start()
     {
         levelIndexOfObject = transform.tag[transform.tag.Length - 1] - '0';
