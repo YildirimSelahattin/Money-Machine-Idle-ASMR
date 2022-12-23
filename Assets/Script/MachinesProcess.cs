@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MachinesProcess : MonoBehaviour
 {
-    Machine
+    public bool isMachineFill = false;
     
     void Awake()
     {
@@ -12,17 +12,5 @@ public class MachinesProcess : MonoBehaviour
         {
             Instance = this;
         }
-    }
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
