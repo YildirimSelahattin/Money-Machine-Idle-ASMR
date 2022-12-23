@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 
 public class GettingTouchManager : MonoBehaviour
 {
+    [SerializeField] GameObject particles;
     float instantiateZ = 0;
     float celSize = 10;
     [SerializeField] float startScale = 0.1f;
@@ -55,6 +56,9 @@ public class GettingTouchManager : MonoBehaviour
                     //Instantiate a money clone
                     GameObject cloneMoney = Instantiate(objectMoney,objectMoney.transform.position,objectMoney.transform.rotation,objectMoney.transform.parent);
                     objectMoney.SetActive(false);
+                    GameObject cloneParticle = Instantiate(particles, objectMoney.transform.position,Quaternion.identity);
+                    cloneParticle.SetActive(true);
+
                     // Scale the instantiated money and destroy
                     cloneMoney.transform.DOMove(new Vector3(0,2,-8),0.5f).SetEase(Ease.InOutBack).OnComplete(()=>{
                         cloneMoney.transform.DOScale(startScale,0.2f).SetEase(Ease.Flash).OnComplete(()=>{
