@@ -40,7 +40,6 @@ public class GameDataManager : MonoBehaviour
     {
         for (int i = 0; i < 6; i++)
         {
-            Debug.Log("B");
             PlayerPrefs.SetInt("GridValue" + i.ToString(), gridArray[i]);//closed default
         }
     }

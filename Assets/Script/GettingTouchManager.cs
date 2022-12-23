@@ -43,7 +43,6 @@ public class GettingTouchManager : MonoBehaviour
                 }
 
                 else if(Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyUpgrade)){
-                    Debug.Log(hit.collider.gameObject.transform.parent.tag);
                 }
             }
 
