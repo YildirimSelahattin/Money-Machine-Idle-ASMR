@@ -35,6 +35,7 @@ public class MachineTriggerManager : MonoBehaviour
                 Instantiate(GameDataManager.Instance.moneyMachineArray[other.gameObject.GetComponent<MachineManager>().levelIndexOfObject + 1], other.transform.parent);
                 GameDataManager.Instance.SaveData();
             }
+            
         }
     }
     private void OnTriggerEnter(Collider other)

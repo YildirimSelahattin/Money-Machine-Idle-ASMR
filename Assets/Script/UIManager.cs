@@ -9,16 +9,6 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     
     public static UIManager Instance;
-
-    public int NumberOfDiamonds
-    {
-        get { return PlayerPrefs.GetInt("NumberOfDiamondsKey", 0); }   // get method
-        set
-        {
-            PlayerPrefs.SetInt("NumberOfDiamondsKey", value);
-            //diamondNumberText.text = value.ToString();
-        }
-    }  // set method
     void Start()
     {
         if(Instance == null)
