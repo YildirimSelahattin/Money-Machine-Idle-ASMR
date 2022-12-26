@@ -5,9 +5,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public  GameObject gridParent;
-    int GRID_OPEN_CLOSE_BASE_INDEX = 0;
+    public  int GRID_SURFACE_INDEX = 0;
+    public int GRID_UPDATE_BUTTON_INDEX = 1;
     public static GameManager Instance;
-    [SerializeField] Material openedGridMat;
+    public Material openedGridMat;
     // Start is called before the first frame update
 
 
@@ -37,7 +38,8 @@ public class GameManager : MonoBehaviour
         {
             if (GameDataManager.Instance.gridArray[index]>-1)// only for grid 
             {
-                gridParent.transform.GetChild(index).GetChild(GRID_OPEN_CLOSE_BASE_INDEX).gameObject.GetComponent<MeshRenderer>().material = openedGridMat;
+                gridParent.transform.GetChild(index).GetChild(GRID_SURFACE_INDEX).gameObject.GetComponent<MeshRenderer>().material = openedGridMat; // open grid surface if its opened before
+                gridParent.transform.GetChild(index).GetChild(GRID_UPDATE_BUTTON_INDEX).gameObject.SetActive(false);
             }
 
             if (GameDataManager.Instance.gridArray[index] > 0)
