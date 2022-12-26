@@ -32,11 +32,9 @@ public class GettingTouchManager : MonoBehaviour
             Instance = this;
         }
     }
-
     // Update is called once per frame
     void Update()
     {
-       
         if (Input.touchCount > 0)
         {
             ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
@@ -76,6 +74,10 @@ public class GettingTouchManager : MonoBehaviour
                     
                 }
                 else if(Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyUpgrade)){
+                    GameObject parentGridOfHitButton = hit.collider.gameObject.transform.parent.gameObject;
+                    parentGridOfHitButton.transform.GetChild(GameManager.Instance.GRID_SURFACE_INDEX).gameObject.GetComponent<MeshRenderer>().material = GameManager.Instance.openedGridMat;//open grid visually 
+                    hit.collider.gameObject.SetActive(false);//close upgrade button
+                    GameDataManager.Instance.gridArray[parentGridOfHitButton.transform.tag[parentGridOfHitButton.transform.tag.Length-1]-'0'] = 0;// open grid index base
                 }
             }
 
