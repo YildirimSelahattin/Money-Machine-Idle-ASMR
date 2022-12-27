@@ -97,7 +97,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 1, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-4910839728766019414
 MonoBehaviour:
@@ -115,6 +115,7 @@ MonoBehaviour:
   gridIndexNumberOfObject: 0
   dropped: 1
   inMergeArea: 0
+  inSnapArea: 0
 --- !u!54 &-8396975518391825478
 Rigidbody:
   m_ObjectHideFlags: 0

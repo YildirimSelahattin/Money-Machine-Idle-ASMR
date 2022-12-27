@@ -10,6 +10,7 @@ public class MachineManager : MonoBehaviour
     public int gridIndexNumberOfObject;
     public bool dropped = true;
     public bool inMergeArea = false;
+    public bool inSnapArea = false;
 
     private void Awake()
     {

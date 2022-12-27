@@ -36,13 +36,17 @@ public class GameManager : MonoBehaviour
         // 0 means gird is avaliable for machines, 
         for (int index = 0;index < GameDataManager.Instance.gridArray.Length; index++)
         {
-            if (GameDataManager.Instance.gridArray[index]>-1)// only for grid 
+            int valueOfGrid = GameDataManager.Instance.gridArray[index];
+            if (valueOfGrid > -1)// should gird base be opened
             {
                 gridParent.transform.GetChild(index).GetChild(GRID_SURFACE_INDEX).gameObject.GetComponent<MeshRenderer>().material = openedGridMat; // open grid surface if its opened before
                 gridParent.transform.GetChild(index).GetChild(GRID_UPDATE_BUTTON_INDEX).gameObject.SetActive(false);
             }
-
-            if (GameDataManager.Instance.gridArray[index] > 0)
+            if(valueOfGrid == 0) // should snap grid be opened
+            {
+                gridParent.transform.GetChild(index).gameObject.GetComponent<BoxCollider>().enabled = true;
+            }
+            if (valueOfGrid > 0) //
             {
                 Instantiate(GameDataManager.Instance.moneyMachineArray[GameDataManager.Instance.gridArray[index]],  gridParent.transform.GetChild(index));
             }
