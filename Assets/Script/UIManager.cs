@@ -49,4 +49,9 @@ public class UIManager : MonoBehaviour
         GameDataManager.Instance.SaveData();
     }
 
+    public void lutfenSay()
+    {
+        MachineManager.Instance.isWorking = true;
+    }
+
 }

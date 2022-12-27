@@ -48,7 +48,5 @@ public class GameDataManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("PlaySoundKey", playSound);
         PlayerPrefs.SetInt("PlayMusicKey", playMusic);
-
     }
-    
 }
