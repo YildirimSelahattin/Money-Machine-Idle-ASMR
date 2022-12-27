@@ -34,6 +34,10 @@ public class MachineTriggerManager : MonoBehaviour
                 GameDataManager.Instance.gridArray[gameObject.transform.parent.tag[transform.parent.tag.Length - 1] - '0'] = 0;
                 GameManager.Instance.gridParent.transform.GetChild(other.gameObject.transform.parent.tag[other.transform.parent.tag.Length - 1] - '0').GetComponent<BoxCollider>().enabled = false;
                 GameManager.Instance.gridParent.transform.GetChild(gameObject.transform.parent.tag[gameObject.transform.parent.tag.Length - 1] - '0').GetComponent<BoxCollider>().enabled = true;
+                if (gameObject.GetComponent<MachineManager>().levelIndexOfObject + 1 == 6)
+                {
+                    GameDataManager.Instance.maxLevelMachineAmount++;
+                }
                 Destroy(other.gameObject);
                 Destroy(gameObject);
                 Debug.Log("");

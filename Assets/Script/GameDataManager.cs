@@ -14,6 +14,7 @@ public class GameDataManager : MonoBehaviour
     public AudioClip brushMachineMusic;
     public GameObject[] moneyMachineArray;
     public int[] gridArray = new int[6];
+    public int maxLevelMachineAmount; 
 
     void Awake()
     {
@@ -36,6 +37,8 @@ public class GameDataManager : MonoBehaviour
                 gridArray[i] = PlayerPrefs.GetInt("GridValue" + i.ToString(), -1);//closed default
             }
         }
+
+        maxLevelMachineAmount = PlayerPrefs.GetInt("MaxLevelMachineAmount",0);
     }
     public void SaveData()
     {
@@ -48,5 +51,6 @@ public class GameDataManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("PlaySoundKey", playSound);
         PlayerPrefs.SetInt("PlayMusicKey", playMusic);
+        PlayerPrefs.SetInt("MaxLevelMachineAmount", maxLevelMachineAmount);
     }
 }

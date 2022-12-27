@@ -3745,8 +3745,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 9081885319343547161, guid: e92dfc9d5046cbe4cbb734e7393b8777, type: 3}
   - {fileID: 4654528525770092456, guid: 69287a97609937849ab430c10ded5be3, type: 3}
+  - {fileID: 6606553992111002659, guid: 50d3392db9c08e248970c7c526c36739, type: 3}
+  - {fileID: 6606553992111002659, guid: af0e96145a4934843b73ef339546de1d, type: 3}
+  - {fileID: 6606553992111002659, guid: 9a083973df73caf4aaed76bd9c44f24d, type: 3}
   - {fileID: 6606553992111002659, guid: b06752836e8aeb5439bfd8d9263c78be, type: 3}
   gridArray: 000000000000000000000000000000000000000000000000
+  maxLevelMachineAmount: 0
 --- !u!4 &1502845799
 Transform:
   m_ObjectHideFlags: 0
