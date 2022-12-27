@@ -33,6 +33,7 @@ public class GettingTouchManager : MonoBehaviour
         }
     }
     // Update is called once per frame
+    
     void Update()
     {
         if (Input.touchCount > 0)
@@ -45,7 +46,7 @@ public class GettingTouchManager : MonoBehaviour
                     objectToDrag = hit.collider.gameObject;
                     objectToDrag.GetComponent<MachineManager>().dropped = false;
                     objectToDrag.AddComponent<MachineTriggerManager>();
-                    originalPosOrDraggingObject = hit.collider.transform.position;
+                    originalPosOrDraggingObject = hit.collider.transform.localPosition;
                 }
                else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyCoins))
                 {
@@ -68,15 +69,12 @@ public class GettingTouchManager : MonoBehaviour
                         // Make it active after X time to collect again
                         objectMoney.SetActive(true);
                     });
-                    
-                    
-               
-                    
                 }
                 else if(Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyUpgrade)){
                     GameObject parentGridOfHitButton = hit.collider.gameObject.transform.parent.gameObject;
                     parentGridOfHitButton.transform.GetChild(GameManager.Instance.GRID_SURFACE_INDEX).gameObject.GetComponent<MeshRenderer>().material = GameManager.Instance.openedGridMat;//open grid visually 
                     hit.collider.gameObject.SetActive(false);//close upgrade button
+                    hit.collider.transform.parent.gameObject.GetComponent<BoxCollider>().enabled = true;
                     GameDataManager.Instance.gridArray[parentGridOfHitButton.transform.tag[parentGridOfHitButton.transform.tag.Length-1]-'0'] = 0;// open grid index base
                 }
             }
@@ -87,7 +85,7 @@ public class GettingTouchManager : MonoBehaviour
                 if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerExceptMachines))
                 {
                     objectToDrag.transform.DOKill();
-                    objectToDrag.transform.DOMove(new Vector3(hit.point.x, objectToDrag.transform.position.y, hit.point.z),1);
+                    objectToDrag.transform.DOMove(new Vector3(hit.point.x, objectToDrag.transform.position.y, hit.point.z),.3f);
                 }
             }
 
@@ -96,19 +94,15 @@ public class GettingTouchManager : MonoBehaviour
                 if (objectToDrag != null)
                 {
                     objectToDrag.GetComponent<MachineManager>().dropped = true;
-                    if(objectToDrag?.GetComponent<MachineManager>().inMergeArea != true)
+                    if(objectToDrag.GetComponent<MachineManager>().inMergeArea != true && objectToDrag.GetComponent<MachineManager>().inSnapArea != true)
                     {
                         objectToDrag.transform.DOKill();
-                        objectToDrag.transform.position = originalPosOrDraggingObject;
+                        objectToDrag.transform.localPosition = originalPosOrDraggingObject;
                         Destroy(objectToDrag.GetComponent<MachineTriggerManager>());
                         objectToDrag = null;
                     }
-                    
                 }
-                
             }
         }
     }
-
-   
 }

@@ -17,6 +17,7 @@ public class MachineManager : MonoBehaviour
     public float countWaitTime;
     private AudioSource _moneySound;
     private TMP_Text _counterText;
+    public bool inSnapArea = false;
 
     private void Awake()
     {
