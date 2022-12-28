@@ -13,7 +13,7 @@ public class GameDataManager : MonoBehaviour
     public int playMusic;
     public AudioClip brushMachineMusic;
     public GameObject[] moneyMachineArray;
-    public WorkerManager[] workerArray;
+    public WorkerData[] workerArray;
     public int[] gridArray = new int[6];
     public int maxLevelMachineAmount;
 
@@ -42,16 +42,16 @@ public class GameDataManager : MonoBehaviour
 
         // worker jobs
         int workerArrayLength = PlayerPrefs.GetInt("WorkerArrayLength",1);
-        workerArray = new WorkerManager[workerArrayLength];
+        workerArray = new WorkerData[workerArrayLength];
         for (int i= 0; i < workerArrayLength; i++)
         {
-            WorkerManager wm = new WorkerManager();
-
-            wm.GetComponent<WorkerManager>().wheelBorrowCapacity = PlayerPrefs.GetFloat("Worker"+i+"wheelBorrowCapacity",10);
-            wm.GetComponent<WorkerManager>().addedTimeWhileGoing = PlayerPrefs.GetFloat("Worker" + i + "addedTimeWhileGoing", 3);
-            wm.GetComponent<WorkerManager>().maxComeAndGoCounter = PlayerPrefs.GetFloat("Worker" + i + "maxComeAndGoCounter", 10);
-            wm.GetComponent<WorkerManager>()._baseSpeed = PlayerPrefs.GetFloat("Worker" + i + "baseSpeed", 3);
-
+            WorkerData wm = new WorkerData();
+            wm.wheelBorrowCapacity = PlayerPrefs.GetFloat("Worker"+i+"wheelBorrowCapacity",10);
+            wm.addedTimeWhileGoing = PlayerPrefs.GetFloat("Worker" + i + "addedTimeWhileGoing", 3);
+            wm.maxComeAndGoCounter = PlayerPrefs.GetFloat("Worker" + i + "maxComeAndGoCounter", 10);
+            wm._baseSpeed = PlayerPrefs.GetFloat("Worker" + i + "baseSpeed", 3);
+            Debug.Log(wm._baseSpeed);
+            
             workerArray[i] = wm;
         }
     }

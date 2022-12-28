@@ -3,10 +3,21 @@
   <component name="ChangeListManager">
     <list default="true" id="12e15ff2-c41a-445c-99a6-3e761c781f24" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Money-Machine-Idle-ASMR/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Money-Machine-Idle-ASMR/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Money.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Money.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Machine-1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Machine-1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Machine-2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Machine-2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Machine-3.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Machine-3.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Machine-4.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Machine-4.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Machine-5.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Machine-5.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Machine-6.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Machine-6.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Worker.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Worker.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/GameDataManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/GameDataManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/MachineManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MachineManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/MoneyMove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MoneyMove.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Spawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Spawner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/UIManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/WorkerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/WorkerManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/PulpMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Shaders/PulpMat.mat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +33,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Script/MachineManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/MachineTriggerManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/ObjectPooling.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/WorkerData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/WorkerManager.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">

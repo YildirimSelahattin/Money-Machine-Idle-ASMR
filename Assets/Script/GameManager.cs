@@ -5,8 +5,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public  GameObject gridParent;
-    public  int GRID_SURFACE_INDEX = 0;
-    public int GRID_UPDATE_BUTTON_INDEX = 1;
+    public  int GRID_SURFACE_INDEX = 1;
+    public int GRID_UPDATE_BUTTON_INDEX = 2;
+    public int MACHINE_CHILD_INDEX = 4;
     public static GameManager Instance;
     public Material openedGridMat;
     // Start is called before the first frame update

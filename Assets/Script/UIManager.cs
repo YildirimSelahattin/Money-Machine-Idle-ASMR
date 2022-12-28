@@ -47,8 +47,8 @@ public class UIManager : MonoBehaviour
 
     public void OnWorkerAddButtonClicked()
     {
-        List<WorkerManager> tempWorkerArray = GameDataManager.Instance.workerArray.ToList();
-        tempWorkerArray.Add(new WorkerManager());
+        List<WorkerData> tempWorkerArray = GameDataManager.Instance.workerArray.ToList();
+        tempWorkerArray.Add(new WorkerData());
         GameDataManager.Instance.workerArray = tempWorkerArray.ToArray(); 
 
 
