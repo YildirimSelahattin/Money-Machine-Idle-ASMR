@@ -15,7 +15,8 @@ public class Spawner : MonoBehaviour
     public Vector3 _spwanPos;
     private Vector3 _endPos;
     private int _moneyAmount = 0;
-    public Stack<GameObject> workerList;
+    public List<WorkerManager> workerArray;
+    public Stack<GameObject> workerStack;
     public Stack<int> gridArrayStack;
 
     [SerializeField] private GameObject _endPosObject;
@@ -28,14 +29,6 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Worker")
-        {
-            LookForEmptyMachine();
-        }
-    }
-
     void Start()
     {
         for (int i = 0; i < GameDataManager.Instance.gridArray.Length; i++)
@@ -45,13 +38,22 @@ public class Spawner : MonoBehaviour
                 gridArrayStack.Push(i);
             }
         }
+        for (int i = 0; i < workerArray.Count; i++)
+        {
+            GameObject x = new GameObject();
+            x.AddComponent<WorkerManager>();
+            x.GetComponent<WorkerManager>().wheelBorrowCapacity = workerArray[i].wheelBorrowCapacity;
+            x.GetComponent<WorkerManager>().addedTimeWhileGoing = workerArray[i].addedTimeWhileGoing;
+            x.GetComponent<WorkerManager>().maxComeAndGoCounter = workerArray[i].maxComeAndGoCounter;
+            x.GetComponent<WorkerManager>()._baseSpeed = workerArray[i]._baseSpeed;
+            workerStack.Push(x);
+        }
         LookForEmptyMachine();
     }
  
     public void LookForEmptyMachine()
     {
-        
-        GameObject worker =  workerList.Pop();
+        GameObject worker =  workerStack.Pop();
         int emptyGridIndex = gridArrayStack.Pop();
         if (worker != null && emptyGridIndex != 0)
         {

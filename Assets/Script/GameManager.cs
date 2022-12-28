@@ -12,15 +12,16 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
 
 
-    void Awake() {
+    void Awake() 
+    {
         if(Instance == null)
         {
             Instance = this;
         }
     }
+    
     void Start()
     {
-        
         DesignLevel();
     }
 

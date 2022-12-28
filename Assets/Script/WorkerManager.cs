@@ -8,7 +8,7 @@ public class WorkerManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public  int maxComeAndGoCounter = 8;
-    private float _baseSpeed;
+    public float _baseSpeed;
     public  float addedTimeWhileGoing;
     public float wheelBorrowCapacity = 10;
     public int countedUntilSleep=0;
@@ -17,8 +17,7 @@ public class WorkerManager : MonoBehaviour
     {
         
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         
@@ -26,7 +25,6 @@ public class WorkerManager : MonoBehaviour
     
     public void MoveMachineAndComeBackByIndex(int index)
     {
-        
         transform.DOLocalMove(GameManager.Instance.gridParent.transform.GetChild(index).position, _baseSpeed+addedTimeWhileGoing).SetEase(Ease.InOutBack).OnComplete(() =>
         {
             StartCoroutine(GameManager.Instance.gridParent.transform.GetChild(index).transform.GetChild(3).gameObject.GetComponent<MachineManager>().WaitAndPrint(MachineManager.Instance.countWaitTime));
@@ -40,7 +38,7 @@ public class WorkerManager : MonoBehaviour
                     }
                     else
                     {
-                        Spawner.Instance.workerList.Push(gameObject);
+                        Spawner.Instance.workerStack.Push(gameObject);
                         Spawner.Instance.LookForEmptyMachine();
                     }
                 });

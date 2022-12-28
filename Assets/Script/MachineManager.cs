@@ -49,7 +49,6 @@ public class MachineManager : MonoBehaviour
                 Spawner.Instance.LookForEmptyMachine();
             }
         }
-        
         Debug.Log(waitTime);
     }
 }
