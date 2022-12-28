@@ -12,17 +12,7 @@ public class WorkerManager : MonoBehaviour
     public  float addedTimeWhileGoing;
     public float wheelBorrowCapacity = 10;
     public int countedUntilSleep=0;
-    
-    void Start()
-    {
-        
-    }
-    
-    void Update()
-    {
-        
-    }
-    
+
     public void MoveMachineAndComeBackByIndex(int index)
     {
         transform.DOLocalMove(GameManager.Instance.gridParent.transform.GetChild(index).position, _baseSpeed+addedTimeWhileGoing).SetEase(Ease.InOutBack).OnComplete(() =>
