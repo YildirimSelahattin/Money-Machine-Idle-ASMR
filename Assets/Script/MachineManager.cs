@@ -13,7 +13,6 @@ public class MachineManager : MonoBehaviour
     public bool dropped = true;
     public bool inMergeArea = false;
     public bool isWorking = false;
-    //
     public float countWaitTime;
     private AudioSource _moneySound;
     private TMP_Text _counterText;
@@ -34,16 +33,9 @@ public class MachineManager : MonoBehaviour
         _moneySound = gameObject.GetComponent<AudioSource>();
         _counterText = gameObject.transform.GetChild(0).GetComponent<TMP_Text>();
     }
+    
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Worker")
-        {
-            StartCoroutine(WaitAndPrint(countWaitTime));
-        }
-    }
-
-    IEnumerator WaitAndPrint(float waitTime)
+    public IEnumerator WaitAndPrint(float waitTime)
     {
         for (int i = 0; i < 5; i++)
         {
@@ -53,7 +45,11 @@ public class MachineManager : MonoBehaviour
             if (i == 4)
             {
                 isWorking = false;
+                Spawner.Instance.gridArrayStack.Push(gridIndexNumberOfObject);
+                Spawner.Instance.LookForEmptyMachine();
             }
         }
+        
+        Debug.Log(waitTime);
     }
 }

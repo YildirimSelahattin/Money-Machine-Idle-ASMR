@@ -8,48 +8,55 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    public static Spawner Instance;
+    public int[] gridCountedArray;
     public GameObject prefab;
     private ObjectPooling _pool;
-    private Vector3 _spwanPos;
+    public Vector3 _spwanPos;
     private Vector3 _endPos;
+    private int _moneyAmount = 0;
+    public Stack<GameObject> workerList;
+    public Stack<int> gridArrayStack;
+
     [SerializeField] private GameObject _endPosObject;
     
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Worker")
+        {
+            LookForEmptyMachine();
+        }
+    }
+
     void Start()
     {
-        _spwanPos = gameObject.transform.position;
-
-        _endPos = _endPosObject.GetComponent<Vector3>();
+        for (int i = 0; i < GameDataManager.Instance.gridArray.Length; i++)
+        {
+            if (GameDataManager.Instance.gridArray[i] > 0)
+            {
+                gridArrayStack.Push(i);
+            }
+        }
+        LookForEmptyMachine();
+    }
+ 
+    public void LookForEmptyMachine()
+    {
         
-        // Havuzu oluştur ve 500 obje ile doldur
-        _pool = new ObjectPooling( prefab );
-        _pool.GetPooledObject( 10 );
- 
-        for( int i = 0; i < 10; i++ )
+        GameObject worker =  workerList.Pop();
+        int emptyGridIndex = gridArrayStack.Pop();
+        if (worker != null && emptyGridIndex != 0)
         {
-            StartCoroutine( InstatiateAndDestroyWithPool() );
+            worker.GetComponent<WorkerManager>().MoveMachineAndComeBackByIndex(emptyGridIndex);    
         }
-    }
- 
-    IEnumerator InstatiateAndDestroyWithPool()
-    {
-        while( true )
-        {
-            _spwanPos = gameObject.transform.position;
- 
-            // Havuzdan obje çekip konumunu değiştir
-            GameObject moneyPrefab = _pool.SetPooledObject();
-            moneyPrefab.transform.position = _spwanPos;
- 
-            // 1 saniye bekle
-            yield return new WaitForSeconds( 2f );
- 
-            // Objeyi havuza geri yolla
-            _pool.AddPoolObject( moneyPrefab );
-        }
-    }
-
-    private void Update()
-    {
-        gameObject.transform.DOMove(_endPos, 0.5f);
+        
     }
 }

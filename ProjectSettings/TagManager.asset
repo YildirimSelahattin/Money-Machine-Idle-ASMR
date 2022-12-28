@@ -17,6 +17,7 @@ TagManager:
   - Level5
   - Level6
   - Worker
+  - Bank
   layers:
   - Default
   - TransparentFX
