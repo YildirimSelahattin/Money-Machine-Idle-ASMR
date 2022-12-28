@@ -28,6 +28,7 @@ public class GameDataManager : MonoBehaviour
 
     public void LoadData()
     {
+        //grid jobs
         for(int i = 0; i < 6; i++)
         {
             gridArray[i] = PlayerPrefs.GetInt("GridValue"+i.ToString(),0);//open default
@@ -36,7 +37,11 @@ public class GameDataManager : MonoBehaviour
                 gridArray[i] = PlayerPrefs.GetInt("GridValue" + i.ToString(), -1);//closed default
             }
         }
+        
+        // 
+        
     }
+    
     public void SaveData()
     {
         for (int i = 0; i < 6; i++)
@@ -44,6 +49,7 @@ public class GameDataManager : MonoBehaviour
             PlayerPrefs.SetInt("GridValue" + i.ToString(), gridArray[i]);//closed default
         }
     }
+    
     private void OnDisable()
     {
         PlayerPrefs.SetInt("PlaySoundKey", playSound);
