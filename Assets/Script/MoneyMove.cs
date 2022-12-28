@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using Unity.VisualScripting;
 
 public class MoneyMove : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void MoneyMoveTruck()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        transform.DOLocalMove(MachineManager.Instance._firstStep, .3f).OnComplete(
+            () =>
+            {
+                transform.DOLocalMove(new Vector3(0, 0, 0), .3f);
+            });
     }
 }
