@@ -44,4 +44,14 @@ public class UIManager : MonoBehaviour
         }
         GameDataManager.Instance.SaveData();
     }
+
+    public void OnWorkerAddButtonClicked()
+    {
+        List<WorkerManager> tempWorkerArray = GameDataManager.Instance.workerArray.ToList();
+        tempWorkerArray.Add(new WorkerManager());
+        GameDataManager.Instance.workerArray = tempWorkerArray.ToArray(); 
+
+
+        GameDataManager.Instance.SaveData();
+    }
 }

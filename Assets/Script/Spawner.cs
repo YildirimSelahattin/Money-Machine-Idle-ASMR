@@ -9,16 +9,12 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public static Spawner Instance;
-    public int[] gridCountedArray;
     public GameObject prefab;
-    private ObjectPooling _pool;
     public Vector3 _spwanPos;
-    private Vector3 _endPos;
     private int _moneyAmount = 0;
-    public List<WorkerManager> workerArray;
     public Stack<GameObject> workerStack;
     public Stack<int> gridArrayStack;
-
+    public GameObject workerPrefab;
     [SerializeField] private GameObject _endPosObject;
     
     private void Awake()
@@ -38,15 +34,15 @@ public class Spawner : MonoBehaviour
                 gridArrayStack.Push(i);
             }
         }
-        for (int i = 0; i < workerArray.Count; i++)
+        for (int i = 0; i < GameDataManager.Instance.workerArray.Length; i++)
         {
-            GameObject x = new GameObject();
-            x.AddComponent<WorkerManager>();
-            x.GetComponent<WorkerManager>().wheelBorrowCapacity = workerArray[i].wheelBorrowCapacity;
-            x.GetComponent<WorkerManager>().addedTimeWhileGoing = workerArray[i].addedTimeWhileGoing;
-            x.GetComponent<WorkerManager>().maxComeAndGoCounter = workerArray[i].maxComeAndGoCounter;
-            x.GetComponent<WorkerManager>()._baseSpeed = workerArray[i]._baseSpeed;
-            workerStack.Push(x);
+            GameObject worker = Instantiate(workerPrefab,_spwanPos,Quaternion.identity);
+            worker.AddComponent<WorkerManager>();
+            worker.GetComponent<WorkerManager>().wheelBorrowCapacity = GameDataManager.Instance.workerArray[i].wheelBorrowCapacity;
+            worker.GetComponent<WorkerManager>().addedTimeWhileGoing = GameDataManager.Instance.workerArray[i].addedTimeWhileGoing;
+            worker.GetComponent<WorkerManager>().maxComeAndGoCounter = GameDataManager.Instance.workerArray[i].maxComeAndGoCounter;
+            worker.GetComponent<WorkerManager>()._baseSpeed = GameDataManager.Instance.workerArray[i]._baseSpeed;
+            workerStack.Push(worker);
         }
         LookForEmptyMachine();
     }
