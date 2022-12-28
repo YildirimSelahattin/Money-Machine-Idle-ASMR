@@ -7,11 +7,11 @@ using UnityEngine.EventSystems;
 public class WorkerManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    public  int maxComeAndGoCounter = 8;
+    public  float maxComeAndGoCounter = 8;
     public float _baseSpeed;
     public  float addedTimeWhileGoing;
     public float wheelBorrowCapacity = 10;
-    public int countedUntilSleep=0;
+    public float countedUntilSleep =0;
     
     void Start()
     {
