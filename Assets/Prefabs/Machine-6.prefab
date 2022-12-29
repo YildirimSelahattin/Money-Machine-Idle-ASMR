@@ -293,6 +293,11 @@ MonoBehaviour:
   isWorking: 0
   countWaitTime: 0.2
   inSnapArea: 0
+  isAtBank: 0
+  _moneyPrefab: {fileID: 8410266551750965172, guid: 20664b20497b915449a7c06943102354,
+    type: 3}
+  isFinishedCount: 0
+  _firstStep: {x: 0, y: 0, z: 0}
 --- !u!54 &-8396975518391825478
 Rigidbody:
   m_ObjectHideFlags: 0

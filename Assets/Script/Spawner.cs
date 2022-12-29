@@ -12,8 +12,8 @@ public class Spawner : MonoBehaviour
     public GameObject prefab;
     public Vector3 _spwanPos;
     private int _moneyAmount = 0;
-    public Stack<GameObject> workerStack;
-    public Stack<int> gridArrayStack;
+    public Stack<GameObject> workerStack = new Stack<GameObject>();
+    public Stack<int> gridArrayStack = new Stack<int>();
     public GameObject workerPrefab;
     [SerializeField] private GameObject _endPosObject;
     
@@ -34,14 +34,16 @@ public class Spawner : MonoBehaviour
                 gridArrayStack.Push(i);
             }
         }
+        
         for (int i = 0; i < GameDataManager.Instance.workerArray.Length; i++)
         {
             GameObject worker = Instantiate(workerPrefab,_spwanPos,Quaternion.identity);
-            worker.AddComponent<WorkerManager>();
-            worker.GetComponent<WorkerManager>().wheelBorrowCapacity = GameDataManager.Instance.workerArray[i].wheelBorrowCapacity;
-            worker.GetComponent<WorkerManager>().addedTimeWhileGoing = GameDataManager.Instance.workerArray[i].addedTimeWhileGoing;
-            worker.GetComponent<WorkerManager>().maxComeAndGoCounter = GameDataManager.Instance.workerArray[i].maxComeAndGoCounter;
-            worker.GetComponent<WorkerManager>()._baseSpeed = GameDataManager.Instance.workerArray[i]._baseSpeed;
+            //worker.GetComponent<WorkerManager>()._workerData.wheelBorrowCapacity = GameDataManager.Instance.workerArray[i].wheelBorrowCapacity;
+            WorkerManager a = worker.GetComponent<WorkerManager>();
+            Debug.Log(GameDataManager.Instance.workerArray[i].wheelBorrowCapacity);
+            a.addedTimeWhileGoing = GameDataManager.Instance.workerArray[i].addedTimeWhileGoing;
+            a.maxComeAndGoCounter = GameDataManager.Instance.workerArray[i].maxComeAndGoCounter;
+            a._baseSpeed = GameDataManager.Instance.workerArray[i]._baseSpeed;
             workerStack.Push(worker);
         }
         LookForEmptyMachine();
@@ -49,11 +51,22 @@ public class Spawner : MonoBehaviour
  
     public void LookForEmptyMachine()
     {
-        GameObject worker =  workerStack.Pop();
-        int emptyGridIndex = gridArrayStack.Pop();
-        if (worker != null && emptyGridIndex != 0)
+        if (workerStack.Count != 0 && gridArrayStack.Count!= 0)
         {
-            worker.GetComponent<WorkerManager>().MoveMachineAndComeBackByIndex(emptyGridIndex);    
+            GameObject worker =  workerStack.Pop();
+            while (true)
+            {
+                int availableGridIndex = gridArrayStack.Pop();
+                if(availableGridIndex == null)
+                {
+                    break;
+                }
+                if (GameDataManager.Instance.gridArray[availableGridIndex] > 0)// this is the case when 
+                {
+                    worker.GetComponent<WorkerManager>().MoveMachineAndComeBackByIndex(availableGridIndex);
+                    break;
+                }
+            }
         }
         
     }
