@@ -50,6 +50,7 @@ public class GettingTouchManager : MonoBehaviour
                     objectToDrag.GetComponent<MachineManager>().dropped = false;
                     objectToDrag.AddComponent<MachineTriggerManager>();
                     originalPosOrDraggingObject = hit.collider.transform.localPosition;
+                    objectToDrag.GetComponent<MachineManager>().comingWorkerObject.GetComponent<WorkerManager>().GoBackToPile();//send 
                 }
                 else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyCoins))
                 {

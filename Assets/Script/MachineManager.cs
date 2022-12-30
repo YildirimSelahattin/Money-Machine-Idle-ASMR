@@ -23,6 +23,7 @@ public class MachineManager : MonoBehaviour
     public bool isFinishedCount = false;
     public Vector3 _firstStep;
     public float waitTime ;
+    public GameObject comingWorkerObject;
 
     private void Awake()
     {

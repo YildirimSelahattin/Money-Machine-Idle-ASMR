@@ -8,7 +8,7 @@ using UnityEngine;
 public class MachineTriggerManager : MonoBehaviour
 {
     // Start is called before the first frame update
-  
+    GameObject comingWorkerObject = null;
     void Start()
     {
         Debug.Log("sa");
@@ -45,6 +45,7 @@ public class MachineTriggerManager : MonoBehaviour
         if(other.gameObject.transform.tag.Contains("Grid") && gameObject.GetComponent<MachineManager>().dropped == true && gameObject.GetComponent<MachineManager>().inSnapArea != false)//if machine is in the grid area 
         {
             gameObject.GetComponent<MachineManager>().inSnapArea = false;
+           
             int currentGridOfMachine = gameObject.transform.parent.tag[transform.parent.tag.Length - 1] - '0';
             int targetGrid = other.gameObject.transform.tag[other.gameObject.transform.tag.Length - 1] - '0';
             int levelIndexOfDraggedMachine= gameObject.GetComponent<MachineManager>().levelIndexOfObject;
