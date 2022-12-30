@@ -13,10 +13,7 @@ public class WorkerManager : MonoBehaviour
     public  float addedTimeWhileGoing;
     public float wheelBorrowCapacity = 10;
     public int countedUntilSleep=0;
-
-    private void Update()
-    {
-    }
+    [SerializeField] private GameManager _upgradeButton;
 
     public void MoveMachineAndComeBackByIndex(int index)
     {

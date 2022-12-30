@@ -1,17 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Transactions;
 using UnityEngine;
 using DG.Tweening;
 using Unity.VisualScripting;
 
 public class MoneyMove : MonoBehaviour
 {
+    public static MoneyMove Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
+    
     public void MoneyMoveTruck()
     {
-        transform.DOLocalMove(MachineManager.Instance._firstStep, .3f).OnComplete(
+        Debug.LogError("Move Position: " + MachineManager.Instance._firstStep);
+        transform.DOMove(MachineManager.Instance._firstStep, 1f).OnComplete(
             () =>
             {
-                transform.DOLocalMove(new Vector3(0, 0, 0), .3f);
+                transform.DOMove(new Vector3(0, 0, 0), 50f);
             });
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using DG.Tweening;
+using Mono.CompilerServices.SymbolWriter;
 
 public class MachineManager : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class MachineManager : MonoBehaviour
     public bool isAtBank = false;
     [SerializeField] private GameObject _moneyPrefab;
     public bool isFinishedCount = false;
-    public Vector3 _firstStep;
+    public Vector3 _firstStep = new Vector3(3,3,3);
     public float waitTime ;
 
     private void Awake()
@@ -38,15 +39,17 @@ public class MachineManager : MonoBehaviour
         gridIndexNumberOfObject = transform.parent.tag[transform.parent.tag.Length - 1] - '0';
         _moneySound = gameObject.GetComponent<AudioSource>();
         _counterText = gameObject.transform.GetChild(0).GetComponent<TMP_Text>();
-        _firstStep = gameObject.transform.parent.GetChild(0).position;
     }
     
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Worker")
         {
+            
             isAtBank = true;
-            Debug.Log("* * * < Geldim > * * *");
+            _firstStep = gameObject.transform.parent.GetChild(0).position;
+            Debug.Log("Massage: " + gameObject.transform.parent.GetChild(0).name);
+            Debug.Log(("FirstStep Position: " + gameObject.transform.parent.GetChild(0).position));
         }
     }
     
@@ -63,6 +66,7 @@ public class MachineManager : MonoBehaviour
                 isFinishedCount = true;
                 Spawner.Instance.gridArrayStack.Push(gridIndexNumberOfObject);
                 Spawner.Instance.LookForEmptyMachine();
+                MoneyMove.Instance.MoneyMoveTruck();
             }
         }
         Debug.Log(waitTime);
