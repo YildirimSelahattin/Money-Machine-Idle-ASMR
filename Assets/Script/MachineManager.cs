@@ -24,7 +24,7 @@ public class MachineManager : MonoBehaviour
     public Vector3 _firstStep;
     public float waitTime ;
     public GameObject comingWorkerObject;
-
+    public GameObject lastBreakdownBeforeMachine;
     private void Awake()
     {
         if (Instance == null)
