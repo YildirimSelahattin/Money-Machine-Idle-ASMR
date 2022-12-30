@@ -16,7 +16,10 @@ public class Spawner : MonoBehaviour
     public Stack<int> gridArrayStack = new Stack<int>();
     public GameObject workerPrefab;
     [SerializeField] private GameObject _endPosObject;
-    
+    public Transform[] firstRoadBreakdown;
+   
+
+
     private void Awake()
     {
         if (Instance == null)
@@ -46,9 +49,13 @@ public class Spawner : MonoBehaviour
             a._baseSpeed = GameDataManager.Instance.workerArray[i]._baseSpeed;
             workerStack.Push(worker);
         }
+        StartCoroutine(StartDelay());
+    }
+    public IEnumerator StartDelay()
+    {
+        yield return new WaitForSeconds(1);
         LookForEmptyMachine();
     }
- 
     public void LookForEmptyMachine()
     {
         if (workerStack.Count != 0 && gridArrayStack.Count!= 0)
