@@ -24,6 +24,7 @@ public class MachineManager : MonoBehaviour
     public bool isFinishedCount = false;
     public Vector3 _firstStep = new Vector3(3,3,3);
     public float waitTime ;
+    public GameObject comingWorkerObject;
 
     private void Awake()
     {
