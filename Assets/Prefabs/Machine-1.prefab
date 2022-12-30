@@ -397,6 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38fc4efe215c9654fb14b8ffe1a72cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  truck: {fileID: 4954314851806151137, guid: babb51733f2a4e74096de12b6a31ba0f, type: 3}
   levelIndexOfObject: 0
   gridIndexNumberOfObject: 0
   dropped: 1
@@ -409,6 +410,10 @@ MonoBehaviour:
     type: 3}
   isFinishedCount: 0
   _firstStep: {x: 0, y: 0, z: 0}
+  waitTime: 0
+  comingWorkerObject: {fileID: 0}
+  myPos: {x: 0, y: 0, z: 0}
+  firstPos: {x: 0, y: 0, z: 0}
 --- !u!54 &7657510318505131907
 Rigidbody:
   m_ObjectHideFlags: 0
