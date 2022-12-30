@@ -20,6 +20,9 @@ public class GameDataManager : MonoBehaviour
     public int beltSpeedButtonMoney = 5;
     public int incomeButtonMoney = 6;
     public int addMachineButtonMoney = 7;
+    public int beltSpeedButtonLevel = 1;
+    public int incomeButtonLevel = 1;
+    public int addMachineButtonLevel = 1;
 
     void Awake()
     {

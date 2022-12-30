@@ -9,6 +9,7 @@ using Unity.VisualScripting;
 public class MoneyMove : MonoBehaviour
 {
     public static MoneyMove Instance;
+    public float beltSpeed = 50f;
 
     private void Awake()
     {
@@ -24,7 +25,7 @@ public class MoneyMove : MonoBehaviour
         transform.DOMove(MachineManager.Instance._firstStep, 1f).OnComplete(
             () =>
             {
-                transform.DOMove(new Vector3(0, 0, 0), 50f);
+                transform.DOMove(new Vector3(0, 0, 0), beltSpeed);
             });
     }
 }
