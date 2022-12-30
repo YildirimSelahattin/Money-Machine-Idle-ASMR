@@ -26,25 +26,7 @@ public class UIManager : MonoBehaviour
         }
         //make a level array that contains every machine at the index of level number
     }
-
-    public void OnMachineAdddButtonClicked()
-    {
-        for(int gridIndex = 0; gridIndex < GameDataManager.Instance.gridArray.Length; gridIndex++)
-        {
-            int valueOfGrid = GameDataManager.Instance.gridArray[gridIndex];
-            if (valueOfGrid == 0)//found a position that has no machines
-            {
-                Debug.Log("qwe"+ gridIndex);
-                //level 0 şu an veriliyor !!sadece
-                GameManager.Instance.gridParent.transform.GetChild(gridIndex).gameObject.GetComponent<BoxCollider>().enabled = false;
-                GameObject newMachine =Instantiate(GameDataManager.Instance.moneyMachineArray[GameDataManager.Instance.maxLevelMachineAmount+1],GameManager.Instance.gridParent.transform.GetChild(gridIndex).transform);
-                GameDataManager.Instance.gridArray[gridIndex] = 1;
-                break;
-            }
-        }
-        GameDataManager.Instance.SaveData();
-    }
-
+    
     public void OnWorkerAddButtonClicked()
     {
         List<WorkerData> tempWorkerArray = GameDataManager.Instance.workerArray.ToList();
@@ -52,6 +34,36 @@ public class UIManager : MonoBehaviour
         GameDataManager.Instance.workerArray = tempWorkerArray.ToArray(); 
 
 
+        GameDataManager.Instance.SaveData();
+    }
+    
+    public void OnBeltSpeedUpgradeButton()
+    {
+        GameDataManager.Instance.beltSpeedButtonMoney += GameDataManager.Instance.beltSpeedButtonMoney / 2;
+    }
+
+    public void OnIncomeUpgradeButton()
+    {
+        GameDataManager.Instance.incomeButtonMoney += GameDataManager.Instance.incomeButtonMoney / 2;
+    }
+    
+    public void OnAddMachineButton()
+    {
+        GameDataManager.Instance.addMachineButtonMoney += GameDataManager.Instance.addMachineButtonMoney / 2;
+        
+        for(int gridIndex = 0; gridIndex < GameDataManager.Instance.gridArray.Length; gridIndex++)
+        {
+            int valueOfGrid = GameDataManager.Instance.gridArray[gridIndex];
+            if (valueOfGrid == 0)//found a position that has no machines
+            {
+                Debug.Log("qwe"+ gridIndex);
+                //level 1 şu an veriliyor !!sadece
+                GameManager.Instance.gridParent.transform.GetChild(gridIndex).gameObject.GetComponent<BoxCollider>().enabled = false;
+                GameObject newMachine =Instantiate(GameDataManager.Instance.moneyMachineArray[GameDataManager.Instance.maxLevelMachineAmount+1],GameManager.Instance.gridParent.transform.GetChild(gridIndex).transform);
+                GameDataManager.Instance.gridArray[gridIndex] = 1;
+                break;
+            }
+        }
         GameDataManager.Instance.SaveData();
     }
 }

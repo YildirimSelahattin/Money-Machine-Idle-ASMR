@@ -3,22 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="12e15ff2-c41a-445c-99a6-3e761c781f24" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Money-Machine-Idle-ASMR/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Money-Machine-Idle-ASMR/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Material/Ground 1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Material/Ground 1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Material/Ground 4.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Material/Ground 4.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Material/Ground 6.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Material/Ground 6.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Material/Ground.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Material/Ground.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/wheelBarrow/bucket_defaultMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/wheelBarrow/bucket_defaultMat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/wheelBarrow/handles_defaultMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/wheelBarrow/handles_defaultMat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/wheelBarrow/legs_defaultMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/wheelBarrow/legs_defaultMat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/wheelBarrow/rim_defaultMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/wheelBarrow/rim_defaultMat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Money.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Money.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Worker.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Worker.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/MachineManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MachineManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/MoneyMove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MoneyMove.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/WorkerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/WorkerManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/GameDataManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/GameDataManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/UIManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,6 +99,7 @@
       <workItem from="1672128954968" duration="5592000" />
       <workItem from="1672209135879" duration="5490000" />
       <workItem from="1672297570841" duration="5449000" />
+      <workItem from="1672387332993" duration="2793000" />
     </task>
     <servers />
   </component>
