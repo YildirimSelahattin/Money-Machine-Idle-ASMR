@@ -28,14 +28,20 @@ public class UIManager : MonoBehaviour
         }
         //make a level array that contains every machine at the index of level number
     }
+    
+    public void OnSellButton()
+    {
+        GameDataManager.Instance.totalMoney += GameDataManager.Instance.moneyToBeCollected;
+        GameDataManager.Instance.moneyToBeCollected = 0;
+        //Truck Move
+    }
 
     public void OnWorkerAddButtonClicked()
     {
         List<WorkerData> tempWorkerArray = GameDataManager.Instance.workerArray.ToList();
         tempWorkerArray.Add(new WorkerData());
         GameDataManager.Instance.workerArray = tempWorkerArray.ToArray();
-
-
+        
         GameDataManager.Instance.SaveData();
     }
 
@@ -44,13 +50,23 @@ public class UIManager : MonoBehaviour
         GameDataManager.Instance.beltSpeedButtonMoney += GameDataManager.Instance.beltSpeedButtonMoney / 2;
         GameDataManager.Instance.beltSpeedButtonLevel++;
 
-        MoneyMove.Instance.beltSpeed -= (MoneyMove.Instance.beltSpeed * 2 / 100);
+        MoneyMove.Instance.beltSpeed -= (MoneyMove.Instance.beltSpeed * 0.03f);
     }
 
     public void OnIncomeUpgradeButton()
     {
         GameDataManager.Instance.incomeButtonMoney += GameDataManager.Instance.incomeButtonMoney / 2;
         GameDataManager.Instance.incomeButtonLevel++;
+
+        MachineManager.Instance.machineIncomeMoney += MachineManager.Instance.machineIncomeMoney * 0.02f;
+    }
+
+    public void OnWorkerUpgradeButton()
+    {
+        GameDataManager.Instance.workerSpeedButtonMoney += GameDataManager.Instance.workerSpeedButtonMoney / 2;
+        GameDataManager.Instance.workerSpeedButtonLevel++;
+        
+        WorkerManager.Instance._baseSpeed -= WorkerManager.Instance._baseSpeed * 0.03f;
     }
 
     public void OnAddMachineButton()

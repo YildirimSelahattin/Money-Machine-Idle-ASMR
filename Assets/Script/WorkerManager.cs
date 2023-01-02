@@ -9,14 +9,20 @@ using System.Runtime.ExceptionServices;
 public class WorkerManager : MonoBehaviour
 {
     // Start is called before the first frame update
+    public static WorkerManager Instance;
     public  float maxComeAndGoCounter = 8;
     public float _baseSpeed;
     public  float addedTimeWhileGoing;
     public float wheelBorrowCapacity = 10;
     public int countedUntilSleep=0;
     public int indexThatWorkerGoing;
-    private void Update()
+
+    void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
     }
 
     public void MoveMachineAndComeBackByIndex(int index)

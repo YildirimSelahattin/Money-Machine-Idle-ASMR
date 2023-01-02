@@ -16,13 +16,17 @@ public class GameDataManager : MonoBehaviour
     public WorkerData[] workerArray;
     public int[] gridArray = new int[6];
     public int maxLevelMachineAmount;
-    public int totalGold;
     public int beltSpeedButtonMoney = 5;
     public int incomeButtonMoney = 6;
     public int addMachineButtonMoney = 7;
+    public int workerSpeedButtonMoney = 7;
     public int beltSpeedButtonLevel = 1;
     public int incomeButtonLevel = 1;
     public int addMachineButtonLevel = 1;
+    public int workerSpeedButtonLevel;
+    public float moneyToBeCollected = 0;
+    public float totalMoney = 0;
+
 
     void Awake()
     {
@@ -34,6 +38,7 @@ public class GameDataManager : MonoBehaviour
         }
         LoadData();
     }
+    
     public void LoadData()
     {
         maxLevelMachineAmount = PlayerPrefs.GetInt("MaxLevelMachineAmount",0);
@@ -61,6 +66,17 @@ public class GameDataManager : MonoBehaviour
             
             workerArray[i] = wm;
         }
+        
+        ///////////////////////////////////////////
+        /// Buttons
+        totalMoney = PlayerPrefs.GetFloat("TotalMoney", totalMoney);
+        moneyToBeCollected = PlayerPrefs.GetFloat("MoneyToBeCollected", moneyToBeCollected);
+        workerSpeedButtonLevel = PlayerPrefs.GetInt("WorkerSpeedButtonLevel", workerSpeedButtonLevel);
+        addMachineButtonLevel= PlayerPrefs.GetInt("AddMachineButtonLevel", addMachineButtonLevel);
+        incomeButtonLevel = PlayerPrefs.GetInt("IncomeButtonLevel", incomeButtonLevel);
+        MoneyMove.Instance.beltSpeed= PlayerPrefs.GetFloat("BeltSpeed", MoneyMove.Instance.beltSpeed);
+        MachineManager.Instance.machineIncomeMoney = PlayerPrefs.GetFloat("IncomePercentage", MachineManager.Instance.machineIncomeMoney);
+        WorkerManager.Instance._baseSpeed= PlayerPrefs.GetFloat("WorkerSpeed", WorkerManager.Instance._baseSpeed);
     }
     
     public void SaveData()
@@ -77,6 +93,17 @@ public class GameDataManager : MonoBehaviour
             PlayerPrefs.SetFloat("Worker" + i + "baseSpeed", workerArray[i]._baseSpeed);
         }
         PlayerPrefs.SetInt("WorkerArrayLength", workerArray.Length);
+        
+        //////////////////////////
+        /// Buttons
+        PlayerPrefs.SetFloat("TotalMoney", totalMoney);
+        PlayerPrefs.SetFloat("MoneyToBeCollected", moneyToBeCollected);
+        PlayerPrefs.SetFloat("WorkerSpeedButtonLevel", workerSpeedButtonLevel);
+        PlayerPrefs.SetFloat("AddMachineButtonLevel", addMachineButtonLevel);
+        PlayerPrefs.SetFloat("IncomeButtonLevel", incomeButtonLevel);
+        PlayerPrefs.SetFloat("BeltSpeed", MoneyMove.Instance.beltSpeed);
+        PlayerPrefs.SetFloat("IncomePercentage", MachineManager.Instance.machineIncomeMoney);
+        PlayerPrefs.SetFloat("WorkerSpeed", WorkerManager.Instance._baseSpeed);
     }
     private void OnDisable()
     {

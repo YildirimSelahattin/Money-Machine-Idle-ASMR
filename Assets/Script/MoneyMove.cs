@@ -22,7 +22,7 @@ public class MoneyMove : MonoBehaviour
     public void MoneyMoveTruck()
     {
         Debug.LogError("Move Position: " + MachineManager.Instance._firstStep);
-        transform.DOMove(MachineManager.Instance._firstStep, 1f).OnComplete(
+        transform.DOMove(MachineManager.Instance._firstStep, beltSpeed).OnComplete(
             () =>
             {
                 transform.DOMove(new Vector3(0, 0, 0), beltSpeed);
