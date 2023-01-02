@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="12e15ff2-c41a-445c-99a6-3e761c781f24" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Money-Machine-Idle-ASMR/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Money-Machine-Idle-ASMR/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PickupTruck.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PickupTruck.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/GameDataManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/GameDataManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/UIManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/WorkerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/WorkerManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +13,8 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../../../../../../Program Files/unityy/2021.3.5f1/Editor/Data/CGIncludes/UnityShaderVariables.cginc" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Common/FpsCounter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Common/StartScreenRes.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/ConveyorTexMove.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/DataList.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/GameDataManager.cs" root0="FORCE_HIGHLIGHTING" />
@@ -23,6 +22,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Script/MachineManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/MachineTriggerManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/ObjectPooling.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/PickupManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/WorkerData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/WorkerManager.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -104,6 +104,7 @@
       <workItem from="1672297570841" duration="5449000" />
       <workItem from="1672387332993" duration="2793000" />
       <workItem from="1672643402306" duration="6011000" />
+      <workItem from="1672666724563" duration="2768000" />
     </task>
     <servers />
   </component>
