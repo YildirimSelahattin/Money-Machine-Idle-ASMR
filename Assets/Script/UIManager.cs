@@ -34,6 +34,7 @@ public class UIManager : MonoBehaviour
         GameDataManager.Instance.totalMoney += GameDataManager.Instance.moneyToBeCollected;
         GameDataManager.Instance.moneyToBeCollected = 0;
         //Truck Move
+        
     }
 
     public void OnWorkerAddButtonClicked()
@@ -47,10 +48,11 @@ public class UIManager : MonoBehaviour
 
     public void OnBeltSpeedUpgradeButton()
     {
-        GameDataManager.Instance.beltSpeedButtonMoney += GameDataManager.Instance.beltSpeedButtonMoney / 2;
+        GameDataManager.Instance.beltSpeedButtonMoney += GameDataManager.Instance.beltSpeedButtonMoney / 1.5f;
         GameDataManager.Instance.beltSpeedButtonLevel++;
 
-        MoneyMove.Instance.beltSpeed -= (MoneyMove.Instance.beltSpeed * 0.03f);
+        if(MoneyMove.Instance.beltSpeed > 0.1f)
+            MoneyMove.Instance.beltSpeed -= (MoneyMove.Instance.beltSpeed * 0.03f);
     }
 
     public void OnIncomeUpgradeButton()

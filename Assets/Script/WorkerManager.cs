@@ -61,12 +61,12 @@ public class WorkerManager : MonoBehaviour
                     StartCoroutine(machineObject.GetComponent<MachineManager>().WaitAndPrint());
                 })));*/
         transform.DOLocalMove(Spawner.Instance.firstRoadBreakdown[index % 2].position,
-            (firstPartLength / _baseSpeed) + addedTimeWhileGoing).SetEase(Ease.Linear).OnComplete(() =>
+            (firstPartLength / _baseSpeed) + (_baseSpeed * 0.5f)).SetEase(Ease.Linear).OnComplete(() =>
         {
             transform.DOLocalRotate(new Vector3(0, 0, 0), 0.1f);
             transform.DOLocalMove(
                 machineObject.transform.parent.GetChild(GameManager.Instance.GRID_LAST_BREAKPOINT_INDEX).transform
-                    .position, (secondPartLenght / _baseSpeed) + addedTimeWhileGoing).SetEase(Ease.Linear).OnComplete(
+                    .position, (secondPartLenght / _baseSpeed) + (_baseSpeed * 0.5f)).SetEase(Ease.Linear).OnComplete(
                 () =>
                 {
                     if (indexThatWorkerGoing % 2 == 0)
@@ -79,7 +79,7 @@ public class WorkerManager : MonoBehaviour
                     }
 
                     transform.DOLocalMove(machineObject.transform.position,
-                        (thirdPartLength / _baseSpeed) + addedTimeWhileGoing).SetEase(Ease.Linear).OnComplete(() =>
+                        (thirdPartLength / _baseSpeed) + (_baseSpeed * 0.5f)).SetEase(Ease.Linear).OnComplete(() =>
                     {
                         GoBackToPile(true);
                         Debug.Log(machineObject.GetComponent<MachineManager>());
