@@ -17,7 +17,6 @@ public class Spawner : MonoBehaviour
     public GameObject workerPrefab;
     [SerializeField] private GameObject _endPosObject;
     public Transform[] firstRoadBreakdown;
-   
 
 
     private void Awake()
@@ -37,10 +36,10 @@ public class Spawner : MonoBehaviour
                 gridArrayStack.Push(i);
             }
         }
-        
+
         for (int i = 0; i < GameDataManager.Instance.workerArray.Length; i++)
         {
-            GameObject worker = Instantiate(workerPrefab,_spwanPos,Quaternion.identity);
+            GameObject worker = Instantiate(workerPrefab, _spwanPos, Quaternion.identity);
             //worker.GetComponent<WorkerManager>()._workerData.wheelBorrowCapacity = GameDataManager.Instance.workerArray[i].wheelBorrowCapacity;
             WorkerManager a = worker.GetComponent<WorkerManager>();
             Debug.Log(GameDataManager.Instance.workerArray[i].wheelBorrowCapacity);
@@ -49,32 +48,35 @@ public class Spawner : MonoBehaviour
             a._baseSpeed = GameDataManager.Instance.workerArray[i]._baseSpeed;
             workerStack.Push(worker);
         }
+
         StartCoroutine(StartDelay());
     }
+
     public IEnumerator StartDelay()
     {
         yield return new WaitForSeconds(1);
         LookForEmptyMachine();
     }
+
     public void LookForEmptyMachine()
     {
-        if (workerStack.Count != 0 && gridArrayStack.Count!= 0)
+        if (workerStack.Count != 0 && gridArrayStack.Count != 0)
         {
-            GameObject worker =  workerStack.Pop();
+            GameObject worker = workerStack.Pop();
             while (true)
             {
                 int availableGridIndex = gridArrayStack.Pop();
-                if(availableGridIndex == null)
+                if (availableGridIndex == null)
                 {
                     break;
                 }
-                if (GameDataManager.Instance.gridArray[availableGridIndex] > 0)// this is the case when 
+
+                if (GameDataManager.Instance.gridArray[availableGridIndex] > 0) // this is the case when 
                 {
                     worker.GetComponent<WorkerManager>().MoveMachineAndComeBackByIndex(availableGridIndex);
                     break;
                 }
             }
         }
-        
     }
 }

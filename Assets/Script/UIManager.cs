@@ -28,7 +28,7 @@ public class UIManager : MonoBehaviour
         }
         //make a level array that contains every machine at the index of level number
     }
-    
+
     public void OnSellButton()
     {
         GameDataManager.Instance.totalMoney += GameDataManager.Instance.moneyToBeCollected;
@@ -41,7 +41,7 @@ public class UIManager : MonoBehaviour
         List<WorkerData> tempWorkerArray = GameDataManager.Instance.workerArray.ToList();
         tempWorkerArray.Add(new WorkerData());
         GameDataManager.Instance.workerArray = tempWorkerArray.ToArray();
-        
+
         GameDataManager.Instance.SaveData();
     }
 
@@ -65,7 +65,7 @@ public class UIManager : MonoBehaviour
     {
         GameDataManager.Instance.workerSpeedButtonMoney += GameDataManager.Instance.workerSpeedButtonMoney / 2;
         GameDataManager.Instance.workerSpeedButtonLevel++;
-        
+
         WorkerManager.Instance._baseSpeed -= WorkerManager.Instance._baseSpeed * 0.03f;
     }
 

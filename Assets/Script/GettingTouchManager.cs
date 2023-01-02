@@ -50,7 +50,8 @@ public class GettingTouchManager : MonoBehaviour
                     objectToDrag.GetComponent<MachineManager>().dropped = false;
                     objectToDrag.AddComponent<MachineTriggerManager>();
                     originalPosOrDraggingObject = hit.collider.transform.localPosition;
-                    objectToDrag.GetComponent<MachineManager>().comingWorkerObject.GetComponent<WorkerManager>().GoBackToPile(false);//send 
+                    objectToDrag.GetComponent<MachineManager>().comingWorkerObject.GetComponent<WorkerManager>()
+                        .GoBackToPile(false); //send 
                 }
                 else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyCoins))
                 {
@@ -69,7 +70,7 @@ public class GettingTouchManager : MonoBehaviour
                     {
                         cloneMoney.transform.DOScale(startScale, 0.2f).SetEase(Ease.Flash)
                             .OnComplete(() => { Destroy(cloneMoney); });
-                        
+
                         // Make it active after X time to collect again
                         objectMoney.SetActive(true);
                     });
