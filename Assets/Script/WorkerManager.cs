@@ -30,11 +30,11 @@ public class WorkerManager : MonoBehaviour
 
         if(indexThatWorkerGoing % 2 == 0)
         {
-            transform.DOLocalRotate(new Vector3(0, -25, 0),0.1f);
+            transform.DOLocalRotate(new Vector3(0, 25, 0),0.1f);
         }
         else
         {
-            transform.DOLocalRotate(new Vector3(0,25,0),0.1f);
+            transform.DOLocalRotate(new Vector3(0,-25,0),0.1f);
         }
 
         /*transform.DOLocalMove(Spawner.Instance.firstRoadBreakdown[index%2].position,(firstPartLength/ _baseSpeed)+addedTimeWhileGoing).SetEase(Ease.Linear).// go to first breakdown after taking money
@@ -55,11 +55,11 @@ public class WorkerManager : MonoBehaviour
                 OnComplete(()=>{
                     if (indexThatWorkerGoing % 2 == 0)
                     {
-                        transform.DOLocalRotate(new Vector3(0, -90, 0), 0.1f);
+                        transform.DOLocalRotate(new Vector3(0, 90, 0), 0.1f);
                     }
                     else
                     {
-                        transform.DOLocalRotate(new Vector3(0, 90, 0), 0.1f);
+                        transform.DOLocalRotate(new Vector3(0, -90, 0), 0.1f);
                     }
                     transform.DOLocalMove(machineObject.transform.position, (thirdPartLength / _baseSpeed) + addedTimeWhileGoing).SetEase(Ease.Linear).OnComplete(() =>
                     {
@@ -78,15 +78,8 @@ public class WorkerManager : MonoBehaviour
         if(deployedSuccesfully == false)
         {
             Debug.Log("sui");
-            if (indexThatWorkerGoing % 2 == 0)
-            {
-                transform.DOLocalRotate(new Vector3(0, 90, 0), 0.1f);
-            }
-            else
-            {
-                transform.DOLocalRotate(new Vector3(0, -90, 0), 0.1f);
-            }
-            transform.DOLocalRotate(new Vector3(0,-180,0),0.1f);
+           
+            transform.DOLocalRotate(new Vector3(0,-180,0),0.2f);
             transform.DOLocalMove(Spawner.Instance.firstRoadBreakdown[indexThatWorkerGoing % 2].position, Vector3.Distance(transform.position, Spawner.Instance.firstRoadBreakdown[indexThatWorkerGoing % 2].position) / _baseSpeed).SetEase(Ease.Linear)
             .OnComplete(() =>
             {
@@ -132,14 +125,32 @@ public class WorkerManager : MonoBehaviour
         else
         {
             Debug.Log("sui");
+            if (indexThatWorkerGoing % 2 == 0)
+            {
+                transform.DOLocalRotate(new Vector3(0, -90, 0), 0.1f);
+            }
+            else
+            {
+                transform.DOLocalRotate(new Vector3(0, 90, 0), 0.1f);
+            }
             transform.DOLocalMove(GameManager.Instance.gridParent.transform.GetChild(indexThatWorkerGoing).GetChild(GameManager.Instance.GRID_LAST_BREAKPOINT_INDEX).position,Vector3.Distance(GameManager.Instance.gridParent.transform.GetChild(indexThatWorkerGoing).GetChild(GameManager.Instance.GRID_LAST_BREAKPOINT_INDEX).position,transform.position)).SetEase(Ease.Linear)
                 .OnComplete(() =>
                 {
-                    transform.
+                    
+                    transform.DOLocalRotate(new Vector3(0, 180 , 0), 0.1f);
+
                     transform.DOLocalMove(Spawner.Instance.firstRoadBreakdown[indexThatWorkerGoing % 2].position, Vector3.Distance(transform.position, Spawner.Instance.firstRoadBreakdown[indexThatWorkerGoing % 2].position) / _baseSpeed).SetEase(Ease.Linear)
                     .OnComplete(() =>
-                    transform.DOLocalMove(Spawner.Instance._spwanPos, _baseSpeed).SetEase(Ease.Linear).OnComplete(
-                        () =>
+                    {
+                        if (indexThatWorkerGoing % 2 == 0)
+                        {
+                            transform.DOLocalRotate(new Vector3(0, 180+25, 0), 0.2f);
+                        }
+                        else
+                        {
+                            transform.DOLocalRotate(new Vector3(0, 180 -25, 0), 0.2f);
+                        }
+                        transform.DOLocalMove(Spawner.Instance._spwanPos, _baseSpeed).SetEase(Ease.Linear).OnComplete(() =>
                         {
                             countedUntilSleep++;
                             if (countedUntilSleep > maxComeAndGoCounter)
@@ -151,7 +162,9 @@ public class WorkerManager : MonoBehaviour
                                 Spawner.Instance.workerStack.Push(gameObject);
                                 Spawner.Instance.LookForEmptyMachine();
                             }
-                        }));
+                        });
+                    });
+                    
                             });
             
         }
