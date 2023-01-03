@@ -1845,12 +1845,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a1459141c4f424681471e0e3726f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxComeAndGoCounter: 8
-  _baseSpeed: 0
-  addedTimeWhileGoing: 0
-  wheelBorrowCapacity: 10
-  countedUntilSleep: 0
-  _upgradeButton: {fileID: 0}
+  indexThatWorkerGoing: 0
+  waitingForGridDecision: 0
+  moneyPile: {fileID: 4225596871139837955}
 --- !u!1 &4225596870745681869
 GameObject:
   m_ObjectHideFlags: 0

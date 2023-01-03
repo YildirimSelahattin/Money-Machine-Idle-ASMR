@@ -81,12 +81,12 @@ public class MachineTriggerManager : MonoBehaviour
             Spawner.Instance.gridWorkerArray[targetGrid] = worker;
             worker.GetComponent<WorkerManager>().waitingForGridDecision = false;
             worker.GetComponent<WorkerManager>().indexThatWorkerGoing = targetGrid;
-            worker.GetComponent<WorkerManager>().MoveMachineAndComeBackByIndex();
+            
             ///
             gameObject.transform.SetParent(other.gameObject.transform);
             gameObject.transform.DOKill();
             gameObject.transform.DOLocalMove(new Vector3(0, 0.5f, 0), 0.3f)
-                .OnComplete(() => GettingTouchManager.Instance.objectToDrag = null);
+                .OnComplete(() => GettingTouchManager.Instance.objectToDrag = null).OnComplete(()=> worker.GetComponent<WorkerManager>().MoveMachineAndComeBackByIndex());// when snapping to neew grid job finishes, start worker movement
             GameDataManager.Instance.SaveData();
         }
     }
