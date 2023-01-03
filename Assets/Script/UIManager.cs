@@ -85,11 +85,11 @@ public class UIManager : MonoBehaviour
         GameDataManager.Instance.workerSpeedButtonMoney += GameDataManager.Instance.workerSpeedButtonMoney / 2;
         GameDataManager.Instance.workerSpeedButtonLevel++;
 
-        GameDataManager.Instance.workerBaseSpeed -= GameDataManager.Instance.workerBaseSpeed* 0.03f;
+        GameDataManager.Instance.workerBaseSpeed += GameDataManager.Instance.workerBaseSpeed* 0.03f;
         
         ButtonPanel.transform.GetChild(2).transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = "Level - " + GameDataManager.Instance.workerSpeedButtonLevel;
         ButtonPanel.transform.GetChild(2).transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text =
-            GameDataManager.Instance.workerSpeedButtonMoney + " $";
+            AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.workerSpeedButtonMoney) + " $";
         
         GameDataManager.Instance.SaveData();
     }
@@ -121,7 +121,7 @@ public class UIManager : MonoBehaviour
 
                 //Instantiate worker and add to stack
                 StartCoroutine(Spawner.Instance.AddWorkerAfterDelay(gridIndex,1));
-                break;
+                
             }
         }
         GameDataManager.Instance.SaveData();

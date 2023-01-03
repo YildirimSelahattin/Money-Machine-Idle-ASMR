@@ -45,12 +45,12 @@ public class WorkerManager : MonoBehaviour
         }
 
         transform.DOLocalMove(Spawner.Instance.firstRoadBreakdown[indexThatWorkerGoing % 2].position,
-            firstPartLength / GameDataManager.Instance.workerBaseSpeed * 1.5f).SetEase(Ease.Linear).OnComplete(() =>
+            firstPartLength / GameDataManager.Instance.workerBaseSpeed * 0.5f).SetEase(Ease.Linear).OnComplete(() =>
         {
             transform.DOLocalRotate(new Vector3(0, 0, 0), 0.1f);
             transform.DOLocalMove(
                 machineObject.transform.parent.GetChild(GameManager.Instance.GRID_LAST_BREAKPOINT_INDEX).transform
-                    .position,secondPartLenght / GameDataManager.Instance.workerBaseSpeed*1.5f).SetEase(Ease.Linear).OnComplete(
+                    .position,secondPartLenght / GameDataManager.Instance.workerBaseSpeed*0.5f).SetEase(Ease.Linear).OnComplete(
                 () =>
                 {
                     if (indexThatWorkerGoing % 2 == 0)
@@ -63,7 +63,7 @@ public class WorkerManager : MonoBehaviour
                     }
 
                     transform.DOLocalMove(machineObject.transform.position,
-                        thirdPartLength / GameDataManager.Instance.workerBaseSpeed * 1.5f).SetEase(Ease.Linear).OnComplete(() =>
+                        thirdPartLength / GameDataManager.Instance.workerBaseSpeed * 0.5f).SetEase(Ease.Linear).OnComplete(() =>
                     {
                         GoBackToPile(true);
                         Debug.Log(machineObject.GetComponent<MachineManager>());
