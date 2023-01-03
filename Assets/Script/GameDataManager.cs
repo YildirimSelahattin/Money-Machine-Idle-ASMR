@@ -28,6 +28,7 @@ public class GameDataManager : MonoBehaviour
     public float workerBaseSpeed;
     public float beltSpeed;
     public float machineIncomeMoney;
+    
     void Awake()
     {
         if (Instance == null)
