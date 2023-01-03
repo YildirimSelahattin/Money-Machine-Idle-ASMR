@@ -13,11 +13,10 @@ public class Spawner : MonoBehaviour
     public Vector3 _spwanPos;
     private int _moneyAmount = 0;
     public GameObject workerPrefab;
-
+    private int waitingTime = 0;
     public GameObject[] gridWorkerArray = new GameObject[6];
     [SerializeField] private GameObject _endPosObject;
     public Transform[] firstRoadBreakdown;
-    Hashtable workerGrid = new Hashtable();
     private void Awake()
     {
         if (Instance == null)
@@ -34,12 +33,15 @@ public class Spawner : MonoBehaviour
             // if that have machine, ýnstantiate a worker for this machine 
             if (GameDataManager.Instance.gridArray[i] > 0)
             {
-                AddWorker(i);
+                StartCoroutine(AddWorkerAfterDelay(i,waitingTime));
+                waitingTime++;
             }
         }
+        waitingTime = 0;
     }
-    public void AddWorker(int index)
+    public IEnumerator AddWorkerAfterDelay(int index,float waitingTime)
     {
+        yield return new WaitForSeconds(waitingTime);
         GameObject worker = Instantiate(workerPrefab, _spwanPos, Quaternion.identity);
         WorkerManager a = worker.GetComponent<WorkerManager>();
         a.indexThatWorkerGoing = index;

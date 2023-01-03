@@ -85,7 +85,7 @@ public class UIManager : MonoBehaviour
                 GameDataManager.Instance.gridArray[gridIndex] = 1;
 
                 //Instantiate worker and add to stack
-                Spawner.Instance.AddWorker(gridIndex);
+                StartCoroutine(Spawner.Instance.AddWorkerAfterDelay(gridIndex,1));
                 break;
             }
         }
