@@ -50,8 +50,9 @@ public class GettingTouchManager : MonoBehaviour
                     objectToDrag.GetComponent<MachineManager>().dropped = false;
                     objectToDrag.AddComponent<MachineTriggerManager>();
                     originalPosOrDraggingObject = hit.collider.transform.localPosition;
-                    objectToDrag.GetComponent<MachineManager>().comingWorkerObject.GetComponent<WorkerManager>()
-                        .GoBackToPile(false); //send 
+                    Spawner.Instance.gridWorkerArray[objectToDrag.GetComponent<MachineManager>().gridIndexNumberOfObject].GetComponent<WorkerManager>().GoBackToPile(false);
+                    Spawner.Instance.gridWorkerArray[objectToDrag.GetComponent<MachineManager>().gridIndexNumberOfObject].GetComponent<WorkerManager>().waitingForGridDecision = true;
+
                 }
                 else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyCoins))
                 {
@@ -110,6 +111,8 @@ public class GettingTouchManager : MonoBehaviour
                         objectToDrag.GetComponent<MachineManager>().inSnapArea != true)
                     {
                         objectToDrag.transform.DOKill();
+                        Spawner.Instance.gridWorkerArray[objectToDrag.GetComponent<MachineManager>().gridIndexNumberOfObject].GetComponent<WorkerManager>().waitingForGridDecision = false;
+                        Spawner.Instance.gridWorkerArray[objectToDrag.GetComponent<MachineManager>().gridIndexNumberOfObject].GetComponent<WorkerManager>().MoveMachineAndComeBackByIndex();
                         objectToDrag.transform.localPosition = originalPosOrDraggingObject;
                         Destroy(objectToDrag.GetComponent<MachineTriggerManager>());
                         objectToDrag = null;

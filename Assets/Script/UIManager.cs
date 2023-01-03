@@ -37,22 +37,15 @@ public class UIManager : MonoBehaviour
         
     }
 
-    public void OnWorkerAddButtonClicked()
-    {
-        List<WorkerData> tempWorkerArray = GameDataManager.Instance.workerArray.ToList();
-        tempWorkerArray.Add(new WorkerData());
-        GameDataManager.Instance.workerArray = tempWorkerArray.ToArray();
-
-        GameDataManager.Instance.SaveData();
-    }
+   
 
     public void OnBeltSpeedUpgradeButton()
     {
         GameDataManager.Instance.beltSpeedButtonMoney += GameDataManager.Instance.beltSpeedButtonMoney / 1.5f;
         GameDataManager.Instance.beltSpeedButtonLevel++;
 
-        if(MoneyMove.Instance.beltSpeed > 0.1f)
-            MoneyMove.Instance.beltSpeed -= (MoneyMove.Instance.beltSpeed * 0.03f);
+        if(GameDataManager.Instance.beltSpeed > 0.1f)
+            GameDataManager.Instance.beltSpeed -= (GameDataManager.Instance.beltSpeed * 0.03f);
     }
 
     public void OnIncomeUpgradeButton()
@@ -68,7 +61,7 @@ public class UIManager : MonoBehaviour
         GameDataManager.Instance.workerSpeedButtonMoney += GameDataManager.Instance.workerSpeedButtonMoney / 2;
         GameDataManager.Instance.workerSpeedButtonLevel++;
 
-        WorkerManager.Instance._baseSpeed -= WorkerManager.Instance._baseSpeed * 0.03f;
+        GameDataManager.Instance.workerBaseSpeed -= GameDataManager.Instance.workerBaseSpeed* 0.03f;
     }
 
     public void OnAddMachineButton()
@@ -90,10 +83,13 @@ public class UIManager : MonoBehaviour
                         GameDataManager.Instance.moneyMachineArray[GameDataManager.Instance.maxLevelMachineAmount + 1],
                         GameManager.Instance.gridParent.transform.GetChild(gridIndex).transform);
                 GameDataManager.Instance.gridArray[gridIndex] = 1;
+
+                //Instantiate worker and add to stack
+                Spawner.Instance.AddWorker(gridIndex);
                 break;
             }
         }
-
+        
         GameDataManager.Instance.SaveData();
     }
 }

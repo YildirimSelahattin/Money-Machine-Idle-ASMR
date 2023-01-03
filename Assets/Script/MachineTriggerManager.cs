@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class MachineTriggerManager : MonoBehaviour
@@ -24,29 +25,29 @@ public class MachineTriggerManager : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        // merge job
         if (other.gameObject.transform.CompareTag(this.gameObject.transform.tag) &&
             gameObject.GetComponent<MachineManager>().dropped == true) //if they are same level
         {
             if (gameObject.GetComponent<MachineManager>().levelIndexOfObject < 6) //if the machine is mergeable
             {
+                int targetGrid = other.gameObject.GetComponent<MachineManager>().gridIndexNumberOfObject;
+                int currentGrid = gameObject.transform.parent.tag[transform.parent.tag.Length - 1] - '0';
+
                 //Instantiate(GameDataManatger.Instance.moneyMachineArray[other.gameObject.GetComponent<MachineManager>().levelIndexOfObject + 1],other.transform.parent);
-                GameDataManager.Instance.gridArray[
-                        other.gameObject.GetComponent<MachineManager>().gridIndexNumberOfObject] =
-                    gameObject.GetComponent<MachineManager>().levelIndexOfObject +
-                    1; // save the merged machines level on the new grid
-                GameDataManager.Instance.gridArray[
-                    gameObject.transform.parent.tag[transform.parent.tag.Length - 1] - '0'] = 0;
-                GameManager.Instance.gridParent.transform
-                    .GetChild(other.gameObject.transform.parent.tag[other.transform.parent.tag.Length - 1] - '0')
-                    .GetComponent<BoxCollider>().enabled = false;
-                GameManager.Instance.gridParent.transform
-                    .GetChild(gameObject.transform.parent.tag[gameObject.transform.parent.tag.Length - 1] - '0')
-                    .GetComponent<BoxCollider>().enabled = true;
+                GameDataManager.Instance.gridArray[targetGrid] =gameObject.GetComponent<MachineManager>().levelIndexOfObject + 1; // save the merged machines level on the new grid
+                GameDataManager.Instance.gridArray[currentGrid] = 0;
+                //worker deleting
+                GameObject workerThatWorksForCurrentGrid = Spawner.Instance.gridWorkerArray[currentGrid];
+                Spawner.Instance.gridWorkerArray[currentGrid] = null;
+                Destroy(workerThatWorksForCurrentGrid);
+                ////
+                GameManager.Instance.gridParent.transform.GetChild(targetGrid).GetComponent<BoxCollider>().enabled = false;
+                GameManager.Instance.gridParent.transform.GetChild(currentGrid).GetComponent<BoxCollider>().enabled = true;
                 if (gameObject.GetComponent<MachineManager>().levelIndexOfObject + 1 == 6)
                 {
                     GameDataManager.Instance.maxLevelMachineAmount++;
                 }
-
                 Destroy(other.gameObject);
                 Destroy(gameObject);
                 Instantiate(
@@ -54,6 +55,8 @@ public class MachineTriggerManager : MonoBehaviour
                         other.gameObject.GetComponent<MachineManager>().levelIndexOfObject + 1],
                     other.transform.parent);
                 GameDataManager.Instance.SaveData();
+
+
             }
         }
 
@@ -62,18 +65,24 @@ public class MachineTriggerManager : MonoBehaviour
             gameObject.GetComponent<MachineManager>().inSnapArea != false) //if machine is in the grid area 
         {
             gameObject.GetComponent<MachineManager>().inSnapArea = false;
-
+            Debug.Log("asdasd");
             int currentGridOfMachine = gameObject.transform.parent.tag[transform.parent.tag.Length - 1] - '0';
             int targetGrid = other.gameObject.transform.tag[other.gameObject.transform.tag.Length - 1] - '0';
             int levelIndexOfDraggedMachine = gameObject.GetComponent<MachineManager>().levelIndexOfObject;
+            GameObject worker = Spawner.Instance.gridWorkerArray[currentGridOfMachine];
             gameObject.GetComponent<MachineManager>().gridIndexNumberOfObject = targetGrid; // save it on the new grid
-            GameManager.Instance.gridParent.transform.GetChild(currentGridOfMachine).GetComponent<BoxCollider>()
-                .enabled = true;
+            GameManager.Instance.gridParent.transform.GetChild(currentGridOfMachine).GetComponent<BoxCollider>().enabled = true;
             GameManager.Instance.gridParent.transform.GetChild(targetGrid).GetComponent<BoxCollider>().enabled = false;
             GameDataManager.Instance.gridArray[targetGrid] = levelIndexOfDraggedMachine; // save it on the new grid
             GameDataManager.Instance.gridArray[currentGridOfMachine] = 0;
-            //delete current grid from stack, add target grid to stack
-            Spawner.Instance.gridArrayStack.Push(targetGrid);
+            //delete current grids worker from array
+            Spawner.Instance.gridWorkerArray[currentGridOfMachine] = null;
+            //ad the new grids worker to the array
+            Spawner.Instance.gridWorkerArray[targetGrid] = worker;
+            worker.GetComponent<WorkerManager>().waitingForGridDecision = false;
+            worker.GetComponent<WorkerManager>().indexThatWorkerGoing = targetGrid;
+            worker.GetComponent<WorkerManager>().MoveMachineAndComeBackByIndex();
+            ///
             gameObject.transform.SetParent(other.gameObject.transform);
             gameObject.transform.DOKill();
             gameObject.transform.DOLocalMove(new Vector3(0, 0.5f, 0), 0.3f)

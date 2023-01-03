@@ -13,7 +13,6 @@ public class GameDataManager : MonoBehaviour
     public int playMusic;
     public AudioClip brushMachineMusic;
     public GameObject[] moneyMachineArray;
-    public WorkerData[] workerArray;
     public int[] gridArray = new int[6];
     public int maxLevelMachineAmount;
     public float beltSpeedButtonMoney = 5;
@@ -26,8 +25,9 @@ public class GameDataManager : MonoBehaviour
     public int workerSpeedButtonLevel;
     public float moneyToBeCollected = 0;
     public float totalMoney = 0;
-
-
+    public float workerBaseSpeed;
+    public float beltSpeed;
+    public float machineIncomeMoney;
     void Awake()
     {
         if (Instance == null)
@@ -53,20 +53,7 @@ public class GameDataManager : MonoBehaviour
         }
 
         // worker jobs
-        int workerArrayLength = PlayerPrefs.GetInt("WorkerArrayLength",1);
-        workerArray = new WorkerData[workerArrayLength];
-        for (int i= 0; i < workerArrayLength; i++)
-        {
-            WorkerData wm = new WorkerData();
-            wm.wheelBorrowCapacity = PlayerPrefs.GetFloat("Worker"+i+"wheelBorrowCapacity",10);
-            wm.addedTimeWhileGoing = PlayerPrefs.GetFloat("Worker" + i + "addedTimeWhileGoing", 3);
-            wm.maxComeAndGoCounter = PlayerPrefs.GetFloat("Worker" + i + "maxComeAndGoCounter", 10);
-            wm._baseSpeed = PlayerPrefs.GetFloat("Worker" + i + "baseSpeed", 3);
-            Debug.Log(wm._baseSpeed);
-            
-            workerArray[i] = wm;
-        }
-        
+        workerBaseSpeed=PlayerPrefs.GetFloat("WorkerBaseSpeed", 3);
         ///////////////////////////////////////////
         /// Buttons
         totalMoney = PlayerPrefs.GetFloat("TotalMoney", totalMoney);
@@ -74,9 +61,8 @@ public class GameDataManager : MonoBehaviour
         workerSpeedButtonLevel = PlayerPrefs.GetInt("WorkerSpeedButtonLevel", workerSpeedButtonLevel);
         addMachineButtonLevel= PlayerPrefs.GetInt("AddMachineButtonLevel", addMachineButtonLevel);
         incomeButtonLevel = PlayerPrefs.GetInt("IncomeButtonLevel", incomeButtonLevel);
-        MoneyMove.Instance.beltSpeed= PlayerPrefs.GetFloat("BeltSpeed", MoneyMove.Instance.beltSpeed);
-        MachineManager.Instance.machineIncomeMoney = PlayerPrefs.GetFloat("IncomePercentage", MachineManager.Instance.machineIncomeMoney);
-        WorkerManager.Instance._baseSpeed= PlayerPrefs.GetFloat("WorkerSpeed", WorkerManager.Instance._baseSpeed);
+        beltSpeed= PlayerPrefs.GetFloat("BeltSpeed", 50);
+        workerBaseSpeed= PlayerPrefs.GetFloat("WorkerSpeed",10);
     }
     
     public void SaveData()
@@ -85,15 +71,10 @@ public class GameDataManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("GridValue" + i.ToString(), gridArray[i]);//closed default
         }
-        for (int i = 0; i < workerArray.Length; i++)
-        {
-            PlayerPrefs.SetFloat("Worker" + i + "wheelBorrowCapacity", workerArray[i].wheelBorrowCapacity);
-            PlayerPrefs.SetFloat("Worker" + i + "addedTimeWhileGoing", workerArray[i].addedTimeWhileGoing);
-            PlayerPrefs.SetFloat("Worker" + i + "maxComeAndGoCounter", workerArray[i].maxComeAndGoCounter);
-            PlayerPrefs.SetFloat("Worker" + i + "baseSpeed", workerArray[i]._baseSpeed);
-        }
-        PlayerPrefs.SetInt("WorkerArrayLength", workerArray.Length);
-        
+
+        // worker jobs
+        PlayerPrefs.SetFloat("WorkerBaseSpeed", workerBaseSpeed);
+
         //////////////////////////
         /// Buttons
         PlayerPrefs.SetFloat("TotalMoney", totalMoney);
@@ -101,9 +82,9 @@ public class GameDataManager : MonoBehaviour
         PlayerPrefs.SetFloat("WorkerSpeedButtonLevel", workerSpeedButtonLevel);
         PlayerPrefs.SetFloat("AddMachineButtonLevel", addMachineButtonLevel);
         PlayerPrefs.SetFloat("IncomeButtonLevel", incomeButtonLevel);
-        PlayerPrefs.SetFloat("BeltSpeed", MoneyMove.Instance.beltSpeed);
-        PlayerPrefs.SetFloat("IncomePercentage", MachineManager.Instance.machineIncomeMoney);
-        PlayerPrefs.SetFloat("WorkerSpeed", WorkerManager.Instance._baseSpeed);
+        PlayerPrefs.SetFloat("BeltSpeed", beltSpeed);
+        PlayerPrefs.SetFloat("IncomePercentage", machineIncomeMoney);
+        PlayerPrefs.SetFloat("WorkerSpeed",workerBaseSpeed);
     }
     private void OnDisable()
     {

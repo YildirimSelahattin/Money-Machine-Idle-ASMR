@@ -146,8 +146,6 @@ public class MachineManager : MonoBehaviour
                 }
 
                 isFinishedCount = true;
-                Spawner.Instance.gridArrayStack.Push(gridIndexNumberOfObject);
-                Spawner.Instance.LookForEmptyMachine();
             }
         }
 
