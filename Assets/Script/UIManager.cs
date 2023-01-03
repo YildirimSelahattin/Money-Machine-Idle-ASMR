@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     public static UIManager Instance;
     [SerializeField] private GameObject ButtonPanel;
+    [SerializeField] private GameObject MoneyFromSellText;
+    [SerializeField] private GameObject TotalMoneyText;
 
     public int NumberOfDiamonds
     {
@@ -28,7 +30,7 @@ public class UIManager : MonoBehaviour
         {
             Instance = this;
         }
-        //make a level array that contains every machine at the index of level number
+        TotalMoneyText.GetComponent<TextMeshProUGUI>().text = PlayerPrefs.GetFloat("TotalMoney", 0).ToString();
     }
 
     public void OnSellButton()
@@ -36,6 +38,8 @@ public class UIManager : MonoBehaviour
         Debug.Log("Sell");
         GameDataManager.Instance.totalMoney += GameDataManager.Instance.moneyToBeCollected;
         GameDataManager.Instance.moneyToBeCollected = 0;
+        MoneyFromSellText.GetComponent<TextMeshProUGUI>().text = "0";
+        TotalMoneyText.GetComponent<TextMeshProUGUI>().text = GameDataManager.Instance.totalMoney.ToString();
         //Truck Move
         PickupManager.Instance.SellMoneyWithTruck();
     }
