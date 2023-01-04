@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4592492916535940168}
   - component: {fileID: 761035495472349542}
   - component: {fileID: 5471914926240629102}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube.049_Material.008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5688949613662633205}
   - component: {fileID: 7377931982262083629}
   - component: {fileID: 6360963890271774968}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube.049_Material.007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 3499244967982972318}
   - component: {fileID: 9145369015480019617}
   - component: {fileID: 2110826833257834920}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,7 +350,7 @@ GameObject:
   - component: {fileID: 6420006760343858649}
   - component: {fileID: 8843911599134770617}
   - component: {fileID: 8649922955139654931}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube.049_Material.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -433,7 +433,7 @@ GameObject:
   - component: {fileID: 54847140044058686}
   - component: {fileID: 436150130224135409}
   - component: {fileID: 3008650149295972553}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube.049_Material.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -516,7 +516,7 @@ GameObject:
   - component: {fileID: 4882724200884341720}
   - component: {fileID: 7440024392547964400}
   - component: {fileID: 4735147455567000031}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube.049_Material.009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,7 +599,7 @@ GameObject:
   - component: {fileID: 5844182950728006192}
   - component: {fileID: 604401281544751294}
   - component: {fileID: 4866258436661442066}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube.049_Material.012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -680,7 +680,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7561084984397414291}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -721,9 +721,9 @@ GameObject:
   - component: {fileID: 4821791449367649134}
   - component: {fileID: 4821791449367649135}
   - component: {fileID: 4821791449367649120}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: machine-1 2
-  m_TagString: Untagged
+  m_TagString: Level2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
