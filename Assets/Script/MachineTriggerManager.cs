@@ -31,10 +31,10 @@ public class MachineTriggerManager : MonoBehaviour
         {
             if (gameObject.GetComponent<MachineManager>().levelIndexOfObject < 6) //if the machine is mergeable
             {
+                Debug.Log("EMÝR");
                 int targetGrid = other.gameObject.GetComponent<MachineManager>().gridIndexNumberOfObject;
                 int currentGrid = gameObject.transform.parent.tag[transform.parent.tag.Length - 1] - '0';
-
-                //Instantiate(GameDataManatger.Instance.moneyMachineArray[other.gameObject.GetComponent<MachineManager>().levelIndexOfObject + 1],other.transform.parent);
+                //make changes on grid array
                 GameDataManager.Instance.gridArray[targetGrid] =gameObject.GetComponent<MachineManager>().levelIndexOfObject + 1; // save the merged machines level on the new grid
                 GameDataManager.Instance.gridArray[currentGrid] = 0;
                 //worker deleting
@@ -65,7 +65,6 @@ public class MachineTriggerManager : MonoBehaviour
             gameObject.GetComponent<MachineManager>().inSnapArea != false) //if machine is in the grid area 
         {
             gameObject.GetComponent<MachineManager>().inSnapArea = false;
-            Debug.Log("asdasd");
             int currentGridOfMachine = gameObject.transform.parent.tag[transform.parent.tag.Length - 1] - '0';
             int targetGrid = other.gameObject.transform.tag[other.gameObject.transform.tag.Length - 1] - '0';
             int levelIndexOfDraggedMachine = gameObject.GetComponent<MachineManager>().levelIndexOfObject;
@@ -76,12 +75,11 @@ public class MachineTriggerManager : MonoBehaviour
             GameDataManager.Instance.gridArray[targetGrid] = levelIndexOfDraggedMachine; // save it on the new grid
             GameDataManager.Instance.gridArray[currentGridOfMachine] = 0;
             //delete current grids worker from array
+            GameObject workerToDelete = Spawner.Instance.gridWorkerArray[currentGridOfMachine];
             Spawner.Instance.gridWorkerArray[currentGridOfMachine] = null;
+            Destroy(workerToDelete);
             //ad the new grids worker to the array
-            Spawner.Instance.gridWorkerArray[targetGrid] = worker;
-            worker.GetComponent<WorkerManager>().waitingForGridDecision = false;
-            worker.GetComponent<WorkerManager>().indexThatWorkerGoing = targetGrid;
-            
+            StartCoroutine(Spawner.Instance.AddWorkerAfterDelay(targetGrid,1));
             ///
             gameObject.transform.SetParent(other.gameObject.transform);
             gameObject.transform.DOKill();

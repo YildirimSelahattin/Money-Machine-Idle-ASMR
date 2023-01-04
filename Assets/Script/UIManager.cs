@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.WebSockets;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class UIManager : MonoBehaviour
 {
@@ -125,5 +126,12 @@ public class UIManager : MonoBehaviour
             }
         }
         GameDataManager.Instance.SaveData();
+    }
+
+    public IEnumerator DeactivateForSeconds(Button button,float waitTime)
+    {
+        button.interactable = false;
+        yield return new WaitForSeconds(waitTime);
+        button.interactable = true;
     }
 }

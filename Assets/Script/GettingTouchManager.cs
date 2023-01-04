@@ -50,7 +50,7 @@ public class GettingTouchManager : MonoBehaviour
                     objectToDrag.GetComponent<MachineManager>().dropped = false;
                     objectToDrag.AddComponent<MachineTriggerManager>();
                     originalPosOrDraggingObject = hit.collider.transform.localPosition;
-                    Spawner.Instance.gridWorkerArray[objectToDrag.GetComponent<MachineManager>().gridIndexNumberOfObject].GetComponent<WorkerManager>().GoBackToPile(false);
+                    Spawner.Instance.gridWorkerArray[objectToDrag.GetComponent<MachineManager>().gridIndexNumberOfObject].GetComponent<WorkerManager>().GoBackToPile();
                     Spawner.Instance.gridWorkerArray[objectToDrag.GetComponent<MachineManager>().gridIndexNumberOfObject].GetComponent<WorkerManager>().waitingForGridDecision = true;
 
                 }
@@ -111,8 +111,12 @@ public class GettingTouchManager : MonoBehaviour
                         objectToDrag.GetComponent<MachineManager>().inSnapArea != true)
                     {
                         objectToDrag.transform.DOKill();
-                        Spawner.Instance.gridWorkerArray[objectToDrag.GetComponent<MachineManager>().gridIndexNumberOfObject].GetComponent<WorkerManager>().waitingForGridDecision = false;
-                        Spawner.Instance.gridWorkerArray[objectToDrag.GetComponent<MachineManager>().gridIndexNumberOfObject].GetComponent<WorkerManager>().MoveMachineAndComeBackByIndex();
+                        GameObject workerForThisMachine = Spawner.Instance.gridWorkerArray[objectToDrag.GetComponent<MachineManager>().gridIndexNumberOfObject];
+                        workerForThisMachine.GetComponent<WorkerManager>().waitingForGridDecision = false;
+                        if (workerForThisMachine.GetComponent<WorkerManager>().moveStage == 1)
+                        {
+                            Spawner.Instance.gridWorkerArray[objectToDrag.GetComponent<MachineManager>().gridIndexNumberOfObject].GetComponent<WorkerManager>().MoveMachineAndComeBackByIndex();
+                        }
                         objectToDrag.transform.localPosition = originalPosOrDraggingObject;
                         Destroy(objectToDrag.GetComponent<MachineTriggerManager>());
                         objectToDrag = null;
