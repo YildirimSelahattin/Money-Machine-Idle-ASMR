@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.WebSockets;
+using RengeGames.HealthBars;
 using UnityEngine;
 using UnityEngine.UIElements;
 using TMPro;
@@ -13,6 +14,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject ButtonPanel;
     public GameObject MoneyFromSellText;
     public GameObject TotalMoneyText;
+    public GameObject Grid;
 
     public int NumberOfDiamonds
     {
@@ -30,7 +32,7 @@ public class UIManager : MonoBehaviour
         {
             Instance = this;
         }
-
+        
         TotalMoneyText.GetComponent<TextMeshProUGUI>().text = PlayerPrefs.GetFloat("TotalMoney", 0).ToString();
 
         ButtonPanel.transform.GetChild(0).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Level - " + GameDataManager.Instance.beltSpeedButtonLevel;

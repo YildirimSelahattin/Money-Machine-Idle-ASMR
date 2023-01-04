@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using DG.Tweening;
+using RengeGames.HealthBars;
 
 public class MachineManager : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class MachineManager : MonoBehaviour
     public GameObject comingWorkerObject;
     public Vector3 myPos;
     public Vector3 firstPos;
+    private float RadialSegmentNumber = 10;
+    public RadialSegmentedHealthBar RadialSegment;
 
     public float x, y, z;
 
@@ -51,7 +54,6 @@ public class MachineManager : MonoBehaviour
         _counterText = gameObject.transform.GetChild(0).GetComponent<TMP_Text>();
         _firstStep = gameObject.transform.parent.GetChild(0).position;
         _tempText = UIManager.Instance.MoneyFromSellText.GetComponent<TextMeshProUGUI>();
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -66,13 +68,18 @@ public class MachineManager : MonoBehaviour
     public IEnumerator WaitAndPrint()
     {
         Debug.Log("aui");
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 10; i++)
         {
             _moneySound.Play();
             _counterText.text = (i + 1) + "/5";
+            RadialSegmentNumber--;
+            Debug.Log(RadialSegmentNumber);
+            RadialSegment.SetRemovedSegments(RadialSegmentNumber);
+            Debug.Log(RadialSegment.name);
             yield return new WaitForSeconds(countWaitTime);
-            if (i == 4)
+            if (i == 9)
             {
+                RadialSegmentNumber = 10;
                 GameDataManager.Instance.moneyToBeCollected += machineIncomeMoney;
                 _tempText.text = AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.moneyToBeCollected);
                 GameDataManager.Instance.SaveData();
