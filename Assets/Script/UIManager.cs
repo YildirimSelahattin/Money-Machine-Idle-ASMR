@@ -52,7 +52,7 @@ public class UIManager : MonoBehaviour
 
         ButtonPanel.transform.GetChild(0).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Level - " + GameDataManager.Instance.beltSpeedButtonLevel;
         ButtonPanel.transform.GetChild(0).transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
-            GameDataManager.Instance.beltSpeedButtonMoney + " $";
+            AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.beltSpeedButtonMoney) + " $";
 
         if(GameDataManager.Instance.beltSpeed > 0.1f)
             GameDataManager.Instance.beltSpeed -= (GameDataManager.Instance.beltSpeed * 0.03f);
@@ -68,7 +68,7 @@ public class UIManager : MonoBehaviour
         
         ButtonPanel.transform.GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Level - " + GameDataManager.Instance.incomeButtonLevel;
         ButtonPanel.transform.GetChild(1).transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
-            GameDataManager.Instance.incomeButtonMoney + " $";
+            AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.incomeButtonMoney) + " $";
 
         MachineManager.Instance.machineIncomeMoney += MachineManager.Instance.machineIncomeMoney * 0.02f;
         
