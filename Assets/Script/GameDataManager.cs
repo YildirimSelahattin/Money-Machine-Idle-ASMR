@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using TMPro;
 using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -57,11 +58,15 @@ public class GameDataManager : MonoBehaviour
         workerBaseSpeed=PlayerPrefs.GetFloat("WorkerBaseSpeed", 3);
         ///////////////////////////////////////////
         /// Buttons
-        totalMoney = PlayerPrefs.GetFloat("TotalMoney", totalMoney);
+        totalMoney = PlayerPrefs.GetFloat("TotalMoney", 7);
         moneyToBeCollected = PlayerPrefs.GetFloat("MoneyToBeCollected", moneyToBeCollected);
         workerSpeedButtonLevel = PlayerPrefs.GetInt("WorkerSpeedButtonLevel", workerSpeedButtonLevel);
         addMachineButtonLevel= PlayerPrefs.GetInt("AddMachineButtonLevel", addMachineButtonLevel);
         incomeButtonLevel = PlayerPrefs.GetInt("IncomeButtonLevel", incomeButtonLevel);
+        incomeButtonMoney = PlayerPrefs.GetFloat("IncomeButtonMoney", incomeButtonMoney);
+        workerSpeedButtonMoney = PlayerPrefs.GetFloat("WorkerSpeedButtonMoney", workerSpeedButtonMoney);
+        beltSpeedButtonMoney = PlayerPrefs.GetFloat("BeltSpeedButtonMoney", beltSpeedButtonMoney);
+        addMachineButtonMoney = PlayerPrefs.GetFloat("AddMachineButtonMoney", addMachineButtonMoney);
         beltSpeed= PlayerPrefs.GetFloat("BeltSpeed", 50);
         workerBaseSpeed= PlayerPrefs.GetFloat("WorkerSpeed",5);
     }
@@ -85,7 +90,11 @@ public class GameDataManager : MonoBehaviour
         PlayerPrefs.SetFloat("IncomeButtonLevel", incomeButtonLevel);
         PlayerPrefs.SetFloat("BeltSpeed", beltSpeed);
         PlayerPrefs.SetFloat("IncomePercentage", machineIncomeMoney);
-        PlayerPrefs.SetFloat("WorkerSpeed",workerBaseSpeed);
+        PlayerPrefs.SetFloat("WorkerSpeed", workerBaseSpeed);
+        PlayerPrefs.SetFloat("IncomeButtonMoney", incomeButtonMoney);
+        PlayerPrefs.SetFloat("WorkerSpeedButtonMoney", workerSpeedButtonMoney);
+        PlayerPrefs.SetFloat("BeltSpeedButtonMoney", beltSpeedButtonMoney);
+        PlayerPrefs.SetFloat("AddMachineButtonMoney", addMachineButtonMoney);
     }
     private void OnDisable()
     {

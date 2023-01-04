@@ -66,7 +66,6 @@ public class WorkerManager : MonoBehaviour
                         thirdPartLength / GameDataManager.Instance.workerBaseSpeed ).SetEase(Ease.Linear).OnComplete(() =>
                     {
                         GoBackToPile(true);
-                        Debug.Log(machineObject.GetComponent<MachineManager>());
                         StartCoroutine(machineObject.GetComponent<MachineManager>().WaitAndPrint());
                     });
                 });
@@ -76,12 +75,9 @@ public class WorkerManager : MonoBehaviour
 
     public void GoBackToPile(bool deployedSuccesfully)
     {
-        
-
         transform.DOKill();
         if (deployedSuccesfully == false)
         {
-            Debug.Log("sui");
             transform.DOLocalRotate(new Vector3(0, -180, 0), 0.2f);
             transform.DOLocalMove(Spawner.Instance.firstRoadBreakdown[indexThatWorkerGoing % 2].position,
                     Vector3.Distance(transform.position,
@@ -102,7 +98,6 @@ public class WorkerManager : MonoBehaviour
 
                         if (waitingForGridDecision == false)
                         {
-                            Debug.Log("a");
                             MoveMachineAndComeBackByIndex();
 
                         }
@@ -111,7 +106,6 @@ public class WorkerManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("sui");
             moneyPile.SetActive(false);
             if (indexThatWorkerGoing % 2 == 0)
             {
@@ -153,7 +147,6 @@ public class WorkerManager : MonoBehaviour
                                 {
                                     if (waitingForGridDecision == false)
                                     {
-                                        Debug.Log("a");
                                         MoveMachineAndComeBackByIndex();
                                     }
                                 });
