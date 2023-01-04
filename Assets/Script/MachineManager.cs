@@ -62,6 +62,7 @@ public class MachineManager : MonoBehaviour
 
     public IEnumerator WaitAndPrint()
     {
+        Debug.Log("aui");
         for (int i = 0; i < 5; i++)
         {
             _moneySound.Play();
@@ -148,6 +149,7 @@ public class MachineManager : MonoBehaviour
                 isFinishedCount = true;
             }
         }
+        _counterText.text = "waiting";
 
         Debug.Log(waitTime);
     }

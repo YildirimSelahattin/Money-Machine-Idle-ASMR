@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44709373, g: 0.49648052, b: 0.5730054, a: 1}
+  m_IndirectSpecularColor: {r: 0.45133728, g: 0.5002894, b: 0.56941485, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3373,14 +3373,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410087039}
-  m_LocalRotation: {x: 0.3420201, y: 0, z: 0, w: 0.9396927}
-  m_LocalPosition: {x: -0.01, y: 3, z: -0}
+  m_LocalRotation: {x: 0.22779235, y: 0.11987983, z: -0.028272117, w: 0.9658883}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 40, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 26.54, y: 14.15, z: 0}
 --- !u!114 &410087042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11028,12 +11028,9 @@ MonoBehaviour:
   brushMachineMusic: {fileID: 0}
   moneyMachineArray:
   - {fileID: 0}
-  - {fileID: 9081885319343547161, guid: e92dfc9d5046cbe4cbb734e7393b8777, type: 3}
-  - {fileID: 4654528525770092456, guid: 69287a97609937849ab430c10ded5be3, type: 3}
-  - {fileID: 6606553992111002659, guid: 50d3392db9c08e248970c7c526c36739, type: 3}
-  - {fileID: 6606553992111002659, guid: af0e96145a4934843b73ef339546de1d, type: 3}
-  - {fileID: 6606553992111002659, guid: 9a083973df73caf4aaed76bd9c44f24d, type: 3}
-  - {fileID: 6606553992111002659, guid: b06752836e8aeb5439bfd8d9263c78be, type: 3}
+  - {fileID: 9053381183645022437, guid: e70f7fd08ed70634789c2961432c4998, type: 3}
+  - {fileID: 9053381183645022437, guid: 35ce5a61bc9bfc940aa33127e9311d1b, type: 3}
+  - {fileID: 1975647156528800535, guid: cb4c512c6ed5ef3468a952dc9cc2667e, type: 3}
   gridArray: 000000000000000000000000000000000000000000000000
   maxLevelMachineAmount: 0
   beltSpeedButtonMoney: 5
@@ -11056,14 +11053,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1502845797}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1083.375, y: 240.75009, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1508017980
 GameObject:
   m_ObjectHideFlags: 0
