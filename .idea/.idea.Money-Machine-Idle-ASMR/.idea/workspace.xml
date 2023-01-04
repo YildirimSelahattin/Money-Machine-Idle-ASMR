@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="12e15ff2-c41a-445c-99a6-3e761c781f24" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Money-Machine-Idle-ASMR/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Money-Machine-Idle-ASMR/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Common/SafeArea.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Common/SafeArea.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Images&amp;Textures/Ground.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Images&amp;Textures/Ground.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/GameDataManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/GameDataManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/UIManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,6 +19,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Common/StartScreenRes.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/ConveyorTexMove.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/DataList.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/FormatNumbers.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/GameDataManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/GettingTouchManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/MachineManager.cs" root0="FORCE_HIGHLIGHTING" />
@@ -106,7 +108,8 @@
       <workItem from="1672387332993" duration="2793000" />
       <workItem from="1672643402306" duration="6011000" />
       <workItem from="1672666724563" duration="2768000" />
-      <workItem from="1672748624007" duration="3363000" />
+      <workItem from="1672748624007" duration="7046000" />
+      <workItem from="1672815047815" duration="1697000" />
     </task>
     <servers />
   </component>

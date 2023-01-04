@@ -15,7 +15,7 @@ public class GameDataManager : MonoBehaviour
     public GameObject[] moneyMachineArray;
     public int[] gridArray = new int[6];
     public int maxLevelMachineAmount;
-    public float beltSpeedButtonMoney = 5;
+    public float beltSpeedButtonMoney = 5f;
     public float incomeButtonMoney = 6;
     public float addMachineButtonMoney = 7;
     public float workerSpeedButtonMoney = 7;
