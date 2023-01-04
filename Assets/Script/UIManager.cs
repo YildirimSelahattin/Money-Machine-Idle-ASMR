@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     public static UIManager Instance;
     [SerializeField] private GameObject ButtonPanel;
-    [SerializeField] private GameObject MoneyFromSellText;
+    public GameObject MoneyFromSellText;
     [SerializeField] private GameObject TotalMoneyText;
 
     public int NumberOfDiamonds
@@ -42,6 +42,7 @@ public class UIManager : MonoBehaviour
         TotalMoneyText.GetComponent<TextMeshProUGUI>().text = GameDataManager.Instance.totalMoney.ToString();
         //Truck Move
         PickupManager.Instance.SellMoneyWithTruck();
+        GameDataManager.Instance.SaveData();
     }
     
     public void OnBeltSpeedUpgradeButton()

@@ -71,6 +71,8 @@ public class MachineManager : MonoBehaviour
             if (i == 4)
             {
                 GameDataManager.Instance.moneyToBeCollected += machineIncomeMoney;
+                UIManager.Instance.MoneyFromSellText.GetComponent<TextMeshProUGUI>().text = GameDataManager.Instance.moneyToBeCollected.ToString();
+                GameDataManager.Instance.SaveData();
                 myPos = GameManager.Instance.gridParent.transform.GetChild(gridIndexNumberOfObject).GetChild(1)
                     .transform.position;
                 myPos.y += 0.6f;
