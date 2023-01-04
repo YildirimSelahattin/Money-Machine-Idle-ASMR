@@ -3,7 +3,12 @@ guid: 3c366968acb849b4eb24747700cb3144
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: carroceria.004
+    second: {fileID: 2100000, guid: 3a940cb02cca02942a52b7d9e5c3d909, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

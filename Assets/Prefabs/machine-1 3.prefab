@@ -151,7 +151,7 @@ MonoBehaviour:
   inMergeArea: 0
   isWorking: 0
   countWaitTime: 0.2
-  machineIncomeMoney: 0
+  machineIncomeMoney: 10000
   inSnapArea: 0
   isAtBank: 0
   _moneyPrefab: {fileID: 8410266551750965172, guid: 20664b20497b915449a7c06943102354,

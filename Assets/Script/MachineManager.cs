@@ -18,6 +18,7 @@ public class MachineManager : MonoBehaviour
     public float machineIncomeMoney;
     private AudioSource _moneySound;
     private TMP_Text _counterText;
+    private TMP_Text _tempText;
     public bool inSnapArea = false;
     public bool isAtBank = false;
     [SerializeField] private GameObject _moneyPrefab;
@@ -49,6 +50,8 @@ public class MachineManager : MonoBehaviour
         _moneySound = gameObject.GetComponent<AudioSource>();
         _counterText = gameObject.transform.GetChild(0).GetComponent<TMP_Text>();
         _firstStep = gameObject.transform.parent.GetChild(0).position;
+        _tempText = UIManager.Instance.MoneyFromSellText.GetComponent<TextMeshProUGUI>();
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -71,6 +74,8 @@ public class MachineManager : MonoBehaviour
             if (i == 4)
             {
                 GameDataManager.Instance.moneyToBeCollected += machineIncomeMoney;
+                _tempText.text = AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.moneyToBeCollected);
+                GameDataManager.Instance.SaveData();
                 myPos = GameManager.Instance.gridParent.transform.GetChild(gridIndexNumberOfObject).GetChild(1)
                     .transform.position;
                 myPos.y += 0.6f;
@@ -150,7 +155,5 @@ public class MachineManager : MonoBehaviour
             }
         }
         _counterText.text = "waiting";
-
-        Debug.Log(waitTime);
     }
 }
