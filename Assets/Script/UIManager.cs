@@ -94,6 +94,7 @@ public class UIManager : MonoBehaviour
             TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.totalMoney);
             
             GameDataManager.Instance.incomeButtonMoney += GameDataManager.Instance.incomeButtonMoney / 2;
+            GameDataManager.Instance.offlineProgressNum += GameDataManager.Instance.offlineProgressNum / 5;
             GameDataManager.Instance.incomeButtonLevel++;
 
             ButtonPanel.transform.GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
