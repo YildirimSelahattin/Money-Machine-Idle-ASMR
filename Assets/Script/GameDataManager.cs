@@ -63,7 +63,7 @@ public class GameDataManager : MonoBehaviour
         addMachineButtonLevel= PlayerPrefs.GetInt("AddMachineButtonLevel", addMachineButtonLevel);
         incomeButtonLevel = PlayerPrefs.GetInt("IncomeButtonLevel", incomeButtonLevel);
         beltSpeed= PlayerPrefs.GetFloat("BeltSpeed", 50);
-        workerBaseSpeed= PlayerPrefs.GetFloat("WorkerSpeed",10);
+        workerBaseSpeed= PlayerPrefs.GetFloat("WorkerSpeed",5);
     }
     
     public void SaveData()

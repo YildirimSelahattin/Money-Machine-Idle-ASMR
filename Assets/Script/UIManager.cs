@@ -121,7 +121,7 @@ public class UIManager : MonoBehaviour
 
                 //Instantiate worker and add to stack
                 StartCoroutine(Spawner.Instance.AddWorkerAfterDelay(gridIndex,1));
-                
+                break;
             }
         }
         GameDataManager.Instance.SaveData();
