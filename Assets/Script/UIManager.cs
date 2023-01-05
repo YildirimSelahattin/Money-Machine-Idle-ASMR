@@ -16,7 +16,10 @@ public class UIManager : MonoBehaviour
     public GameObject MoneyFromSellText;
     public GameObject TotalMoneyText;
     public GameObject Grid;
-
+    public GameObject beltSpeedButton;
+    public GameObject incomeButton;
+    public GameObject workerSpeedButton;
+    public GameObject addMachineButton;
     public int NumberOfDiamonds
     {
         get { return PlayerPrefs.GetInt("NumberOfDiamondsKey", 0); } // get method
@@ -35,7 +38,10 @@ public class UIManager : MonoBehaviour
         }
         
         TotalMoneyText.GetComponent<TextMeshProUGUI>().text = PlayerPrefs.GetFloat("TotalMoney", 0).ToString();
-
+        beltSpeedButton = ButtonPanel.transform.GetChild(0).gameObject;
+        incomeButton = ButtonPanel.transform.GetChild(1).gameObject;
+        workerSpeedButton = ButtonPanel.transform.GetChild(2).gameObject;
+        addMachineButton = ButtonPanel.transform.GetChild(3).gameObject;
         ButtonPanel.transform.GetChild(0).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Level - " + GameDataManager.Instance.beltSpeedButtonLevel;
         ButtonPanel.transform.GetChild(0).transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
             AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.beltSpeedButtonMoney) + " $";
@@ -139,8 +145,11 @@ public class UIManager : MonoBehaviour
 
     public void OnAddMachineButton()
     {
+        
         if (GameDataManager.Instance.totalMoney >= GameDataManager.Instance.addMachineButtonMoney)
         {
+            bool controllForButtonInteract = false;
+            bool closeInteractibility = true;
             GameDataManager.Instance.totalMoney -= GameDataManager.Instance.addMachineButtonMoney;
             TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.totalMoney);
             
@@ -157,21 +166,32 @@ public class UIManager : MonoBehaviour
                 int valueOfGrid = GameDataManager.Instance.gridArray[gridIndex];
                 if (valueOfGrid == 0) //found a position that has no machines
                 {
-                    Debug.Log("qwe" + gridIndex);
-                    //level 1 şu an veriliyor !!sadece
-                    GameManager.Instance.gridParent.transform.GetChild(gridIndex).gameObject.GetComponent<BoxCollider>()
-                        .enabled = false;
-                    GameObject newMachine =
-                        Instantiate(
-                            GameDataManager.Instance.moneyMachineArray[
-                                GameDataManager.Instance.maxLevelMachineAmount + 1],
-                            GameManager.Instance.gridParent.transform.GetChild(gridIndex).transform);
-                    GameDataManager.Instance.gridArray[gridIndex] = 1;
+                    if (controllForButtonInteract == false)
+                    {
+                        Debug.Log("qwe" + gridIndex);
+                        //level 1 şu an veriliyor !!sadece
+                        GameManager.Instance.gridParent.transform.GetChild(gridIndex).gameObject.GetComponent<BoxCollider>()
+                            .enabled = false;
+                            Instantiate(
+                                GameDataManager.Instance.moneyMachineArray[
+                                    GameDataManager.Instance.maxLevelMachineAmount + 1],
+                                GameManager.Instance.gridParent.transform.GetChild(gridIndex).transform);
+                        GameDataManager.Instance.gridArray[gridIndex] = 1;
 
-                    //Instantiate worker and add to stack
-                    StartCoroutine(Spawner.Instance.AddWorkerAfterDelay(gridIndex, 1));
-                    break;
+                        //Instantiate worker and add to stack
+                        StartCoroutine(Spawner.Instance.AddWorkerAfterDelay(gridIndex, 1));
+                        controllForButtonInteract = true;
+                    }
+                    else
+                    {
+                        closeInteractibility = false;
+                    }
                 }
+            }
+
+            if(closeInteractibility == true)//CLOSEINTERACT
+            {
+
             }
             GameDataManager.Instance.SaveData();
         }
