@@ -19,17 +19,14 @@ public class GameManager : MonoBehaviour
 
     void Awake() 
     {
-        
         if(Instance == null)
         {
             Instance = this;
         }
-        
     }
     
     void Start()
     {
-        
         DesignLevel();
     }
 
