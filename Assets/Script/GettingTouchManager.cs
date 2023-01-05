@@ -14,11 +14,9 @@ public class GettingTouchManager : MonoBehaviour
     [SerializeField] float endScale = 0.5f;
 
     [SerializeField] LayerMask touchableLayerOnlyMachines;
-    [SerializeField] LayerMask touchableLayerOnlyCoins;
-
-    [SerializeField] LayerMask touchableLayerExceptMachines;
-
     [SerializeField] LayerMask touchableLayerOnlyUpgrade;
+    [SerializeField] LayerMask touchableLayerOnlyTapToCollect;
+    [SerializeField] ParticleSystem moneyTapParticle;
 
     // Start is called before the first frame update
     public GameObject objectToDrag;
@@ -41,10 +39,10 @@ public class GettingTouchManager : MonoBehaviour
         if (Input.touchCount > 0)
         {
             ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)                // This is actions when finger/cursor hit screen
             {
-                // This is actions when finger/cursor hit screen
-                if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyMachines))
+                
+                if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyMachines)) // if it hit to a machine object
                 {
                     objectToDrag = hit.collider.gameObject;
                     objectToDrag.GetComponent<MachineManager>().dropped = false;
@@ -54,29 +52,8 @@ public class GettingTouchManager : MonoBehaviour
                     Spawner.Instance.gridWorkerArray[objectToDrag.GetComponent<MachineManager>().gridIndexNumberOfObject].GetComponent<WorkerManager>().waitingForGridDecision = true;
 
                 }
-                else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyCoins))
-                {
-                    //Get the money game object in second plane's child 
-                    objectMoney = hit.collider.gameObject.transform.GetChild(0).gameObject;
-                    //Instantiate a money clone
-                    GameObject cloneMoney = Instantiate(objectMoney, objectMoney.transform.position,
-                        objectMoney.transform.rotation, objectMoney.transform.parent);
-                    objectMoney.SetActive(false);
-                    GameObject cloneParticle =
-                        Instantiate(particles, objectMoney.transform.position, Quaternion.identity);
-                    cloneParticle.SetActive(true);
-
-                    // Scale the instantiated money and destroy
-                    cloneMoney.transform.DOMove(new Vector3(0, 2, -8), 0.5f).SetEase(Ease.InOutBack).OnComplete(() =>
-                    {
-                        cloneMoney.transform.DOScale(startScale, 0.2f).SetEase(Ease.Flash)
-                            .OnComplete(() => { Destroy(cloneMoney); });
-
-                        // Make it active after X time to collect again
-                        objectMoney.SetActive(true);
-                    });
-                }
-                else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyUpgrade))
+              
+                else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyUpgrade)) // when it hits to upgrade button
                 {
                     GameObject parentGridOfHitButton = hit.collider.gameObject.transform.parent.gameObject;
                     parentGridOfHitButton.transform.GetChild(GameManager.Instance.GRID_SURFACE_INDEX).gameObject
@@ -88,12 +65,19 @@ public class GettingTouchManager : MonoBehaviour
                             parentGridOfHitButton.transform.tag[parentGridOfHitButton.transform.tag.Length - 1] - '0'] =
                         0; // open grid index base
                 }
+                else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyTapToCollect)) // if it is money tap
+                {
+                    moneyTapParticle.gameObject.transform.position=new Vector3(hit.point.x ,hit.point.y,hit.point.z-5);
+                    moneyTapParticle.Play();
+                    Debug.Log(hit.point);
+                    Debug.Log("sa");
+                }
             }
 
             else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Stationary && objectToDrag != null)
             {
                 // This is actions when finger/cursor pressed on screen
-                if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerExceptMachines))
+                if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyTapToCollect))
                 {
                     objectToDrag.transform.DOKill();
                     objectToDrag.transform.DOMove(
