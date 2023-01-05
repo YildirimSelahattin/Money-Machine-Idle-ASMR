@@ -13,7 +13,6 @@ public class MachineTriggerManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("sa");
     }
 
     // Update is called once per frame
