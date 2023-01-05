@@ -72,11 +72,6 @@ public class UIManager : MonoBehaviour
         //Truck Move
         PickupManager.Instance.SellMoneyWithTruck();
         GameDataManager.Instance.SaveData();
-        MachineManager.Instance.x = -0.4f;
-        MachineManager.Instance.y = 0.5f;
-        MachineManager.Instance.z = 0.25f;
-
-       
     }
     
     public void OnBeltSpeedUpgradeButton()
