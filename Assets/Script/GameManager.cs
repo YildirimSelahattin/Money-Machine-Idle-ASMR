@@ -9,8 +9,9 @@ public class GameManager : MonoBehaviour
 
     public  int GRID_SURFACE_INDEX = 1;
     public int GRID_UPDATE_BUTTON_INDEX = 2;
-    public int MACHINE_CHILD_INDEX = 5;
+    public int GRID_FINAL_POINT_INDEX = 5;
     public int GRID_LAST_BREAKPOINT_INDEX = 4;
+    public int GRID_MACHINE_INDEX = 6;
     public static GameManager Instance;
     public Material openedGridMat;
     // Start is called before the first frame update

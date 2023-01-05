@@ -9,75 +9,91 @@ using System.Runtime.ExceptionServices;
 public class WorkerManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    public  float maxComeAndGoCounter = 8;
-    public float _baseSpeed;
-    public  float addedTimeWhileGoing;
-    public float wheelBorrowCapacity = 10;
-    public int countedUntilSleep=0;
     public int indexThatWorkerGoing;
-    private void Update()
+    public static WorkerManager Instance;
+    public bool waitingForGridDecision = false;
+    [SerializeField] GameObject moneyPile;
+    public int moveStage; // first part, long part , last part 
+    void Start()
     {
+        
+        StartCoroutine( StartDelayAndMoveToGrid());
     }
-
-    public void MoveMachineAndComeBackByIndex(int index)
+  
+    public void MoveMachineAndComeBackByIndex()
     {
-        indexThatWorkerGoing = index;
-        GameObject machineObject = GameManager.Instance.gridParent.transform.GetChild(index).transform.GetChild(GameManager.Instance.MACHINE_CHILD_INDEX).gameObject;
-        float firstPartLength = Vector3.Distance(transform.position, Spawner.Instance.firstRoadBreakdown[index % 2].position);
-        float secondPartLenght = Vector3.Distance(Spawner.Instance.firstRoadBreakdown[index % 2].position, machineObject.transform.parent.GetChild(GameManager.Instance.GRID_LAST_BREAKPOINT_INDEX).transform.position); 
-        float thirdPartLength = Vector3.Distance(machineObject.transform.parent.GetChild(GameManager.Instance.GRID_LAST_BREAKPOINT_INDEX).transform.position, machineObject.transform.position) ;
-        float fullLenght = secondPartLenght + firstPartLength + thirdPartLength;
-
-        if(indexThatWorkerGoing % 2 == 0)
-        {
-            transform.DOLocalRotate(new Vector3(0, -25, 0),0.1f);
-        }
-        else
-        {
-            transform.DOLocalRotate(new Vector3(0,25,0),0.1f);
-        }
-
-        /*transform.DOLocalMove(Spawner.Instance.firstRoadBreakdown[index%2].position,(firstPartLength/ _baseSpeed)+addedTimeWhileGoing).SetEase(Ease.Linear).// go to first breakdown after taking money
-            OnComplete(() => transform.DOMove(machineObject.transform.parent.GetChild(GameManager.Instance.GRID_LAST_BREAKPOINT_INDEX).transform.position,(secondPartLenght/ _baseSpeed)+ addedTimeWhileGoing).SetEase(Ease.Linear).
-            OnComplete(() =>transform.DOLocalMove(machineObject.transform.position,( thirdPartLength / _baseSpeed) + addedTimeWhileGoing).SetEase(Ease.Linear).
-            OnComplete(() =>
-                {
-                    Debug.Log("asdf");
-                    GoBackToPile(true);
-                    Debug.Log(machineObject.GetComponent<MachineManager>());
-                    StartCoroutine(machineObject.GetComponent<MachineManager>().WaitAndPrint());
-                })));*/
-        transform.DOLocalMove(Spawner.Instance.firstRoadBreakdown[index % 2].position, (firstPartLength / _baseSpeed) + addedTimeWhileGoing).SetEase(Ease.Linear).
-            OnComplete(() =>
+        transform.DOKill();
+        moneyPile.SetActive(true);
+        GameObject machineObject = GameManager.Instance.gridParent.transform.GetChild(indexThatWorkerGoing).transform.GetChild(GameManager.Instance.GRID_MACHINE_INDEX).gameObject;
+        GameObject lastBreakPoint = GameManager.Instance.gridParent.transform.GetChild(indexThatWorkerGoing).transform.GetChild(GameManager.Instance.GRID_LAST_BREAKPOINT_INDEX).gameObject;
+        GameObject finalPoint = GameManager.Instance.gridParent.transform.GetChild(indexThatWorkerGoing).transform.GetChild(GameManager.Instance.GRID_FINAL_POINT_INDEX).gameObject;
+        
+     
+        if (moveStage == 1) {
+            if (indexThatWorkerGoing % 2 == 0)
             {
-                transform.DOLocalRotate(new Vector3(0,0,0),0.1f);
-                transform.DOLocalMove(machineObject.transform.parent.GetChild(GameManager.Instance.GRID_LAST_BREAKPOINT_INDEX).transform.position, (secondPartLenght / _baseSpeed) + addedTimeWhileGoing).SetEase(Ease.Linear).
-                OnComplete(()=>{
-                    if (indexThatWorkerGoing % 2 == 0)
+                transform.DOLocalRotate(new Vector3(0, 25, 0), 0.1f);
+            }
+            else
+            {
+                transform.DOLocalRotate(new Vector3(0, -25, 0), 0.1f);
+            }
+            transform.DOLocalMove(Spawner.Instance.firstRoadBreakdown[indexThatWorkerGoing % 2].position,
+            Vector3.Distance(transform.position, Spawner.Instance.firstRoadBreakdown[indexThatWorkerGoing % 2].position) / (GameDataManager.Instance.workerBaseSpeed)).SetEase(Ease.Linear).OnComplete(() =>
+                {
+                    moveStage = 2;
+                    transform.DOLocalRotate(new Vector3(0, 0, 0), 0.1f);
+                    transform.DOLocalMove(
+                    lastBreakPoint.transform.position, Vector3.Distance(transform.position,lastBreakPoint.transform.position) / GameDataManager.Instance.workerBaseSpeed).SetEase(Ease.Linear).OnComplete(
+                    () =>
                     {
-                        transform.DOLocalRotate(new Vector3(0, -90, 0), 0.1f);
-                    }
-                    else
+                        moveStage = 3;
+                        if (indexThatWorkerGoing % 2 == 0)
+                        {
+                            transform.DOLocalRotate(new Vector3(0, 90, 0), 0.1f);
+                        }
+                        else
+                        {
+                            transform.DOLocalRotate(new Vector3(0, -90, 0), 0.1f);
+                        }
+
+                        transform.DOLocalMove(finalPoint.transform.position,Vector3.Distance(finalPoint.transform.position, transform.position) / GameDataManager.Instance.workerBaseSpeed).SetEase(Ease.Linear).OnComplete(() =>
+                            {
+                                GoBackToPile();
+                                Debug.Log(machineObject.GetComponent<MachineManager>());
+                                StartCoroutine(machineObject.GetComponent<MachineManager>().WaitAndPrint());
+                            });
+                    });
+                });
+        }
+        else if (moveStage == 2)
+        {
+
+            transform.DOLocalRotate(new Vector3(0, 0, 0), 0.1f);
+            transform.DOLocalMove(
+            lastBreakPoint.transform.position, Vector3.Distance(transform.position, lastBreakPoint.transform.position)).SetEase(Ease.Linear).OnComplete(
+            () =>
+            {
+                moveStage = 3;
+                if (indexThatWorkerGoing % 2 == 0)
+                {
+                    transform.DOLocalRotate(new Vector3(0, 90, 0), 0.1f);
+                }
+                else
+                {
+                    transform.DOLocalRotate(new Vector3(0, -90, 0), 0.1f);
+                }
+                transform.DOLocalMove(finalPoint.transform.position, Vector3.Distance(finalPoint.transform.position, transform.position) / GameDataManager.Instance.workerBaseSpeed).OnComplete(() =>
                     {
-                        transform.DOLocalRotate(new Vector3(0, 90, 0), 0.1f);
-                    }
-                    transform.DOLocalMove(machineObject.transform.position, (thirdPartLength / _baseSpeed) + addedTimeWhileGoing).SetEase(Ease.Linear).OnComplete(() =>
-                    {
-                        GoBackToPile(true);
+                        GoBackToPile();
                         Debug.Log(machineObject.GetComponent<MachineManager>());
                         StartCoroutine(machineObject.GetComponent<MachineManager>().WaitAndPrint());
                     });
             });
-        });
-    }
+        }
 
-
-    public void GoBackToPile(bool deployedSuccesfully)
-    {
-
-        if(deployedSuccesfully == false)
+        else if (moveStage == 3)
         {
-            Debug.Log("sui");
             if (indexThatWorkerGoing % 2 == 0)
             {
                 transform.DOLocalRotate(new Vector3(0, 90, 0), 0.1f);
@@ -86,78 +102,130 @@ public class WorkerManager : MonoBehaviour
             {
                 transform.DOLocalRotate(new Vector3(0, -90, 0), 0.1f);
             }
-            transform.DOLocalRotate(new Vector3(0,-180,0),0.1f);
-            transform.DOLocalMove(Spawner.Instance.firstRoadBreakdown[indexThatWorkerGoing % 2].position, Vector3.Distance(transform.position, Spawner.Instance.firstRoadBreakdown[indexThatWorkerGoing % 2].position) / _baseSpeed).SetEase(Ease.Linear)
-            .OnComplete(() =>
+
+            transform.DOLocalMove(finalPoint.transform.position, Vector3.Distance(finalPoint.transform.position, transform.position) / GameDataManager.Instance.workerBaseSpeed).SetEase(Ease.Linear).OnComplete(() =>
+                {
+                    GoBackToPile();
+                    Debug.Log(machineObject.GetComponent<MachineManager>());
+                    StartCoroutine(machineObject.GetComponent<MachineManager>().WaitAndPrint());
+                });
+        }
+
+    }
+
+
+    public void GoBackToPile()
+    {
+
+        GameObject machineObject = GameManager.Instance.gridParent.transform.GetChild(indexThatWorkerGoing).transform.GetChild(GameManager.Instance.GRID_MACHINE_INDEX).gameObject;
+        GameObject lastBreakPoint = GameManager.Instance.gridParent.transform.GetChild(indexThatWorkerGoing).transform.GetChild(GameManager.Instance.GRID_LAST_BREAKPOINT_INDEX).gameObject;
+        GameObject finalPoint = GameManager.Instance.gridParent.transform.GetChild(indexThatWorkerGoing).transform.GetChild(GameManager.Instance.GRID_FINAL_POINT_INDEX).gameObject;
+        transform.DOKill();
+        if (moveStage == 1)
+        {
+            if (indexThatWorkerGoing % 2 == 0)
             {
-                if (indexThatWorkerGoing % 2 == 0)
+                transform.DOLocalRotate(new Vector3(0, 180 + 25, 0), 0.2f);
+            }
+            else
+            {
+                transform.DOLocalRotate(new Vector3(0, 180 - 25, 0), 0.2f);
+            }
+
+            transform.DOLocalMove(Spawner.Instance._spwanPos.position, Vector3.Distance(Spawner.Instance._spwanPos.position, transform.position) / (GameDataManager.Instance.workerBaseSpeed * 0.5f)).SetEase(Ease.Linear)
+                .OnComplete(() =>
                 {
-                    transform.DOLocalRotate(new Vector3(0, 25, 0), 0.1f);
-                }
-                else
-                {
-                    transform.DOLocalRotate(new Vector3(0, -25, 0), 0.1f);
-                }
-                transform.DOLocalMove(Spawner.Instance._spwanPos, _baseSpeed).SetEase(Ease.Linear).OnComplete(() =>
-                {
-                    countedUntilSleep++;
-                    if (countedUntilSleep > maxComeAndGoCounter)
+                    if (waitingForGridDecision == false)
                     {
-                        //GoSleep();
+                        Debug.Log("a");
+                        MoveMachineAndComeBackByIndex();
+                    }
+                });
+        }
+        else if (moveStage == 2)
+        {
+            Debug.Log("sui");
+            transform.DOLocalRotate(new Vector3(0, -180, 0), 0.2f);
+            transform.DOLocalMove(Spawner.Instance.firstRoadBreakdown[indexThatWorkerGoing % 2].position,
+                    Vector3.Distance(transform.position,
+                        Spawner.Instance.firstRoadBreakdown[indexThatWorkerGoing % 2].position) / (GameDataManager.Instance.workerBaseSpeed * 0.5f))
+                .SetEase(Ease.Linear)
+                .OnComplete(() =>
+                {
+                    moveStage = 1;
+                    if (indexThatWorkerGoing % 2 == 0)
+                    {
+                        transform.DOLocalRotate(new Vector3(0, 180 + 25, 0), 0.2f);
                     }
                     else
                     {
-                        Spawner.Instance.workerStack.Push(gameObject);
-                        Spawner.Instance.LookForEmptyMachine();
+                        transform.DOLocalRotate(new Vector3(0, 180 - 25, 0), 0.2f);
                     }
+                    transform.DOLocalMove(Spawner.Instance._spwanPos.position, Vector3.Distance(Spawner.Instance._spwanPos.position,transform.position)/ (GameDataManager.Instance.workerBaseSpeed * 0.5f)).SetEase(Ease.Linear).OnComplete(() =>
+                    {
+                        if (waitingForGridDecision == false)
+                        {
+                            Debug.Log("a");
+                            MoveMachineAndComeBackByIndex();
+
+                        }
+                    });
                 });
-            });
-            /*transform.DOLocalMove(Spawner.Instance.firstRoadBreakdown[indexThatWorkerGoing % 2].position,Vector3.Distance(transform.position, Spawner.Instance.firstRoadBreakdown[indexThatWorkerGoing % 2].position)/_baseSpeed).SetEase(Ease.Linear)
-              .OnComplete(()=>
-            transform.DOLocalMove(Spawner.Instance._spwanPos, _baseSpeed).SetEase(Ease.Linear).OnComplete(
-               () =>
-               {
-                   countedUntilSleep++;
-                   if (countedUntilSleep > maxComeAndGoCounter)
-                   {
-                       //GoSleep();
-                   }
-                   else
-                   {
-                       Spawner.Instance.workerStack.Push(gameObject);
-                       Spawner.Instance.LookForEmptyMachine();
-                   }
-               }));*/
         }
-        else
+        else if(moveStage == 3)
         {
             Debug.Log("sui");
-            transform.DOLocalMove(GameManager.Instance.gridParent.transform.GetChild(indexThatWorkerGoing).GetChild(GameManager.Instance.GRID_LAST_BREAKPOINT_INDEX).position,Vector3.Distance(GameManager.Instance.gridParent.transform.GetChild(indexThatWorkerGoing).GetChild(GameManager.Instance.GRID_LAST_BREAKPOINT_INDEX).position,transform.position)).SetEase(Ease.Linear)
+            moneyPile.SetActive(false);
+            if (indexThatWorkerGoing % 2 == 0)
+            {
+                transform.DOLocalRotate(new Vector3(0, -90, 0), 0.1f);
+            }
+            else
+            {
+                transform.DOLocalRotate(new Vector3(0, 90, 0), 0.1f);
+            }
+
+            transform.DOLocalMove(
+                    lastBreakPoint.transform.position,
+                    Vector3.Distance(lastBreakPoint.transform.position, transform.position) / (GameDataManager.Instance.workerBaseSpeed * 0.5f))
+                .SetEase(Ease.Linear)
                 .OnComplete(() =>
                 {
-                    transform.
-                    transform.DOLocalMove(Spawner.Instance.firstRoadBreakdown[indexThatWorkerGoing % 2].position, Vector3.Distance(transform.position, Spawner.Instance.firstRoadBreakdown[indexThatWorkerGoing % 2].position) / _baseSpeed).SetEase(Ease.Linear)
-                    .OnComplete(() =>
-                    transform.DOLocalMove(Spawner.Instance._spwanPos, _baseSpeed).SetEase(Ease.Linear).OnComplete(
-                        () =>
+                    moveStage = 2;
+                    transform.DOLocalRotate(new Vector3(0, 180, 0), 0.1f);
+                    transform.DOLocalMove(Spawner.Instance.firstRoadBreakdown[indexThatWorkerGoing % 2].position,
+                            Vector3.Distance(transform.position,
+                                Spawner.Instance.firstRoadBreakdown[indexThatWorkerGoing % 2].position) / (GameDataManager.Instance.workerBaseSpeed * 0.5f))
+                        .SetEase(Ease.Linear)
+                        .OnComplete(() =>
                         {
-                            countedUntilSleep++;
-                            if (countedUntilSleep > maxComeAndGoCounter)
+                            moveStage=1;
+                            if (indexThatWorkerGoing % 2 == 0)
                             {
-                                //GoSleep();
+                                transform.DOLocalRotate(new Vector3(0, 180 + 25, 0), 0.2f);
                             }
                             else
                             {
-                                Spawner.Instance.workerStack.Push(gameObject);
-                                Spawner.Instance.LookForEmptyMachine();
+                                transform.DOLocalRotate(new Vector3(0, 180 - 25, 0), 0.2f);
                             }
-                        }));
-                            });
-            
+
+                            transform.DOLocalMove(Spawner.Instance._spwanPos.position, Vector3.Distance(Spawner.Instance._spwanPos.position,transform.position) / (GameDataManager.Instance.workerBaseSpeed * 0.5f)).SetEase(Ease.Linear)
+                                .OnComplete(() =>
+                                {
+                                    if (waitingForGridDecision == false)
+                                    {
+                                        Debug.Log("a");
+                                        MoveMachineAndComeBackByIndex();
+                                    }
+                                });
+                        });
+                });
         }
+    }
 
-
-
-        
+    public IEnumerator StartDelayAndMoveToGrid()
+    {
+        yield return new WaitForSeconds(1);
+        MoveMachineAndComeBackByIndex();
     }
 }

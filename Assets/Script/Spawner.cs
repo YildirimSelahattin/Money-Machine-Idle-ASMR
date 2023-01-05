@@ -10,16 +10,13 @@ public class Spawner : MonoBehaviour
 {
     public static Spawner Instance;
     public GameObject prefab;
-    public Vector3 _spwanPos;
+    public Transform _spwanPos;
     private int _moneyAmount = 0;
-    public Stack<GameObject> workerStack = new Stack<GameObject>();
-    public Stack<int> gridArrayStack = new Stack<int>();
     public GameObject workerPrefab;
+    private int waitingTime = 0;
+    public GameObject[] gridWorkerArray = new GameObject[6];
     [SerializeField] private GameObject _endPosObject;
     public Transform[] firstRoadBreakdown;
-   
-
-
     private void Awake()
     {
         if (Instance == null)
@@ -30,51 +27,27 @@ public class Spawner : MonoBehaviour
 
     void Start()
     {
+        // go for every grid 
         for (int i = 0; i < GameDataManager.Instance.gridArray.Length; i++)
         {
+            // if that have machine, ýnstantiate a worker for this machine 
             if (GameDataManager.Instance.gridArray[i] > 0)
             {
-                gridArrayStack.Push(i);
+                StartCoroutine(AddWorkerAfterDelay(i,waitingTime));
+                waitingTime++;
             }
         }
-        
-        for (int i = 0; i < GameDataManager.Instance.workerArray.Length; i++)
-        {
-            GameObject worker = Instantiate(workerPrefab,_spwanPos,Quaternion.identity);
-            //worker.GetComponent<WorkerManager>()._workerData.wheelBorrowCapacity = GameDataManager.Instance.workerArray[i].wheelBorrowCapacity;
-            WorkerManager a = worker.GetComponent<WorkerManager>();
-            Debug.Log(GameDataManager.Instance.workerArray[i].wheelBorrowCapacity);
-            a.addedTimeWhileGoing = GameDataManager.Instance.workerArray[i].addedTimeWhileGoing;
-            a.maxComeAndGoCounter = GameDataManager.Instance.workerArray[i].maxComeAndGoCounter;
-            a._baseSpeed = GameDataManager.Instance.workerArray[i]._baseSpeed;
-            workerStack.Push(worker);
-        }
-        StartCoroutine(StartDelay());
+        waitingTime = 0;
     }
-    public IEnumerator StartDelay()
+    public IEnumerator AddWorkerAfterDelay(int index,float waitingTime)
     {
-        yield return new WaitForSeconds(1);
-        LookForEmptyMachine();
-    }
-    public void LookForEmptyMachine()
-    {
-        if (workerStack.Count != 0 && gridArrayStack.Count!= 0)
-        {
-            GameObject worker =  workerStack.Pop();
-            while (true)
-            {
-                int availableGridIndex = gridArrayStack.Pop();
-                if(availableGridIndex == null)
-                {
-                    break;
-                }
-                if (GameDataManager.Instance.gridArray[availableGridIndex] > 0)// this is the case when 
-                {
-                    worker.GetComponent<WorkerManager>().MoveMachineAndComeBackByIndex(availableGridIndex);
-                    break;
-                }
-            }
-        }
-        
+        Debug.Log("WORKERTRYING");
+        yield return new WaitForSeconds(waitingTime);
+        GameObject worker = Instantiate(workerPrefab, _spwanPos.position, Quaternion.identity);
+        Debug.Log("WORKERADDED");
+        WorkerManager a = worker.GetComponent<WorkerManager>();
+        a.indexThatWorkerGoing = index;
+        gridWorkerArray[index] = worker;
+        a.moveStage = 1;
     }
 }

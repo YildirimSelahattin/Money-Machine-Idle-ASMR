@@ -5,10 +5,10 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using DG.Tweening;
+using RengeGames.HealthBars;
 
 public class MachineManager : MonoBehaviour
 {
-    
     public static MachineManager Instance;
     public int levelIndexOfObject;
     public int gridIndexNumberOfObject;
@@ -16,19 +16,23 @@ public class MachineManager : MonoBehaviour
     public bool inMergeArea = false;
     public bool isWorking = false;
     public float countWaitTime;
+    public float machineIncomeMoney;
     private AudioSource _moneySound;
     private TMP_Text _counterText;
+    private TMP_Text _tempText;
     public bool inSnapArea = false;
     public bool isAtBank = false;
     [SerializeField] private GameObject _moneyPrefab;
     public bool isFinishedCount = false;
     public Vector3 _firstStep;
-    public float waitTime ;
+    public float waitTime;
     public GameObject comingWorkerObject;
     public Vector3 myPos;
     public Vector3 firstPos;
-   
-    public float x,y,z;
+    private float RadialSegmentNumber = 10;
+    public RadialSegmentedHealthBar RadialSegment;
+
+    public float x, y, z;
 
     private void Awake()
     {
@@ -36,6 +40,7 @@ public class MachineManager : MonoBehaviour
         {
             Instance = this;
         }
+
         x = -0.4f;
         y = 0.5f;
         z = 0.25f;
@@ -48,9 +53,9 @@ public class MachineManager : MonoBehaviour
         _moneySound = gameObject.GetComponent<AudioSource>();
         _counterText = gameObject.transform.GetChild(0).GetComponent<TMP_Text>();
         _firstStep = gameObject.transform.parent.GetChild(0).position;
-        
+        _tempText = UIManager.Instance.MoneyFromSellText.GetComponent<TextMeshProUGUI>();
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Worker")
@@ -59,92 +64,103 @@ public class MachineManager : MonoBehaviour
             Debug.Log("* * * < Geldim > * * *");
         }
     }
-    
+
     public IEnumerator WaitAndPrint()
     {
-        for (int i = 0; i < 5; i++)
+        Debug.Log("aui");
+        for (int i = 0; i < 10; i++)
         {
             _moneySound.Play();
-            _counterText.text = (i+1) + "/5";
+            _counterText.text = (i + 1) + "/5";
+            RadialSegmentNumber--;
+            Debug.Log(RadialSegmentNumber);
+            RadialSegment.SetRemovedSegments(RadialSegmentNumber);
+            Debug.Log(RadialSegment.name);
             yield return new WaitForSeconds(countWaitTime);
-            if (i == 4)
+            if (i == 9)
             {
-               myPos =GameManager.Instance.gridParent.transform.GetChild(gridIndexNumberOfObject).GetChild(1).transform.position;
-               myPos.y += 0.6f;
+                RadialSegmentNumber = 10;
+                GameDataManager.Instance.moneyToBeCollected += machineIncomeMoney;
+                _tempText.text = AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.moneyToBeCollected);
+                GameDataManager.Instance.SaveData();
+                myPos = GameManager.Instance.gridParent.transform.GetChild(gridIndexNumberOfObject).GetChild(1)
+                    .transform.position;
+                myPos.y += 0.6f;
 
-               
-                GameObject moneyTemp = Instantiate(_moneyPrefab, myPos,_moneyPrefab.transform.rotation);
-                
-                
+                GameObject moneyTemp = Instantiate(_moneyPrefab, myPos, _moneyPrefab.transform.rotation);
 
                 if (gridIndexNumberOfObject % 2 == 0)
                 {
-                   firstPos =GameManager.Instance.gridParent.transform.GetChild(gridIndexNumberOfObject).GetChild(0).transform.position;
-               firstPos.y += 0.6f;
-               
-                  moneyTemp.transform.DOMove(firstPos,1f).SetEase(Ease.Linear)
-                .OnComplete(()=>{
-                 moneyTemp.transform.DOMove(new Vector3(-7f,1.1f,-23f),1f).SetEase(Ease.Linear).OnComplete(
-                    ()=>{ 
-                        
-                        if (x<=0.4&&z>=-0.25)
-                        {
-                            moneyTemp.transform.SetParent(GameManager.Instance.money.transform);
-                            
-                            moneyTemp.transform.DOLocalMove(new Vector3(x,y,z),1f).OnComplete(()=>{
-                                moneyTemp.transform.DORotate(new Vector3(-90f,0,0),0.5f).OnComplete(()=>{
-                                x+=0.1f;
-                                });
-                            });
-                            
-                        }
-                        if (x>0.4)
-                        {
-                            x=-0.4f;
-                            z-=0.25f;
-                            
-                            moneyTemp.transform.SetParent(GameManager.Instance.money.transform);
-                            moneyTemp.transform.DOLocalMove(new Vector3(x,y,z),1f).OnComplete(()=>{
-                                moneyTemp.transform.DORotate(new Vector3(-90f,0,0),0.5f).OnComplete(()=>{
-                                x+=0.1f;
-                                });
-                            });
-                            
-                        }
-                        else if(z<-0.25)
-                        {
-                            x=-0.4f;
-                            z=0.25f;
-                            y+=1f;
-                            moneyTemp.transform.SetParent(GameManager.Instance.money.transform);
-                            moneyTemp.transform.DOLocalMove(new Vector3(x,y,z),1f).OnComplete(()=>{
-                                moneyTemp.transform.DORotate(new Vector3(-90f,0,0),0.5f).OnComplete(()=>{
-                                x+=0.1f;
-                                });
-                            });
-                        }
-                        
-                        
-                });});
-                
-                }    //Left Side Banks Ends
+                    firstPos = GameManager.Instance.gridParent.transform.GetChild(gridIndexNumberOfObject).GetChild(0)
+                        .transform.position;
+                    firstPos.y += 0.6f;
 
-                else{
-                     firstPos =GameManager.Instance.gridParent.transform.GetChild(gridIndexNumberOfObject).GetChild(0).transform.position;
-               firstPos.y += 0.6f;
-                     moneyTemp.transform.DOMove(firstPos,3f).SetEase(Ease.Linear)
-                .OnComplete(()=>{
-                    moneyTemp.transform.DOMove(new Vector3(7f,1.1f,-20f),5f).SetEase(Ease.Linear).OnComplete(()=>{
-                        moneyTemp.transform.DOMove(new Vector3(0.18f,1.1f,-23f),3f).SetEase(Ease.Linear);
-                    });;
-                });
-                } // Right Side Banks Ends
-                
+                    moneyTemp.transform.DOMove(firstPos, 1f).SetEase(Ease.Linear)
+                        .OnComplete(() =>
+                        {
+                            moneyTemp.transform.DOMove(new Vector3(-7f, 1.1f, -23f), 1f).SetEase(Ease.Linear)
+                                .OnComplete(
+                                    () =>
+                                    {
+                                        if (x <= 0.4 && z >= -0.25)
+                                        {
+                                            moneyTemp.transform.SetParent(GameManager.Instance.money.transform);
+
+                                            moneyTemp.transform.DOLocalMove(new Vector3(x, y, z), 1f).OnComplete(() =>
+                                            {
+                                                moneyTemp.transform.DORotate(new Vector3(-90f, 0, 0), 0.5f)
+                                                    .OnComplete(() => { x += 0.1f; });
+                                            });
+                                        }
+
+                                        if (x > 0.4)
+                                        {
+                                            x = -0.4f;
+                                            z -= 0.25f;
+
+                                            moneyTemp.transform.SetParent(GameManager.Instance.money.transform);
+                                            moneyTemp.transform.DOLocalMove(new Vector3(x, y, z), 1f).OnComplete(() =>
+                                            {
+                                                moneyTemp.transform.DORotate(new Vector3(-90f, 0, 0), 0.5f)
+                                                    .OnComplete(() => { x += 0.1f; });
+                                            });
+                                        }
+                                        else if (z < -0.25)
+                                        {
+                                            x = -0.4f;
+                                            z = 0.25f;
+                                            y += 1f;
+                                            moneyTemp.transform.SetParent(GameManager.Instance.money.transform);
+                                            moneyTemp.transform.DOLocalMove(new Vector3(x, y, z), 1f).OnComplete(() =>
+                                            {
+                                                moneyTemp.transform.DORotate(new Vector3(-90f, 0, 0), 0.5f)
+                                                    .OnComplete(() => { x += 0.1f; });
+                                            });
+                                        }
+                                    });
+                        });
+                }
+                else
+                {
+                    firstPos = GameManager.Instance.gridParent.transform.GetChild(gridIndexNumberOfObject).GetChild(0)
+                        .transform.position;
+                    firstPos.y += 0.6f;
+                    moneyTemp.transform.DOMove(firstPos, 3f).SetEase(Ease.Linear)
+                        .OnComplete(() =>
+                        {
+                            moneyTemp.transform.DOMove(new Vector3(7f, 1.1f, -20f), 5f).SetEase(Ease.Linear)
+                                .OnComplete(() =>
+                                {
+                                    moneyTemp.transform.DOMove(new Vector3(0.18f, 1.1f, -23f), 3f)
+                                        .SetEase(Ease.Linear);
+                                });
+                            ;
+                        });
+                }
+
                 isFinishedCount = true;
-                Spawner.Instance.gridArrayStack.Push(gridIndexNumberOfObject);
-                Spawner.Instance.LookForEmptyMachine();
             }
         }
-        Debug.Log(waitTime);
+        _counterText.text = "waiting";
     }
 }

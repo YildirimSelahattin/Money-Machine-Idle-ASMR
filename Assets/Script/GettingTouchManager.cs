@@ -50,7 +50,9 @@ public class GettingTouchManager : MonoBehaviour
                     objectToDrag.GetComponent<MachineManager>().dropped = false;
                     objectToDrag.AddComponent<MachineTriggerManager>();
                     originalPosOrDraggingObject = hit.collider.transform.localPosition;
-                    objectToDrag.GetComponent<MachineManager>().comingWorkerObject.GetComponent<WorkerManager>().GoBackToPile(false);//send 
+                    Spawner.Instance.gridWorkerArray[objectToDrag.GetComponent<MachineManager>().gridIndexNumberOfObject].GetComponent<WorkerManager>().GoBackToPile();
+                    Spawner.Instance.gridWorkerArray[objectToDrag.GetComponent<MachineManager>().gridIndexNumberOfObject].GetComponent<WorkerManager>().waitingForGridDecision = true;
+
                 }
                 else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyCoins))
                 {
@@ -69,13 +71,14 @@ public class GettingTouchManager : MonoBehaviour
                     {
                         cloneMoney.transform.DOScale(startScale, 0.2f).SetEase(Ease.Flash)
                             .OnComplete(() => { Destroy(cloneMoney); });
-                        
+
                         // Make it active after X time to collect again
                         objectMoney.SetActive(true);
                     });
                 }
                 else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyUpgrade))
                 {
+                    //if(watchedAd)
                     GameObject parentGridOfHitButton = hit.collider.gameObject.transform.parent.gameObject;
                     parentGridOfHitButton.transform.GetChild(GameManager.Instance.GRID_SURFACE_INDEX).gameObject
                             .GetComponent<MeshRenderer>().material =
@@ -109,6 +112,12 @@ public class GettingTouchManager : MonoBehaviour
                         objectToDrag.GetComponent<MachineManager>().inSnapArea != true)
                     {
                         objectToDrag.transform.DOKill();
+                        GameObject workerForThisMachine = Spawner.Instance.gridWorkerArray[objectToDrag.GetComponent<MachineManager>().gridIndexNumberOfObject];
+                        workerForThisMachine.GetComponent<WorkerManager>().waitingForGridDecision = false;
+                        if (workerForThisMachine.GetComponent<WorkerManager>().moveStage == 1)
+                        {
+                            Spawner.Instance.gridWorkerArray[objectToDrag.GetComponent<MachineManager>().gridIndexNumberOfObject].GetComponent<WorkerManager>().MoveMachineAndComeBackByIndex();
+                        }
                         objectToDrag.transform.localPosition = originalPosOrDraggingObject;
                         Destroy(objectToDrag.GetComponent<MachineTriggerManager>());
                         objectToDrag = null;
