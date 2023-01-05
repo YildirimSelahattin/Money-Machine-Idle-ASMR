@@ -133,7 +133,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.75, z: 0}
 --- !u!114 &2604359735765762204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +163,6 @@ MonoBehaviour:
   comingWorkerObject: {fileID: 0}
   myPos: {x: 0, y: 0, z: 0}
   firstPos: {x: 0, y: 0, z: 0}
-  RadialSegmentNumber: 0
   RadialSegment: {fileID: 8299436474735199888}
   x: 0
   y: 0
