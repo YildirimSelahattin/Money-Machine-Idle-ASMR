@@ -127,7 +127,8 @@ public class MachineManager : MonoBehaviour
                         
                 });});
                 
-                }
+                }    //Left Side Banks Ends
+
                 else{
                      firstPos =GameManager.Instance.gridParent.transform.GetChild(gridIndexNumberOfObject).GetChild(0).transform.position;
                firstPos.y += 0.6f;
@@ -137,7 +138,7 @@ public class MachineManager : MonoBehaviour
                         moneyTemp.transform.DOMove(new Vector3(0.18f,1.1f,-23f),3f).SetEase(Ease.Linear);
                     });;
                 });
-                }
+                } // Right Side Banks Ends
                 
                 isFinishedCount = true;
                 Spawner.Instance.gridArrayStack.Push(gridIndexNumberOfObject);
