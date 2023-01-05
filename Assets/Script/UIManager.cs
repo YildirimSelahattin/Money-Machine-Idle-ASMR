@@ -99,7 +99,7 @@ public class UIManager : MonoBehaviour
                 AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.beltSpeedButtonMoney) + " $";
 
             if(GameDataManager.Instance.beltSpeed > 0.1f)
-                GameDataManager.Instance.beltSpeed -= (GameDataManager.Instance.beltSpeed * 0.03f);
+                GameDataManager.Instance.beltSpeed += (GameDataManager.Instance.beltSpeed * 0.03f);
         
             GameDataManager.Instance.SaveData();
         }

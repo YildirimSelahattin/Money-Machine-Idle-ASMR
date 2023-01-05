@@ -32,7 +32,7 @@ public class MachineManager : MonoBehaviour
     private float RadialSegmentNumber = 10;
     public RadialSegmentedHealthBar RadialSegment;
     public Transform goPos;
-
+    
     public float x, y, z;
 
     private void Awake()
@@ -45,6 +45,7 @@ public class MachineManager : MonoBehaviour
         x = -0.4f;
         y = 0.5f;
         z = 0.25f;
+        
     }
 
     void Start()
@@ -64,9 +65,10 @@ public class MachineManager : MonoBehaviour
                 myPos.y += 0.6f;
 
                 GameObject moneyTemp = Instantiate(_moneyPrefab, myPos, _moneyPrefab.transform.rotation);
-                goPos = PickupManager.Instance.tempPickup.transform;
+                
                 if (gridIndexNumberOfObject % 2 == 0)
                 {
+                    goPos = PickupManager.Instance.tempPickup.transform;
                     firstPos = GameManager.Instance.gridParent.transform.GetChild(gridIndexNumberOfObject).GetChild(0)
                         .transform.position;
                     firstPos.y += 0.6f;
@@ -74,7 +76,9 @@ public class MachineManager : MonoBehaviour
                     moneyTemp.transform.DOMove(firstPos, 1f).SetEase(Ease.Linear)
                         .OnComplete(() =>
                         {
-                            moneyTemp.transform.DOMove(new Vector3(-7f, 1.1f, -23f), 1f).SetEase(Ease.Linear)
+                            float dist = Vector3.Distance (firstPos,  new Vector3(-7f, 1.1f, -20f));
+                            float speed = GameDataManager.Instance.beltSpeed;
+                            moneyTemp.transform.DOMove(new Vector3(-7f, 1.1f, -20f), dist/speed).SetEase(Ease.Linear)
                                 .OnComplete(
                                     () =>
                                     {
@@ -82,32 +86,32 @@ public class MachineManager : MonoBehaviour
                                         {
                                             moneyTemp.transform.SetParent(goPos.transform);
 
-                                            moneyTemp.transform.DOLocalMove(new Vector3(x, y, z), 1f).OnComplete(() =>
+                                            moneyTemp.transform.DOLocalMove(new Vector3(x, y, z), 2f).OnComplete(() =>
                                             {
                                                 moneyTemp.transform.DORotate(new Vector3(-90f, 0, 0), 0.5f)
-                                                    .OnComplete(() => { x += 0.1f; });
+                                                    .OnComplete(() => { Debug.Log("x ++"); x += 0.1f; });
                                             });
                                         }
 
-                                        if (x > 0.4)
+                                        else if (x > 0.4)
                                         {
                                             x = -0.4f;
                                             z -= 0.25f;
 
                                             moneyTemp.transform.SetParent(goPos.transform);
-                                            moneyTemp.transform.DOLocalMove(new Vector3(x, y, z), 1f).OnComplete(() =>
+                                            moneyTemp.transform.DOLocalMove(new Vector3(x, y, z), 2f).OnComplete(() =>
                                             {
                                                 moneyTemp.transform.DORotate(new Vector3(-90f, 0, 0), 0.5f)
                                                     .OnComplete(() => { x += 0.1f; });
                                             });
                                         }
-                                        else if (z < -0.25)
+                                        else if (z < -0.25 && x >0.4)
                                         {
                                             x = -0.4f;
                                             z = 0.25f;
                                             y += 1f;
                                             moneyTemp.transform.SetParent(goPos.transform);
-                                            moneyTemp.transform.DOLocalMove(new Vector3(x, y, z), 1f).OnComplete(() =>
+                                            moneyTemp.transform.DOLocalMove(new Vector3(x, y, z), 2f).OnComplete(() =>
                                             {
                                                 moneyTemp.transform.DORotate(new Vector3(-90f, 0, 0), 0.5f)
                                                     .OnComplete(() => { x += 0.1f; });
@@ -118,20 +122,23 @@ public class MachineManager : MonoBehaviour
                 }
                 else
                 {
+                    goPos = PickupManager.Instance.tempPickup.transform;
                     firstPos = GameManager.Instance.gridParent.transform.GetChild(gridIndexNumberOfObject).GetChild(0)
                         .transform.position;
                     firstPos.y += 0.6f;
                     moneyTemp.transform.DOMove(firstPos, 1f).SetEase(Ease.Linear)
                         .OnComplete(() =>
                         {
-                            moneyTemp.transform.DOMove(new Vector3(7f, 1.1f, -20f), 1f).SetEase(Ease.Linear)
+                            float dist = Vector3.Distance (firstPos,  new Vector3(7f, 1.1f, -20f));
+                            float speed = GameDataManager.Instance.beltSpeed;
+                            moneyTemp.transform.DOMove(new Vector3(7f, 1.1f, -20f), dist/speed).SetEase(Ease.Linear)
                                 .OnComplete(() =>
                                 {
                                     if (x <= 0.4 && z >= -0.25)
                                         {
                                             moneyTemp.transform.SetParent(goPos.transform);
 
-                                            moneyTemp.transform.DOLocalMove(new Vector3(x, y, z), 1f).OnComplete(() =>
+                                            moneyTemp.transform.DOLocalMove(new Vector3(x, y, z), 2f).OnComplete(() =>
                                             {
                                                 moneyTemp.transform.DORotate(new Vector3(-90f, 0, 0), 0.5f)
                                                     .OnComplete(() => { x += 0.1f; });
@@ -144,7 +151,7 @@ public class MachineManager : MonoBehaviour
                                             z -= 0.25f;
 
                                             moneyTemp.transform.SetParent(goPos.transform);
-                                            moneyTemp.transform.DOLocalMove(new Vector3(x, y, z), 1f).OnComplete(() =>
+                                            moneyTemp.transform.DOLocalMove(new Vector3(x, y, z), 2f).OnComplete(() =>
                                             {
                                                 moneyTemp.transform.DORotate(new Vector3(-90f, 0, 0), 0.5f)
                                                     .OnComplete(() => { x += 0.1f; });
@@ -156,7 +163,7 @@ public class MachineManager : MonoBehaviour
                                             z = 0.25f;
                                             y += 1f;
                                             moneyTemp.transform.SetParent(goPos.transform);
-                                            moneyTemp.transform.DOLocalMove(new Vector3(x, y, z), 1f).OnComplete(() =>
+                                            moneyTemp.transform.DOLocalMove(new Vector3(x, y, z), 2f).OnComplete(() =>
                                             {
                                                 moneyTemp.transform.DORotate(new Vector3(-90f, 0, 0), 0.5f)
                                                     .OnComplete(() => { x += 0.1f; });
