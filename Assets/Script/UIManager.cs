@@ -20,6 +20,11 @@ public class UIManager : MonoBehaviour
     public GameObject incomeButton;
     public GameObject workerSpeedButton;
     public GameObject addMachineButton;
+    
+    [SerializeField] GameObject soundOn;
+    [SerializeField] GameObject soundOff;
+    [SerializeField] GameObject musicOn;
+    [SerializeField] GameObject musicOff;
     public int NumberOfDiamonds
     {
         get { return PlayerPrefs.GetInt("NumberOfDiamondsKey", 0); } // get method
