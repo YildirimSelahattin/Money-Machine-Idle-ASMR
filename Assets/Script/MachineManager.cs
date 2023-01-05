@@ -31,6 +31,7 @@ public class MachineManager : MonoBehaviour
     public Vector3 firstPos;
     private float RadialSegmentNumber = 10;
     public RadialSegmentedHealthBar RadialSegment;
+    public Transform goPos;
 
     public float x, y, z;
 
@@ -54,8 +55,118 @@ public class MachineManager : MonoBehaviour
         _counterText = gameObject.transform.GetChild(0).GetComponent<TMP_Text>();
         _firstStep = gameObject.transform.parent.GetChild(0).position;
         _tempText = UIManager.Instance.MoneyFromSellText.GetComponent<TextMeshProUGUI>();
+        
     }
 
+    public void MoneyMove(){
+        myPos = GameManager.Instance.gridParent.transform.GetChild(gridIndexNumberOfObject).GetChild(1)
+                    .transform.position;
+                myPos.y += 0.6f;
+
+                GameObject moneyTemp = Instantiate(_moneyPrefab, myPos, _moneyPrefab.transform.rotation);
+                goPos = PickupManager.Instance.tempPickup.transform;
+                if (gridIndexNumberOfObject % 2 == 0)
+                {
+                    firstPos = GameManager.Instance.gridParent.transform.GetChild(gridIndexNumberOfObject).GetChild(0)
+                        .transform.position;
+                    firstPos.y += 0.6f;
+
+                    moneyTemp.transform.DOMove(firstPos, 1f).SetEase(Ease.Linear)
+                        .OnComplete(() =>
+                        {
+                            moneyTemp.transform.DOMove(new Vector3(-7f, 1.1f, -23f), 1f).SetEase(Ease.Linear)
+                                .OnComplete(
+                                    () =>
+                                    {
+                                        if (x <= 0.4 && z >= -0.25)
+                                        {
+                                            moneyTemp.transform.SetParent(goPos.transform);
+
+                                            moneyTemp.transform.DOLocalMove(new Vector3(x, y, z), 1f).OnComplete(() =>
+                                            {
+                                                moneyTemp.transform.DORotate(new Vector3(-90f, 0, 0), 0.5f)
+                                                    .OnComplete(() => { x += 0.1f; });
+                                            });
+                                        }
+
+                                        if (x > 0.4)
+                                        {
+                                            x = -0.4f;
+                                            z -= 0.25f;
+
+                                            moneyTemp.transform.SetParent(goPos.transform);
+                                            moneyTemp.transform.DOLocalMove(new Vector3(x, y, z), 1f).OnComplete(() =>
+                                            {
+                                                moneyTemp.transform.DORotate(new Vector3(-90f, 0, 0), 0.5f)
+                                                    .OnComplete(() => { x += 0.1f; });
+                                            });
+                                        }
+                                        else if (z < -0.25)
+                                        {
+                                            x = -0.4f;
+                                            z = 0.25f;
+                                            y += 1f;
+                                            moneyTemp.transform.SetParent(goPos.transform);
+                                            moneyTemp.transform.DOLocalMove(new Vector3(x, y, z), 1f).OnComplete(() =>
+                                            {
+                                                moneyTemp.transform.DORotate(new Vector3(-90f, 0, 0), 0.5f)
+                                                    .OnComplete(() => { x += 0.1f; });
+                                            });
+                                        }
+                                    });
+                        });
+                }
+                else
+                {
+                    firstPos = GameManager.Instance.gridParent.transform.GetChild(gridIndexNumberOfObject).GetChild(0)
+                        .transform.position;
+                    firstPos.y += 0.6f;
+                    moneyTemp.transform.DOMove(firstPos, 1f).SetEase(Ease.Linear)
+                        .OnComplete(() =>
+                        {
+                            moneyTemp.transform.DOMove(new Vector3(7f, 1.1f, -20f), 1f).SetEase(Ease.Linear)
+                                .OnComplete(() =>
+                                {
+                                    if (x <= 0.4 && z >= -0.25)
+                                        {
+                                            moneyTemp.transform.SetParent(goPos.transform);
+
+                                            moneyTemp.transform.DOLocalMove(new Vector3(x, y, z), 1f).OnComplete(() =>
+                                            {
+                                                moneyTemp.transform.DORotate(new Vector3(-90f, 0, 0), 0.5f)
+                                                    .OnComplete(() => { x += 0.1f; });
+                                            });
+                                        }
+
+                                        if (x > 0.4)
+                                        {
+                                            x = -0.4f;
+                                            z -= 0.25f;
+
+                                            moneyTemp.transform.SetParent(goPos.transform);
+                                            moneyTemp.transform.DOLocalMove(new Vector3(x, y, z), 1f).OnComplete(() =>
+                                            {
+                                                moneyTemp.transform.DORotate(new Vector3(-90f, 0, 0), 0.5f)
+                                                    .OnComplete(() => { x += 0.1f; });
+                                            });
+                                        }
+                                        else if (z < -0.25)
+                                        {
+                                            x = -0.4f;
+                                            z = 0.25f;
+                                            y += 1f;
+                                            moneyTemp.transform.SetParent(goPos.transform);
+                                            moneyTemp.transform.DOLocalMove(new Vector3(x, y, z), 1f).OnComplete(() =>
+                                            {
+                                                moneyTemp.transform.DORotate(new Vector3(-90f, 0, 0), 0.5f)
+                                                    .OnComplete(() => { x += 0.1f; });
+                                            });
+                                        }
+                                });
+                            ;
+                        });
+                }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Worker")
@@ -83,80 +194,7 @@ public class MachineManager : MonoBehaviour
                 GameDataManager.Instance.moneyToBeCollected += machineIncomeMoney;
                 _tempText.text = AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.moneyToBeCollected);
                 GameDataManager.Instance.SaveData();
-                myPos = GameManager.Instance.gridParent.transform.GetChild(gridIndexNumberOfObject).GetChild(1)
-                    .transform.position;
-                myPos.y += 0.6f;
-
-                GameObject moneyTemp = Instantiate(_moneyPrefab, myPos, _moneyPrefab.transform.rotation);
-
-                if (gridIndexNumberOfObject % 2 == 0)
-                {
-                    firstPos = GameManager.Instance.gridParent.transform.GetChild(gridIndexNumberOfObject).GetChild(0)
-                        .transform.position;
-                    firstPos.y += 0.6f;
-
-                    moneyTemp.transform.DOMove(firstPos, 1f).SetEase(Ease.Linear)
-                        .OnComplete(() =>
-                        {
-                            moneyTemp.transform.DOMove(new Vector3(-7f, 1.1f, -23f), 1f).SetEase(Ease.Linear)
-                                .OnComplete(
-                                    () =>
-                                    {
-                                        if (x <= 0.4 && z >= -0.25)
-                                        {
-                                            moneyTemp.transform.SetParent(GameManager.Instance.money.transform);
-
-                                            moneyTemp.transform.DOLocalMove(new Vector3(x, y, z), 1f).OnComplete(() =>
-                                            {
-                                                moneyTemp.transform.DORotate(new Vector3(-90f, 0, 0), 0.5f)
-                                                    .OnComplete(() => { x += 0.1f; });
-                                            });
-                                        }
-
-                                        if (x > 0.4)
-                                        {
-                                            x = -0.4f;
-                                            z -= 0.25f;
-
-                                            moneyTemp.transform.SetParent(GameManager.Instance.money.transform);
-                                            moneyTemp.transform.DOLocalMove(new Vector3(x, y, z), 1f).OnComplete(() =>
-                                            {
-                                                moneyTemp.transform.DORotate(new Vector3(-90f, 0, 0), 0.5f)
-                                                    .OnComplete(() => { x += 0.1f; });
-                                            });
-                                        }
-                                        else if (z < -0.25)
-                                        {
-                                            x = -0.4f;
-                                            z = 0.25f;
-                                            y += 1f;
-                                            moneyTemp.transform.SetParent(GameManager.Instance.money.transform);
-                                            moneyTemp.transform.DOLocalMove(new Vector3(x, y, z), 1f).OnComplete(() =>
-                                            {
-                                                moneyTemp.transform.DORotate(new Vector3(-90f, 0, 0), 0.5f)
-                                                    .OnComplete(() => { x += 0.1f; });
-                                            });
-                                        }
-                                    });
-                        });
-                }
-                else
-                {
-                    firstPos = GameManager.Instance.gridParent.transform.GetChild(gridIndexNumberOfObject).GetChild(0)
-                        .transform.position;
-                    firstPos.y += 0.6f;
-                    moneyTemp.transform.DOMove(firstPos, 3f).SetEase(Ease.Linear)
-                        .OnComplete(() =>
-                        {
-                            moneyTemp.transform.DOMove(new Vector3(7f, 1.1f, -20f), 5f).SetEase(Ease.Linear)
-                                .OnComplete(() =>
-                                {
-                                    moneyTemp.transform.DOMove(new Vector3(0.18f, 1.1f, -23f), 3f)
-                                        .SetEase(Ease.Linear);
-                                });
-                            ;
-                        });
-                }
+                MoneyMove();
 
                 isFinishedCount = true;
             }
