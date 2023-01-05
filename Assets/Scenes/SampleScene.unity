@@ -3901,12 +3901,12 @@ MonoBehaviour:
   rippleShape: {fileID: 21300000, guid: 100d5727b1babc14bac90fe9c56af800, type: 3}
   speed: 1
   maxSize: 4
-  startColor: {r: 1, g: 0, b: 0, a: 0.2}
+  startColor: {r: 1, g: 1, b: 1, a: 0.2}
   transitionColor: {r: 1, g: 1, b: 1, a: 0}
   renderOnTop: 0
   centered: 0
   isPreset: 0
-  latestTabIndex: 2
+  latestTabIndex: 0
 --- !u!1 &390263456
 GameObject:
   m_ObjectHideFlags: 0
@@ -4596,7 +4596,7 @@ MonoBehaviour:
   useRipple: 1
   doubleClickPeriod: 0.25
   fadingMultiplier: 8
-  animationSolution: 0
+  animationSolution: 1
   onClick:
     m_PersistentCalls:
       m_Calls:
@@ -4630,7 +4630,7 @@ MonoBehaviour:
   renderOnTop: 1
   centered: 0
   isPreset: 1
-  latestTabIndex: 2
+  latestTabIndex: 0
 --- !u!114 &451424826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6025,7 +6025,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 591851246}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -18113,8 +18113,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: def0b999bf90eaf48ad972dc8f98df24, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 0}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -18228,7 +18228,7 @@ MonoBehaviour:
   renderOnTop: 0
   centered: 0
   isPreset: 0
-  latestTabIndex: 2
+  latestTabIndex: 0
 --- !u!1 &1889143570
 GameObject:
   m_ObjectHideFlags: 0
