@@ -13,7 +13,7 @@ public class PickupManager : MonoBehaviour
     [SerializeField] private GameObject pickupSpawner;
     [SerializeField] private GameObject pickupPrefab;
     private bool isPress = true;
-    GameObject tempPickup;
+    public GameObject  tempPickup;
 
     private void Awake()
     {
