@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public static UIManager Instance;
+    public bool isSell = false;
     [SerializeField] private GameObject ButtonPanel;
     public GameObject MoneyFromSellText;
     public GameObject TotalMoneyText;
@@ -70,6 +71,7 @@ public class UIManager : MonoBehaviour
     public void OnSellButton()
     {
         Debug.Log("Sell");
+        isSell = true;
         GameDataManager.Instance.totalMoney += GameDataManager.Instance.moneyToBeCollected;
         GameDataManager.Instance.moneyToBeCollected = 0;
         MoneyFromSellText.GetComponent<TextMeshProUGUI>().text = "0";
@@ -97,9 +99,8 @@ public class UIManager : MonoBehaviour
             ButtonPanel.transform.GetChild(0).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Level - " + GameDataManager.Instance.beltSpeedButtonLevel;
             ButtonPanel.transform.GetChild(0).transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
                 AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.beltSpeedButtonMoney) + " $";
-
-            if(GameDataManager.Instance.beltSpeed > 0.1f)
-                GameDataManager.Instance.beltSpeed += (GameDataManager.Instance.beltSpeed * 0.03f);
+            
+            GameDataManager.Instance.beltSpeed += (GameDataManager.Instance.beltSpeed * 0.03f);
         
             GameDataManager.Instance.SaveData();
         }

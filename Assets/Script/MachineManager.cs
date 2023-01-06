@@ -63,6 +63,7 @@ public class MachineManager : MonoBehaviour
         myPos = GameManager.Instance.gridParent.transform.GetChild(gridIndexNumberOfObject).GetChild(1)
                     .transform.position;
                 myPos.y += 0.6f;
+                firstPos.x -= 1f;
 
                 GameObject moneyTemp = Instantiate(_moneyPrefab, myPos, _moneyPrefab.transform.rotation);
                 
@@ -78,7 +79,7 @@ public class MachineManager : MonoBehaviour
                         {
                             float dist = Vector3.Distance (firstPos,  new Vector3(-7f, 1.1f, -20f));
                             float speed = GameDataManager.Instance.beltSpeed;
-                            moneyTemp.transform.DOMove(new Vector3(-7f, 1.1f, -20f), dist/speed).SetEase(Ease.Linear)
+                            moneyTemp.transform.DOMove(new Vector3(-7.4f, 2f, -21f), (dist/speed)*Time.deltaTime).SetEase(Ease.Linear)
                                 .OnComplete(
                                     () =>
                                     {
@@ -126,12 +127,16 @@ public class MachineManager : MonoBehaviour
                     firstPos = GameManager.Instance.gridParent.transform.GetChild(gridIndexNumberOfObject).GetChild(0)
                         .transform.position;
                     firstPos.y += 0.6f;
+                    firstPos.x -= 1f;
                     moneyTemp.transform.DOMove(firstPos, 1f).SetEase(Ease.Linear)
                         .OnComplete(() =>
                         {
                             float dist = Vector3.Distance (firstPos,  new Vector3(7f, 1.1f, -20f));
                             float speed = GameDataManager.Instance.beltSpeed;
-                            moneyTemp.transform.DOMove(new Vector3(7f, 1.1f, -20f), dist/speed).SetEase(Ease.Linear)
+                            //doKill
+                            if (UIManager.Instance.isSell == true) 
+                                Debug.Log("Sell");
+                            moneyTemp.transform.DOMove(new Vector3(6.5f, 2f, -20f), (dist/speed)*Time.deltaTime).SetEase(Ease.Linear)
                                 .OnComplete(() =>
                                 {
                                     if (x <= 0.4 && z >= -0.25)

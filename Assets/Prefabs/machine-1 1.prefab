@@ -621,6 +621,7 @@ MonoBehaviour:
   myPos: {x: 0, y: 0, z: 0}
   firstPos: {x: 0, y: 0, z: 0}
   RadialSegment: {fileID: 1637365484041760133}
+  goPos: {fileID: 0}
   x: 0
   y: 0
   z: 0
@@ -762,6 +763,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RadialSegmentedHealthbarSprite
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488954605156408839, guid: 41dd36208627fdc4095d4e1097d98437,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4804481248758940574, guid: 41dd36208627fdc4095d4e1097d98437,
         type: 3}
