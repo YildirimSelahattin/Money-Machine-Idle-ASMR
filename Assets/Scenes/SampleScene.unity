@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44865578, g: 0.49694902, b: 0.56677896, a: 1}
+  m_IndirectSpecularColor: {r: 0.45133728, g: 0.5002894, b: 0.56941485, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3907,6 +3907,86 @@ MonoBehaviour:
   centered: 0
   isPreset: 0
   latestTabIndex: 0
+--- !u!1001 &386602849
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 525292628}
+    m_Modifications:
+    - target: {fileID: 4107501907366343365, guid: 3c842c59249ca7d47a6c2883bbf429cd,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4107501907366343366, guid: 3c842c59249ca7d47a6c2883bbf429cd,
+        type: 3}
+      propertyPath: m_Name
+      value: finalPoint (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4107501907366343367, guid: 3c842c59249ca7d47a6c2883bbf429cd,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4107501907366343367, guid: 3c842c59249ca7d47a6c2883bbf429cd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4107501907366343367, guid: 3c842c59249ca7d47a6c2883bbf429cd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4107501907366343367, guid: 3c842c59249ca7d47a6c2883bbf429cd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4107501907366343367, guid: 3c842c59249ca7d47a6c2883bbf429cd,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4107501907366343367, guid: 3c842c59249ca7d47a6c2883bbf429cd,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4107501907366343367, guid: 3c842c59249ca7d47a6c2883bbf429cd,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4107501907366343367, guid: 3c842c59249ca7d47a6c2883bbf429cd,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4107501907366343367, guid: 3c842c59249ca7d47a6c2883bbf429cd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4107501907366343367, guid: 3c842c59249ca7d47a6c2883bbf429cd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4107501907366343367, guid: 3c842c59249ca7d47a6c2883bbf429cd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3c842c59249ca7d47a6c2883bbf429cd, type: 3}
+--- !u!4 &386602850 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4107501907366343367, guid: 3c842c59249ca7d47a6c2883bbf429cd,
+    type: 3}
+  m_PrefabInstance: {fileID: 386602849}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &390263456
 GameObject:
   m_ObjectHideFlags: 0
@@ -5430,6 +5510,7 @@ Transform:
   - {fileID: 1508017981}
   - {fileID: 1318325651}
   - {fileID: 982697909}
+  - {fileID: 386602850}
   m_Father: {fileID: 1122395168}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14815,6 +14896,10 @@ MonoBehaviour:
   MoneyFromSellText: {fileID: 1889143570}
   TotalMoneyText: {fileID: 2145444362}
   Grid: {fileID: 0}
+  beltSpeedButton: {fileID: 0}
+  incomeButton: {fileID: 0}
+  workerSpeedButton: {fileID: 0}
+  addMachineButton: {fileID: 0}
 --- !u!4 &1579515557
 Transform:
   m_ObjectHideFlags: 0
@@ -19655,6 +19740,7 @@ MonoBehaviour:
   pickupSpawner: {fileID: 2038877661}
   pickupPrefab: {fileID: 4954314851806151137, guid: babb51733f2a4e74096de12b6a31ba0f,
     type: 3}
+  tempPickup: {fileID: 0}
 --- !u!4 &2038877663
 Transform:
   m_ObjectHideFlags: 0
@@ -19755,15 +19841,13 @@ MonoBehaviour:
   touchableLayerOnlyMachines:
     serializedVersion: 2
     m_Bits: 64
-  touchableLayerOnlyCoins:
-    serializedVersion: 2
-    m_Bits: 128
-  touchableLayerExceptMachines:
-    serializedVersion: 2
-    m_Bits: 1
   touchableLayerOnlyUpgrade:
     serializedVersion: 2
     m_Bits: 8
+  touchableLayerOnlyTapToCollect:
+    serializedVersion: 2
+    m_Bits: 0
+  moneyTapParticle: {fileID: 0}
   objectToDrag: {fileID: 0}
   objectMoney: {fileID: 0}
 --- !u!4 &2046357712
