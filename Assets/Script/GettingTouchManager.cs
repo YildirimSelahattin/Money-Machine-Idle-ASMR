@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Unity.VisualScripting;
+using System.Runtime.InteropServices;
 
 public class GettingTouchManager : MonoBehaviour
 {
@@ -49,7 +50,6 @@ public class GettingTouchManager : MonoBehaviour
                     originalPosOrDraggingObject = hit.collider.transform.localPosition;
                     Spawner.Instance.gridWorkerArray[objectToDrag.GetComponent<MachineManager>().gridIndexNumberOfObject].GetComponent<WorkerManager>().GoBackToPile();
                     Spawner.Instance.gridWorkerArray[objectToDrag.GetComponent<MachineManager>().gridIndexNumberOfObject].GetComponent<WorkerManager>().waitingForGridDecision = true;
-                    Debug.Log("1");
                 }
               
                 else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyUpgrade)) // when it hits to upgrade button
@@ -64,14 +64,14 @@ public class GettingTouchManager : MonoBehaviour
                     GameDataManager.Instance.gridArray[
                             parentGridOfHitButton.transform.tag[parentGridOfHitButton.transform.tag.Length - 1] - '0'] =
                         0; // open grid index base
-                    Debug.Log("2");
                 }
                 else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyTapToCollect)) // if it is money tap
                 {
                     moneyTapParticle.gameObject.transform.position=new Vector3(hit.point.x ,hit.point.y,hit.point.z-5);
                     moneyTapParticle.Play();
                     Debug.Log(hit.point);
-                    Debug.Log("3");
+                    GameDataManager.Instance.TotalMoney += GameDataManager.Instance.incomePerTap;
+                   
                 }
             }
 

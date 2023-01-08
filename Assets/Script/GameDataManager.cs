@@ -1,3 +1,4 @@
+using Michsky.MUIP;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -25,7 +26,63 @@ public class GameDataManager : MonoBehaviour
     public int addMachineButtonLevel = 1;
     public int workerSpeedButtonLevel;
     public float moneyToBeCollected = 0;
-    public float totalMoney = 0;
+    public float totalMoney;
+    public float TotalMoney
+    {
+        get { return totalMoney; }
+
+        set {
+
+            if (value > totalMoney)
+            {
+                if (totalMoney > beltSpeedButtonMoney)//activate belt speed button
+                {
+                    // interactable yap UIManager.Instance.beltSpeedButton.GetComponent<>// interactable yap
+                    UIManager.Instance.beltSpeedButton.GetComponent<ButtonManager>().Interactable(true);
+                }
+                if (totalMoney > incomeButtonMoney)//activate belt speed button
+                {
+                    //UIManager.Instance.incomeButton.GetComponent<>// interactable yap
+                    UIManager.Instance.incomeButton.GetComponent<ButtonManager>().Interactable(true);
+                }
+                if (totalMoney > workerSpeedButtonMoney)//activate belt speed button
+                {
+                    //UIManager.Instance.workerSpeedButton.GetComponent<>// interactable yap
+                    UIManager.Instance.workerSpeedButton.GetComponent<ButtonManager>().Interactable(true);
+                }
+                if (totalMoney > addMachineButtonMoney)//activate belt speed button
+                {
+                    //UIManager.Instance.addMachineButton.GetComponent<>// interactable yap
+                    UIManager.Instance.addMachineButton.GetComponent<ButtonManager>().Interactable(true);
+                }
+            }
+            else
+            {
+                if (totalMoney < beltSpeedButtonMoney)//activate belt speed button
+                {
+                    // interactable yap UIManager.Instance.beltSpeedButton.GetComponent<>// interactable yap
+                    UIManager.Instance.beltSpeedButton.GetComponent<ButtonManager>().Interactable(false);
+                }
+                if (totalMoney < incomeButtonMoney)//activate belt speed button
+                {
+                    UIManager.Instance.incomeButton.GetComponent<ButtonManager>().Interactable(false);
+                    //UIManager.Instance.incomeButton.GetComponent<>// interactable yap
+                }
+                if (totalMoney < workerSpeedButtonMoney)//activate belt speed button
+                {
+                    //UIManager.Instance.workerSpeedButton.GetComponent<>// interactable yap
+                    UIManager.Instance.workerSpeedButton.GetComponent<ButtonManager>().Interactable(false);
+                }
+                if (totalMoney < addMachineButtonMoney)//activate belt speed button
+                {
+                    //UIManager.Instance.addMachineButton.GetComponent<>// interactable yap
+                    UIManager.Instance.addMachineButton.GetComponent<ButtonManager>().Interactable(false);
+                }
+            }
+              
+        } 
+    }
+    public float incomePerTap;
     public float workerBaseSpeed;
     public float beltSpeed;
     public float machineIncomeMoney;
@@ -59,7 +116,7 @@ public class GameDataManager : MonoBehaviour
         workerBaseSpeed=PlayerPrefs.GetFloat("WorkerBaseSpeed", 3);
         ///////////////////////////////////////////
         /// Buttons
-        totalMoney = PlayerPrefs.GetFloat("TotalMoney", 7);
+        TotalMoney = PlayerPrefs.GetFloat("TotalMoney", 7);
         moneyToBeCollected = PlayerPrefs.GetFloat("MoneyToBeCollected", moneyToBeCollected);
         workerSpeedButtonLevel = PlayerPrefs.GetInt("WorkerSpeedButtonLevel", workerSpeedButtonLevel);
         addMachineButtonLevel= PlayerPrefs.GetInt("AddMachineButtonLevel", addMachineButtonLevel);
@@ -84,7 +141,7 @@ public class GameDataManager : MonoBehaviour
 
         //////////////////////////
         /// Buttons
-        PlayerPrefs.SetFloat("TotalMoney", totalMoney);
+        PlayerPrefs.SetFloat("TotalMoney", TotalMoney);
         PlayerPrefs.SetFloat("MoneyToBeCollected", moneyToBeCollected);
         PlayerPrefs.SetFloat("WorkerSpeedButtonLevel", workerSpeedButtonLevel);
         PlayerPrefs.SetFloat("AddMachineButtonLevel", addMachineButtonLevel);
