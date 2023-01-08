@@ -125,7 +125,7 @@ public class GameDataManager : MonoBehaviour
         workerSpeedButtonMoney = PlayerPrefs.GetFloat("WorkerSpeedButtonMoney", workerSpeedButtonMoney);
         beltSpeedButtonMoney = PlayerPrefs.GetFloat("BeltSpeedButtonMoney", beltSpeedButtonMoney);
         addMachineButtonMoney = PlayerPrefs.GetFloat("AddMachineButtonMoney", addMachineButtonMoney);
-        beltSpeed= PlayerPrefs.GetFloat("BeltSpeed", 0.02f);
+        beltSpeed= PlayerPrefs.GetFloat("BeltSpeed", 50);
         workerBaseSpeed= PlayerPrefs.GetFloat("WorkerSpeed",3);
     }
     

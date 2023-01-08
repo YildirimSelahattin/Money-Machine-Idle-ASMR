@@ -54,7 +54,7 @@ public class GettingTouchManager : MonoBehaviour
               
                 else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyUpgrade)) // when it hits to upgrade button
                 {
-                    RewardedAdManager.Instance.MultipleOfflineProgressRewardAd();
+                    //if(watchedAd)
                     GameObject parentGridOfHitButton = hit.collider.gameObject.transform.parent.gameObject;
                     parentGridOfHitButton.transform.GetChild(GameManager.Instance.GRID_SURFACE_INDEX).gameObject
                             .GetComponent<MeshRenderer>().material =
