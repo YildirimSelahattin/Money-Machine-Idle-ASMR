@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
-using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+
 //THE ONLY DATA READER , READS FROM JSONTEXT
 public class GameDataManager : MonoBehaviour
 {
@@ -25,7 +26,64 @@ public class GameDataManager : MonoBehaviour
     public int addMachineButtonLevel = 1;
     public int workerSpeedButtonLevel;
     public float moneyToBeCollected = 0;
-    public float totalMoney = 0;
+    private float totalMoney = 0;
+    public float TotalMoney
+    {
+        get { return totalMoney; }
+
+        set
+        {
+
+            if (value > totalMoney)
+            {
+                if (totalMoney > beltSpeedButtonMoney)//activate belt speed button
+                {
+                    // interactable yap UIManager.Instance.beltSpeedButton.GetComponent<>// interactable yap
+                    UIManager.Instance.beltSpeedButton.GetComponent<Button>().interactable = true;
+                }
+                if (totalMoney > incomeButtonMoney)//activate belt speed button
+                {
+                    //UIManager.Instance.incomeButton.GetComponent<>// interactable yap
+                    UIManager.Instance.incomeButton.GetComponent<Button>().interactable=true;
+                }
+                if (totalMoney > workerSpeedButtonMoney)//activate belt speed button
+                {
+                    //UIManager.Instance.workerSpeedButton.GetComponent<>// interactable yap
+                    UIManager.Instance.workerSpeedButton.GetComponent<Button>().interactable=true;
+                }
+                if (totalMoney > addMachineButtonMoney)//activate belt speed button
+                {
+                    //UIManager.Instance.addMachineButton.GetComponent<>// interactable yap
+                    UIManager.Instance.addMachineButton.GetComponent<Button>().interactable = true;
+                }
+            }
+            else
+            {
+                if (totalMoney < beltSpeedButtonMoney)//activate belt speed button
+                {
+                    // interactable yap UIManager.Instance.beltSpeedButton.GetComponent<>// interactable yap
+                    UIManager.Instance.beltSpeedButton.GetComponent<Button>().interactable = false;
+                }
+                if (totalMoney < incomeButtonMoney)//activate belt speed button
+                {
+                    UIManager.Instance.incomeButton.GetComponent<Button>().interactable = false;
+                    //UIManager.Instance.incomeButton.GetComponent<>// interactable yap
+                }
+                if (totalMoney < workerSpeedButtonMoney)//activate belt speed button
+                {
+                    //UIManager.Instance.workerSpeedButton.GetComponent<>// interactable yap
+                    UIManager.Instance.workerSpeedButton.GetComponent<Button>().interactable = false;
+                }
+                if (totalMoney < addMachineButtonMoney)//activate belt speed button
+                {
+                    //UIManager.Instance.addMachineButton.GetComponent<>// interactable yap
+                    UIManager.Instance.addMachineButton.GetComponent<Button>().interactable = false;
+                }
+            }
+
+        }
+    }
+    public float incomePerTap;
     public float workerBaseSpeed;
     public float beltSpeed;
     public float machineIncomeMoney;
