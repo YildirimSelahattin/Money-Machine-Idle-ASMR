@@ -13875,6 +13875,7 @@ MonoBehaviour:
   addMachineButtonLevel: 1
   workerSpeedButtonLevel: 0
   moneyToBeCollected: 0
+  totalMoney: 0
   incomePerTap: 0
   workerBaseSpeed: 0
   beltSpeed: 0

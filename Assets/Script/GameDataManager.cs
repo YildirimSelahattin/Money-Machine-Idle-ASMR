@@ -26,7 +26,7 @@ public class GameDataManager : MonoBehaviour
     public int addMachineButtonLevel = 1;
     public int workerSpeedButtonLevel;
     public float moneyToBeCollected = 0;
-    private float totalMoney = 0;
+    public float totalMoney = 0;
     public float TotalMoney
     {
         get { return totalMoney; }
@@ -80,10 +80,10 @@ public class GameDataManager : MonoBehaviour
                     UIManager.Instance.addMachineButton.GetComponent<Button>().interactable = false;
                 }
             }
-
+            totalMoney = value;
         }
     }
-    public float incomePerTap;
+    public float incomePerTap = 1;
     public float workerBaseSpeed;
     public float beltSpeed;
     public float machineIncomeMoney;
@@ -117,7 +117,8 @@ public class GameDataManager : MonoBehaviour
         workerBaseSpeed=PlayerPrefs.GetFloat("WorkerBaseSpeed", 3);
         ///////////////////////////////////////////
         /// Buttons
-        totalMoney = PlayerPrefs.GetFloat("TotalMoney", 7);
+        TotalMoney = PlayerPrefs.GetFloat("TotalMoney", 15);
+
         moneyToBeCollected = PlayerPrefs.GetFloat("MoneyToBeCollected", moneyToBeCollected);
         workerSpeedButtonLevel = PlayerPrefs.GetInt("WorkerSpeedButtonLevel", workerSpeedButtonLevel);
         addMachineButtonLevel= PlayerPrefs.GetInt("AddMachineButtonLevel", addMachineButtonLevel);
@@ -126,6 +127,7 @@ public class GameDataManager : MonoBehaviour
         workerSpeedButtonMoney = PlayerPrefs.GetFloat("WorkerSpeedButtonMoney", workerSpeedButtonMoney);
         beltSpeedButtonMoney = PlayerPrefs.GetFloat("BeltSpeedButtonMoney", beltSpeedButtonMoney);
         addMachineButtonMoney = PlayerPrefs.GetFloat("AddMachineButtonMoney", addMachineButtonMoney);
+        incomePerTap = PlayerPrefs.GetFloat("IncomePerTap", incomePerTap);
         beltSpeed= PlayerPrefs.GetFloat("BeltSpeed", 0.02f);
         workerBaseSpeed= PlayerPrefs.GetFloat("WorkerSpeed",3);
     }
