@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using Unity.VisualScripting;
 using TMPro;
+using Unity.Mathematics;
 
 public class GettingTouchManager : MonoBehaviour
 {
@@ -69,7 +70,7 @@ public class GettingTouchManager : MonoBehaviour
                 }
                 else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyTapToCollect)) // if it is money tap
                 {
-                    moneyTapParticle.gameObject.transform.position=new Vector3(hit.point.x ,hit.point.y,hit.point.z-5);
+                    moneyTapParticle.gameObject.transform.position=new Vector3(hit.point.x ,hit.point.y,hit.point.z);
                     moneyTapParticle.Play();
                     GameDataManager.Instance.TotalMoney += GameDataManager.Instance.incomePerTap;
                     UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text = GameDataManager.Instance.TotalMoney.ToString();
