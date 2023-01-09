@@ -13776,6 +13776,7 @@ MonoBehaviour:
   addMachineButtonLevel: 1
   workerSpeedButtonLevel: 0
   moneyToBeCollected: 0
+  totalMoney: 0
   incomePerTap: 0
   workerBaseSpeed: 0
   beltSpeed: 0
@@ -19021,7 +19022,8 @@ MonoBehaviour:
   touchableLayerOnlyTapToCollect:
     serializedVersion: 2
     m_Bits: 256
-  moneyTapParticle: {fileID: 0}
+  moneyTapParticle: {fileID: 5210695901149560436, guid: 9b2c2c85e4e218649943d18c73a1be87,
+    type: 3}
   objectToDrag: {fileID: 0}
   objectMoney: {fileID: 0}
 --- !u!4 &2046357712

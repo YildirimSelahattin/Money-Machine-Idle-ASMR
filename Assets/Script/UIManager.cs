@@ -90,12 +90,12 @@ public class UIManager : MonoBehaviour
     {
         if (GameDataManager.Instance.TotalMoney >= GameDataManager.Instance.beltSpeedButtonMoney)
         {
+            float moneyToDecrease = GameDataManager.Instance.beltSpeedButtonMoney;
 
-            
             GameDataManager.Instance.beltSpeedButtonMoney += GameDataManager.Instance.beltSpeedButtonMoney / 1.5f;
             GameDataManager.Instance.beltSpeedButtonLevel++;
 
-            GameDataManager.Instance.TotalMoney -= GameDataManager.Instance.beltSpeedButtonMoney;
+            GameDataManager.Instance.TotalMoney -= moneyToDecrease;
             TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
 
             ButtonPanel.transform.GetChild(0).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Level - " + GameDataManager.Instance.beltSpeedButtonLevel;
@@ -112,13 +112,12 @@ public class UIManager : MonoBehaviour
     {
         if (GameDataManager.Instance.TotalMoney >= GameDataManager.Instance.incomeButtonMoney)
         {
-          
-            
+            float moneyToDecrrease = GameDataManager.Instance.incomeButtonMoney;
             GameDataManager.Instance.incomeButtonMoney += GameDataManager.Instance.incomeButtonMoney / 2;
             GameDataManager.Instance.offlineProgressNum += GameDataManager.Instance.offlineProgressNum / 5;
             GameDataManager.Instance.incomeButtonLevel++;
-
-            GameDataManager.Instance.TotalMoney -= GameDataManager.Instance.incomeButtonMoney;
+            GameDataManager.Instance.incomePerTap++;
+            GameDataManager.Instance.TotalMoney -=moneyToDecrrease;
             TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
 
             ButtonPanel.transform.GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
@@ -136,11 +135,11 @@ public class UIManager : MonoBehaviour
     {
         if (GameDataManager.Instance.TotalMoney >= GameDataManager.Instance.workerSpeedButtonMoney)
         {
-            
+            float moneyToDecrease = GameDataManager.Instance.workerSpeedButtonMoney;
             GameDataManager.Instance.workerSpeedButtonMoney += GameDataManager.Instance.workerSpeedButtonMoney / 2;
             GameDataManager.Instance.workerSpeedButtonLevel++;
 
-            GameDataManager.Instance.TotalMoney -= GameDataManager.Instance.workerSpeedButtonMoney;
+            GameDataManager.Instance.TotalMoney -= moneyToDecrease;
             TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
 
             GameDataManager.Instance.workerBaseSpeed += GameDataManager.Instance.workerBaseSpeed * 0.03f;
@@ -161,11 +160,11 @@ public class UIManager : MonoBehaviour
         {
             bool controllForButtonInteract = false;
             bool closeInteractibility = true;
-            
+            float moneyToDecrease = GameDataManager.Instance.addMachineButtonMoney;
             GameDataManager.Instance.addMachineButtonMoney += GameDataManager.Instance.addMachineButtonMoney / 2;
             GameDataManager.Instance.addMachineButtonLevel++;
 
-            GameDataManager.Instance.TotalMoney -= GameDataManager.Instance.addMachineButtonMoney;
+            GameDataManager.Instance.TotalMoney -= moneyToDecrease;
             TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
 
             ButtonPanel.transform.GetChild(3).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
