@@ -126,6 +126,7 @@ public class RewardedAdManager : MonoBehaviour
         if (this.rewardedGridAd.IsLoaded())
         {
             this.rewardedGridAd.Show();
+            OfflineProgress.Instance.OfflineRewardPanel.SetActive(false);
         }
         else
         {
