@@ -13,6 +13,7 @@
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/machine-1 4.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/machine-1 4.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/machine-1 5.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/machine-1 5.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/machine-1 6.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/machine-1 6.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +120,7 @@
       <workItem from="1672748624007" duration="7046000" />
       <workItem from="1672815047815" duration="1697000" />
       <workItem from="1672904232883" duration="2235000" />
-      <workItem from="1673014210089" duration="1281000" />
+      <workItem from="1673014210089" duration="1282000" />
     </task>
     <servers />
   </component>
