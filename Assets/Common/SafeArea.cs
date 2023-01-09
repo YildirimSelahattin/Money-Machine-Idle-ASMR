@@ -7,7 +7,8 @@ using UnityEngine;
 public class SafeArea : MonoBehaviour
 {
     //Responsive Settings
-    void Awake()
+    //Awake Dene
+    void Update()
     {
         var rectTransform = GetComponent<RectTransform>();
         var safeArea = Screen.safeArea;
