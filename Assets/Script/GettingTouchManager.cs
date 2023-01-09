@@ -71,7 +71,7 @@ public class GettingTouchManager : MonoBehaviour
                 {
                     moneyTapParticle.gameObject.transform.position=new Vector3(hit.point.x ,hit.point.y,hit.point.z-5);
                     moneyTapParticle.Play();
-                    GameDataManager.Instance.TotalMoney += GameDataManager.Instance.incomePerTap;
+                    GameDataManager.Instance.TotalMoney += GameDataManager.Instance.IncomePerTap;
                     UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text = GameDataManager.Instance.TotalMoney.ToString();
                     Debug.Log("3");
                 }
