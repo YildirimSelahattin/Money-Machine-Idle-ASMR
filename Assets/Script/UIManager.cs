@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
+using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
@@ -68,12 +69,20 @@ public class UIManager : MonoBehaviour
         GameDataManager.Instance.moneyToBeCollected = 0;
         MoneyFromSellText.GetComponent<TextMeshProUGUI>().text = "0";
         TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
+        //pauseMoneyBales
+        foreach (GameObject moneyBale in Spawner.Instance.movingMoneyBaleList)
+        {
+            moneyBale.transform.DOPause();
+        }
+        MachineManager.x = -0.4f;
+        MachineManager.y = 0.5f;
+        MachineManager.z = 0.25f;
+
         //Truck Move
         PickupManager.Instance.SellMoneyWithTruck();
         GameDataManager.Instance.SaveData();
-        MachineManager.Instance.x = -0.4f;
-        MachineManager.Instance.y = 0.5f;
-        MachineManager.Instance.z = 0.25f;
+
+        
 
        
     }
@@ -194,7 +203,7 @@ public class UIManager : MonoBehaviour
 
             if(closeInteractibility == true)//CLOSEINTERACT
             {
-
+                addMachineButton.GetComponent<Button>().interactable = false;
             }
             GameDataManager.Instance.SaveData();
         }

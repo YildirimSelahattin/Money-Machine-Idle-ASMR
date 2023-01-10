@@ -16,6 +16,8 @@ public class Spawner : MonoBehaviour
     private int waitingTime = 0;
     public GameObject[] gridWorkerArray = new GameObject[6];
     [SerializeField] private GameObject _endPosObject;
+    public List<GameObject> movingMoneyBaleList = new List<GameObject>();
+
     public Transform[] firstRoadBreakdown;
     private void Awake()
     {

@@ -14,7 +14,6 @@ public class PickupManager : MonoBehaviour
     [SerializeField] private GameObject pickupPrefab;
     private bool isPress = true;
     public GameObject  tempPickup;
-
     private void Awake()
     {
         if (Instance == null)
@@ -45,7 +44,17 @@ public class PickupManager : MonoBehaviour
     IEnumerator DelayEnum(float time)
     {
         yield return new WaitForSeconds(time);
-        tempPickup.transform.DOLocalMove(pickupPosition.transform.position, 1f).SetEase(Ease.Linear);
+        tempPickup.transform.DOLocalMove(pickupPosition.transform.position, 1f).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            MachineManager.x = -0.4f;
+            MachineManager.y = 0.5f;
+            MachineManager.z = 0.25f;
+            MachineManager.goPos = tempPickup.transform;
+            foreach (GameObject moneyBale in Spawner.Instance.movingMoneyBaleList)
+            {
+                moneyBale.transform.DOPlay();
+            }
+        });
         isPress = true;
     }
 }

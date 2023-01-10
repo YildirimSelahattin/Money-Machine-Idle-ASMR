@@ -4,8 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using Unity.VisualScripting;
 using TMPro;
-using Unity.Mathematics;
-
+using UnityEngine.UI;
 public class GettingTouchManager : MonoBehaviour
 {
     public static GettingTouchManager Instance;
@@ -67,10 +66,11 @@ public class GettingTouchManager : MonoBehaviour
                             parentGridOfHitButton.transform.tag[parentGridOfHitButton.transform.tag.Length - 1] - '0'] =
                         0; // open grid index base
                     Debug.Log("2");
+                    UIManager.Instance.addMachineButton.GetComponent<Button>().interactable = true;
                 }
                 else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyTapToCollect)) // if it is money tap
                 {
-                    moneyTapParticle.gameObject.transform.position=new Vector3(hit.point.x ,hit.point.y,hit.point.z);
+                    moneyTapParticle.gameObject.transform.position=new Vector3(hit.point.x ,hit.point.y,hit.point.z-5);
                     moneyTapParticle.Play();
                     GameDataManager.Instance.TotalMoney += GameDataManager.Instance.IncomePerTap;
                     UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text = GameDataManager.Instance.TotalMoney.ToString();
