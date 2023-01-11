@@ -46,7 +46,7 @@ public class MachineManager : MonoBehaviour
 
         x = -0.4f;
         y = 0.5f;
-        z = 0.25f;
+        z = 0.30f;
 
     }
 
@@ -86,25 +86,18 @@ public class MachineManager : MonoBehaviour
                             () =>
                             {
                                 LastMoveToTruck(new Vector3(x, y, z), moneyTemp);
-                                if (x <= 0.4 && z >= -0.25)
+                                x += 0.15f;
+                                if (x > 0.4f && z != -0.3f)
                                 {
-                                    x += 0.1f;
-                                }
-
-                                else if (x > 0.4)
-                                {
+                                    z -= 0.3f;
                                     x = -0.4f;
-                                    z -= 0.25f;
-
                                 }
-                                else if (z < -0.25 && x > 0.4)
+                                else if (x > 0.4f && z == -0.3f)
                                 {
+                                    y += 0.5f;
                                     x = -0.4f;
-                                    z = 0.25f;
-                                    y += 1f;
-
+                                    z = 0.3f;
                                 }
-
                             });
                 });
         }
@@ -127,25 +120,18 @@ public class MachineManager : MonoBehaviour
                         .OnComplete(() =>
                         {
                             LastMoveToTruck(new Vector3(x, y, z),moneyTemp);
-                            if (x <= 0.4 && z >= -0.25)
+                            x += 0.1f;
+                            if (x > 0.4f && z!= -0.3f) 
                             {
-                                x += 0.1f;
-                            }
-
-                            else if (x > 0.4)
-                            {
+                                z -= 0.3f;
                                 x = -0.4f;
-                                z -= 0.25f;
-
                             }
-                            else if (z < -0.25 && x > 0.4)
+                            else if (x>0.4f && z == -0.3f) 
                             {
+                                y += 0.5f;
                                 x = -0.4f;
-                                z = 0.25f;
-                                y += 1f;
-
+                                z = 0.3f;
                             }
-                              
                         });
                 });
         }
@@ -202,11 +188,11 @@ public class MachineManager : MonoBehaviour
     public void MoveMoneyInRoundedMachine(GameObject moneyToMove,float zOffset,float waitAmount)
     {
         moneyToMove.transform.DORotate(new Vector3(90, 0, 0),waitAmount*25/100);
-        moneyToMove.transform.DOLocalMove(firstPosForMachineMoneys.position, waitAmount * 25 / 100).OnComplete(() =>
+        moneyToMove.transform.DOLocalMove(firstPosForMachineMoneys.localPosition, waitAmount * 25 / 100).OnComplete(() =>
         {
             
             moneyToMove.transform.DORotate(new Vector3(0,0,0),waitAmount*75/100);
-            moneyToMove.transform.DOLocalMove(new Vector3(stopPosForMachineMoneys.position.x, stopPosForMachineMoneys.position.y, stopPosForMachineMoneys.position.z + (0.02f * zOffset)), waitAmount * 75 / 100).OnComplete(() =>
+            moneyToMove.transform.DOLocalMove(new Vector3(stopPosForMachineMoneys.localPosition.x, stopPosForMachineMoneys.localPosition.y, stopPosForMachineMoneys.localPosition.z + (0.2f * zOffset)), waitAmount * 75 / 100).OnComplete(() =>
             {
                 if (zOffset == 9)
                 {
@@ -218,9 +204,9 @@ public class MachineManager : MonoBehaviour
     }
     public void MoveMoneyInNormalMachine(GameObject moneyToMove, float zOffset, float waitAmount)
     {
-        moneyToMove.transform.DOLocalMove(firstPosForMachineMoneys.position, waitAmount * 25 / 100).OnComplete(() =>
+        moneyToMove.transform.DOLocalMove(firstPosForMachineMoneys.localPosition, waitAmount * 25 / 100).OnComplete(() =>
         {
-            moneyToMove.transform.DOLocalMove(new Vector3(stopPosForMachineMoneys.position.x, stopPosForMachineMoneys.position.y, stopPosForMachineMoneys.position.z + (0.02f * zOffset)), waitAmount * 75 / 100).OnComplete(() =>
+            moneyToMove.transform.DOLocalMove(new Vector3(stopPosForMachineMoneys.localPosition.x, stopPosForMachineMoneys.localPosition.y, stopPosForMachineMoneys.localPosition.z + (0.2f * zOffset)), waitAmount * 75 / 100).OnComplete(() =>
             {
                 if (zOffset == 9)
                 {

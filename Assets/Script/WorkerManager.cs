@@ -27,16 +27,14 @@ public class WorkerManager : MonoBehaviour
         GameObject machineObject = GameManager.Instance.gridParent.transform.GetChild(indexThatWorkerGoing).transform.GetChild(GameManager.Instance.GRID_MACHINE_INDEX).gameObject;
         GameObject lastBreakPoint = GameManager.Instance.gridParent.transform.GetChild(indexThatWorkerGoing).transform.GetChild(GameManager.Instance.GRID_LAST_BREAKPOINT_INDEX).gameObject;
         GameObject finalPoint = GameManager.Instance.gridParent.transform.GetChild(indexThatWorkerGoing).transform.GetChild(GameManager.Instance.GRID_FINAL_POINT_INDEX).gameObject;
-        
-     
         if (moveStage == 1) {
             if (indexThatWorkerGoing % 2 == 0)
             {
-                transform.DOLocalRotate(new Vector3(0, 25, 0), 0.1f);
+                transform.DOLocalRotate(new Vector3(0, 40, 0), 0.1f);
             }
             else
             {
-                transform.DOLocalRotate(new Vector3(0, -25, 0), 0.1f);
+                transform.DOLocalRotate(new Vector3(0, -40, 0), 0.1f);
             }
             transform.DOLocalMove(Spawner.Instance.firstRoadBreakdown[indexThatWorkerGoing % 2].position,
             Vector3.Distance(transform.position, Spawner.Instance.firstRoadBreakdown[indexThatWorkerGoing % 2].position) / (GameDataManager.Instance.workerBaseSpeed)).SetEase(Ease.Linear).OnComplete(() =>
@@ -125,11 +123,11 @@ public class WorkerManager : MonoBehaviour
         {
             if (indexThatWorkerGoing % 2 == 0)
             {
-                transform.DOLocalRotate(new Vector3(0, 180 + 25, 0), 0.2f);
+                transform.DOLocalRotate(new Vector3(0, 180 + 40, 0), 0.2f);
             }
             else
             {
-                transform.DOLocalRotate(new Vector3(0, 180 - 25, 0), 0.2f);
+                transform.DOLocalRotate(new Vector3(0, 180 - 40, 0), 0.2f);
             }
 
             transform.DOLocalMove(Spawner.Instance._spwanPos.position, Vector3.Distance(Spawner.Instance._spwanPos.position, transform.position) / (GameDataManager.Instance.workerBaseSpeed * 0.5f)).SetEase(Ease.Linear)
@@ -155,11 +153,11 @@ public class WorkerManager : MonoBehaviour
                     moveStage = 1;
                     if (indexThatWorkerGoing % 2 == 0)
                     {
-                        transform.DOLocalRotate(new Vector3(0, 180 + 25, 0), 0.2f);
+                        transform.DOLocalRotate(new Vector3(0, 180 + 40, 0), 0.2f);
                     }
                     else
                     {
-                        transform.DOLocalRotate(new Vector3(0, 180 - 25, 0), 0.2f);
+                        transform.DOLocalRotate(new Vector3(0, 180 - 40, 0), 0.2f);
                     }
                     transform.DOLocalMove(Spawner.Instance._spwanPos.position, Vector3.Distance(Spawner.Instance._spwanPos.position,transform.position)/ (GameDataManager.Instance.workerBaseSpeed * 0.5f)).SetEase(Ease.Linear).OnComplete(() =>
                     {
@@ -202,11 +200,11 @@ public class WorkerManager : MonoBehaviour
                             moveStage=1;
                             if (indexThatWorkerGoing % 2 == 0)
                             {
-                                transform.DOLocalRotate(new Vector3(0, 180 + 25, 0), 0.2f);
+                                transform.DOLocalRotate(new Vector3(0, 180 + 40, 0), 0.2f);
                             }
                             else
                             {
-                                transform.DOLocalRotate(new Vector3(0, 180 - 25, 0), 0.2f);
+                                transform.DOLocalRotate(new Vector3(0, 180 - 40, 0), 0.2f);
                             }
 
                             transform.DOLocalMove(Spawner.Instance._spwanPos.position, Vector3.Distance(Spawner.Instance._spwanPos.position,transform.position) / (GameDataManager.Instance.workerBaseSpeed * 0.5f)).SetEase(Ease.Linear)
