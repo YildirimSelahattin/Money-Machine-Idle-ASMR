@@ -22834,6 +22834,9 @@ MonoBehaviour:
   touchableLayerOnlyTapToCollect:
     serializedVersion: 2
     m_Bits: 256
+  touchableLayerEverything:
+    serializedVersion: 2
+    m_Bits: 0
   moneyTapParticle: {fileID: 1341974727}
   objectToDrag: {fileID: 0}
   objectMoney: {fileID: 0}

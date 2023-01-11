@@ -46,7 +46,7 @@ public class MachineManager : MonoBehaviour
 
         x = -0.4f;
         y = 0.5f;
-        z = 0.25f;
+        z = 0.30f;
 
     }
 
@@ -86,25 +86,18 @@ public class MachineManager : MonoBehaviour
                             () =>
                             {
                                 LastMoveToTruck(new Vector3(x, y, z), moneyTemp);
-                                if (x <= 0.4 && z >= -0.25)
+                                x += 0.15f;
+                                if (x > 0.4f && z != -0.3f)
                                 {
-                                    x += 0.1f;
-                                }
-
-                                else if (x > 0.4)
-                                {
+                                    z -= 0.3f;
                                     x = -0.4f;
-                                    z -= 0.25f;
-
                                 }
-                                else if (z < -0.25 && x > 0.4)
+                                else if (x > 0.4f && z == -0.3f)
                                 {
+                                    y += 0.5f;
                                     x = -0.4f;
-                                    z = 0.25f;
-                                    y += 1f;
-
+                                    z = 0.3f;
                                 }
-
                             });
                 });
         }
@@ -127,25 +120,18 @@ public class MachineManager : MonoBehaviour
                         .OnComplete(() =>
                         {
                             LastMoveToTruck(new Vector3(x, y, z),moneyTemp);
-                            if (x <= 0.4 && z >= -0.25)
+                            x += 0.1f;
+                            if (x > 0.4f && z!= -0.3f) 
                             {
-                                x += 0.1f;
-                            }
-
-                            else if (x > 0.4)
-                            {
+                                z -= 0.3f;
                                 x = -0.4f;
-                                z -= 0.25f;
-
                             }
-                            else if (z < -0.25 && x > 0.4)
+                            else if (x>0.4f && z == -0.3f) 
                             {
+                                y += 0.5f;
                                 x = -0.4f;
-                                z = 0.25f;
-                                y += 1f;
-
+                                z = 0.3f;
                             }
-                              
                         });
                 });
         }

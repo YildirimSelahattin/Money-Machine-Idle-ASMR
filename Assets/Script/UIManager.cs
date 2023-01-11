@@ -62,7 +62,7 @@ public class UIManager : MonoBehaviour
             "Level - " + GameDataManager.Instance.workerSpeedButtonLevel;
         ButtonPanel.transform.GetChild(2).transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text =
             AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.WorkerSpeedButtonMoney) + " $";
-        
+
         ButtonPanel.transform.GetChild(3).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
             "Level - " + GameDataManager.Instance.addMachineButtonLevel;
         ButtonPanel.transform.GetChild(3).transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
