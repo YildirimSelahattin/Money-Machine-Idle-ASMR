@@ -60,7 +60,11 @@ public class GameDataManager : MonoBehaviour
 
         set
         {
-                totalMoney = GetOnly1DigitAfterPoint(value);
+            totalMoney = GetOnly1DigitAfterPoint(value);
+            if (UIManager.Instance != null)
+            {
+
+
                 if (totalMoney >= BeltSpeedButtonMoney)//activate belt speed button
                 {
                     // interactable yap UIManager.Instance.beltSpeedButton.GetComponent<>// interactable yap
@@ -102,6 +106,7 @@ public class GameDataManager : MonoBehaviour
                     UIManager.Instance.addMachineButton.GetComponent<Button>().interactable = false;
                 }
             }
+        }   
             
         
     }

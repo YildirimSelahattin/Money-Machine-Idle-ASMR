@@ -77,7 +77,6 @@ public class UIManager : MonoBehaviour
         MachineManager.x = -0.4f;
         MachineManager.y = 0.5f;
         MachineManager.z = 0.25f;
-
         //Truck Move
         PickupManager.Instance.SellMoneyWithTruck();
         GameDataManager.Instance.SaveData();

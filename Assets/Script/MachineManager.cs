@@ -70,38 +70,6 @@ public class MachineManager : MonoBehaviour
         firstPos.x -= 1f;
         GameObject moneyTemp = Instantiate(_moneyPrefab, myPos, _moneyPrefab.transform.rotation);
         Spawner.Instance.movingMoneyBaleList.Add(moneyTemp);
-        Vector3 posToMoveForThisMoney = new Vector3(x, y, z);
-        if (x <= 0.4 && z >= -0.25)
-        {
-            x += 0.1f;
-        }
-
-        else if (x > 0.4)
-        {
-            x = -0.4f;
-            z -= 0.25f;
-
-        }
-        else if (z < -0.25 && x > 0.4)
-        {
-            x = -0.4f;
-            z = 0.25f;
-            y += 1f;
-
-        }
-        Move(posToMoveForThisMoney, gridIndexNumberOfObject, moneyTemp);
-
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Worker")
-        {
-            isAtBank = true;
-            Debug.Log("* * * < Geldim > * * *");
-        }
-    }
-    public void Move(Vector3 posToMoveForThisMoney, int gridIndexNumberOfObject, GameObject moneyTemp)
-    {
         if (gridIndexNumberOfObject % 2 == 0) // if money is on the left side
         {
             goPos = PickupManager.Instance.tempPickup.transform;
@@ -117,11 +85,26 @@ public class MachineManager : MonoBehaviour
                         .OnComplete(
                             () =>
                             {
-                                
-                                Spawner.Instance.movingMoneyBaleList.Remove(moneyTemp);
-                                moneyTemp.transform.SetParent(goPos.transform);
-                                moneyTemp.transform.DORotate(new Vector3(-90f, 0, 0), 0.2f);
-                                moneyTemp.transform.DOLocalMove(posToMoveForThisMoney, 2f);
+                                LastMoveToTruck(new Vector3(x, y, z), moneyTemp);
+                                if (x <= 0.4 && z >= -0.25)
+                                {
+                                    x += 0.1f;
+                                }
+
+                                else if (x > 0.4)
+                                {
+                                    x = -0.4f;
+                                    z -= 0.25f;
+
+                                }
+                                else if (z < -0.25 && x > 0.4)
+                                {
+                                    x = -0.4f;
+                                    z = 0.25f;
+                                    y += 1f;
+
+                                }
+
                             });
                 });
         }
@@ -143,14 +126,44 @@ public class MachineManager : MonoBehaviour
                     moneyTemp.transform.DOMove(new Vector3(6.5f, 2f, -20f), (dist / speed) * Time.deltaTime).SetEase(Ease.Linear)
                         .OnComplete(() =>
                         {
-                            Debug.Log("adsa");
-                            Spawner.Instance.movingMoneyBaleList.Remove(moneyTemp);
-                            moneyTemp.transform.SetParent(goPos.transform);
-                            moneyTemp.transform.DORotate(new Vector3(-90f, 0, 0), 0.2f);
-                            moneyTemp.transform.DOLocalMove(posToMoveForThisMoney, 2f);
+                            LastMoveToTruck(new Vector3(x, y, z),moneyTemp);
+                            if (x <= 0.4 && z >= -0.25)
+                            {
+                                x += 0.1f;
+                            }
+
+                            else if (x > 0.4)
+                            {
+                                x = -0.4f;
+                                z -= 0.25f;
+
+                            }
+                            else if (z < -0.25 && x > 0.4)
+                            {
+                                x = -0.4f;
+                                z = 0.25f;
+                                y += 1f;
+
+                            }
+                              
                         });
                 });
         }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Worker")
+        {
+            isAtBank = true;
+            Debug.Log("* * * < Geldim > * * *");
+        }
+    }
+    public void LastMoveToTruck(Vector3 posToMoveForThisMoney, GameObject moneyTemp)
+    {
+        Spawner.Instance.movingMoneyBaleList.Remove(moneyTemp);
+        moneyTemp.transform.SetParent(goPos.transform);
+        moneyTemp.transform.DORotate(new Vector3(-90f, 0, 0), 0.2f);
+        moneyTemp.transform.DOLocalMove(posToMoveForThisMoney, 2f);
     }
     public IEnumerator WaitAndPrint()
     {
