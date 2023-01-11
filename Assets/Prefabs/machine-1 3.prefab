@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1975647156528800535}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -69,8 +69,8 @@ MonoBehaviour:
   dropped: 1
   inMergeArea: 0
   isWorking: 0
-  countWaitTime: 0.2
-  machineIncomeMoney: 10000
+  countWaitTime: 0.4
+  machineIncomeMoney: 5000
   inSnapArea: 0
   isAtBank: 0
   _moneyPrefab: {fileID: 8410266551750965172, guid: 20664b20497b915449a7c06943102354,

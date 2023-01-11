@@ -11,39 +11,38 @@ public class DayCycle : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(DelayDay(10));
+        StartCoroutine(DelayDay(3));
     }
-    
-    public void RotateSun()
+
+    private void Update()
     {
-        transform.DOLocalRotate(new Vector3(135, 750, 0), 650f * Time.deltaTime).SetEase(Ease.Linear).OnComplete(() =>
+        if (gameObject.transform.rotation.x > 150)
         {
-            transform.DOKill();
+            Debug.LogError("Geceeeeeeee");
             inGameLights.SetActive(true);
             PickUpLightManager.pickupLights.SetActive(true);
             isNight = true;
-            transform.DOLocalRotate(new Vector3(195, 750, 0), 350f * Time.deltaTime).SetEase(Ease.Linear).OnComplete(() =>
-            {
-                StartCoroutine(DelayNight(10));
-            });
-        });
-    }
-    
-    IEnumerator DelayNight(int hour)
-    {
-        yield return new WaitForSeconds(hour);
-      
-        transform.DOLocalRotate(new Vector3(0, 750, 0), 650f * Time.deltaTime).SetEase(Ease.Linear).OnComplete(() =>
-        { 
+        }
+
+        if (transform.rotation.x < 135)
+        {
             inGameLights.SetActive(false);
             PickUpLightManager.pickupLights.SetActive(false);
             isNight = false;
-            transform.DOLocalRotate(new Vector3(45, 750, 0), 350f * Time.deltaTime)
-            .OnComplete(() =>
-            {
-                StartCoroutine(DelayDay(10));
-            });
-        });
+        }
+    }
+
+    public void RotateSun()
+    {
+        transform.DORotate(new Vector3(195, 750, 0), 1000f * Time.deltaTime)
+            .SetEase(Ease.Linear).OnComplete(() => { StartCoroutine(DelayNight(20)); });
+    }
+
+    IEnumerator DelayNight(int hour)
+    {
+        yield return new WaitForSeconds(hour);
+        transform.DOLocalRotate(new Vector3(45, 750, 0), 1000f * Time.deltaTime)
+            .OnComplete(() => { StartCoroutine(DelayDay(30)); });
     }
 
     IEnumerator DelayDay(int hour)
