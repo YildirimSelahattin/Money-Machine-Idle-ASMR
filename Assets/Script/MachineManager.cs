@@ -113,7 +113,7 @@ public class MachineManager : MonoBehaviour
                 {
                     float dist = Vector3.Distance(firstPos, new Vector3(-7f, 1.1f, -20f));
                     float speed = GameDataManager.Instance.beltSpeed;
-                    moneyTemp.transform.DOMove(new Vector3(-7.4f, 2f, -21f), (dist / speed) * Time.deltaTime).SetEase(Ease.Linear)
+                    moneyTemp.transform.DOMove(new Vector3(-7.4f, 2f, -21f), (dist / -speed)*Time.deltaTime).SetEase(Ease.Linear)
                         .OnComplete(
                             () =>
                             {

@@ -11,19 +11,20 @@ public class DayCycle : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(DelayDay(30));
+        StartCoroutine(DelayDay(10));
     }
     
     public void RotateSun()
     {
         transform.DOLocalRotate(new Vector3(135, 750, 0), 650f * Time.deltaTime).SetEase(Ease.Linear).OnComplete(() =>
         {
+            transform.DOKill();
             inGameLights.SetActive(true);
             PickUpLightManager.pickupLights.SetActive(true);
             isNight = true;
             transform.DOLocalRotate(new Vector3(195, 750, 0), 350f * Time.deltaTime).SetEase(Ease.Linear).OnComplete(() =>
             {
-                StartCoroutine(DelayNight(20));
+                StartCoroutine(DelayNight(10));
             });
         });
     }
@@ -40,7 +41,7 @@ public class DayCycle : MonoBehaviour
             transform.DOLocalRotate(new Vector3(45, 750, 0), 350f * Time.deltaTime)
             .OnComplete(() =>
             {
-                StartCoroutine(DelayDay(30));
+                StartCoroutine(DelayDay(10));
             });
         });
     }

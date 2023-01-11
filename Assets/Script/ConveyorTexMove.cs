@@ -4,21 +4,15 @@ using UnityEngine;
 
 public class ConveyorTexMove : MonoBehaviour
 {
-    public float bgSpeed = 0.1f;
     public Renderer bgRend;
-    public static int breake = 1;
+    public float breake = 3;
 
-    void Start()
+void Update()
     {
-        bgSpeed = 0.002f;
-    }
-
-    void Update()
-    {
-        bgRend.materials[0].mainTextureOffset += new Vector2(breake * bgSpeed * Time.deltaTime, 0);
+        bgRend.materials[0].mainTextureOffset += new Vector2(breake * GameDataManager.Instance.beltSpeed * Time.deltaTime, 0);
         if (bgRend.materials.Length > 1)
         {
-            bgRend.materials[1].mainTextureOffset += new Vector2(-breake * bgSpeed * Time.deltaTime, 0);
+            bgRend.materials[1].mainTextureOffset += new Vector2(-breake * GameDataManager.Instance.beltSpeed * Time.deltaTime, 0);
         }
     }
 }

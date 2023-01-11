@@ -18,6 +18,7 @@ public class GameDataManager : MonoBehaviour
     public int[] gridArray = new int[6];
     public int maxLevelMachineAmount;
     private float beltSpeedButtonMoney;
+
     public float BeltSpeedButtonMoney
     { // = 5f;
         get { return beltSpeedButtonMoney; }
@@ -54,6 +55,7 @@ public class GameDataManager : MonoBehaviour
     public int workerSpeedButtonLevel;
     public float moneyToBeCollected = 0;
     public float totalMoney = 0;
+    
     public float TotalMoney
     {
         get { return totalMoney; }
@@ -150,7 +152,7 @@ public class GameDataManager : MonoBehaviour
         BeltSpeedButtonMoney = PlayerPrefs.GetFloat("BeltSpeedButtonMoney", 7);
         AddMachineButtonMoney = PlayerPrefs.GetFloat("AddMachineButtonMoney", 7);
         IncomePerTap = PlayerPrefs.GetFloat("IncomePerTap", 1);
-        beltSpeed= PlayerPrefs.GetFloat("BeltSpeed", 0.02f);
+        beltSpeed= PlayerPrefs.GetFloat("BeltSpeed", -0.05f);
         workerBaseSpeed= PlayerPrefs.GetFloat("WorkerSpeed",3);
         TotalMoney = PlayerPrefs.GetFloat("TotalMoney", 3);
     }

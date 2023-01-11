@@ -41,6 +41,7 @@ public class UIManager : MonoBehaviour
         workerSpeedButton = ButtonPanel.transform.GetChild(2).gameObject;
         addMachineButton = ButtonPanel.transform.GetChild(3).gameObject;
         ButtonPanel.transform.GetChild(0).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Level - " + GameDataManager.Instance.beltSpeedButtonLevel;
+        
         ButtonPanel.transform.GetChild(0).transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
             AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.BeltSpeedButtonMoney) + " $";
         Debug.Log("belt"+ GameDataManager.Instance.BeltSpeedButtonMoney);
@@ -81,10 +82,6 @@ public class UIManager : MonoBehaviour
         //Truck Move
         PickupManager.Instance.SellMoneyWithTruck();
         GameDataManager.Instance.SaveData();
-
-        
-
-       
     }
     
     public void OnBeltSpeedUpgradeButton()
