@@ -14,17 +14,17 @@ public class DayCycle : MonoBehaviour
         StartCoroutine(DelayDay(3));
     }
 
+    
     private void Update()
     {
-        if (gameObject.transform.rotation.x > 150)
+        if (transform.eulerAngles.x == 195)
         {
-            Debug.LogError("Geceeeeeeee");
             inGameLights.SetActive(true);
             PickUpLightManager.pickupLights.SetActive(true);
             isNight = true;
         }
 
-        if (transform.rotation.x < 135)
+        if (transform.rotation.x < 135 && gameObject.transform.rotation.x > 0)
         {
             inGameLights.SetActive(false);
             PickUpLightManager.pickupLights.SetActive(false);
