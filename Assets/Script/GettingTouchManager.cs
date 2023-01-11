@@ -17,6 +17,7 @@ public class GettingTouchManager : MonoBehaviour
     [SerializeField] LayerMask touchableLayerOnlyMachines;
     [SerializeField] LayerMask touchableLayerOnlyUpgrade;
     [SerializeField] LayerMask touchableLayerOnlyTapToCollect;
+    [SerializeField] LayerMask touchableLayerEverything;
     [SerializeField] ParticleSystem moneyTapParticle;
 
     // Start is called before the first frame update
@@ -66,7 +67,10 @@ public class GettingTouchManager : MonoBehaviour
                             parentGridOfHitButton.transform.tag[parentGridOfHitButton.transform.tag.Length - 1] - '0'] =
                         0; // open grid index base
                     Debug.Log("2");
-                    UIManager.Instance.addMachineButton.GetComponent<Button>().interactable = true;
+                    if (GameDataManager.Instance.TotalMoney >= GameDataManager.Instance.AddMachineButtonMoney)
+                    {
+                        UIManager.Instance.addMachineButton.GetComponent<Button>().interactable = true;
+                    }
                 }
                 else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyTapToCollect)) // if it is money tap
                 {
@@ -80,13 +84,15 @@ public class GettingTouchManager : MonoBehaviour
 
             else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Stationary && objectToDrag != null)
             {
+
+                Debug.Log("POINT");
                 // This is actions when finger/cursor pressed on screen
-                if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity,
-                        LayerMask.NameToLayer("Default")))
+                if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerEverything))
                 {
-                    objectToDrag.transform.DOKill();
-                    objectToDrag.transform.DOMove(
-                        new Vector3(hit.point.x, objectToDrag.transform.position.y, hit.point.z), .3f);
+                         objectToDrag.transform.DOKill();
+                         objectToDrag.transform.DOMove(
+                             new Vector3(hit.point.x, objectToDrag.transform.position.y, hit.point.z), .3f);
+                         Debug.Log("POINTtt"+hit.point);
                 }
             }
 
