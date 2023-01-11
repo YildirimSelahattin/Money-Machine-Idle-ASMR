@@ -27,7 +27,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject soundOff;
     [SerializeField] GameObject musicOn;
     [SerializeField] GameObject musicOff;
-
+    [SerializeField] GameObject vibrationOff;
+    [SerializeField] GameObject vibrationOn;
+    [SerializeField] private GameObject OptionsButton;
+    [SerializeField] private GameObject OptionsPanel;
+    [SerializeField] private GameObject InfoButton;
+    [SerializeField] private GameObject InfoPanel;
+    
+    
     void Start()
     {
         if (Instance == null)
