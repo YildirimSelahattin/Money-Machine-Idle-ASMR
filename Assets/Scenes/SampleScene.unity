@@ -3663,8 +3663,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cbfd60da6150e14fac4eadf51eb37b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgSpeed: 0.1
   bgRend: {fileID: 313470614}
+  breake: 3
 --- !u!1 &319203975
 GameObject:
   m_ObjectHideFlags: 0
@@ -12493,8 +12493,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cbfd60da6150e14fac4eadf51eb37b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgSpeed: 0.1
   bgRend: {fileID: 1108921887}
+  breake: 3
 --- !u!23 &1108921887 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7635826562936255635, guid: 271bb31616eaaf04a807a466a914520a,
@@ -17168,8 +17168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cbfd60da6150e14fac4eadf51eb37b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgSpeed: 0.1
   bgRend: {fileID: 1625961009}
+  breake: 3
 --- !u!23 &1625961009 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7635826562936255635, guid: 271bb31616eaaf04a807a466a914520a,
@@ -20010,8 +20010,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cbfd60da6150e14fac4eadf51eb37b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgSpeed: 0.1
   bgRend: {fileID: 1868870392}
+  breake: 3
 --- !u!1 &1871649997
 GameObject:
   m_ObjectHideFlags: 0
@@ -21642,6 +21642,9 @@ MonoBehaviour:
   touchableLayerOnlyTapToCollect:
     serializedVersion: 2
     m_Bits: 256
+  touchableLayerEverything:
+    serializedVersion: 2
+    m_Bits: 0
   moneyTapParticle: {fileID: 1341974727}
   objectToDrag: {fileID: 0}
   objectMoney: {fileID: 0}

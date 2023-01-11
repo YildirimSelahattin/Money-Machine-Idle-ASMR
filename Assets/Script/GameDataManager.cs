@@ -99,8 +99,14 @@ public class GameDataManager : MonoBehaviour
                 }
                 if (totalMoney >= AddMachineButtonMoney)//activate belt speed button
                 {
-                    //UIManager.Instance.addMachineButton.GetComponent<>// interactable yap
-                    UIManager.Instance.addMachineButton.GetComponent<Button>().interactable = true;
+                    foreach (int valueOfGrid in GameDataManager.Instance.gridArray)
+                    {
+                        if(valueOfGrid == 0)
+                        {
+                            UIManager.Instance.addMachineButton.GetComponent<Button>().interactable = true;
+                            break;
+                        }
+                    }
                 }
                 else//activate belt speed button
                 {
@@ -195,7 +201,8 @@ public class GameDataManager : MonoBehaviour
     }
         public float GetOnly1DigitAfterPoint(float number)
     {
-        Debug.Log((float)System.Math.Round(number, 1)+"aaa");
-        return (float)System.Math.Round(number, 1);
+        //Debug.Log((float)System.Math.Round(number, 1)+"aaa");
+        //return (float)System.Math.Round(number, 1);
+        return (float)((int)number * 100f) / 100f;
     }
 }
