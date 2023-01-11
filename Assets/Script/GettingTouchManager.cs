@@ -81,7 +81,8 @@ public class GettingTouchManager : MonoBehaviour
             else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Stationary && objectToDrag != null)
             {
                 // This is actions when finger/cursor pressed on screen
-                if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyTapToCollect))
+                if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity,
+                        LayerMask.NameToLayer("Default")))
                 {
                     objectToDrag.transform.DOKill();
                     objectToDrag.transform.DOMove(
