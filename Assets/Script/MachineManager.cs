@@ -163,7 +163,7 @@ public class MachineManager : MonoBehaviour
         Spawner.Instance.movingMoneyBaleList.Remove(moneyTemp);
         moneyTemp.transform.SetParent(goPos.transform);
         moneyTemp.transform.DORotate(new Vector3(-90f, 0, 0), 0.2f);
-        moneyTemp.transform.DOLocalMove(posToMoveForThisMoney, 2f);
+        moneyTemp.transform.DOLocalJump(posToMoveForThisMoney, 10,1,1.5f).SetEase(Ease.OutBounce);
     }
     public IEnumerator WaitAndPrint()
     {
