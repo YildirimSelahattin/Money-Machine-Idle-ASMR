@@ -86,7 +86,7 @@ public class MachineManager : MonoBehaviour
                             () =>
                             {
                                 LastMoveToTruck(new Vector3(x, y, z), moneyTemp);
-                                x += 0.15f;
+                                x += 0.10f;
                                 if (x > 0.4f && z != -0.3f)
                                 {
                                     z -= 0.3f;
@@ -121,12 +121,12 @@ public class MachineManager : MonoBehaviour
                         {
                             LastMoveToTruck(new Vector3(x, y, z),moneyTemp);
                             x += 0.1f;
-                            if (x > 0.4f && z!= -0.3f) 
+                            if (x > 0.1f && z!= -0.3f) 
                             {
                                 z -= 0.3f;
                                 x = -0.4f;
                             }
-                            else if (x>0.4f && z == -0.3f) 
+                            else if (x>0.1f && z == -0.3f) 
                             {
                                 y += 0.5f;
                                 x = -0.4f;
@@ -166,7 +166,6 @@ public class MachineManager : MonoBehaviour
                 MoveMoneyInNormalMachine(parentOfMoney.transform.GetChild(i).gameObject, i,countWaitTime);
             }
             
-            _counterText.text = (i + 1) + "/5";
             RadialSegmentNumber--;
             Debug.Log(RadialSegmentNumber);
             RadialSegment.SetRemovedSegments(RadialSegmentNumber);
@@ -182,7 +181,6 @@ public class MachineManager : MonoBehaviour
                 isFinishedCount = true;
             }
         }
-        _counterText.text = "waiting";
     }
 
     public void MoveMoneyInRoundedMachine(GameObject moneyToMove,float zOffset,float waitAmount)
