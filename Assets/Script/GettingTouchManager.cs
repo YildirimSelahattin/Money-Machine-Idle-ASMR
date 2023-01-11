@@ -24,7 +24,7 @@ public class GettingTouchManager : MonoBehaviour
     // Start is called before the first frame update
     public GameObject objectToDrag;
     public GameObject objectMoney;
-
+    GameObject gridObjectToOpen;
     Vector3 originalPosOrDraggingObject;
     RaycastHit hit;
     Ray ray;
@@ -57,21 +57,8 @@ public class GettingTouchManager : MonoBehaviour
               
                 else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyUpgrade)) // when it hits to upgrade button
                 {
-                    RewardedAdManager.Instance.MultipleOfflineProgressRewardAd();
-                    GameObject parentGridOfHitButton = hit.collider.gameObject.transform.parent.gameObject;
-                    parentGridOfHitButton.transform.GetChild(GameManager.Instance.GRID_SURFACE_INDEX).gameObject
-                            .GetComponent<MeshRenderer>().material =
-                        GameManager.Instance.openedGridMat; //open grid visually 
-                    hit.collider.gameObject.SetActive(false); //close upgrade button
-                    hit.collider.transform.parent.gameObject.GetComponent<BoxCollider>().enabled = true;
-                    GameDataManager.Instance.gridArray[
-                            parentGridOfHitButton.transform.tag[parentGridOfHitButton.transform.tag.Length - 1] - '0'] =
-                        0; // open grid index base
-                    Debug.Log("2");
-                    if (GameDataManager.Instance.TotalMoney >= GameDataManager.Instance.AddMachineButtonMoney)
-                    {
-                        UIManager.Instance.addMachineButton.GetComponent<Button>().interactable = true;
-                    }
+                    gridObjectToOpen = hit.collider.gameObject.transform.parent.gameObject;
+                    RewardedAdManager.Instance.GridRewardAd();
                 }
                 else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyTapToCollect)) // if it is money tap
                 {
@@ -96,7 +83,6 @@ public class GettingTouchManager : MonoBehaviour
                 // This is actions when finger/cursor pressed on screen
                 if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerEverything))
                 {
-                         objectToDrag.transform.DOKill();
                          objectToDrag.transform.DOMove(
                              new Vector3(hit.point.x, objectToDrag.transform.position.y, hit.point.z), .3f);
                          Debug.Log("POINTtt"+hit.point);
@@ -125,6 +111,22 @@ public class GettingTouchManager : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+    public void GiveGridReward()
+    {
+        gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_SURFACE_INDEX).gameObject
+                            .GetComponent<MeshRenderer>().material =
+                        GameManager.Instance.openedGridMat; //open grid visually 
+        gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_UPDATE_BUTTON_INDEX).gameObject.SetActive(false); //close upgrade button
+        gridObjectToOpen.GetComponent<BoxCollider>().enabled = true;
+        GameDataManager.Instance.gridArray[
+                gridObjectToOpen.transform.tag[gridObjectToOpen.transform.tag.Length - 1] - '0'] =
+            0; // open grid index base
+        Debug.Log("2");
+        if (GameDataManager.Instance.TotalMoney >= GameDataManager.Instance.AddMachineButtonMoney)
+        {
+            UIManager.Instance.addMachineButton.GetComponent<Button>().interactable = true;
         }
     }
 }

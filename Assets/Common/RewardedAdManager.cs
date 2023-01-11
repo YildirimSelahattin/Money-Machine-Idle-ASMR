@@ -106,14 +106,14 @@ public class RewardedAdManager : MonoBehaviour
     
     public void HandleUserEarnedGridReward(object sender, Reward args)
     {
+        GettingTouchManager.Instance.GiveGridReward();
         RequestRewarded();
     }
-    
     public void GridRewardAd()
     {
-        if (this.rewardedAd.IsLoaded())
+        if (this.rewardedGridAd.IsLoaded())
         {
-            this.rewardedAd.Show();
+            this.rewardedGridAd.Show();
         }
         else
         {
@@ -123,9 +123,9 @@ public class RewardedAdManager : MonoBehaviour
 
     public void MultipleOfflineProgressRewardAd()
     {
-        if (this.rewardedGridAd.IsLoaded())
+        if (this.rewardedAd.IsLoaded())
         {
-            this.rewardedGridAd.Show();
+            this.rewardedAd.Show();
             OfflineProgress.Instance.OfflineRewardPanel.SetActive(false);
         }
         else
