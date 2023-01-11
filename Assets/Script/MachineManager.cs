@@ -87,12 +87,12 @@ public class MachineManager : MonoBehaviour
                             {
                                 LastMoveToTruck(new Vector3(x, y, z), moneyTemp);
                                 x += 0.10f;
-                                if (x > 0.4f && z != -0.3f)
+                                if (x > 0.1f && z != -0.3f)
                                 {
                                     z -= 0.3f;
                                     x = -0.4f;
                                 }
-                                else if (x > 0.4f && z == -0.3f)
+                                else if (x > 0.1f && z == -0.3f)
                                 {
                                     y += 0.5f;
                                     x = -0.4f;
