@@ -22,7 +22,10 @@ public class UIManager : MonoBehaviour
     public GameObject incomeButton;
     public GameObject workerSpeedButton;
     public GameObject addMachineButton;
-    
+
+    public int isSoundOn;
+    public int isMusicOn;
+    public int isVibrateOn;
     [SerializeField] GameObject soundOn;
     [SerializeField] GameObject soundOff;
     [SerializeField] GameObject musicOn;
@@ -33,8 +36,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject OptionsPanel;
     [SerializeField] private GameObject InfoButton;
     [SerializeField] private GameObject InfoPanel;
-    
-    
+
     void Start()
     {
         if (Instance == null)
@@ -217,6 +219,108 @@ public class UIManager : MonoBehaviour
         button.interactable = false;
         yield return new WaitForSeconds(waitTime);
         button.interactable = true;
+    }
+    
+    public void UpdateSound()
+    {
+        isSoundOn = GameDataManager.Instance.playSound;
+        if (isSoundOn == 0)
+        {
+            soundOff.gameObject.SetActive(true);
+            SoundsOff();
+        }
+        if (isSoundOn == 1)
+        {
+            soundOn.gameObject.SetActive(true);
+            SoundsOn();
+        }
+    }
+
+    public void UpdateMusic()
+    {
+        isMusicOn = GameDataManager.Instance.playMusic;
+        if (isMusicOn == 0)
+        {
+            musicOff.gameObject.SetActive(true);
+            MusicOff();
+        }
+        if (isMusicOn == 1)
+        {
+            musicOn.gameObject.SetActive(true);
+            MusicOn();
+        }
+    }
+    
+    public void UpdateVibrate()
+    {
+        isSoundOn = GameDataManager.Instance.playSound;
+        if (isVibrateOn == 0)
+        {
+            vibrationOff.gameObject.SetActive(true);
+            SoundsOff();
+        }
+        if (isVibrateOn == 1)
+        {
+            vibrationOn.gameObject.SetActive(true);
+            SoundsOn();
+        }
+    }
+
+    public void MusicOff()
+    {
+        GameDataManager.Instance.playMusic = 0;
+        musicOn.gameObject.SetActive(false);
+        musicOff.gameObject.SetActive(true);
+    }
+
+    public void MusicOn()
+    {
+        GameDataManager.Instance.playMusic = 1;
+        musicOff.gameObject.SetActive(false);
+        musicOn.gameObject.SetActive(true);
+
+    }
+
+    public void SoundsOff()
+    {
+        GameDataManager.Instance.playSound = 0;
+        soundOn.gameObject.SetActive(false);
+        soundOff.gameObject.SetActive(true);
+    }
+    public void SoundsOn()
+    {
+        GameDataManager.Instance.playSound = 1;
+        soundOff.gameObject.SetActive(false);
+        soundOn.gameObject.SetActive(true);
+    }
+    
+    public void VibrationOff()
+    {
+        GameDataManager.Instance.playSound = 0;
+        vibrationOn.gameObject.SetActive(false);
+        vibrationOff.gameObject.SetActive(true);
+    }
+    public void VibrationOn()
+    {
+        GameDataManager.Instance.playSound = 1;
+        vibrationOff.gameObject.SetActive(false);
+        vibrationOn.gameObject.SetActive(true);
+    }
+
+    public void OnOpenOptionsPanel()
+    {
+        OptionsPanel.SetActive(true);
+    }
+
+    public void OnOpenInfoPanel()
+    {
+        InfoPanel.SetActive(true);
+    }
+
+    public void OnSpace()
+    {
+        OptionsPanel.SetActive(false);
+        InfoPanel.SetActive(false);
     }
     
 }
