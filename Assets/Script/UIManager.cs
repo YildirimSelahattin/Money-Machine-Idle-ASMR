@@ -44,6 +44,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject InfoButton;
     [SerializeField] private GameObject InfoPanel;
     public int buttonIndex = 0;
+    public GameObject[] gridMoneyOpenInteractableArray;
+    public GameObject[] gridMoneyOpenNotInteractableArray;
 
     void Start()
     {
