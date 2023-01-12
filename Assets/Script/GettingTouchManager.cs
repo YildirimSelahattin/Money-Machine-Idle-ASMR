@@ -57,9 +57,23 @@ public class GettingTouchManager : MonoBehaviour
               
                 else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyUpgrade)) // when it hits to upgrade button
                 {
-                    gridObjectToOpen = hit.collider.gameObject.transform.parent.gameObject;
-                    RewardedAdManager.Instance.GridRewardAd();
+                    gridObjectToOpen = hit.collider.gameObject.transform.parent.transform.parent.gameObject;
+                    if (hit.collider.gameObject.transform.CompareTag("AdOpenButton"))// upgrade with ad
+                    {
+                        if(true)//if money is enough
+                        {
+
+                        }
+                        RewardedAdManager.Instance.GridRewardAd();
+                    }
+                    else if(hit.collider.gameObject.transform.CompareTag("MoneyOpenButton")) { // upgrade money
+                        if (true)//if money is enough
+                        {
+                            GiveGridReward();
+                        }
+                    }
                 }
+                
                 else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyTapToCollect)) // if it is money tap
                 {
                     moneyTapParticle.gameObject.transform.position=new Vector3(hit.point.x ,hit.point.y+1,hit.point.z);
@@ -118,7 +132,9 @@ public class GettingTouchManager : MonoBehaviour
         gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_SURFACE_INDEX).gameObject
                             .GetComponent<MeshRenderer>().material =
                         GameManager.Instance.openedGridMat; //open grid visually 
-        gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_UPDATE_BUTTON_INDEX).gameObject.SetActive(false); //close upgrade button
+        gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_UPDATE_BUTTON_INDEX).transform.GetChild(0).gameObject.SetActive(false); //close ad upgrade button
+        gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_UPDATE_BUTTON_INDEX).transform.GetChild(1).gameObject.SetActive(false); //close money upgrade button
+        gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_UPDATE_BUTTON_INDEX).transform.GetChild(3).gameObject.SetActive(false); //close money upgrade button
         gridObjectToOpen.GetComponent<BoxCollider>().enabled = true;
         GameDataManager.Instance.gridArray[
                 gridObjectToOpen.transform.tag[gridObjectToOpen.transform.tag.Length - 1] - '0'] =

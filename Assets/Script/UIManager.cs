@@ -36,7 +36,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject OptionsPanel;
     [SerializeField] private GameObject InfoButton;
     [SerializeField] private GameObject InfoPanel;
-
+    public GameObject[] gridMoneyOpenInteractableArray;
+    public GameObject[] gridMoneyOpenNotInteractableArray;
     void Start()
     {
         if (Instance == null)
@@ -49,8 +50,8 @@ public class UIManager : MonoBehaviour
         incomeButton = ButtonPanel.transform.GetChild(1).gameObject;
         workerSpeedButton = ButtonPanel.transform.GetChild(2).gameObject;
         addMachineButton = ButtonPanel.transform.GetChild(3).gameObject;
+
         ButtonPanel.transform.GetChild(0).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Level - " + GameDataManager.Instance.beltSpeedButtonLevel;
-        
         ButtonPanel.transform.GetChild(0).transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
             AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.BeltSpeedButtonMoney) + " $";
         Debug.Log("belt"+ GameDataManager.Instance.BeltSpeedButtonMoney);
