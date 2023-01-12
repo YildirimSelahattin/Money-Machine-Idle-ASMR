@@ -11,6 +11,7 @@ using TMPro;
 using Unity.VisualScripting;
 using DG.Tweening;
 using GoogleMobileAds.Api;
+using System.Runtime.CompilerServices;
 
 public class UIManager : MonoBehaviour
 {
@@ -46,6 +47,9 @@ public class UIManager : MonoBehaviour
     public int buttonIndex = 0;
     public GameObject[] gridMoneyOpenInteractableArray;
     public GameObject[] gridMoneyOpenNotInteractableArray;
+    public GameObject tappingHand;
+    public GameObject MergeHand;
+    private int addMachineTapAmount;
 
     void Start()
     {
@@ -53,6 +57,7 @@ public class UIManager : MonoBehaviour
         {
             Instance = this;
         }
+        addMachineTapAmount = PlayerPrefs.GetInt("addMachineAmount",0);
         TotalMoneyText.GetComponent<TextMeshProUGUI>().text = GameDataManager.Instance.TotalMoney.ToString();
         beltSpeedButton = ButtonPanel.transform.GetChild(0).gameObject;
         incomeButton = ButtonPanel.transform.GetChild(1).gameObject;
@@ -148,7 +153,6 @@ public class UIManager : MonoBehaviour
         GameDataManager.Instance.beltSpeedButtonLevel++;
         GameDataManager.Instance.beltSpeed += (GameDataManager.Instance.beltSpeed * 0.03f);
         GameDataManager.Instance.SaveData();
-        
         adBeltSpeedButton.SetActive(false);
     }
 
@@ -329,7 +333,7 @@ public class UIManager : MonoBehaviour
     {
         bool controllForButtonInteract = false;
         bool closeInteractibility = true;
-
+     
         GameDataManager.Instance.AddMachineButtonMoney += GameDataManager.Instance.AddMachineButtonMoney / 2;
         GameDataManager.Instance.addMachineButtonLevel++;
 
@@ -340,6 +344,12 @@ public class UIManager : MonoBehaviour
             {
                 if (controllForButtonInteract == false)
                 {
+                    addMachineTapAmount++;
+                    PlayerPrefs.SetInt("addMachineAmount", addMachineTapAmount);
+                    if (addMachineTapAmount == 2)
+                    {
+                        MergeHand.SetActive(true);
+                    }
                     Debug.Log("qwe" + gridIndex);
                     //level 1 şu an veriliyor !!sadece
                     GameManager.Instance.gridParent.transform.GetChild(gridIndex).gameObject
