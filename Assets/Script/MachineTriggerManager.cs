@@ -10,7 +10,7 @@ public class MachineTriggerManager : MonoBehaviour
 {
     // Start is called before the first frame update
     GameObject comingWorkerObject = null;
-
+    
     void Start()
     {
     }
@@ -30,6 +30,10 @@ public class MachineTriggerManager : MonoBehaviour
         {
             if (gameObject.GetComponent<MachineManager>().levelIndexOfObject < 6) //if the machine is mergeable
             {
+                if(PlayerPrefs.GetInt("isThisIsFirstMerge", 1)==1) {
+                    PlayerPrefs.SetInt("isThisIsFirstMerge", -1);
+                    UIManager.Instance.MergeHand.SetActive(false);
+                }
                 Debug.Log("EMÝR");
                 int targetGrid = other.gameObject.GetComponent<MachineManager>().gridIndexNumberOfObject;
                 int currentGrid = gameObject.transform.parent.tag[transform.parent.tag.Length - 1] - '0';
