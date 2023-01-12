@@ -18,6 +18,9 @@ TagManager:
   - Level6
   - Worker
   - Bank
+  - PickUpTruck
+  - AdOpenButton
+  - MoneyOpenButton
   layers:
   - Default
   - TransparentFX
