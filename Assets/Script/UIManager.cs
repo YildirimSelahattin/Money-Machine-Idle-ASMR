@@ -10,6 +10,7 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
 using DG.Tweening;
+using GoogleMobileAds.Api;
 
 public class UIManager : MonoBehaviour
 {
@@ -42,6 +43,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject OptionsPanel;
     [SerializeField] private GameObject InfoButton;
     [SerializeField] private GameObject InfoPanel;
+    public int buttonIndex = 0;
 
     void Start()
     {
@@ -49,7 +51,6 @@ public class UIManager : MonoBehaviour
         {
             Instance = this;
         }
-
         TotalMoneyText.GetComponent<TextMeshProUGUI>().text = GameDataManager.Instance.TotalMoney.ToString();
         beltSpeedButton = ButtonPanel.transform.GetChild(0).gameObject;
         incomeButton = ButtonPanel.transform.GetChild(1).gameObject;
@@ -76,11 +77,6 @@ public class UIManager : MonoBehaviour
             "Level " + GameDataManager.Instance.addMachineButtonLevel;
         ButtonPanel.transform.GetChild(3).transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
             AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.AddMachineButtonMoney) + " $";
-    }
-
-    private void Update()
-    {
-        
     }
 
     public void OnSellButton()
@@ -118,6 +114,8 @@ public class UIManager : MonoBehaviour
             if (GameDataManager.Instance.beltSpeedButtonLevel % 3 == 0)
             {
                 adBeltSpeedButton.SetActive(true);
+                ButtonPanel.transform.GetChild(4).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text =
+                    "Level " + GameDataManager.Instance.beltSpeedButtonLevel;
                 StartCoroutine(AdBeltButtonsDelay(10));
             }
 
@@ -138,19 +136,15 @@ public class UIManager : MonoBehaviour
 
     public void AdOnBeltSpeedUpgradeButton()
     {
+        buttonIndex = 1;
+        RewardedAdManager.Instance.UpgradeButtonRewardAd();
+    }
+
+    public void RewardedBeltSpeedUpgradeButton()
+    {
         GameDataManager.Instance.BeltSpeedButtonMoney += GameDataManager.Instance.BeltSpeedButtonMoney / 1.5f;
         GameDataManager.Instance.beltSpeedButtonLevel++;
-
-        TotalMoneyText.GetComponent<TextMeshProUGUI>().text =
-            AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
-
-        ButtonPanel.transform.GetChild(0).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
-            "Level " + GameDataManager.Instance.beltSpeedButtonLevel;
-        ButtonPanel.transform.GetChild(0).transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
-            AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.BeltSpeedButtonMoney) + " $";
-
         GameDataManager.Instance.beltSpeed += (GameDataManager.Instance.beltSpeed * 0.03f);
-        
         GameDataManager.Instance.SaveData();
         
         adBeltSpeedButton.SetActive(false);
@@ -168,6 +162,8 @@ public class UIManager : MonoBehaviour
             if (GameDataManager.Instance.incomeButtonLevel % 3 == 0)
             {
                 adIncomeButton.SetActive(true);
+                ButtonPanel.transform.GetChild(5).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text =
+                    "Level " + GameDataManager.Instance.incomeButtonLevel;
                 StartCoroutine(AdIncomeButtonsDelay(10));
             }
             
@@ -189,18 +185,16 @@ public class UIManager : MonoBehaviour
 
     public void AdOnIncomeUpgradeButton()
     {
+        buttonIndex = 2;
+        RewardedAdManager.Instance.UpgradeButtonRewardAd();
+    }
+
+    public void RewardedIncomeUpgradeButton()
+    {
         GameDataManager.Instance.IncomeButtonMoney += GameDataManager.Instance.IncomeButtonMoney / 2;
         GameDataManager.Instance.offlineProgressNum += GameDataManager.Instance.offlineProgressNum / 5;
         GameDataManager.Instance.incomeButtonLevel++;
         GameDataManager.Instance.IncomePerTap++;
-
-        TotalMoneyText.GetComponent<TextMeshProUGUI>().text =
-            AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
-
-        ButtonPanel.transform.GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
-            "Level " + GameDataManager.Instance.incomeButtonLevel;
-        ButtonPanel.transform.GetChild(1).transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
-            AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.IncomeButtonMoney) + " $";
 
         MachineManager.Instance.machineIncomeMoney += MachineManager.Instance.machineIncomeMoney * 0.02f;
 
@@ -208,7 +202,7 @@ public class UIManager : MonoBehaviour
         
         adIncomeButton.SetActive(false);
     }
-
+    
     public void OnWorkerUpgradeButton()
     {
         if (GameDataManager.Instance.TotalMoney >= GameDataManager.Instance.WorkerSpeedButtonMoney)
@@ -220,6 +214,8 @@ public class UIManager : MonoBehaviour
             if (GameDataManager.Instance.workerSpeedButtonLevel % 3 == 0)
             {
                 adWorkerSpeedButton.SetActive(true);
+                ButtonPanel.transform.GetChild(6).transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text =
+                    "Level " + GameDataManager.Instance.workerSpeedButtonLevel;
                 StartCoroutine(AdWorkerButtonsDelay(10));
             }
             
@@ -240,16 +236,16 @@ public class UIManager : MonoBehaviour
 
     public void AdOnWorkerUpgradeButton()
     {
+        buttonIndex = 3;
+        RewardedAdManager.Instance.UpgradeButtonRewardAd();
+    }
+
+    public void RewardedAdWorkerUpgradeButton()
+    {
         GameDataManager.Instance.WorkerSpeedButtonMoney += GameDataManager.Instance.WorkerSpeedButtonMoney / 2;
         GameDataManager.Instance.workerSpeedButtonLevel++;
         
-
         GameDataManager.Instance.workerBaseSpeed += GameDataManager.Instance.workerBaseSpeed * 0.03f;
-
-        ButtonPanel.transform.GetChild(2).transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text =
-            "Level " + GameDataManager.Instance.workerSpeedButtonLevel;
-        ButtonPanel.transform.GetChild(2).transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text =
-            AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.WorkerSpeedButtonMoney) + " $";
 
         GameDataManager.Instance.SaveData();
         
@@ -312,6 +308,8 @@ public class UIManager : MonoBehaviour
             if (GameDataManager.Instance.addMachineButtonLevel % 3 == 0 && closeInteractibility)
             {
                 adAddMachineButton.SetActive(true);
+                ButtonPanel.transform.GetChild(7).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text =
+                    "Level " + GameDataManager.Instance.addMachineButtonLevel;
                 StartCoroutine(AdMachineButtonsDelay(10));
             }
 
@@ -321,19 +319,17 @@ public class UIManager : MonoBehaviour
 
     public void AdOnAddMachineButton()
     {
+        buttonIndex = 4;
+        RewardedAdManager.Instance.UpgradeButtonRewardAd();
+    }
+
+    public void RewardedAddMachineButton()
+    {
         bool controllForButtonInteract = false;
         bool closeInteractibility = true;
 
         GameDataManager.Instance.AddMachineButtonMoney += GameDataManager.Instance.AddMachineButtonMoney / 2;
         GameDataManager.Instance.addMachineButtonLevel++;
-
-        TotalMoneyText.GetComponent<TextMeshProUGUI>().text =
-            AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
-
-        ButtonPanel.transform.GetChild(3).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
-            "Level " + GameDataManager.Instance.addMachineButtonLevel;
-        ButtonPanel.transform.GetChild(3).transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
-            AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.AddMachineButtonMoney) + " $";
 
         for (int gridIndex = 0; gridIndex < GameDataManager.Instance.gridArray.Length; gridIndex++)
         {
@@ -371,7 +367,7 @@ public class UIManager : MonoBehaviour
 
         GameDataManager.Instance.SaveData();
         
-        addMachineButton.SetActive(false);
+        adAddMachineButton.SetActive(false);
     }
 
     public IEnumerator DeactivateForSeconds(Button button, float waitTime)

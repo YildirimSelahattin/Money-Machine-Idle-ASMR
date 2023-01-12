@@ -107,7 +107,7 @@ public class RewardedAdManager : MonoBehaviour
             adUnitId = "unexpected_platform";
 #endif
 
-        this.rewardedAd = new RewardedAd(adUnitId);
+        this.rewardedUpgradeButtonsAd = new RewardedAd(adUnitId);
 
         /*
                 // Called when an ad request has successfully loaded.
@@ -149,6 +149,15 @@ public class RewardedAdManager : MonoBehaviour
     
     public void HandleUserEarnedUpgradeButtonReward(object sender, Reward args)
     {
+        if (UIManager.Instance.buttonIndex == 1)
+            UIManager.Instance.RewardedBeltSpeedUpgradeButton();
+        if (UIManager.Instance.buttonIndex == 2)
+            UIManager.Instance.RewardedIncomeUpgradeButton();
+        if (UIManager.Instance.buttonIndex == 3)
+            UIManager.Instance.RewardedAdWorkerUpgradeButton();
+        if (UIManager.Instance.buttonIndex == 4)
+            UIManager.Instance.RewardedAddMachineButton();
+
         RequestRewarded();
     }
     

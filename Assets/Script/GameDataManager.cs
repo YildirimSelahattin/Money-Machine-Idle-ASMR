@@ -52,7 +52,7 @@ public class GameDataManager : MonoBehaviour
     public int beltSpeedButtonLevel = 1;
     public int incomeButtonLevel = 1;
     public int addMachineButtonLevel = 1;
-    public int workerSpeedButtonLevel;
+    public int workerSpeedButtonLevel = 1;
     public float moneyToBeCollected = 0;
     public float totalMoney = 0;
     
@@ -158,6 +158,7 @@ public class GameDataManager : MonoBehaviour
         workerSpeedButtonLevel = PlayerPrefs.GetInt("WorkerSpeedButtonLevel", workerSpeedButtonLevel);
         addMachineButtonLevel= PlayerPrefs.GetInt("AddMachineButtonLevel", addMachineButtonLevel);
         incomeButtonLevel = PlayerPrefs.GetInt("IncomeButtonLevel", incomeButtonLevel);
+        beltSpeedButtonLevel = PlayerPrefs.GetInt("BeltSpeedButtonLevel", beltSpeedButtonLevel);
         IncomeButtonMoney = PlayerPrefs.GetFloat("IncomeButtonMoney", incomeButtonMoney);
         WorkerSpeedButtonMoney = PlayerPrefs.GetFloat("WorkerSpeedButtonMoney", 5);
         BeltSpeedButtonMoney = PlayerPrefs.GetFloat("BeltSpeedButtonMoney", 7);
@@ -182,9 +183,10 @@ public class GameDataManager : MonoBehaviour
         /// Buttons
         PlayerPrefs.SetFloat("TotalMoney", totalMoney);
         PlayerPrefs.SetFloat("MoneyToBeCollected", moneyToBeCollected);
-        PlayerPrefs.SetFloat("WorkerSpeedButtonLevel", workerSpeedButtonLevel);
-        PlayerPrefs.SetFloat("AddMachineButtonLevel", addMachineButtonLevel);
-        PlayerPrefs.SetFloat("IncomeButtonLevel", incomeButtonLevel);
+        PlayerPrefs.SetInt("WorkerSpeedButtonLevel", workerSpeedButtonLevel);
+        PlayerPrefs.SetInt("AddMachineButtonLevel", addMachineButtonLevel);
+        PlayerPrefs.SetInt("IncomeButtonLevel", incomeButtonLevel);
+        PlayerPrefs.SetInt("BeltSpeedButtonLevel", beltSpeedButtonLevel);
         PlayerPrefs.SetFloat("BeltSpeed", beltSpeed);
         PlayerPrefs.SetFloat("IncomePercentage", machineIncomeMoney);
         PlayerPrefs.SetFloat("WorkerSpeed", workerBaseSpeed);
@@ -193,6 +195,7 @@ public class GameDataManager : MonoBehaviour
         PlayerPrefs.SetFloat("BeltSpeedButtonMoney", beltSpeedButtonMoney);
         PlayerPrefs.SetFloat("AddMachineButtonMoney", addMachineButtonMoney);
     }
+
     private void OnDisable()
     {
         SaveData();

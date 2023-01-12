@@ -17,7 +17,6 @@ public class DayCycle : MonoBehaviour
     
     private void Update()
     {
-        Debug.Log(transform.rotation.x + "aaa");
         if (transform.rotation.x  > .95f && isNight == false)
         {
             inGameLights.SetActive(true);
