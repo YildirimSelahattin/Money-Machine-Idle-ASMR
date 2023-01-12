@@ -76,26 +76,16 @@ public class GettingTouchManager : MonoBehaviour
                 
                 else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyTapToCollect)) // if it is money tap
                 {
-                    if(moneyTapNumber  ==0)
-                    {
-                        UIManager.Instance.tappingHand.SetActive(false);
-                    }
                     moneyTapParticle.gameObject.transform.position=new Vector3(hit.point.x ,hit.point.y+1,hit.point.z);
                     moneyTapParticle.Play();
                     GameDataManager.Instance.TotalMoney += GameDataManager.Instance.IncomePerTap;
                     UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
                     Debug.Log("3");
-                    moneyTapNumber++;
                     if( moneyTapNumber > maxTapNumberUntilInterstitial)
                     {
                         maxTapNumberUntilInterstitial += 5;
                         moneyTapNumber = 0;
                         //request interstitial here
-                        if (InterstitialAdManager.Instance.tapInterstitialAd.IsLoaded())
-                        {
-                            InterstitialAdManager.Instance.tapInterstitialAd.Show();
-                        }
-                        UIManager.Instance.tappingHand.SetActive(false);
                     }
                 }
             }
