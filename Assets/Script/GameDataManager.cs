@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,7 +19,7 @@ public class GameDataManager : MonoBehaviour
     public int[] gridArray = new int[6];
     public int maxLevelMachineAmount;
     private float beltSpeedButtonMoney;
-
+    [SerializeField] float[] gridOpenWithMoneyPrices;
     public float BeltSpeedButtonMoney
     { // = 5f;
         get { return beltSpeedButtonMoney; }
@@ -65,8 +66,7 @@ public class GameDataManager : MonoBehaviour
             totalMoney = GetOnly1DigitAfterPoint(value);
             if (UIManager.Instance != null)
             {
-
-
+                // UI BUTTON SÝDE
                 if (totalMoney >= BeltSpeedButtonMoney)//activate belt speed button
                 {
                     // interactable yap UIManager.Instance.beltSpeedButton.GetComponent<>// interactable yap
@@ -112,6 +112,22 @@ public class GameDataManager : MonoBehaviour
                 {
                     //UIManager.Instance.addMachineButton.GetComponent<>// interactable yap
                     UIManager.Instance.addMachineButton.GetComponent<Button>().interactable = false;
+                }
+
+                // 3D BUTTON SIDE ilkine bakýlamyabilir?
+                for(int gridIndex = 0; gridIndex< gridOpenWithMoneyPrices.Length; gridIndex++)
+                {
+                    Debug.Log("sasa");
+                    if(totalMoney > gridOpenWithMoneyPrices[gridIndex])
+                    {
+                        UIManager.Instance.gridMoneyOpenInteractableArray[gridIndex].gameObject.SetActive(true);
+                        UIManager.Instance.gridMoneyOpenNotInteractableArray[gridIndex].gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        UIManager.Instance.gridMoneyOpenInteractableArray[gridIndex].gameObject.SetActive(false);
+                        UIManager.Instance.gridMoneyOpenNotInteractableArray[gridIndex].gameObject.SetActive(true);
+                    }
                 }
             }
         }   
