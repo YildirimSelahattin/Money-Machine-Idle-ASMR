@@ -9,6 +9,7 @@ public class RewardedAdManager : MonoBehaviour
 {
     public RewardedAd rewardedAd;
     public RewardedAd rewardedGridAd;
+    public RewardedAd rewardedUpgradeButtonsAd;
 
     public static RewardedAdManager Instance;
     int nextLevelNumber;
@@ -22,6 +23,7 @@ public class RewardedAdManager : MonoBehaviour
         }
         RequestRewarded();
         RequestGridRewarded();
+        RequestRewardedUpgradeButtonsAd();
     }
 
     private void RequestRewarded()
@@ -93,6 +95,41 @@ public class RewardedAdManager : MonoBehaviour
         // Load the rewarded ad with the request.
         this.rewardedGridAd.LoadAd(request);
     }
+    
+    private void RequestRewardedUpgradeButtonsAd()
+    {
+        string adUnitId;
+#if UNITY_ANDROID
+        adUnitId = "ca-app-pub-4384667521830956/3021049500";
+#elif UNITY_IPHONE
+            adUnitId = "ca-app-pub-3940256099942544/1712485313";
+#else
+            adUnitId = "unexpected_platform";
+#endif
+
+        this.rewardedAd = new RewardedAd(adUnitId);
+
+        /*
+                // Called when an ad request has successfully loaded.
+                this.rewardedAd.OnAdLoaded += HandleRewardedAdLoaded;
+                // Called when an ad request failed to load.
+                this.rewardedAd.OnAdFailedToLoad += HandleRewardedAdFailedToLoad;
+                // Called when an ad is shown.
+                this.rewardedAd.OnAdOpening += HandleRewardedAdOpening;
+                // Called when an ad request failed to show.
+                this.rewardedAd.OnAdFailedToShow += HandleRewardedAdFailedToShow;
+                // Called when the user should be rewarded for interacting with the ad.
+                this.rewardedAd.OnUserEarnedReward += HandleUserEarnedReward;
+                // Called when the ad is closed.
+                this.rewardedAd.OnAdClosed += HandleRewardedAdClosed;
+        */
+        // Called when the user should be rewarded for interacting with the ad.
+        this.rewardedUpgradeButtonsAd.OnUserEarnedReward += HandleUserEarnedUpgradeButtonReward;
+        // Create an empty ad request.
+        AdRequest request = new AdRequest.Builder().Build();
+        // Load the rewarded ad with the request.
+        this.rewardedUpgradeButtonsAd.LoadAd(request);
+    }
 
     public void HandleUserEarnedReward(object sender, Reward args)
     {
@@ -108,7 +145,13 @@ public class RewardedAdManager : MonoBehaviour
     {
         GettingTouchManager.Instance.GiveGridReward();
         RequestRewarded();
+    }    
+    
+    public void HandleUserEarnedUpgradeButtonReward(object sender, Reward args)
+    {
+        RequestRewarded();
     }
+    
     public void GridRewardAd()
     {
         if (this.rewardedGridAd.IsLoaded())
@@ -118,6 +161,18 @@ public class RewardedAdManager : MonoBehaviour
         else
         {
             RequestRewarded();
+        }
+    }
+    
+    public void UpgradeButtonRewardAd()
+    {
+        if (this.rewardedUpgradeButtonsAd.IsLoaded())
+        {
+            this.rewardedUpgradeButtonsAd.Show();
+        }
+        else
+        {
+            RequestRewardedUpgradeButtonsAd();
         }
     }
 

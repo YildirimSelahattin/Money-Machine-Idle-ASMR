@@ -195,7 +195,7 @@ public class GameDataManager : MonoBehaviour
     }
     private void OnDisable()
     {
-        
+        SaveData();
         PlayerPrefs.SetInt("PlaySoundKey", playSound);
         PlayerPrefs.SetInt("PlayMusicKey", playMusic);
     }

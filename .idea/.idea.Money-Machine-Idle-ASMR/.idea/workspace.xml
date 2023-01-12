@@ -1,29 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="12e15ff2-c41a-445c-99a6-3e761c781f24" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Money-Machine-Idle-ASMR/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Money-Machine-Idle-ASMR/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PickupTruck.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PickupTruck.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/DayCycle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/DayCycle.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/End/Group 503.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/End/Group 503.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/End/Group 504.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/End/Group 504.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/End/InfoPaneş.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/End/InfoPaneş.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/End/Music.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/End/Music.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/End/MusicOffB.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/End/MusicOffB.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/End/MusicOffB.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/End/MusicOffB.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/End/SoundB.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/End/SoundB.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/End/SoundB.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/End/SoundB.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/End/SoundOffB.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/End/SoundOffB.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/End/SoundOffB.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/End/SoundOffB.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/End/VibrationB.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/End/VibrationB.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/End/VibrationOffB.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/End/VibrationOffB.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/End/VibrationOffB.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/End/VibrationOffB.png.meta" afterDir="false" />
-    </list>
+    <list default="true" id="12e15ff2-c41a-445c-99a6-3e761c781f24" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -135,7 +113,7 @@
       <workItem from="1672815047815" duration="1697000" />
       <workItem from="1672904232883" duration="2235000" />
       <workItem from="1673014210089" duration="1282000" />
-      <workItem from="1673421618181" duration="13907000" />
+      <workItem from="1673421618181" duration="13955000" />
     </task>
     <servers />
   </component>

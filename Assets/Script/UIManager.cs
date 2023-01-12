@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.WebSockets;
+using System.Threading;
 using RengeGames.HealthBars;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,6 +24,10 @@ public class UIManager : MonoBehaviour
     public GameObject incomeButton;
     public GameObject workerSpeedButton;
     public GameObject addMachineButton;
+    public GameObject adBeltSpeedButton;
+    public GameObject adIncomeButton;
+    public GameObject adWorkerSpeedButton;
+    public GameObject adAddMachineButton;
 
     public int isSoundOn;
     public int isMusicOn;
@@ -49,26 +55,32 @@ public class UIManager : MonoBehaviour
         incomeButton = ButtonPanel.transform.GetChild(1).gameObject;
         workerSpeedButton = ButtonPanel.transform.GetChild(2).gameObject;
         addMachineButton = ButtonPanel.transform.GetChild(3).gameObject;
-        ButtonPanel.transform.GetChild(0).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Level - " + GameDataManager.Instance.beltSpeedButtonLevel;
-        
+        ButtonPanel.transform.GetChild(0).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
+            "Level " + GameDataManager.Instance.beltSpeedButtonLevel;
+
         ButtonPanel.transform.GetChild(0).transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
             AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.BeltSpeedButtonMoney) + " $";
-        Debug.Log("belt"+ GameDataManager.Instance.BeltSpeedButtonMoney);
-        
+        Debug.Log("belt" + GameDataManager.Instance.BeltSpeedButtonMoney);
+
         ButtonPanel.transform.GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
-            "Level - " + GameDataManager.Instance.incomeButtonLevel;
+            "Level " + GameDataManager.Instance.incomeButtonLevel;
         ButtonPanel.transform.GetChild(1).transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
             AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.IncomeButtonMoney) + " $";
-        
+
         ButtonPanel.transform.GetChild(2).transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text =
-            "Level - " + GameDataManager.Instance.workerSpeedButtonLevel;
+            "Level " + GameDataManager.Instance.workerSpeedButtonLevel;
         ButtonPanel.transform.GetChild(2).transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text =
             AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.WorkerSpeedButtonMoney) + " $";
 
         ButtonPanel.transform.GetChild(3).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
-            "Level - " + GameDataManager.Instance.addMachineButtonLevel;
+            "Level " + GameDataManager.Instance.addMachineButtonLevel;
         ButtonPanel.transform.GetChild(3).transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
             AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.AddMachineButtonMoney) + " $";
+    }
+
+    private void Update()
+    {
+        
     }
 
     public void OnSellButton()
@@ -78,12 +90,14 @@ public class UIManager : MonoBehaviour
         GameDataManager.Instance.TotalMoney += GameDataManager.Instance.moneyToBeCollected;
         GameDataManager.Instance.moneyToBeCollected = 0;
         MoneyFromSellText.GetComponent<TextMeshProUGUI>().text = "0";
-        TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
+        TotalMoneyText.GetComponent<TextMeshProUGUI>().text =
+            AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
         //pauseMoneyBales
         foreach (GameObject moneyBale in Spawner.Instance.movingMoneyBaleList)
         {
             moneyBale.transform.DOPause();
         }
+
         MachineManager.x = -0.4f;
         MachineManager.y = 0.5f;
         MachineManager.z = 0.25f;
@@ -91,7 +105,7 @@ public class UIManager : MonoBehaviour
         PickupManager.Instance.SellMoneyWithTruck();
         GameDataManager.Instance.SaveData();
     }
-    
+
     public void OnBeltSpeedUpgradeButton()
     {
         if (GameDataManager.Instance.TotalMoney >= GameDataManager.Instance.BeltSpeedButtonMoney)
@@ -101,17 +115,45 @@ public class UIManager : MonoBehaviour
             GameDataManager.Instance.BeltSpeedButtonMoney += GameDataManager.Instance.BeltSpeedButtonMoney / 1.5f;
             GameDataManager.Instance.beltSpeedButtonLevel++;
 
-            GameDataManager.Instance.TotalMoney -= moneyToDecrease;
-            TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
+            if (GameDataManager.Instance.beltSpeedButtonLevel % 3 == 0)
+            {
+                adBeltSpeedButton.SetActive(true);
+                StartCoroutine(AdBeltButtonsDelay(10));
+            }
 
-            ButtonPanel.transform.GetChild(0).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Level - " + GameDataManager.Instance.beltSpeedButtonLevel;
+            GameDataManager.Instance.TotalMoney -= moneyToDecrease;
+            TotalMoneyText.GetComponent<TextMeshProUGUI>().text =
+                AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
+
+            ButtonPanel.transform.GetChild(0).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
+                "Level " + GameDataManager.Instance.beltSpeedButtonLevel;
             ButtonPanel.transform.GetChild(0).transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
                 AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.BeltSpeedButtonMoney) + " $";
-            
+
             GameDataManager.Instance.beltSpeed += (GameDataManager.Instance.beltSpeed * 0.03f);
-        
+
             GameDataManager.Instance.SaveData();
         }
+    }
+
+    public void AdOnBeltSpeedUpgradeButton()
+    {
+        GameDataManager.Instance.BeltSpeedButtonMoney += GameDataManager.Instance.BeltSpeedButtonMoney / 1.5f;
+        GameDataManager.Instance.beltSpeedButtonLevel++;
+
+        TotalMoneyText.GetComponent<TextMeshProUGUI>().text =
+            AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
+
+        ButtonPanel.transform.GetChild(0).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
+            "Level " + GameDataManager.Instance.beltSpeedButtonLevel;
+        ButtonPanel.transform.GetChild(0).transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
+            AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.BeltSpeedButtonMoney) + " $";
+
+        GameDataManager.Instance.beltSpeed += (GameDataManager.Instance.beltSpeed * 0.03f);
+        
+        GameDataManager.Instance.SaveData();
+        
+        adBeltSpeedButton.SetActive(false);
     }
 
     public void OnIncomeUpgradeButton()
@@ -122,12 +164,20 @@ public class UIManager : MonoBehaviour
             GameDataManager.Instance.IncomeButtonMoney += GameDataManager.Instance.IncomeButtonMoney / 2;
             GameDataManager.Instance.offlineProgressNum += GameDataManager.Instance.offlineProgressNum / 5;
             GameDataManager.Instance.incomeButtonLevel++;
+            
+            if (GameDataManager.Instance.incomeButtonLevel % 3 == 0)
+            {
+                adIncomeButton.SetActive(true);
+                StartCoroutine(AdIncomeButtonsDelay(10));
+            }
+            
             GameDataManager.Instance.IncomePerTap++;
-            GameDataManager.Instance.TotalMoney -=moneyToDecrrease;
-            TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
+            GameDataManager.Instance.TotalMoney -= moneyToDecrrease;
+            TotalMoneyText.GetComponent<TextMeshProUGUI>().text =
+                AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
 
             ButtonPanel.transform.GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
-                "Level - " + GameDataManager.Instance.incomeButtonLevel;
+                "Level " + GameDataManager.Instance.incomeButtonLevel;
             ButtonPanel.transform.GetChild(1).transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
                 AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.IncomeButtonMoney) + " $";
 
@@ -135,6 +185,28 @@ public class UIManager : MonoBehaviour
 
             GameDataManager.Instance.SaveData();
         }
+    }
+
+    public void AdOnIncomeUpgradeButton()
+    {
+        GameDataManager.Instance.IncomeButtonMoney += GameDataManager.Instance.IncomeButtonMoney / 2;
+        GameDataManager.Instance.offlineProgressNum += GameDataManager.Instance.offlineProgressNum / 5;
+        GameDataManager.Instance.incomeButtonLevel++;
+        GameDataManager.Instance.IncomePerTap++;
+
+        TotalMoneyText.GetComponent<TextMeshProUGUI>().text =
+            AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
+
+        ButtonPanel.transform.GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
+            "Level " + GameDataManager.Instance.incomeButtonLevel;
+        ButtonPanel.transform.GetChild(1).transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
+            AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.IncomeButtonMoney) + " $";
+
+        MachineManager.Instance.machineIncomeMoney += MachineManager.Instance.machineIncomeMoney * 0.02f;
+
+        GameDataManager.Instance.SaveData();
+        
+        adIncomeButton.SetActive(false);
     }
 
     public void OnWorkerUpgradeButton()
@@ -145,13 +217,20 @@ public class UIManager : MonoBehaviour
             GameDataManager.Instance.WorkerSpeedButtonMoney += GameDataManager.Instance.WorkerSpeedButtonMoney / 2;
             GameDataManager.Instance.workerSpeedButtonLevel++;
 
+            if (GameDataManager.Instance.workerSpeedButtonLevel % 3 == 0)
+            {
+                adWorkerSpeedButton.SetActive(true);
+                StartCoroutine(AdWorkerButtonsDelay(10));
+            }
+            
             GameDataManager.Instance.TotalMoney -= moneyToDecrease;
-            TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
+            TotalMoneyText.GetComponent<TextMeshProUGUI>().text =
+                AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
 
             GameDataManager.Instance.workerBaseSpeed += GameDataManager.Instance.workerBaseSpeed * 0.03f;
 
             ButtonPanel.transform.GetChild(2).transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text =
-                "Level - " + GameDataManager.Instance.workerSpeedButtonLevel;
+                "Level " + GameDataManager.Instance.workerSpeedButtonLevel;
             ButtonPanel.transform.GetChild(2).transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text =
                 AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.WorkerSpeedButtonMoney) + " $";
 
@@ -159,9 +238,26 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void AdOnWorkerUpgradeButton()
+    {
+        GameDataManager.Instance.WorkerSpeedButtonMoney += GameDataManager.Instance.WorkerSpeedButtonMoney / 2;
+        GameDataManager.Instance.workerSpeedButtonLevel++;
+        
+
+        GameDataManager.Instance.workerBaseSpeed += GameDataManager.Instance.workerBaseSpeed * 0.03f;
+
+        ButtonPanel.transform.GetChild(2).transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text =
+            "Level " + GameDataManager.Instance.workerSpeedButtonLevel;
+        ButtonPanel.transform.GetChild(2).transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text =
+            AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.WorkerSpeedButtonMoney) + " $";
+
+        GameDataManager.Instance.SaveData();
+        
+        adWorkerSpeedButton.SetActive(false);
+    }
+
     public void OnAddMachineButton()
     {
-        
         if (GameDataManager.Instance.TotalMoney >= GameDataManager.Instance.AddMachineButtonMoney)
         {
             bool controllForButtonInteract = false;
@@ -171,10 +267,11 @@ public class UIManager : MonoBehaviour
             GameDataManager.Instance.addMachineButtonLevel++;
 
             GameDataManager.Instance.TotalMoney -= moneyToDecrease;
-            TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
+            TotalMoneyText.GetComponent<TextMeshProUGUI>().text =
+                AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
 
             ButtonPanel.transform.GetChild(3).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
-                "Level - " + GameDataManager.Instance.addMachineButtonLevel;
+                "Level " + GameDataManager.Instance.addMachineButtonLevel;
             ButtonPanel.transform.GetChild(3).transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
                 AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.AddMachineButtonMoney) + " $";
 
@@ -187,12 +284,13 @@ public class UIManager : MonoBehaviour
                     {
                         Debug.Log("qwe" + gridIndex);
                         //level 1 şu an veriliyor !!sadece
-                        GameManager.Instance.gridParent.transform.GetChild(gridIndex).gameObject.GetComponent<BoxCollider>()
+                        GameManager.Instance.gridParent.transform.GetChild(gridIndex).gameObject
+                            .GetComponent<BoxCollider>()
                             .enabled = false;
-                            Instantiate(
-                                GameDataManager.Instance.moneyMachineArray[
-                                    GameDataManager.Instance.maxLevelMachineAmount + 1],
-                                GameManager.Instance.gridParent.transform.GetChild(gridIndex).transform);
+                        Instantiate(
+                            GameDataManager.Instance.moneyMachineArray[
+                                GameDataManager.Instance.maxLevelMachineAmount + 1],
+                            GameManager.Instance.gridParent.transform.GetChild(gridIndex).transform);
                         GameDataManager.Instance.gridArray[gridIndex] = 1;
 
                         //Instantiate worker and add to stack
@@ -206,21 +304,104 @@ public class UIManager : MonoBehaviour
                 }
             }
 
-            if(closeInteractibility == true)//CLOSEINTERACT
+            if (closeInteractibility == true) //CLOSEINTERACT
             {
                 addMachineButton.GetComponent<Button>().interactable = false;
             }
+            
+            if (GameDataManager.Instance.addMachineButtonLevel % 3 == 0 && closeInteractibility)
+            {
+                adAddMachineButton.SetActive(true);
+                StartCoroutine(AdMachineButtonsDelay(10));
+            }
+
             GameDataManager.Instance.SaveData();
         }
     }
 
-    public IEnumerator DeactivateForSeconds(Button button,float waitTime)
+    public void AdOnAddMachineButton()
+    {
+        bool controllForButtonInteract = false;
+        bool closeInteractibility = true;
+
+        GameDataManager.Instance.AddMachineButtonMoney += GameDataManager.Instance.AddMachineButtonMoney / 2;
+        GameDataManager.Instance.addMachineButtonLevel++;
+
+        TotalMoneyText.GetComponent<TextMeshProUGUI>().text =
+            AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
+
+        ButtonPanel.transform.GetChild(3).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
+            "Level " + GameDataManager.Instance.addMachineButtonLevel;
+        ButtonPanel.transform.GetChild(3).transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
+            AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.AddMachineButtonMoney) + " $";
+
+        for (int gridIndex = 0; gridIndex < GameDataManager.Instance.gridArray.Length; gridIndex++)
+        {
+            int valueOfGrid = GameDataManager.Instance.gridArray[gridIndex];
+            if (valueOfGrid == 0) //found a position that has no machines
+            {
+                if (controllForButtonInteract == false)
+                {
+                    Debug.Log("qwe" + gridIndex);
+                    //level 1 şu an veriliyor !!sadece
+                    GameManager.Instance.gridParent.transform.GetChild(gridIndex).gameObject
+                        .GetComponent<BoxCollider>()
+                        .enabled = false;
+                    Instantiate(
+                        GameDataManager.Instance.moneyMachineArray[
+                            GameDataManager.Instance.maxLevelMachineAmount + 1],
+                        GameManager.Instance.gridParent.transform.GetChild(gridIndex).transform);
+                    GameDataManager.Instance.gridArray[gridIndex] = 1;
+
+                    //Instantiate worker and add to stack
+                    StartCoroutine(Spawner.Instance.AddWorkerAfterDelay(gridIndex, 1));
+                    controllForButtonInteract = true;
+                }
+                else
+                {
+                    closeInteractibility = false;
+                }
+            }
+        }
+
+        if (closeInteractibility == true) //CLOSEINTERACT
+        {
+            addMachineButton.GetComponent<Button>().interactable = false;
+        }
+
+        GameDataManager.Instance.SaveData();
+        
+        addMachineButton.SetActive(false);
+    }
+
+    public IEnumerator DeactivateForSeconds(Button button, float waitTime)
     {
         button.interactable = false;
         yield return new WaitForSeconds(waitTime);
         button.interactable = true;
     }
     
+    public IEnumerator AdBeltButtonsDelay(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        adBeltSpeedButton.SetActive(false);
+    }
+    public IEnumerator AdIncomeButtonsDelay(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        adIncomeButton.SetActive(false);
+    }
+    public IEnumerator AdWorkerButtonsDelay(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        adWorkerSpeedButton.SetActive(false);
+    }
+    public IEnumerator AdMachineButtonsDelay(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        adAddMachineButton.SetActive(false);
+    }
+
     public void UpdateSound()
     {
         isSoundOn = GameDataManager.Instance.playSound;
@@ -229,6 +410,7 @@ public class UIManager : MonoBehaviour
             soundOff.gameObject.SetActive(true);
             SoundsOff();
         }
+
         if (isSoundOn == 1)
         {
             soundOn.gameObject.SetActive(true);
@@ -244,13 +426,14 @@ public class UIManager : MonoBehaviour
             musicOff.gameObject.SetActive(true);
             MusicOff();
         }
+
         if (isMusicOn == 1)
         {
             musicOn.gameObject.SetActive(true);
             MusicOn();
         }
     }
-    
+
     public void UpdateVibrate()
     {
         isSoundOn = GameDataManager.Instance.playSound;
@@ -259,6 +442,7 @@ public class UIManager : MonoBehaviour
             vibrationOff.gameObject.SetActive(true);
             SoundsOff();
         }
+
         if (isVibrateOn == 1)
         {
             vibrationOn.gameObject.SetActive(true);
@@ -278,7 +462,6 @@ public class UIManager : MonoBehaviour
         GameDataManager.Instance.playMusic = 1;
         musicOff.gameObject.SetActive(false);
         musicOn.gameObject.SetActive(true);
-
     }
 
     public void SoundsOff()
@@ -287,19 +470,21 @@ public class UIManager : MonoBehaviour
         soundOn.gameObject.SetActive(false);
         soundOff.gameObject.SetActive(true);
     }
+
     public void SoundsOn()
     {
         GameDataManager.Instance.playSound = 1;
         soundOff.gameObject.SetActive(false);
         soundOn.gameObject.SetActive(true);
     }
-    
+
     public void VibrationOff()
     {
         GameDataManager.Instance.playSound = 0;
         vibrationOn.gameObject.SetActive(false);
         vibrationOff.gameObject.SetActive(true);
     }
+
     public void VibrationOn()
     {
         GameDataManager.Instance.playSound = 1;
@@ -322,5 +507,4 @@ public class UIManager : MonoBehaviour
         OptionsPanel.SetActive(false);
         InfoPanel.SetActive(false);
     }
-    
 }
