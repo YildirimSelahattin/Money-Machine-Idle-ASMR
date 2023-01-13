@@ -116,7 +116,7 @@ public class MachineManager : MonoBehaviour
                     //doKill
                     if (UIManager.Instance.isSell == true)
                         Debug.Log("Sell");
-                    moneyTemp.transform.DOMove(new Vector3(6.5f, 2f, -20f), (dist / speed) * Time.deltaTime).SetEase(Ease.Linear)
+                    moneyTemp.transform.DOMove(new Vector3(6.5f, 2f, -20f), (dist / -speed) * Time.deltaTime).SetEase(Ease.Linear)
                         .OnComplete(() =>
                         {
                             LastMoveToTruck(new Vector3(x, y, z),moneyTemp);
