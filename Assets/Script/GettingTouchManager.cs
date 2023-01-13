@@ -60,10 +60,6 @@ public class GettingTouchManager : MonoBehaviour
                     gridObjectToOpen = hit.collider.gameObject.transform.parent.transform.parent.gameObject;
                     if (hit.collider.gameObject.transform.CompareTag("AdOpenButton"))// upgrade with ad
                     {
-                        if(true)//if money is enough
-                        {
-
-                        }
                         RewardedAdManager.Instance.GridRewardAd();
                     }
                     else if(hit.collider.gameObject.transform.CompareTag("MoneyOpenButton")) { // upgrade money
@@ -76,17 +72,28 @@ public class GettingTouchManager : MonoBehaviour
                 
                 else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyTapToCollect)) // if it is money tap
                 {
+                    if (moneyTapNumber == 0)
+                    {
+                        UIManager.Instance.tappingHand.SetActive(false);
+                    }
                     moneyTapParticle.gameObject.transform.position=new Vector3(hit.point.x ,hit.point.y+1,hit.point.z);
                     moneyTapParticle.Play();
                     GameDataManager.Instance.TotalMoney += GameDataManager.Instance.IncomePerTap;
                     UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
                     Debug.Log("3");
-                    if( moneyTapNumber > maxTapNumberUntilInterstitial)
+                    moneyTapNumber++;
+                    if ( moneyTapNumber > maxTapNumberUntilInterstitial)
                     {
                         maxTapNumberUntilInterstitial += 5;
                         moneyTapNumber = 0;
                         //request interstitial here
+                        if (InterstitialAdManager.Instance.tapInterstitialAd.IsLoaded())
+                        {
+                            InterstitialAdManager.Instance.ShowInterstitialMoneyTap();
+                        }
+                        UIManager.Instance.tappingHand.SetActive(false);
                     }
+
                 }
             }
 

@@ -113,11 +113,11 @@ public class GameDataManager : MonoBehaviour
                     //UIManager.Instance.addMachineButton.GetComponent<>// interactable yap
                     UIManager.Instance.addMachineButton.GetComponent<Button>().interactable = false;
                 }
+                Debug.Log("sasa");
 
                 // 3D BUTTON SIDE ilkine bakýlamyabilir?
-                for(int gridIndex = 0; gridIndex< gridOpenWithMoneyPrices.Length; gridIndex++)
+                for (int gridIndex = 0; gridIndex< gridOpenWithMoneyPrices.Length; gridIndex++)
                 {
-                    Debug.Log("sasa");
                     if(totalMoney > gridOpenWithMoneyPrices[gridIndex])
                     {
                         UIManager.Instance.gridMoneyOpenInteractableArray[gridIndex].gameObject.SetActive(true);

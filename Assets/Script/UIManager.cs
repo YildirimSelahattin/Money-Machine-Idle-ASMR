@@ -46,13 +46,16 @@ public class UIManager : MonoBehaviour
     public int buttonIndex = 0;
     public GameObject[] gridMoneyOpenInteractableArray;
     public GameObject[] gridMoneyOpenNotInteractableArray;
-
+    public GameObject tappingHand;
+    public GameObject MergeHand;
+    private int addMachineTapAmount;
     void Start()
     {
         if (Instance == null)
         {
             Instance = this;
         }
+        addMachineTapAmount = PlayerPrefs.GetInt("addMachineAmount", 0);
         TotalMoneyText.GetComponent<TextMeshProUGUI>().text = GameDataManager.Instance.TotalMoney.ToString();
         beltSpeedButton = ButtonPanel.transform.GetChild(0).gameObject;
         incomeButton = ButtonPanel.transform.GetChild(1).gameObject;
@@ -280,6 +283,12 @@ public class UIManager : MonoBehaviour
                 {
                     if (controllForButtonInteract == false)
                     {
+                        addMachineTapAmount++;
+                        PlayerPrefs.SetInt("addMachineAmount", addMachineTapAmount);
+                        if (addMachineTapAmount == 2)
+                        {
+                            MergeHand.SetActive(true);
+                        }
                         Debug.Log("qwe" + gridIndex);
                         //level 1 şu an veriliyor !!sadece
                         GameManager.Instance.gridParent.transform.GetChild(gridIndex).gameObject
