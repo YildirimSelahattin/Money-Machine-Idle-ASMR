@@ -9,12 +9,12 @@ public class DayCycle : MonoBehaviour
     public static bool isNight = false;
     [SerializeField] private GameObject inGameLights;
 
+    
     void Start()
     {
         StartCoroutine(DelayDay(3));
     }
 
-    
     private void Update()
     {
         if (transform.rotation.x  > .95f && isNight == false)
