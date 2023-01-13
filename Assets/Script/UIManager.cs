@@ -48,7 +48,7 @@ public class UIManager : MonoBehaviour
     public GameObject[] gridMoneyOpenNotInteractableArray;
     public GameObject tappingHand;
     public GameObject MergeHand;
-    private int addMachineTapAmount;
+    public int addMachineTapAmount;
     void Start()
     {
         if (Instance == null)
@@ -56,6 +56,10 @@ public class UIManager : MonoBehaviour
             Instance = this;
         }
         addMachineTapAmount = PlayerPrefs.GetInt("addMachineAmount", 0);
+        if (addMachineTapAmount == 2)
+        {
+            MergeHand.SetActive(true);
+        }
         TotalMoneyText.GetComponent<TextMeshProUGUI>().text = GameDataManager.Instance.TotalMoney.ToString();
         beltSpeedButton = ButtonPanel.transform.GetChild(0).gameObject;
         incomeButton = ButtonPanel.transform.GetChild(1).gameObject;
