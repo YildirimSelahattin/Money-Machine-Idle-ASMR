@@ -31,6 +31,11 @@ public class MachineTriggerManager : MonoBehaviour
             if (gameObject.GetComponent<MachineManager>().levelIndexOfObject < 6) //if the machine is mergeable
             {
                 Debug.Log("EMÝR");
+                if (PlayerPrefs.GetFloat("isFirstMerge", 1)==1)
+                {
+                    PlayerPrefs.SetFloat("isFirstMerge", -1);
+                    UIManager.Instance.MergeHand.SetActive(false);
+                }
                 int targetGrid = other.gameObject.GetComponent<MachineManager>().gridIndexNumberOfObject;
                 int currentGrid = gameObject.transform.parent.tag[transform.parent.tag.Length - 1] - '0';
                 //make changes on grid array
