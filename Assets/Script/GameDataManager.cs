@@ -126,11 +126,12 @@ public class GameDataManager : MonoBehaviour
                     UIManager.Instance.addMachineButton.GetComponent<Button>().interactable = false;
                 }
 
-                Debug.Log("sasa");
+                
 
                 // 3D BUTTON SIDE ilkine bak�lamyabilir?
                 for (int gridIndex = 0; gridIndex < gridOpenWithMoneyPrices.Length; gridIndex++)
                 {
+                    Debug.Log("sasa");
                     if (gridArray[gridIndex] == -1)
                     {
                         if (totalMoney > gridOpenWithMoneyPrices[gridIndex])

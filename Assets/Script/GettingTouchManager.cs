@@ -148,5 +148,6 @@ public class GettingTouchManager : MonoBehaviour
             UIManager.Instance.addMachineButton.GetComponent<Button>().interactable = true;
         }
         gridObjectToOpen = null;
+        UIManager.Instance.CloseGridAdButtons();
     }
 }
