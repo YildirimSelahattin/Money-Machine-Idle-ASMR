@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44824708, g: 0.4982729, b: 0.57558274, a: 1}
+  m_IndirectSpecularColor: {r: 0.4456612, g: 0.49499875, b: 0.5729786, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1675,6 +1675,39 @@ Transform:
   m_Father: {fileID: 271197277}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: -101.919, z: 0}
+--- !u!1 &154045012
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 154045013}
+  m_Layer: 0
+  m_Name: TutorialHands
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &154045013
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154045012}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.31, y: 3.09, z: -18.15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 676234500}
+  - {fileID: 1531810197}
+  m_Father: {fileID: 0}
+  m_RootOrder: 34
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &164839801
 GameObject:
   m_ObjectHideFlags: 0
@@ -8478,7 +8511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a34e193949cd6c48b9a8434b7818a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yOffset: 2
+  yOffset: 1.5
 --- !u!64 &676234497
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8513,7 +8546,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: def4883c24d8f5c489fdf966293f943b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8550,14 +8583,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676234495}
-  m_LocalRotation: {x: -0.6963643, y: 0.12278779, z: 0.12278779, w: 0.6963643}
-  m_LocalPosition: {x: 0.79, y: 3.64, z: 1.37}
-  m_LocalScale: {x: 0.22218, y: 0.22218, z: 0.22218}
+  m_LocalRotation: {x: -0.054098688, y: 0.8346834, z: -0.52092427, w: -0.17033774}
+  m_LocalPosition: {x: 4.38, y: 0, z: 19.17}
+  m_LocalScale: {x: 0.1937631, y: 0.22218, z: 0.2301784}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 34
-  m_LocalEulerAnglesHint: {x: -90, y: 20, z: 0}
+  m_Father: {fileID: 154045013}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -297.372, y: -150.271, z: 10.928}
 --- !u!1 &684675026
 GameObject:
   m_ObjectHideFlags: 0
@@ -18334,7 +18367,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: e856020f83d154149865dc8f2b51bc67, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -18371,14 +18404,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1531810192}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.84, y: 2.54, z: -16.18}
-  m_LocalScale: {x: 0.22218, y: 0.22218, z: 0.22218}
+  m_LocalRotation: {x: -0, y: 0.92387956, z: -0.38268343, w: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.22218002, y: 0.22218001, z: 0.22217998}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 35
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_Father: {fileID: 154045013}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 135, y: 0, z: -180}
 --- !u!1 &1535577668
 GameObject:
   m_ObjectHideFlags: 0
@@ -19024,6 +19057,7 @@ MonoBehaviour:
   - {fileID: 1915253825}
   tappingHand: {fileID: 676234495}
   MergeHand: {fileID: 1531810192}
+  addMachineTapAmount: 0
 --- !u!4 &1579515557
 Transform:
   m_ObjectHideFlags: 0
