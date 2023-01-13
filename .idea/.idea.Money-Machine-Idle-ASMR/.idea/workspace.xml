@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12e15ff2-c41a-445c-99a6-3e761c781f24" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Money-Machine-Idle-ASMR/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Money-Machine-Idle-ASMR/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Material/-test/safe mats/Material.019.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Material/-test/safe mats/Material.019.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particles/particleMoneyMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Particles/particleMoneyMat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/GameDataManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/GameDataManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +116,7 @@
       <workItem from="1672904232883" duration="2235000" />
       <workItem from="1673014210089" duration="1282000" />
       <workItem from="1673421618181" duration="13955000" />
-      <workItem from="1673592046976" duration="9373000" />
+      <workItem from="1673592046976" duration="9412000" />
     </task>
     <servers />
   </component>
