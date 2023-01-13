@@ -65,7 +65,9 @@ public class UIManager : MonoBehaviour
         incomeButton = ButtonPanel.transform.GetChild(0).transform.GetChild(1).gameObject;
         workerSpeedButton = ButtonPanel.transform.GetChild(0).transform.GetChild(2).gameObject;
         addMachineButton = ButtonPanel.transform.GetChild(0).transform.GetChild(3).gameObject;
-        
+
+        StartCoroutine(AdButtonsDelay());
+
         beltSpeedButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
             "LEVEL " + GameDataManager.Instance.beltSpeedButtonLevel;
         beltSpeedButton.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
@@ -85,6 +87,16 @@ public class UIManager : MonoBehaviour
             "LEVEL " + GameDataManager.Instance.addMachineButtonLevel;
         addMachineButton.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
             AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.AddMachineButtonMoney) + " $";
+    }
+
+    IEnumerator AdButtonsDelay()
+    {
+        yield return new WaitForEndOfFrame();
+        adAddMachineButton.SetActive(false);
+        adIncomeButton.SetActive(false);
+        adBeltSpeedButton.SetActive(false);
+        adWorkerSpeedButton.SetActive(false);
+        ButtonPanel.transform.GetChild(1).GetComponent<HorizontalLayoutGroup>().enabled = false;
     }
 
     public void OnSellButton()
@@ -319,7 +331,7 @@ public class UIManager : MonoBehaviour
                 addMachineButton.GetComponent<Button>().interactable = false;
             }
             
-            if (GameDataManager.Instance.addMachineButtonLevel % 3 == 0 && closeInteractibility)
+            if (GameDataManager.Instance.addMachineButtonLevel % 3 == 0 && closeInteractibility == false)
             {
                 adAddMachineButton.SetActive(true);
                 addMachineButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =

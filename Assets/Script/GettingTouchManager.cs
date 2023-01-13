@@ -18,8 +18,9 @@ public class GettingTouchManager : MonoBehaviour
     [SerializeField] LayerMask touchableLayerOnlyUpgrade;
     [SerializeField] LayerMask touchableLayerOnlyTapToCollect;
     [SerializeField] LayerMask touchableLayerEverything;
+    [SerializeField] LayerMask CatLayer;
     [SerializeField] ParticleSystem moneyTapParticle;
-    public int maxTapNumberUntilInterstitial = 10;
+    public int maxTapNumberUntilInterstitial = 15;
     public int moneyTapNumber = 0;
     // Start is called before the first frame update
     public GameObject objectToDrag;
@@ -84,12 +85,17 @@ public class GettingTouchManager : MonoBehaviour
                     moneyTapNumber++;
                     if ( moneyTapNumber > maxTapNumberUntilInterstitial)
                     {
-                        maxTapNumberUntilInterstitial += 5;
+                        maxTapNumberUntilInterstitial += 10;
                         //request interstitial here
                         InterstitialAdManager.Instance.ShowInterstitial();
                         moneyTapNumber = 0;
                     }
 
+                }
+                
+                else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, CatLayer)) // if it is cat tap
+                {
+                    Debug.LogError("dasdasdasdasdasddasdsadadasdsdsadasdas");
                 }
             }
 
@@ -103,6 +109,19 @@ public class GettingTouchManager : MonoBehaviour
                          objectToDrag.transform.DOMove(
                              new Vector3(hit.point.x, objectToDrag.transform.position.y, hit.point.z), .3f);
                          Debug.Log("POINTtt"+hit.point);
+                }
+            }
+            
+            else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Stationary && objectToDrag != null)
+            {
+
+                Debug.Log("POINT");
+                // This is actions when finger/cursor pressed on screen
+                if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerEverything))
+                {
+                    objectToDrag.transform.DOMove(
+                        new Vector3(hit.point.x, objectToDrag.transform.position.y, hit.point.z), .3f);
+                    Debug.Log("POINTtt"+hit.point);
                 }
             }
 
