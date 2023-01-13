@@ -26,14 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5139818023564295301}
-  m_LocalRotation: {x: -0.42036185, y: -0, z: -0, w: 0.9073566}
-  m_LocalPosition: {x: 0, y: 2.46, z: 0.8699999}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0.7071068, w: 0}
+  m_LocalPosition: {x: -0.11, y: 2.1000001, z: -0.11999953}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7481616944913764317}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -49.715, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: -180, z: 0}
 --- !u!33 &1966023170372073296
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fd148ea5e9aa92e47b5ce4afd0f7133b, type: 2}
+  - {fileID: 2100000, guid: 9ba47061267066f48b0a37a38d9ffb48, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 7481616944056428400}
   m_Layer: 3
   m_Name: OpenWithAd
-  m_TagString: Untagged
+  m_TagString: AdOpenButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,14 +124,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7481616944056428406}
-  m_LocalRotation: {x: -0.42036185, y: -0, z: -0, w: 0.9073566}
-  m_LocalPosition: {x: -0.93, y: 2.46, z: 0.8699999}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0.7071068, w: 0}
+  m_LocalPosition: {x: -0.28, y: 2.64, z: 1.84}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.26}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7481616944913764317}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -49.715, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: -180, z: 0}
 --- !u!33 &7481616944056428402
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -160,7 +160,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ffa1d779de5973342bb11000f65d17fc, type: 2}
+  - {fileID: 2100000, guid: 033b4a56b7252814e9977661e4b21c43, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 7481616944629816630}
   m_Layer: 3
   m_Name: OpenMoney
-  m_TagString: Untagged
+  m_TagString: MoneyOpenButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -222,14 +222,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7481616944629816628}
-  m_LocalRotation: {x: -0.42036185, y: -0, z: -0, w: 0.9073566}
-  m_LocalPosition: {x: 0, y: 2.46, z: 0.8699999}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0.7071068, w: 0}
+  m_LocalPosition: {x: -0.11, y: 2.1000001, z: -0.11999953}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7481616944913764317}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -49.715, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: -180, z: 0}
 --- !u!33 &7481616944629816624
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -258,7 +258,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fd148ea5e9aa92e47b5ce4afd0f7133b, type: 2}
+  - {fileID: 2100000, guid: 5aa6e0cd6f0c67e478016372df8d03ed, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

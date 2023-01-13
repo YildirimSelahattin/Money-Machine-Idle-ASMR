@@ -142,6 +142,7 @@ public class GettingTouchManager : MonoBehaviour
         gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_UPDATE_BUTTON_INDEX).transform.GetChild(0).gameObject.SetActive(false); //close ad upgrade button
         gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_UPDATE_BUTTON_INDEX).transform.GetChild(1).gameObject.SetActive(false); //close money upgrade button
         gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_UPDATE_BUTTON_INDEX).transform.GetChild(3).gameObject.SetActive(false); //close money upgrade button
+        gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_SURFACE_INDEX).transform.GetChild(0).gameObject.SetActive(false); // open grid surface if its opened before
         gridObjectToOpen.GetComponent<BoxCollider>().enabled = true;
         GameDataManager.Instance.gridArray[
                 gridObjectToOpen.transform.tag[gridObjectToOpen.transform.tag.Length - 1] - '0'] =

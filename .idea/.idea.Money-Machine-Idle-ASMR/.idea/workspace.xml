@@ -1,7 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="12e15ff2-c41a-445c-99a6-3e761c781f24" name="Changes" comment="" />
+    <list default="true" id="12e15ff2-c41a-445c-99a6-3e761c781f24" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Money-Machine-Idle-ASMR/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Money-Machine-Idle-ASMR/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/machine-1 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/machine-1 1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/upgradeButtons.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/upgradeButtons.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/GameDataManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/GameDataManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/GettingTouchManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/GettingTouchManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/MachineManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MachineManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/UIManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/PulpMat.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/PulpMat.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/PulpPipe.shadergraph" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/PulpPipe.shadergraph.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/Group.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/Group.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/MergeHandIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/MergeHandIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/mergeHandMat.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/mergeHandMat.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/tapHandIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/tapHandIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/tapHandMat.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/tapHandMat.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -114,6 +141,7 @@
       <workItem from="1672904232883" duration="2235000" />
       <workItem from="1673014210089" duration="1282000" />
       <workItem from="1673421618181" duration="13955000" />
+      <workItem from="1673592046976" duration="3306000" />
     </task>
     <servers />
   </component>

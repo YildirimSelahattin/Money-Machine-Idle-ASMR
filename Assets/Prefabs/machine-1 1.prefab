@@ -100,7 +100,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 1
+  m_text: LEVEL 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e122122db32a87b4c801689a0f0c040e, type: 2}
   m_sharedMaterial: {fileID: -1381690141440797748, guid: e122122db32a87b4c801689a0f0c040e,
@@ -128,8 +128,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 8
-  m_fontSizeBase: 8
+  m_fontSize: 5.62
+  m_fontSizeBase: 5.62
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -378,7 +378,22 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1488954605156408836, guid: 41dd36208627fdc4095d4e1097d98437,
         type: 3}
+      propertyPath: <LineWidth>k__BackingField._value
+      value: 0.017
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488954605156408836, guid: 41dd36208627fdc4095d4e1097d98437,
+        type: 3}
+      propertyPath: <InnerColor>k__BackingField._value.b
+      value: 0.13843165
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488954605156408836, guid: 41dd36208627fdc4095d4e1097d98437,
+        type: 3}
       propertyPath: <InnerColor>k__BackingField._value.g
+      value: 0.3662527
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488954605156408836, guid: 41dd36208627fdc4095d4e1097d98437,
+        type: 3}
+      propertyPath: <InnerColor>k__BackingField._value.r
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1488954605156408836, guid: 41dd36208627fdc4095d4e1097d98437,
@@ -389,7 +404,7 @@ PrefabInstance:
     - target: {fileID: 1488954605156408836, guid: 41dd36208627fdc4095d4e1097d98437,
         type: 3}
       propertyPath: <RemoveSegments>k__BackingField._value
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1488954605156408839, guid: 41dd36208627fdc4095d4e1097d98437,
         type: 3}

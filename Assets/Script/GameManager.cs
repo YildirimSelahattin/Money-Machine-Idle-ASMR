@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
             if (valueOfGrid > -1)// should gird base be opened
             {
                 gridParent.transform.GetChild(index).GetChild(GRID_SURFACE_INDEX).gameObject.GetComponent<MeshRenderer>().material = openedGridMat; // open grid surface if its opened before
+                gridParent.transform.GetChild(index).GetChild(GRID_SURFACE_INDEX).GetChild(0).gameObject.SetActive(false); // open grid surface if its opened before
                 gridParent.transform.GetChild(index).GetChild(GRID_UPDATE_BUTTON_INDEX).gameObject.SetActive(false);
             }
             if(valueOfGrid == 0) // should snap grid be opened
