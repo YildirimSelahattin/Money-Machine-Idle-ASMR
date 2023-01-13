@@ -143,7 +143,10 @@ public class RewardedAdManager : MonoBehaviour
     }
     public void HandleRewardedAdLoadedGrid(object sender, EventArgs args)
     {
-        UIManager.Instance.OpenGridAdButtons();
+        if(UIManager.Instance != null)
+        {
+            UIManager.Instance.OpenGridAdButtons();
+        }
     }
     public void HandleUserEarnedGridReward(object sender, Reward args)
     {
