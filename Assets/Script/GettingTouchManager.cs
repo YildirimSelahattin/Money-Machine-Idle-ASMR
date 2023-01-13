@@ -89,7 +89,6 @@ public class GettingTouchManager : MonoBehaviour
                         InterstitialAdManager.Instance.ShowInterstitial();
                         moneyTapNumber = 0;
                     }
-
                 }
             }
 
