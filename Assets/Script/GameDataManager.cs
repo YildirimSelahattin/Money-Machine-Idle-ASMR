@@ -67,82 +67,10 @@ public class GameDataManager : MonoBehaviour
         set
         {
             totalMoney = GetOnly1DigitAfterPoint(value);
-            if (UIManager.Instance != null)
-            {
-                // UI BUTTON S�DE
-                if (totalMoney >= BeltSpeedButtonMoney) //activate belt speed button
-                {
-                    // interactable yap UIManager.Instance.beltSpeedButton.GetComponent<>// interactable yap
-                    UIManager.Instance.beltSpeedButton.GetComponent<Button>().interactable = true;
-                }
-                else
-                {
-                    // interactable yap UIManager.Instance.beltSpeedButton.GetComponent<>// interactable yap
-                    UIManager.Instance.beltSpeedButton.GetComponent<Button>().interactable = false;
-                }
-
-                if (totalMoney >= IncomeButtonMoney) //activate belt speed button
-                {
-                    //UIManager.Instance.incomeButton.GetComponent<>// interactable yap
-                    UIManager.Instance.incomeButton.GetComponent<Button>().interactable = true;
-                }
-                else //activate belt speed button
-                {
-                    UIManager.Instance.incomeButton.GetComponent<Button>().interactable = false;
-                    //UIManager.Instance.incomeButton.GetComponent<>// interactable yap
-                }
-
-                if (totalMoney >= WorkerSpeedButtonMoney) //activate belt speed button
-                {
-                    //UIManager.Instance.workerSpeedButton.GetComponent<>// interactable yap
-                    UIManager.Instance.workerSpeedButton.GetComponent<Button>().interactable = true;
-                }
-                else
-                {
-                    //UIManager.Instance.workerSpeedButton.GetComponent<>// interactable yap
-                    UIManager.Instance.workerSpeedButton.GetComponent<Button>().interactable = false;
-                }
-
-                if (totalMoney >= AddMachineButtonMoney) //activate belt speed button
-                {
-                    foreach (int valueOfGrid in GameDataManager.Instance.gridArray)
-                    {
-                        if (valueOfGrid == 0)
-                        {
-                            UIManager.Instance.addMachineButton.GetComponent<Button>().interactable = true;
-                            break;
-                        }
-                    }
-                }
-                else //activate belt speed button
-                {
-                    //UIManager.Instance.addMachineButton.GetComponent<>// interactable yap
-                    UIManager.Instance.addMachineButton.GetComponent<Button>().interactable = false;
-                }
-
-                
-
-                // 3D BUTTON SIDE ilkine bak�lamyabilir?
-                for (int gridIndex = 0; gridIndex < gridOpenWithMoneyPrices.Length; gridIndex++)
-                {
-                    Debug.Log("sasa");
-                    if (gridArray[gridIndex] == -1)
-                    {
-                        if (totalMoney > gridOpenWithMoneyPrices[gridIndex])
-                        {
-                            UIManager.Instance.gridMoneyOpenInteractableArray[gridIndex].gameObject.SetActive(true);
-                            UIManager.Instance.gridMoneyOpenNotInteractableArray[gridIndex].gameObject.SetActive(false);
-                        }
-                        else
-                        {
-                            UIManager.Instance.gridMoneyOpenInteractableArray[gridIndex].gameObject.SetActive(false);
-                            UIManager.Instance.gridMoneyOpenNotInteractableArray[gridIndex].gameObject.SetActive(true);
-                        }
-                    }
-                }
-            }
+      
         }
     }
+    
 
     public float workerBaseSpeed;
     public float beltSpeed;
@@ -233,5 +161,80 @@ public class GameDataManager : MonoBehaviour
         //Debug.Log((float)System.Math.Round(number, 1)+"aaa");
         //return (float)System.Math.Round(number, 1);
         return (float)((int)number * 100f) / 100f;
+}
+    public void ControlButtons()
+    {
+
+        // UI BUTTON S�DE
+        if (totalMoney >= BeltSpeedButtonMoney) //activate belt speed button
+        {
+            // interactable yap UIManager.Instance.beltSpeedButton.GetComponent<>// interactable yap
+            UIManager.Instance.beltSpeedButton.GetComponent<Button>().interactable = true;
+        }
+        else
+        {
+            // interactable yap UIManager.Instance.beltSpeedButton.GetComponent<>// interactable yap
+            UIManager.Instance.beltSpeedButton.GetComponent<Button>().interactable = false;
+        }
+
+        if (totalMoney >= IncomeButtonMoney) //activate belt speed button
+        {
+            //UIManager.Instance.incomeButton.GetComponent<>// interactable yap
+            UIManager.Instance.incomeButton.GetComponent<Button>().interactable = true;
+        }
+        else //activate belt speed button
+        {
+            UIManager.Instance.incomeButton.GetComponent<Button>().interactable = false;
+            //UIManager.Instance.incomeButton.GetComponent<>// interactable yap
+        }
+
+        if (totalMoney >= WorkerSpeedButtonMoney) //activate belt speed button
+        {
+            //UIManager.Instance.workerSpeedButton.GetComponent<>// interactable yap
+            UIManager.Instance.workerSpeedButton.GetComponent<Button>().interactable = true;
+        }
+        else
+        {
+            //UIManager.Instance.workerSpeedButton.GetComponent<>// interactable yap
+            UIManager.Instance.workerSpeedButton.GetComponent<Button>().interactable = false;
+        }
+
+        if (totalMoney >= AddMachineButtonMoney) //activate belt speed button
+        {
+            foreach (int valueOfGrid in GameDataManager.Instance.gridArray)
+            {
+                if (valueOfGrid == 0)
+                {
+                    UIManager.Instance.addMachineButton.GetComponent<Button>().interactable = true;
+                    break;
+                }
+            }
+        }
+        else //activate belt speed button
+        {
+            //UIManager.Instance.addMachineButton.GetComponent<>// interactable yap
+            UIManager.Instance.addMachineButton.GetComponent<Button>().interactable = false;
+        }
+
+
+
+        // 3D BUTTON SIDE ilkine bak�lamyabilir?
+        for (int gridIndex = 0; gridIndex < gridOpenWithMoneyPrices.Length; gridIndex++)
+        {
+            Debug.Log("sasa");
+            if (gridArray[gridIndex] == -1)
+            {
+                if (totalMoney > gridOpenWithMoneyPrices[gridIndex])
+                {
+                    UIManager.Instance.gridMoneyOpenInteractableArray[gridIndex].gameObject.SetActive(true);
+                    UIManager.Instance.gridMoneyOpenNotInteractableArray[gridIndex].gameObject.SetActive(false);
+                }
+                else
+                {
+                    UIManager.Instance.gridMoneyOpenInteractableArray[gridIndex].gameObject.SetActive(false);
+                    UIManager.Instance.gridMoneyOpenNotInteractableArray[gridIndex].gameObject.SetActive(true);
+                }
+            }
+        }
     }
 }

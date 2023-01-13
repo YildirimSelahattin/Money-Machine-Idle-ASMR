@@ -88,6 +88,8 @@ public class UIManager : MonoBehaviour
             "LEVEL " + GameDataManager.Instance.addMachineButtonLevel;
         addMachineButton.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
             AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.AddMachineButtonMoney) + " $";
+
+        GameDataManager.Instance.ControlButtons();
     }
 
     IEnumerator AdButtonsDelay()
