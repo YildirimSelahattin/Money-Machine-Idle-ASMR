@@ -19,8 +19,8 @@ public class GettingTouchManager : MonoBehaviour
     [SerializeField] LayerMask touchableLayerOnlyTapToCollect;
     [SerializeField] LayerMask touchableLayerEverything;
     [SerializeField] ParticleSystem moneyTapParticle;
-    int maxTapNumberUntilInterstitial = 10;
-    int moneyTapNumber = 0;
+    public int maxTapNumberUntilInterstitial = 10;
+    public int moneyTapNumber = 0;
     // Start is called before the first frame update
     public GameObject objectToDrag;
     public GameObject objectMoney;
@@ -85,13 +85,9 @@ public class GettingTouchManager : MonoBehaviour
                     if ( moneyTapNumber > maxTapNumberUntilInterstitial)
                     {
                         maxTapNumberUntilInterstitial += 5;
-                        moneyTapNumber = 0;
                         //request interstitial here
-                        if (InterstitialAdManager.Instance.tapInterstitialAd.IsLoaded())
-                        {
-                            InterstitialAdManager.Instance.ShowInterstitialMoneyTap();
-                        }
-                        UIManager.Instance.tappingHand.SetActive(false);
+                        InterstitialAdManager.Instance.ShowInterstitial();
+                        moneyTapNumber = 0;
                     }
 
                 }
