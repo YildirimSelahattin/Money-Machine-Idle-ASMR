@@ -90,7 +90,6 @@ public class GettingTouchManager : MonoBehaviour
                         InterstitialAdManager.Instance.ShowInterstitial();
                         moneyTapNumber = 0;
                     }
-
                 }
                 
                 else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, CatLayer)) // if it is cat tap
@@ -168,5 +167,6 @@ public class GettingTouchManager : MonoBehaviour
             UIManager.Instance.addMachineButton.GetComponent<Button>().interactable = true;
         }
         gridObjectToOpen = null;
+        UIManager.Instance.CloseGridAdButtons();
     }
 }

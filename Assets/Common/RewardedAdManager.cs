@@ -73,7 +73,8 @@ public class RewardedAdManager : MonoBehaviour
 #endif
 
         this.rewardedGridAd = new RewardedAd(adUnitId);
-
+        // Called when an ad request has successfully loaded.
+        this.rewardedGridAd.OnAdLoaded += HandleRewardedAdLoadedGrid;
         /*
                 // Called when an ad request has successfully loaded.
                 this.rewardedAd.OnAdLoaded += HandleRewardedAdLoaded;
@@ -139,8 +140,11 @@ public class RewardedAdManager : MonoBehaviour
         OfflineProgress.Instance.OfflineRewardPanel.SetActive(false);
         
         RequestRewarded();
-    }    
-    
+    }
+    public void HandleRewardedAdLoadedGrid(object sender, EventArgs args)
+    {
+        UIManager.Instance.OpenGridAdButtons();
+    }
     public void HandleUserEarnedGridReward(object sender, Reward args)
     {
         GettingTouchManager.Instance.GiveGridReward();

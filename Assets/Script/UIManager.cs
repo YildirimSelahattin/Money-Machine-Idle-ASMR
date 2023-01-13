@@ -46,6 +46,7 @@ public class UIManager : MonoBehaviour
     public int buttonIndex = 0;
     public GameObject[] gridMoneyOpenInteractableArray;
     public GameObject[] gridMoneyOpenNotInteractableArray;
+    public GameObject[] gridAddArray;
     public GameObject tappingHand;
     public GameObject MergeHand;
     public int addMachineTapAmount;
@@ -395,7 +396,21 @@ public class UIManager : MonoBehaviour
         
         adAddMachineButton.SetActive(false);
     }
+    public void OpenGridAdButtons()
+    {
+        foreach (GameObject adButton in gridAddArray)
+        {
+            adButton.SetActive(true);
+        }
+    }
 
+    public void CloseGridAdButtons()
+    {
+        foreach (GameObject adButton in gridAddArray)
+        {
+            adButton.SetActive(false);
+        }
+    }
     public IEnumerator DeactivateForSeconds(Button button, float waitTime)
     {
         button.interactable = false;

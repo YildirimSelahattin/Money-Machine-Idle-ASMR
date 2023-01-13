@@ -26,7 +26,7 @@
              KeyValuePair<int, string> pair = abbrevations.ElementAt(i);
              if (Mathf.Abs(number) >= pair.Key)
              {
-                 int roundedNumber = Mathf.FloorToInt(number / pair.Key);
+                 float roundedNumber =number / pair.Key;
                  return roundedNumber.ToString() + pair.Value;
              }
          }
