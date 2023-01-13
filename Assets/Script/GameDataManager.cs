@@ -168,9 +168,6 @@ public class GameDataManager : MonoBehaviour
         workerBaseSpeed=PlayerPrefs.GetFloat("WorkerBaseSpeed", 3);
         ///////////////////////////////////////////
         /// Buttons
-        
-
-        moneyToBeCollected = PlayerPrefs.GetFloat("MoneyToBeCollected", 0);
         workerSpeedButtonLevel = PlayerPrefs.GetInt("WorkerSpeedButtonLevel", workerSpeedButtonLevel);
         addMachineButtonLevel= PlayerPrefs.GetInt("AddMachineButtonLevel", addMachineButtonLevel);
         incomeButtonLevel = PlayerPrefs.GetInt("IncomeButtonLevel", incomeButtonLevel);

@@ -93,7 +93,6 @@ public class GettingTouchManager : MonoBehaviour
                         }
                         UIManager.Instance.tappingHand.SetActive(false);
                     }
-
                 }
             }
 

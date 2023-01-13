@@ -149,7 +149,12 @@ public class MachineManager : MonoBehaviour
         Spawner.Instance.movingMoneyBaleList.Remove(moneyTemp);
         moneyTemp.transform.SetParent(goPos.transform);
         moneyTemp.transform.DORotate(new Vector3(-90f, 0, 0), 0.2f);
-        moneyTemp.transform.DOLocalJump(posToMoveForThisMoney, 10,1,1.5f).SetEase(Ease.OutBounce);
+        moneyTemp.transform.DOLocalJump(posToMoveForThisMoney, 10,1,1.5f).SetEase(Ease.OutBounce).OnComplete(()=>
+        {
+            GameDataManager.Instance.moneyToBeCollected += GameDataManager.Instance.GetOnly1DigitAfterPoint(machineIncomeMoney);
+            _tempText.text = AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.GetOnly1DigitAfterPoint(GameDataManager.Instance.moneyToBeCollected));
+            GameDataManager.Instance.SaveData();
+        });
     }
     public IEnumerator WaitAndPrint()
     {
@@ -174,8 +179,6 @@ public class MachineManager : MonoBehaviour
             if (i == 9)
             {
                 RadialSegmentNumber = 10;
-                GameDataManager.Instance.moneyToBeCollected += machineIncomeMoney;
-                _tempText.text = AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.moneyToBeCollected);
                 GameDataManager.Instance.SaveData();
                 MoneyMove();
                 isFinishedCount = true;
