@@ -17,8 +17,8 @@ public class MergeHandMove : MonoBehaviour
     public IEnumerator MergeMove()
     {
         yield return new WaitForSeconds(0.15f);
-        transform.DOMove(GameManager.Instance.gridParent.transform.GetChild(1).transform.position, 1f).OnComplete(() =>
-           transform.DOMove(startPos, 0.2f).OnComplete(() => StartCoroutine(MergeMove()))
+        transform.DOMoveX(GameManager.Instance.gridParent.transform.GetChild(1).transform.position.x, 1f).OnComplete(() =>
+           transform.DOMoveX(startPos.x, 0.2f).OnComplete(() => StartCoroutine(MergeMove()))
         );
     }
 }
