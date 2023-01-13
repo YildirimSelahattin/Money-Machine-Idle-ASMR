@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4456612, g: 0.49499875, b: 0.5729786, a: 1}
+  m_IndirectSpecularColor: {r: 0.44824708, g: 0.4982729, b: 0.57558274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2744,7 +2744,7 @@ PrefabInstance:
     - target: {fileID: 5139818023564295301, guid: 03955f9cccf85f04bb4e4764c4cff8b1,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7481616944056428401, guid: 03955f9cccf85f04bb4e4764c4cff8b1,
         type: 3}
@@ -3442,7 +3442,7 @@ PrefabInstance:
     - target: {fileID: 5139818023564295301, guid: 03955f9cccf85f04bb4e4764c4cff8b1,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7481616944056428401, guid: 03955f9cccf85f04bb4e4764c4cff8b1,
         type: 3}
@@ -5939,7 +5939,7 @@ PrefabInstance:
     - target: {fileID: 5139818023564295301, guid: 03955f9cccf85f04bb4e4764c4cff8b1,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7481616944056428401, guid: 03955f9cccf85f04bb4e4764c4cff8b1,
         type: 3}
@@ -19143,7 +19143,7 @@ PrefabInstance:
     - target: {fileID: 5139818023564295301, guid: 03955f9cccf85f04bb4e4764c4cff8b1,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7481616944056428401, guid: 03955f9cccf85f04bb4e4764c4cff8b1,
         type: 3}
@@ -19343,12 +19343,12 @@ MonoBehaviour:
   gridArray: 000000000000000000000000000000000000000000000000
   maxLevelMachineAmount: 0
   gridOpenWithMoneyPrices:
-  - 10
-  - 10
-  - 10
-  - 10
-  - 10
-  - 10
+  - 0
+  - 0
+  - 40000
+  - 500000
+  - 1000000
+  - 5000000
   incomeButtonMoney: 6
   addMachineButtonMoney: 7
   workerSpeedButtonMoney: 7
@@ -22623,7 +22623,7 @@ PrefabInstance:
     - target: {fileID: 5139818023564295301, guid: 03955f9cccf85f04bb4e4764c4cff8b1,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7481616944056428401, guid: 03955f9cccf85f04bb4e4764c4cff8b1,
         type: 3}
@@ -26537,7 +26537,7 @@ PrefabInstance:
     - target: {fileID: 5139818023564295301, guid: 03955f9cccf85f04bb4e4764c4cff8b1,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7481616944056428401, guid: 03955f9cccf85f04bb4e4764c4cff8b1,
         type: 3}
