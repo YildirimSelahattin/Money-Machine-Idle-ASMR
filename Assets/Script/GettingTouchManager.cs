@@ -5,6 +5,7 @@ using DG.Tweening;
 using Unity.VisualScripting;
 using TMPro;
 using UnityEngine.UI;
+
 public class GettingTouchManager : MonoBehaviour
 {
     public static GettingTouchManager Instance;

@@ -8,7 +8,6 @@ public class DayCycle : MonoBehaviour
 {
     public static bool isNight = false;
     [SerializeField] private GameObject inGameLights;
-
     
     void Start()
     {

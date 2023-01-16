@@ -2,14 +2,6 @@
  using System.Collections.Generic;
  using System.Linq;
  
- public class FormatNumbers : MonoBehaviour
- {    
-     void Start()
-     {
-         //Some tests
-     }    
- }
- 
  public static class AbbrevationUtility
  {
      private static readonly SortedDictionary<int, string> abbrevations = new SortedDictionary<int, string>
