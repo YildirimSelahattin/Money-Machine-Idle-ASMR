@@ -8,7 +8,7 @@ public class SafeArea : MonoBehaviour
 {
     //Responsive Settings
     //Awake Dene
-    void Update()
+    void Start()
     {
         var rectTransform = GetComponent<RectTransform>();
         var safeArea = Screen.safeArea;

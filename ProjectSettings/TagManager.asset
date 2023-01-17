@@ -21,6 +21,7 @@ TagManager:
   - PickUpTruck
   - AdOpenButton
   - MoneyOpenButton
+  - destinationTag
   layers:
   - Default
   - TransparentFX

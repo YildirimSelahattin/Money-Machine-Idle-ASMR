@@ -34,6 +34,7 @@ public class MachineTriggerManager : MonoBehaviour
                 if (PlayerPrefs.GetFloat("isFirstMerge", 1)==1)
                 {
                     PlayerPrefs.SetFloat("isFirstMerge", -1);
+                    UIManager.Instance.MergeHand.transform.DOKill();
                     UIManager.Instance.MergeHand.SetActive(false);
                 }
                 int targetGrid = other.gameObject.GetComponent<MachineManager>().gridIndexNumberOfObject;
@@ -59,7 +60,7 @@ public class MachineTriggerManager : MonoBehaviour
                         other.gameObject.GetComponent<MachineManager>().levelIndexOfObject + 1],
                     other.transform.parent);
                 GameDataManager.Instance.SaveData();
-
+                GameDataManager.Instance.ControlButtons();
 
             }
         }
@@ -87,7 +88,7 @@ public class MachineTriggerManager : MonoBehaviour
             ///
             gameObject.transform.SetParent(other.gameObject.transform);
             gameObject.transform.DOKill();
-            gameObject.transform.DOLocalMove(new Vector3(0, 0.5f, 0), 0.3f)
+            gameObject.transform.DOLocalMove(GameDataManager.Instance.moneyMachineArray[levelIndexOfDraggedMachine].transform.position, 0.3f)
                 .OnComplete(() => GettingTouchManager.Instance.objectToDrag = null).OnComplete(()=> worker.GetComponent<WorkerManager>().MoveMachineAndComeBackByIndex());// when snapping to neew grid job finishes, start worker movement
             GameDataManager.Instance.SaveData();
         }

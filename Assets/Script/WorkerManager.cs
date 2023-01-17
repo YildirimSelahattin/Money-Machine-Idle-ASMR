@@ -24,7 +24,7 @@ public class WorkerManager : MonoBehaviour
     {
         transform.DOKill();
         moneyPile.SetActive(true);
-        GameObject machineObject = GameManager.Instance.gridParent.transform.GetChild(indexThatWorkerGoing).transform.GetChild(GameManager.Instance.GRID_MACHINE_INDEX).gameObject;
+        GameObject gridThatWorkerGoing = GameManager.Instance.gridParent.transform.GetChild(indexThatWorkerGoing).gameObject;
         GameObject lastBreakPoint = GameManager.Instance.gridParent.transform.GetChild(indexThatWorkerGoing).transform.GetChild(GameManager.Instance.GRID_LAST_BREAKPOINT_INDEX).gameObject;
         GameObject finalPoint = GameManager.Instance.gridParent.transform.GetChild(indexThatWorkerGoing).transform.GetChild(GameManager.Instance.GRID_FINAL_POINT_INDEX).gameObject;
         if (moveStage == 1) {
@@ -58,8 +58,8 @@ public class WorkerManager : MonoBehaviour
                         transform.DOLocalMove(finalPoint.transform.position,Vector3.Distance(finalPoint.transform.position, transform.position) / (GameDataManager.Instance.workerBaseSpeed * 0.5f)).SetEase(Ease.Linear).OnComplete(() =>
                             {
                                 GoBackToPile();
-                                Debug.Log(machineObject.GetComponent<MachineManager>());
-                                StartCoroutine(machineObject.GetComponent<MachineManager>().WaitAndPrint());
+                                Debug.Log(gridThatWorkerGoing.transform.GetChild(GameManager.Instance.GRID_MACHINE_INDEX).gameObject.GetComponent<MachineManager>());
+                                StartCoroutine(gridThatWorkerGoing.transform.GetChild(GameManager.Instance.GRID_MACHINE_INDEX).gameObject.GetComponent<MachineManager>().WaitAndPrint());
                             });
                     });
                 });
@@ -84,8 +84,8 @@ public class WorkerManager : MonoBehaviour
                 transform.DOLocalMove(finalPoint.transform.position, Vector3.Distance(finalPoint.transform.position, transform.position) / (GameDataManager.Instance.workerBaseSpeed * 0.5f)).OnComplete(() =>
                     {
                         GoBackToPile();
-                        Debug.Log(machineObject.GetComponent<MachineManager>());
-                        StartCoroutine(machineObject.GetComponent<MachineManager>().WaitAndPrint());
+                        Debug.Log(gridThatWorkerGoing.transform.GetChild(GameManager.Instance.GRID_MACHINE_INDEX).gameObject.GetComponent<MachineManager>());
+                        StartCoroutine(gridThatWorkerGoing.transform.GetChild(GameManager.Instance.GRID_MACHINE_INDEX).gameObject.GetComponent<MachineManager>().WaitAndPrint());
                     });
             });
         }
@@ -104,8 +104,8 @@ public class WorkerManager : MonoBehaviour
             transform.DOLocalMove(finalPoint.transform.position, Vector3.Distance(finalPoint.transform.position, transform.position) / (GameDataManager.Instance.workerBaseSpeed * 0.5f)).SetEase(Ease.Linear).OnComplete(() =>
                 {
                     GoBackToPile();
-                    Debug.Log(machineObject.GetComponent<MachineManager>());
-                    StartCoroutine(machineObject.GetComponent<MachineManager>().WaitAndPrint());
+                    Debug.Log(gridThatWorkerGoing.transform.GetChild(GameManager.Instance.GRID_MACHINE_INDEX).gameObject.GetComponent<MachineManager>());
+                    StartCoroutine(gridThatWorkerGoing.transform.GetChild(GameManager.Instance.GRID_MACHINE_INDEX).gameObject.GetComponent<MachineManager>().WaitAndPrint());
                 });
         }
 
@@ -115,7 +115,6 @@ public class WorkerManager : MonoBehaviour
     public void GoBackToPile()
     {
 
-        GameObject machineObject = GameManager.Instance.gridParent.transform.GetChild(indexThatWorkerGoing).transform.GetChild(GameManager.Instance.GRID_MACHINE_INDEX).gameObject;
         GameObject lastBreakPoint = GameManager.Instance.gridParent.transform.GetChild(indexThatWorkerGoing).transform.GetChild(GameManager.Instance.GRID_LAST_BREAKPOINT_INDEX).gameObject;
         GameObject finalPoint = GameManager.Instance.gridParent.transform.GetChild(indexThatWorkerGoing).transform.GetChild(GameManager.Instance.GRID_FINAL_POINT_INDEX).gameObject;
         transform.DOKill();

@@ -24,6 +24,9 @@ public class PickupManager : MonoBehaviour
 
     void Start()
     {
+        MachineManager.x = -0.4f;
+        MachineManager.y = 0.5f;
+        MachineManager.z = 0.30f;
         tempPickup = Instantiate(pickupPrefab, pickupPosition.transform.position,quaternion.identity);
     }
 
@@ -48,11 +51,13 @@ public class PickupManager : MonoBehaviour
         {
             MachineManager.x = -0.4f;
             MachineManager.y = 0.5f;
-            MachineManager.z = 0.25f;
+            MachineManager.z = 0.30f;
             MachineManager.goPos = tempPickup.transform;
             foreach (GameObject moneyBale in Spawner.Instance.movingMoneyBaleList)
             {
+               
                 moneyBale.transform.DOPlay();
+                
             }
         });
         isPress = true;

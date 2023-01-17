@@ -50,8 +50,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.133959, y: 2.2523015, z: 1}
+  m_Center: {x: -0.008135676, y: 0.6261507, z: 0}
 --- !u!114 &2604359735765762204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -602,6 +602,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 10'luMoney
+      objectReference: {fileID: 0}
+    - target: {fileID: 2569066564645207475, guid: 4a7e3f8e0fa6060468f607e7d76282a6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2949005365120001801, guid: 4a7e3f8e0fa6060468f607e7d76282a6,
         type: 3}

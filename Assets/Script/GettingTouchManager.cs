@@ -5,6 +5,7 @@ using DG.Tweening;
 using Unity.VisualScripting;
 using TMPro;
 using UnityEngine.UI;
+
 public class GettingTouchManager : MonoBehaviour
 {
     public static GettingTouchManager Instance;
@@ -53,7 +54,6 @@ public class GettingTouchManager : MonoBehaviour
                     originalPosOrDraggingObject = hit.collider.transform.localPosition;
                     Spawner.Instance.gridWorkerArray[objectToDrag.GetComponent<MachineManager>().gridIndexNumberOfObject].GetComponent<WorkerManager>().GoBackToPile();
                     Spawner.Instance.gridWorkerArray[objectToDrag.GetComponent<MachineManager>().gridIndexNumberOfObject].GetComponent<WorkerManager>().waitingForGridDecision = true;
-                    Debug.Log("1");
                 }
               
                 else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyUpgrade)) // when it hits to upgrade button
@@ -64,10 +64,9 @@ public class GettingTouchManager : MonoBehaviour
                         RewardedAdManager.Instance.GridRewardAd();
                     }
                     else if(hit.collider.gameObject.transform.CompareTag("MoneyOpenButton")) { // upgrade money
-                        if (true)//if money is enough
-                        {
-                            GiveGridReward();
-                        }
+                        
+                         StartCoroutine(GiveGridReward());
+                        
                     }
                 }
                 
@@ -75,13 +74,13 @@ public class GettingTouchManager : MonoBehaviour
                 {
                     if (moneyTapNumber == 0)
                     {
+                        UIManager.Instance.tappingHand.transform.DOKill();
                         UIManager.Instance.tappingHand.SetActive(false);
                     }
                     moneyTapParticle.gameObject.transform.position=new Vector3(hit.point.x ,hit.point.y+1,hit.point.z);
                     moneyTapParticle.Play();
                     GameDataManager.Instance.TotalMoney += GameDataManager.Instance.IncomePerTap;
                     UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
-                    Debug.Log("3");
                     moneyTapNumber++;
                     if ( moneyTapNumber > maxTapNumberUntilInterstitial)
                     {
@@ -94,33 +93,18 @@ public class GettingTouchManager : MonoBehaviour
                 
                 else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, CatLayer)) // if it is cat tap
                 {
-                    Debug.LogError("dasdasdasdasdasddasdsadadasdsdsadasdas");
+                    Debug.LogError("if it is cat tap");
                 }
             }
-
-            else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Stationary && objectToDrag != null)
+ 
+            else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved && objectToDrag != null)
             {
-
-                Debug.Log("POINT");
+                
                 // This is actions when finger/cursor pressed on screen
                 if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerEverything))
                 {
-                         objectToDrag.transform.DOMove(
-                             new Vector3(hit.point.x, objectToDrag.transform.position.y, hit.point.z), .3f);
-                         Debug.Log("POINTtt"+hit.point);
-                }
-            }
-            
-            else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Stationary && objectToDrag != null)
-            {
-
-                Debug.Log("POINT");
-                // This is actions when finger/cursor pressed on screen
-                if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerEverything))
-                {
-                    objectToDrag.transform.DOMove(
-                        new Vector3(hit.point.x, objectToDrag.transform.position.y, hit.point.z), .3f);
-                    Debug.Log("POINTtt"+hit.point);
+                    objectToDrag.transform.position = Vector3.Lerp(objectToDrag.transform.position,
+                        new Vector3(hit.point.x, objectToDrag.transform.position.y, hit.point.z), 15f*Time.deltaTime);
                 }
             }
 
@@ -148,20 +132,21 @@ public class GettingTouchManager : MonoBehaviour
             }
         }
     }
-    public void GiveGridReward()
+    
+    public IEnumerator GiveGridReward()
     {
+        yield return new WaitForEndOfFrame();
         gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_SURFACE_INDEX).gameObject
                             .GetComponent<MeshRenderer>().material =
                         GameManager.Instance.openedGridMat; //open grid visually 
         gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_UPDATE_BUTTON_INDEX).transform.GetChild(0).gameObject.SetActive(false); //close ad upgrade button
         gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_UPDATE_BUTTON_INDEX).transform.GetChild(1).gameObject.SetActive(false); //close money upgrade button
-        gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_UPDATE_BUTTON_INDEX).transform.GetChild(3).gameObject.SetActive(false); //close money upgrade button
+        gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_UPDATE_BUTTON_INDEX).transform.GetChild(2).gameObject.SetActive(false); //close money upgrade button
         gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_SURFACE_INDEX).transform.GetChild(0).gameObject.SetActive(false); // open grid surface if its opened before
         gridObjectToOpen.GetComponent<BoxCollider>().enabled = true;
         GameDataManager.Instance.gridArray[
                 gridObjectToOpen.transform.tag[gridObjectToOpen.transform.tag.Length - 1] - '0'] =
             0; // open grid index base
-        Debug.Log("2");
         if (GameDataManager.Instance.TotalMoney >= GameDataManager.Instance.AddMachineButtonMoney)
         {
             UIManager.Instance.addMachineButton.GetComponent<Button>().interactable = true;

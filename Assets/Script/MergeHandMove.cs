@@ -7,7 +7,7 @@ using UnityEngine;
 public class MergeHandMove : MonoBehaviour
 {
     Vector3 startPos;
-    // Start is called before the first frame update
+  
     void OnEnable()
     {
         startPos = transform.position;

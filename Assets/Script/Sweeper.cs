@@ -12,12 +12,6 @@ public class Sweeper : MonoBehaviour
         CheckGrid(0);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //CheckGrid(0);
-    }
-
     public void CheckGrid(int index)
     {
         int i = index;
@@ -40,20 +34,6 @@ public class Sweeper : MonoBehaviour
                     CheckGrid(i);
                 }
             });
-        }
-    }
-
-    public void RunLoop()
-    {
-        for (int i = 0; i < GameDataManager.Instance.gridArray.Length; i++)
-        {
-            CheckGrid(i);
-
-
-            if (i + 1 == GameDataManager.Instance.gridArray.Length)
-            {
-                return;
-            }
         }
     }
 }

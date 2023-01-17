@@ -67,7 +67,8 @@ public class GameDataManager : MonoBehaviour
         set
         {
             totalMoney = GetOnly1DigitAfterPoint(value);
-      
+            if (UIManager.Instance != null)
+                ControlButtons();
         }
     }
     
