@@ -43,6 +43,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject OptionsPanel;
     [SerializeField] private GameObject InfoButton;
     [SerializeField] private GameObject InfoPanel;
+    bool openedOptionsPanel = false;
     public int buttonIndex = 0;
     public GameObject[] gridMoneyOpenInteractableArray;
     public GameObject[] gridMoneyOpenNotInteractableArray;
@@ -151,7 +152,7 @@ public class UIManager : MonoBehaviour
             beltSpeedButton.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
                 AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.BeltSpeedButtonMoney) + " $";
 
-            GameDataManager.Instance.beltSpeed += (GameDataManager.Instance.beltSpeed * 0.03f);
+            GameDataManager.Instance.beltSpeed += (GameDataManager.Instance.beltSpeed * 0.04f);
 
             GameDataManager.Instance.SaveData();
         }
@@ -167,7 +168,7 @@ public class UIManager : MonoBehaviour
     {
         GameDataManager.Instance.BeltSpeedButtonMoney += GameDataManager.Instance.BeltSpeedButtonMoney / 1.5f;
         GameDataManager.Instance.beltSpeedButtonLevel++;
-        GameDataManager.Instance.beltSpeed += (GameDataManager.Instance.beltSpeed * 0.03f);
+        GameDataManager.Instance.beltSpeed += (GameDataManager.Instance.beltSpeed * 0.04f);
         GameDataManager.Instance.SaveData();
         
         adBeltSpeedButton.SetActive(false);
@@ -200,7 +201,7 @@ public class UIManager : MonoBehaviour
             incomeButton.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
                 AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.IncomeButtonMoney) + " $";
 
-            MachineManager.Instance.machineIncomeMoney += MachineManager.Instance.machineIncomeMoney * 0.02f;
+            MachineManager.Instance.machineIncomeMoney += MachineManager.Instance.machineIncomeMoney * 0.2f;
 
             GameDataManager.Instance.SaveData();
         }
@@ -219,7 +220,7 @@ public class UIManager : MonoBehaviour
         GameDataManager.Instance.incomeButtonLevel++;
         GameDataManager.Instance.IncomePerTap++;
 
-        MachineManager.Instance.machineIncomeMoney += MachineManager.Instance.machineIncomeMoney * 0.02f;
+        MachineManager.Instance.machineIncomeMoney += MachineManager.Instance.machineIncomeMoney * 0.2f;
 
         GameDataManager.Instance.SaveData();
         
@@ -301,13 +302,12 @@ public class UIManager : MonoBehaviour
                 {
                     if (controllForButtonInteract == false)
                     {
-                        addMachineTapAmount++;
-                        PlayerPrefs.SetInt("addMachineAmount", addMachineTapAmount);
                         if (addMachineTapAmount == 2)
                         {
                             MergeHand.SetActive(true);
+                            addMachineTapAmount++;
                         }
-                        Debug.Log("qwe" + gridIndex);
+                        PlayerPrefs.SetInt("addMachineAmount", addMachineTapAmount);
                         //level 1 şu an veriliyor !!sadece
                         GameManager.Instance.gridParent.transform.GetChild(gridIndex).gameObject
                             .GetComponent<BoxCollider>()
@@ -341,7 +341,6 @@ public class UIManager : MonoBehaviour
                     "LEVEL " + GameDataManager.Instance.addMachineButtonLevel;
                 StartCoroutine(AdMachineButtonsDelay(10));
             }
-
             GameDataManager.Instance.SaveData();
         }
     }
@@ -367,7 +366,6 @@ public class UIManager : MonoBehaviour
             {
                 if (controllForButtonInteract == false)
                 {
-                    Debug.Log("qwe" + gridIndex);
                     //level 1 şu an veriliyor !!sadece
                     GameManager.Instance.gridParent.transform.GetChild(gridIndex).gameObject
                         .GetComponent<BoxCollider>()
@@ -533,7 +531,16 @@ public class UIManager : MonoBehaviour
 
     public void OnOpenOptionsPanel()
     {
-        OptionsPanel.SetActive(true);
+        if(openedOptionsPanel == false)
+        {
+            OptionsPanel.SetActive(true);
+            openedOptionsPanel = true;
+        }
+        else
+        {
+            OptionsPanel.SetActive(false);
+            openedOptionsPanel = false;
+        }
     }
 
     public void OnOpenInfoPanel()

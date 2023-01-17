@@ -11,11 +11,12 @@ public class DayCycle : MonoBehaviour
     
     void Start()
     {
-        StartCoroutine(DelayDay(3));
+        StartCoroutine(DelayDay(30));
     }
 
     private void Update()
     {
+        
         if (transform.rotation.x  > .95f && isNight == false)
         {
             inGameLights.SetActive(true);
@@ -33,14 +34,14 @@ public class DayCycle : MonoBehaviour
 
     public void RotateSun()
     {
-        transform.DORotate(new Vector3(195, 750, 0), 1000f * Time.deltaTime)
+        transform.DORotate(new Vector3(195, 750, 0), 50f * Time.deltaTime)
             .SetEase(Ease.Linear).OnComplete(() => { StartCoroutine(DelayNight(20)); });
     }
 
     IEnumerator DelayNight(int hour)
     {
         yield return new WaitForSeconds(hour);
-        transform.DOLocalRotate(new Vector3(45, 750, 0), 1000f * Time.deltaTime)
+        transform.DOLocalRotate(new Vector3(45, 750, 0), 50f * Time.deltaTime)
             .OnComplete(() => { StartCoroutine(DelayDay(30)); });
     }
 

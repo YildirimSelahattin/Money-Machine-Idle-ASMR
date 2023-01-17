@@ -150,7 +150,7 @@ public class RewardedAdManager : MonoBehaviour
     }
     public void HandleUserEarnedGridReward(object sender, Reward args)
     {
-        GettingTouchManager.Instance.GiveGridReward();
+        GettingTouchManager.Instance.StartCoroutine(GettingTouchManager.Instance.GiveGridReward());
         RequestRewarded();
     }    
     
