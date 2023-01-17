@@ -64,10 +64,9 @@ public class GettingTouchManager : MonoBehaviour
                         RewardedAdManager.Instance.GridRewardAd();
                     }
                     else if(hit.collider.gameObject.transform.CompareTag("MoneyOpenButton")) { // upgrade money
-                        if (true)//if money is enough
-                        {
-                            GiveGridReward();
-                        }
+                        
+                         StartCoroutine(GiveGridReward());
+                        
                     }
                 }
                 
@@ -75,6 +74,7 @@ public class GettingTouchManager : MonoBehaviour
                 {
                     if (moneyTapNumber == 0)
                     {
+                        UIManager.Instance.tappingHand.transform.DOKill();
                         UIManager.Instance.tappingHand.SetActive(false);
                     }
                     moneyTapParticle.gameObject.transform.position=new Vector3(hit.point.x ,hit.point.y+1,hit.point.z);
@@ -141,7 +141,7 @@ public class GettingTouchManager : MonoBehaviour
                         GameManager.Instance.openedGridMat; //open grid visually 
         gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_UPDATE_BUTTON_INDEX).transform.GetChild(0).gameObject.SetActive(false); //close ad upgrade button
         gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_UPDATE_BUTTON_INDEX).transform.GetChild(1).gameObject.SetActive(false); //close money upgrade button
-        gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_UPDATE_BUTTON_INDEX).transform.GetChild(3).gameObject.SetActive(false); //close money upgrade button
+        gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_UPDATE_BUTTON_INDEX).transform.GetChild(2).gameObject.SetActive(false); //close money upgrade button
         gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_SURFACE_INDEX).transform.GetChild(0).gameObject.SetActive(false); // open grid surface if its opened before
         gridObjectToOpen.GetComponent<BoxCollider>().enabled = true;
         GameDataManager.Instance.gridArray[

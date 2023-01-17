@@ -44,9 +44,7 @@ public class MachineManager : MonoBehaviour
             Instance = this;
         }
 
-        x = -0.4f;
-        y = 0.5f;
-        z = 0.30f;
+
 
     }
 

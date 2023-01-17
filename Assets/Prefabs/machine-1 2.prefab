@@ -501,6 +501,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: 10'luMoney
       objectReference: {fileID: 0}
+    - target: {fileID: 2569066564645207475, guid: 4a7e3f8e0fa6060468f607e7d76282a6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2949005365120001801, guid: 4a7e3f8e0fa6060468f607e7d76282a6,
         type: 3}
       propertyPath: m_RootOrder
