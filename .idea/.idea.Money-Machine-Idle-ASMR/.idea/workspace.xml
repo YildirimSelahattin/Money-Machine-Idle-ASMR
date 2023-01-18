@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="12e15ff2-c41a-445c-99a6-3e761c781f24" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Money-Machine-Idle-ASMR/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Money-Machine-Idle-ASMR/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Common/GPGS/GPGSManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Common/GPGS/GPGSManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/MachineTriggerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MachineTriggerManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/UIManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +122,7 @@
       <workItem from="1673811609511" duration="2895000" />
       <workItem from="1673857376309" duration="1622000" />
       <workItem from="1673873599190" duration="6937000" />
-      <workItem from="1674027110397" duration="2420000" />
+      <workItem from="1674027110397" duration="4320000" />
     </task>
     <servers />
   </component>

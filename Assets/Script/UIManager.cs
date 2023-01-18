@@ -51,6 +51,7 @@ public class UIManager : MonoBehaviour
     public GameObject tappingHand;
     public GameObject MergeHand;
     public int addMachineTapAmount;
+
     void Start()
     {
         if (Instance == null)
@@ -62,11 +63,17 @@ public class UIManager : MonoBehaviour
         {
             MergeHand.SetActive(true);
         }
+
+        if (PlayerPrefs.GetInt("isFirstMerge", 1) == -1)
+        {
+            MergeHand.SetActive(false);
+        }
         TotalMoneyText.GetComponent<TextMeshProUGUI>().text = GameDataManager.Instance.TotalMoney.ToString();
         beltSpeedButton = ButtonPanel.transform.GetChild(0).transform.GetChild(0).gameObject;
         incomeButton = ButtonPanel.transform.GetChild(0).transform.GetChild(1).gameObject;
         workerSpeedButton = ButtonPanel.transform.GetChild(0).transform.GetChild(2).gameObject;
         addMachineButton = ButtonPanel.transform.GetChild(0).transform.GetChild(3).gameObject;
+        
 
         StartCoroutine(AdButtonsDelay());
 
@@ -91,7 +98,7 @@ public class UIManager : MonoBehaviour
             AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.AddMachineButtonMoney) + " $";
 
         GameDataManager.Instance.ControlButtons();
-        StartCoroutine(OpeningAdButtonsAfterDelay(60));
+        StartCoroutine(OpeningAdButtonsAfterDelay(3));
     }
 
     IEnumerator AdButtonsDelay()
@@ -257,8 +264,11 @@ public class UIManager : MonoBehaviour
                 addMachineButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
                     "LEVEL " + GameDataManager.Instance.addMachineButtonLevel;
                 StartCoroutine(AdMachineButtonsDelay(10));
+                break;
             }
         }
+
+        
 
     }
     public void OnWorkerUpgradeButton()
@@ -336,10 +346,10 @@ public class UIManager : MonoBehaviour
                 {
                     if (controllForButtonInteract == false)
                     {
+                        addMachineTapAmount++;
                         if (addMachineTapAmount == 2)
                         {
                             MergeHand.SetActive(true);
-                            addMachineTapAmount++;
                         }
                         PlayerPrefs.SetInt("addMachineAmount", addMachineTapAmount);
                         //level 1 şu an veriliyor !!sadece
@@ -466,6 +476,7 @@ public class UIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         adWorkerSpeedButton.SetActive(false);
+        StartCoroutine(OpeningAdButtonsAfterDelay(3));
     }
     public IEnumerator AdMachineButtonsDelay(float waitTime)
     {
