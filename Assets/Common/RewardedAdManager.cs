@@ -124,6 +124,7 @@ public class RewardedAdManager : MonoBehaviour
                 // Called when the ad is closed.
                 this.rewardedAd.OnAdClosed += HandleRewardedAdClosed;
         */
+        
         // Called when the user should be rewarded for interacting with the ad.
         this.rewardedUpgradeButtonsAd.OnUserEarnedReward += HandleUserEarnedUpgradeButtonReward;
         // Create an empty ad request.
