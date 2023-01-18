@@ -13,7 +13,8 @@
  
      public static string AbbreviateNumber(float number)
      {
-         for (int i = abbrevations.Count - 1; i >= 0; i--)
+        number = (float)((int)number * 10000) / 10000f;
+        for (int i = abbrevations.Count - 1; i >= 0; i--)
          {
              KeyValuePair<int, string> pair = abbrevations.ElementAt(i);
              if (Mathf.Abs(number) >= pair.Key)
