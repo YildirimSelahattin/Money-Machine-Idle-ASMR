@@ -11,7 +11,7 @@ public class GameDataManager : MonoBehaviour
     public GameObject[] moneyMachineArray;
     public int[] gridArray = new int[6];
     public int maxLevelMachineAmount;
-    private float beltSpeedButtonMoney;
+    public float beltSpeedButtonMoney;
     [SerializeField] float[] gridOpenWithMoneyPrices;
 
     public float BeltSpeedButtonMoney
@@ -21,7 +21,7 @@ public class GameDataManager : MonoBehaviour
         set { beltSpeedButtonMoney = GetOnly1DigitAfterPoint(value); }
     }
 
-    [SerializeField] private float incomeButtonMoney;
+    [SerializeField] public float incomeButtonMoney;
 
     public float IncomeButtonMoney
     {
@@ -29,7 +29,7 @@ public class GameDataManager : MonoBehaviour
         set { incomeButtonMoney = GetOnly1DigitAfterPoint(value); }
     }
 
-    [SerializeField] private float addMachineButtonMoney;
+    [SerializeField] public float addMachineButtonMoney;
 
     public float AddMachineButtonMoney
     {
@@ -37,7 +37,7 @@ public class GameDataManager : MonoBehaviour
         set { addMachineButtonMoney = GetOnly1DigitAfterPoint(value); }
     }
 
-    [SerializeField] private float workerSpeedButtonMoney;
+    [SerializeField] public float workerSpeedButtonMoney;
 
     public float WorkerSpeedButtonMoney
     {
@@ -45,7 +45,7 @@ public class GameDataManager : MonoBehaviour
         set { workerSpeedButtonMoney = GetOnly1DigitAfterPoint(value); }
     }
 
-    private float incomePerTap;
+    public float incomePerTap;
 
     public float IncomePerTap
     {
