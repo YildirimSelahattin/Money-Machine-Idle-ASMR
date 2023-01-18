@@ -3,21 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="12e15ff2-c41a-445c-99a6-3e761c781f24" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Money-Machine-Idle-ASMR/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Money-Machine-Idle-ASMR/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Common/RewardedAdManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Common/RewardedAdManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ExternalDependencyManager/Editor/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ExternalDependencyManager/Editor/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ExternalDependencyManager/Editor/CHANGELOG.md.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ExternalDependencyManager/Editor/CHANGELOG.md.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ExternalDependencyManager/Editor/Google.VersionHandler.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ExternalDependencyManager/Editor/Google.VersionHandler.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ExternalDependencyManager/Editor/Google.VersionHandler.dll.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ExternalDependencyManager/Editor/Google.VersionHandler.dll.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ExternalDependencyManager/Editor/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ExternalDependencyManager/Editor/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ExternalDependencyManager/Editor/LICENSE.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ExternalDependencyManager/Editor/LICENSE.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ExternalDependencyManager/Editor/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ExternalDependencyManager/Editor/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ExternalDependencyManager/Editor/README.md.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ExternalDependencyManager/Editor/README.md.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Android/androidx.lifecycle.lifecycle-process-2.4.1.aar" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Android/androidx.lifecycle.lifecycle-process-2.4.1.aar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Android/androidx.startup.startup-runtime-1.1.1.aar" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Android/androidx.startup.startup-runtime-1.1.1.aar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Android/androidx.work.work-runtime-2.7.0.aar" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Android/androidx.work.work-runtime-2.7.0.aar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Android/com.google.android.gms.play-services-ads-lite-21.3.0.aar" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Android/com.google.android.gms.play-services-ads-lite-21.3.0.aar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/AndroidResolverDependencies.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/AndroidResolverDependencies.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Common/GPGS/GPGSManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Common/GPGS/GPGSManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +13,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../../../../../../Program Files/unityy/2021.3.5f1/Editor/Data/CGIncludes/UnityShaderVariables.cginc" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Common/FpsCounter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Common/GPGS/GPGSManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Common/InterstitialAdManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Common/StartScreenRes.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Common/StartScreenRes1.cs" root0="FORCE_HIGHLIGHTING" />
@@ -134,7 +121,7 @@
       <workItem from="1673811609511" duration="2895000" />
       <workItem from="1673857376309" duration="1622000" />
       <workItem from="1673873599190" duration="6937000" />
-      <workItem from="1674027110397" duration="1398000" />
+      <workItem from="1674027110397" duration="2420000" />
     </task>
     <servers />
   </component>
