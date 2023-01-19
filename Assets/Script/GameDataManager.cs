@@ -12,12 +12,12 @@ public class GameDataManager : MonoBehaviour
     public int[] gridArray = new int[6];
     public int maxLevelMachineAmount;
     public float beltSpeedButtonMoney;
-    [SerializeField] float[] gridOpenWithMoneyPrices;
+    public float[] gridOpenWithMoneyPrices;
 
     public float BeltSpeedButtonMoney
     {
         // = 5f;
-        get { return beltSpeedButtonMoney; }
+        get { return GameDataManager.Instance.GetOnly1DigitAfterPoint(beltSpeedButtonMoney); }
         set { beltSpeedButtonMoney = GetOnly1DigitAfterPoint(value); }
     }
 
@@ -57,7 +57,7 @@ public class GameDataManager : MonoBehaviour
     public int incomeButtonLevel = 1;
     public int addMachineButtonLevel = 1;
     public int workerSpeedButtonLevel = 1;
-    public float moneyToBeCollected = 0;
+    public long moneyToBeCollected = 0;
     public float totalMoney = 0;
 
     public float TotalMoney
@@ -66,7 +66,7 @@ public class GameDataManager : MonoBehaviour
 
         set
         {
-            totalMoney = GetOnly1DigitAfterPoint(value);
+            totalMoney = value;
             if (UIManager.Instance != null)
                 ControlButtons();
         }
@@ -96,10 +96,10 @@ public class GameDataManager : MonoBehaviour
         //grid jobs
         for (int i = 0; i < 6; i++)
         {
-            gridArray[i] = PlayerPrefs.GetInt("GridValue" + i.ToString(), 0); //open default
+            gridArray[i] = PlayerPrefs.GetInt("GridValue" + i.ToString(), 6); //open default
             if (i > 1)
             {
-                gridArray[i] = PlayerPrefs.GetInt("GridValue" + i.ToString(), -1); //closed default
+                gridArray[i] = PlayerPrefs.GetInt("GridValue" + i.ToString(),6); //closed default
             }
         }
 
@@ -157,11 +157,9 @@ public class GameDataManager : MonoBehaviour
         PlayerPrefs.SetInt("PlayMusicKey", playMusic);
     }
 
-    public float GetOnly1DigitAfterPoint(float number)
+    public long GetOnly1DigitAfterPoint(float number)
     {
-        //Debug.Log((float)System.Math.Round(number, 1)+"aaa");
-        //return (float)System.Math.Round(number, 1);
-        return (float)((int)number * 100f) / 100f;
+        return Mathf.FloorToInt(number);
 }
     public void ControlButtons()
     {
@@ -222,7 +220,6 @@ public class GameDataManager : MonoBehaviour
         // 3D BUTTON SIDE ilkine bak�lamyabilir?
         for (int gridIndex = 0; gridIndex < gridOpenWithMoneyPrices.Length; gridIndex++)
         {
-            Debug.Log("sasa");
             if (gridArray[gridIndex] == -1)
             {
                 if (totalMoney > gridOpenWithMoneyPrices[gridIndex])

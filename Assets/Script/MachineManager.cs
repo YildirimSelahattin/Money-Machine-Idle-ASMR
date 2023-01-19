@@ -31,7 +31,6 @@ public class MachineManager : MonoBehaviour
     public Vector3 firstPos;
     private float RadialSegmentNumber = 10;
     public RadialSegmentedHealthBar RadialSegment;
-    public static Transform goPos;
     [SerializeField] GameObject parentOfMoney;
     [SerializeField] Transform stopPosForMachineMoneys;
     [SerializeField] Transform firstPosForMachineMoneys;
@@ -70,7 +69,6 @@ public class MachineManager : MonoBehaviour
         Spawner.Instance.movingMoneyBaleList.Add(moneyTemp);
         if (gridIndexNumberOfObject % 2 == 0) // if money is on the left side
         {
-            goPos = PickupManager.Instance.tempPickup.transform;
             firstPos = GameManager.Instance.gridParent.transform.GetChild(gridIndexNumberOfObject).GetChild(0)
                 .transform.position;
             firstPos.y += 0.6f;
@@ -101,7 +99,6 @@ public class MachineManager : MonoBehaviour
         }
         else // if money is on the right side 
         {
-            goPos = PickupManager.Instance.tempPickup.transform;
             firstPos = GameManager.Instance.gridParent.transform.GetChild(gridIndexNumberOfObject).GetChild(0)
                 .transform.position;
             firstPos.y += 0.6f;
@@ -144,13 +141,14 @@ public class MachineManager : MonoBehaviour
     }
     public void LastMoveToTruck(Vector3 posToMoveForThisMoney, GameObject moneyTemp)
     {
+        Transform goPos = PickupManager.Instance.tempPickup.transform;
         Spawner.Instance.movingMoneyBaleList.Remove(moneyTemp);
         moneyTemp.transform.SetParent(goPos.transform);
         moneyTemp.transform.DORotate(new Vector3(-90f, 0, 0), 0.2f);
         moneyTemp.transform.DOLocalJump(posToMoveForThisMoney, 10,1,1.5f).SetEase(Ease.OutBounce).OnComplete(()=>
         {
             GameDataManager.Instance.moneyToBeCollected += GameDataManager.Instance.GetOnly1DigitAfterPoint(machineIncomeMoney);
-            _tempText.text = AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.GetOnly1DigitAfterPoint(GameDataManager.Instance.moneyToBeCollected));
+            _tempText.text = AbbrevationUtility.AbbreviateNumberForTotalMoney(GameDataManager.Instance.moneyToBeCollected);
             GameDataManager.Instance.SaveData();
         });
     }

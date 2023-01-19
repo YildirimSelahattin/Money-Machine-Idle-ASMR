@@ -52,7 +52,6 @@ public class PickupManager : MonoBehaviour
             MachineManager.x = -0.4f;
             MachineManager.y = 0.5f;
             MachineManager.z = 0.30f;
-            MachineManager.goPos = tempPickup.transform;
             foreach (GameObject moneyBale in Spawner.Instance.movingMoneyBaleList)
             {
                

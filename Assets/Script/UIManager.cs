@@ -119,7 +119,7 @@ public class UIManager : MonoBehaviour
         GameDataManager.Instance.moneyToBeCollected = 0;
         MoneyFromSellText.GetComponent<TextMeshProUGUI>().text = "0";
         TotalMoneyText.GetComponent<TextMeshProUGUI>().text =
-            AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
+            AbbrevationUtility.AbbreviateNumberForTotalMoney(GameDataManager.Instance.TotalMoney);
         //pauseMoneyBales
         foreach (GameObject moneyBale in Spawner.Instance.movingMoneyBaleList)
         {
@@ -153,7 +153,7 @@ public class UIManager : MonoBehaviour
 
             GameDataManager.Instance.TotalMoney -= moneyToDecrease;
             TotalMoneyText.GetComponent<TextMeshProUGUI>().text =
-                AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
+                AbbrevationUtility.AbbreviateNumberForTotalMoney(GameDataManager.Instance.TotalMoney);
 
             beltSpeedButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
                 "LEVEL " + GameDataManager.Instance.beltSpeedButtonLevel;
@@ -202,7 +202,7 @@ public class UIManager : MonoBehaviour
             GameDataManager.Instance.IncomePerTap++;
             GameDataManager.Instance.TotalMoney -= moneyToDecrrease;
             TotalMoneyText.GetComponent<TextMeshProUGUI>().text =
-                AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
+                AbbrevationUtility.AbbreviateNumberForTotalMoney(GameDataManager.Instance.TotalMoney);
 
             incomeButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
                 "LEVEL " + GameDataManager.Instance.incomeButtonLevel;
@@ -289,7 +289,7 @@ public class UIManager : MonoBehaviour
             
             GameDataManager.Instance.TotalMoney -= moneyToDecrease;
             TotalMoneyText.GetComponent<TextMeshProUGUI>().text =
-                AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
+                AbbrevationUtility.AbbreviateNumberForTotalMoney(GameDataManager.Instance.TotalMoney);
 
             GameDataManager.Instance.workerBaseSpeed += GameDataManager.Instance.workerBaseSpeed * 0.03f;
 
@@ -332,7 +332,7 @@ public class UIManager : MonoBehaviour
 
             GameDataManager.Instance.TotalMoney -= moneyToDecrease;
             TotalMoneyText.GetComponent<TextMeshProUGUI>().text =
-                AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
+                AbbrevationUtility.AbbreviateNumberForTotalMoney(GameDataManager.Instance.TotalMoney);
 
             addMachineButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
                 "LEVEL " + GameDataManager.Instance.addMachineButtonLevel;
