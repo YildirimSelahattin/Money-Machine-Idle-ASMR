@@ -64,7 +64,7 @@ public class GettingTouchManager : MonoBehaviour
                         RewardedAdManager.Instance.GridRewardAd();
                     }
                     else if(hit.collider.gameObject.transform.CompareTag("MoneyOpenButton")) { // upgrade money
-                        
+                        GameDataManager.Instance.TotalMoney -= GameDataManager.Instance.gridOpenWithMoneyPrices[hit.collider.gameObject.transform.parent.parent.tag[hit.collider.gameObject.transform.parent.parent.tag.Length - 1]-'0'];
                          StartCoroutine(GiveGridReward());
                         
                     }
@@ -80,7 +80,7 @@ public class GettingTouchManager : MonoBehaviour
                     moneyTapParticle.gameObject.transform.position=new Vector3(hit.point.x ,hit.point.y+1,hit.point.z);
                     moneyTapParticle.Play();
                     GameDataManager.Instance.TotalMoney += GameDataManager.Instance.IncomePerTap;
-                    UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
+                    UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumberForTotalMoney(GameDataManager.Instance.TotalMoney);
                     moneyTapNumber++;
                     if ( moneyTapNumber > maxTapNumberUntilInterstitial)
                     {

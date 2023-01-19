@@ -61,7 +61,7 @@ public class OfflineProgress : MonoBehaviour
         InterstitialAdManager.Instance.ShowInterstitial();
         
         GameDataManager.Instance.TotalMoney += GameDataManager.Instance.GetOnly1DigitAfterPoint(offlineRewardMoney);
-        UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.GetOnly1DigitAfterPoint(GameDataManager.Instance.TotalMoney));
+        UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumberForTotalMoney(GameDataManager.Instance.GetOnly1DigitAfterPoint(GameDataManager.Instance.TotalMoney));
         OfflineRewardPanel.SetActive(false);
     }
 

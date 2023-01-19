@@ -1,28 +1,43 @@
  using UnityEngine;
  using System.Collections.Generic;
  using System.Linq;
- 
- public static class AbbrevationUtility
+using UnityEngine.UIElements;
+
+public static class AbbrevationUtility
  {
-     private static readonly SortedDictionary<int, string> abbrevations = new SortedDictionary<int, string>
+     private static readonly SortedDictionary<long, string> abbrevations = new SortedDictionary<long, string>
      {
-         {1000,"K"},
-         {1000000, "M" },
-         {1000000000, "B" }
+         {1000," k"},
+         {1000000, " m" },
+         {1000000000, " b" },
+         {1000000000000, " t" }
      };
  
      public static string AbbreviateNumber(float number)
      {
-        number = (float)((int)number * 10000) / 10000f;
+
         for (int i = abbrevations.Count - 1; i >= 0; i--)
-         {
-             KeyValuePair<int, string> pair = abbrevations.ElementAt(i);
-             if (Mathf.Abs(number) >= pair.Key)
-             {
-                 float roundedNumber =number / pair.Key;
-                 return roundedNumber.ToString() + pair.Value;
-             }
-         }
-         return number.ToString();
-     }
+        {
+            KeyValuePair<long, string> pair = abbrevations.ElementAt(i);
+            if (Mathf.Abs(number) >= pair.Key)
+            {
+                float roundedNumber = Mathf.FloorToInt(number / pair.Key);
+                return roundedNumber.ToString() + pair.Value;
+            }
+        }
+        return number.ToString();
+    }
+
+    public static string AbbreviateNumberForTotalMoney(float number) {
+        for (int i = abbrevations.Count - 1; i >= 0; i--)
+        {
+            KeyValuePair<long, string> pair = abbrevations.ElementAt(i);
+            if (Mathf.Abs(number) >= pair.Key)
+            {
+                return number.ToString() + pair.Value;
+            }
+        }
+        return number.ToString() ;
+
+    }
  }
