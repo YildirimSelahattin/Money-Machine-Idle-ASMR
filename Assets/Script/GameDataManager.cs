@@ -96,10 +96,10 @@ public class GameDataManager : MonoBehaviour
         //grid jobs
         for (int i = 0; i < 6; i++)
         {
-            gridArray[i] = PlayerPrefs.GetInt("GridValue" + i.ToString(), 6); //open default
+            gridArray[i] = PlayerPrefs.GetInt("GridValue" + i.ToString(), 0); //open default
             if (i > 1)
             {
-                gridArray[i] = PlayerPrefs.GetInt("GridValue" + i.ToString(),6); //closed default
+                gridArray[i] = PlayerPrefs.GetInt("GridValue" + i.ToString(),-1); //closed default
             }
         }
 
