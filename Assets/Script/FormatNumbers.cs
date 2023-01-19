@@ -2,6 +2,7 @@
  using System.Collections.Generic;
  using System.Linq;
 using UnityEngine.UIElements;
+using UnityEditor.ShaderGraph.Drawing;
 
 public static class AbbrevationUtility
  {
@@ -34,7 +35,15 @@ public static class AbbrevationUtility
             KeyValuePair<long, string> pair = abbrevations.ElementAt(i);
             if (Mathf.Abs(number) >= pair.Key)
             {
-                return number.ToString() + pair.Value;
+                if (Mathf.Abs(number) > 1000000)
+                {
+                    float roundedNumber = Mathf.FloorToInt(number / pair.Key);
+                    return roundedNumber.ToString() + pair.Value;
+                }
+                else
+                {
+                    return number.ToString()+pair.Key;
+                }
             }
         }
         return number.ToString() ;

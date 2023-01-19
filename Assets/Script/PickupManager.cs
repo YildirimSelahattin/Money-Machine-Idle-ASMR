@@ -37,6 +37,9 @@ public class PickupManager : MonoBehaviour
             tempPickup.transform.DOLocalMove(pickupTarget.transform.position, 2f).SetEase(Ease.Linear)
                 .OnComplete(() =>
                 {
+                    MachineManager.x = -0.4f;
+                    MachineManager.y = 0.5f;
+                    MachineManager.z = 0.30f;
                     Destroy(tempPickup);
                     tempPickup = Instantiate(pickupPrefab, pickupSpawner.transform.position,quaternion.identity);
                     StartCoroutine(DelayEnum(1));
@@ -49,9 +52,7 @@ public class PickupManager : MonoBehaviour
         yield return new WaitForSeconds(time);
         tempPickup.transform.DOLocalMove(pickupPosition.transform.position, 1f).SetEase(Ease.Linear).OnComplete(() =>
         {
-            MachineManager.x = -0.4f;
-            MachineManager.y = 0.5f;
-            MachineManager.z = 0.30f;
+           
             foreach (GameObject moneyBale in Spawner.Instance.movingMoneyBaleList)
             {
                
