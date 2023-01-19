@@ -59,6 +59,7 @@ public class GameDataManager : MonoBehaviour
     public int workerSpeedButtonLevel = 1;
     public float moneyToBeCollected = 0;
     public float totalMoney = 0;
+    public float IncomePercantage = 12;
 
     public float TotalMoney
     {
@@ -71,7 +72,7 @@ public class GameDataManager : MonoBehaviour
                 ControlButtons();
         }
     }
-    
+
 
     public float workerBaseSpeed;
     public float beltSpeed;
@@ -121,6 +122,7 @@ public class GameDataManager : MonoBehaviour
         beltSpeed = PlayerPrefs.GetFloat("BeltSpeed", -0.05f);
         workerBaseSpeed = PlayerPrefs.GetFloat("WorkerSpeed", 3);
         TotalMoney = PlayerPrefs.GetFloat("TotalMoney", 3);
+        IncomePercantage = PlayerPrefs.GetFloat("IncomePercentage", IncomePercantage);
     }
 
     public void SaveData()
@@ -142,7 +144,7 @@ public class GameDataManager : MonoBehaviour
         PlayerPrefs.SetInt("IncomeButtonLevel", incomeButtonLevel);
         PlayerPrefs.SetInt("BeltSpeedButtonLevel", beltSpeedButtonLevel);
         PlayerPrefs.SetFloat("BeltSpeed", beltSpeed);
-        PlayerPrefs.SetFloat("IncomePercentage", machineIncomeMoney);
+        PlayerPrefs.SetFloat("IncomePercentage", IncomePercantage);
         PlayerPrefs.SetFloat("WorkerSpeed", workerBaseSpeed);
         PlayerPrefs.SetFloat("IncomeButtonMoney", incomeButtonMoney);
         PlayerPrefs.SetFloat("WorkerSpeedButtonMoney", workerSpeedButtonMoney);
@@ -162,10 +164,10 @@ public class GameDataManager : MonoBehaviour
         //Debug.Log((float)System.Math.Round(number, 1)+"aaa");
         //return (float)System.Math.Round(number, 1);
         return (float)((int)number * 100f) / 100f;
-}
+    }
+
     public void ControlButtons()
     {
-
         // UI BUTTON S�DE
         if (totalMoney >= BeltSpeedButtonMoney) //activate belt speed button
         {
@@ -216,7 +218,6 @@ public class GameDataManager : MonoBehaviour
             //UIManager.Instance.addMachineButton.GetComponent<>// interactable yap
             UIManager.Instance.addMachineButton.GetComponent<Button>().interactable = false;
         }
-
 
 
         // 3D BUTTON SIDE ilkine bak�lamyabilir?

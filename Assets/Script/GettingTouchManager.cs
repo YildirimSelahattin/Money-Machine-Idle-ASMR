@@ -139,11 +139,10 @@ public class GettingTouchManager : MonoBehaviour
         gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_SURFACE_INDEX).gameObject
                             .GetComponent<MeshRenderer>().material =
                         GameManager.Instance.openedGridMat; //open grid visually 
-        gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_UPDATE_BUTTON_INDEX).transform.GetChild(0).gameObject.SetActive(false); //close ad upgrade button
-        gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_UPDATE_BUTTON_INDEX).transform.GetChild(1).gameObject.SetActive(false); //close money upgrade button
-        gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_UPDATE_BUTTON_INDEX).transform.GetChild(2).gameObject.SetActive(false); //close money upgrade button
+        gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_UPDATE_BUTTON_INDEX).transform.gameObject.SetActive(false); //close ad upgrade button
         gridObjectToOpen.transform.GetChild(GameManager.Instance.GRID_SURFACE_INDEX).transform.GetChild(0).gameObject.SetActive(false); // open grid surface if its opened before
         gridObjectToOpen.GetComponent<BoxCollider>().enabled = true;
+        yield return new WaitForEndOfFrame();
         GameDataManager.Instance.gridArray[
                 gridObjectToOpen.transform.tag[gridObjectToOpen.transform.tag.Length - 1] - '0'] =
             0; // open grid index base
@@ -152,6 +151,7 @@ public class GettingTouchManager : MonoBehaviour
             UIManager.Instance.addMachineButton.GetComponent<Button>().interactable = true;
         }
         gridObjectToOpen = null;
+        yield return new WaitForEndOfFrame();
         UIManager.Instance.CloseGridAdButtons();
     }
 }

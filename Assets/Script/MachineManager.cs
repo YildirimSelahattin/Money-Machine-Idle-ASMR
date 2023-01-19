@@ -43,9 +43,6 @@ public class MachineManager : MonoBehaviour
         {
             Instance = this;
         }
-
-
-
     }
 
     void Start()
@@ -56,12 +53,10 @@ public class MachineManager : MonoBehaviour
         _counterText = gameObject.transform.GetChild(0).GetComponent<TMP_Text>();
         _firstStep = gameObject.transform.parent.GetChild(0).position;
         _tempText = UIManager.Instance.MoneyFromSellText.GetComponent<TextMeshProUGUI>();
-
     }
 
     public void MoneyMove()
     {
-
         Vector3 myPos = GameManager.Instance.gridParent.transform.GetChild(gridIndexNumberOfObject).GetChild(1)
             .transform.position;
         myPos.y += 0.6f;
@@ -144,12 +139,16 @@ public class MachineManager : MonoBehaviour
     }
     public void LastMoveToTruck(Vector3 posToMoveForThisMoney, GameObject moneyTemp)
     {
+        int _incomeLevel = PlayerPrefs.GetInt("IncomeButtonLevel", 0);
         Spawner.Instance.movingMoneyBaleList.Remove(moneyTemp);
         moneyTemp.transform.SetParent(goPos.transform);
         moneyTemp.transform.DORotate(new Vector3(-90f, 0, 0), 0.2f);
         moneyTemp.transform.DOLocalJump(posToMoveForThisMoney, 10,1,1.5f).SetEase(Ease.OutBounce).OnComplete(()=>
         {
+            machineIncomeMoney += machineIncomeMoney * GameDataManager.Instance.IncomePercantage;
+            
             GameDataManager.Instance.moneyToBeCollected += GameDataManager.Instance.GetOnly1DigitAfterPoint(machineIncomeMoney);
+            
             _tempText.text = AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.GetOnly1DigitAfterPoint(GameDataManager.Instance.moneyToBeCollected));
             GameDataManager.Instance.SaveData();
         });

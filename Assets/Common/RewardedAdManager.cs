@@ -175,22 +175,17 @@ public class RewardedAdManager : MonoBehaviour
         {
             this.rewardedGridAd.Show();
         }
-        else
-        {
-            RequestRewarded();
-        }
+        RequestRewarded();
     }
     
     public void UpgradeButtonRewardAd()
     {
         if (this.rewardedUpgradeButtonsAd.IsLoaded())
         {
+            Debug.LogError("Girdim");
             this.rewardedUpgradeButtonsAd.Show();
         }
-        else
-        {
-            RequestRewardedUpgradeButtonsAd();
-        }
+        RequestRewardedUpgradeButtonsAd();
     }
 
     public void MultipleOfflineProgressRewardAd()

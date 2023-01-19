@@ -11,10 +11,6 @@ public class MachineTriggerManager : MonoBehaviour
     // Start is called before the first frame update
     GameObject comingWorkerObject = null;
 
-    void Start()
-    {
-    }
-
     // Update is called once per frame
     private void OnTriggerExit(Collider other)
     {
