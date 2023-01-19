@@ -1,8 +1,6 @@
  using UnityEngine;
  using System.Collections.Generic;
  using System.Linq;
-using UnityEngine.UIElements;
-using UnityEditor.ShaderGraph.Drawing;
 
 public static class AbbrevationUtility
  {
@@ -42,7 +40,7 @@ public static class AbbrevationUtility
                 }
                 else
                 {
-                    return number.ToString()+pair.Key;
+                    return number.ToString()+pair.Value;
                 }
             }
         }

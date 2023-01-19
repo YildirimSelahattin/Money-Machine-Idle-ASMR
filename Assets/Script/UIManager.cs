@@ -282,7 +282,7 @@ public class UIManager : MonoBehaviour
 
             GameDataManager.Instance.workerBaseSpeed += GameDataManager.Instance.workerBaseSpeed * 0.03f;
 
-            adWorkerSpeedButton.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text =
+            adWorkerSpeedButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text =
                 "LEVEL " + GameDataManager.Instance.workerSpeedButtonLevel;
             workerSpeedButton.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text =
                 "LEVEL " + GameDataManager.Instance.workerSpeedButtonLevel;
