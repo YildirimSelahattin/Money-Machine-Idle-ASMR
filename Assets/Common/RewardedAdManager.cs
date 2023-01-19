@@ -182,7 +182,6 @@ public class RewardedAdManager : MonoBehaviour
     {
         if (this.rewardedUpgradeButtonsAd.IsLoaded())
         {
-            Debug.LogError("Girdim");
             this.rewardedUpgradeButtonsAd.Show();
         }
         RequestRewardedUpgradeButtonsAd();

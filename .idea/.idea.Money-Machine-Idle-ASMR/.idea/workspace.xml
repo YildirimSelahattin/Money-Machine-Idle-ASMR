@@ -2,24 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12e15ff2-c41a-445c-99a6-3e761c781f24" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Money-Machine-Idle-ASMR/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Money-Machine-Idle-ASMR/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Common/RewardedAdManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Common/RewardedAdManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Material/openGrid.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Material/openGrid.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/ENV&amp;Machines/money_game/moneymachine_1.obj.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/ENV&amp;Machines/money_game/moneymachine_1.obj.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/ENV&amp;Machines/money_game/moneymachine_2.obj.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/ENV&amp;Machines/money_game/moneymachine_2.obj.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/ENV&amp;Machines/money_game/moneymachine_3.obj.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/ENV&amp;Machines/money_game/moneymachine_3.obj.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/ENV&amp;Machines/money_game/moneymachine_4.obj.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/ENV&amp;Machines/money_game/moneymachine_4.obj.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/ENV&amp;Machines/money_game/moneymachine_5.obj.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/ENV&amp;Machines/money_game/moneymachine_5.obj.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/ENV&amp;Machines/money_game/moneymachine_6.obj.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/ENV&amp;Machines/money_game/moneymachine_6.obj.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Worker.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Worker.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/machine-1 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/machine-1 1.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/GameDataManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/GameDataManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/GettingTouchManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/GettingTouchManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/MachineManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MachineManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/MachineTriggerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MachineTriggerManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/UIManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Grid/GridMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/Grid/GridMat.mat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +124,7 @@
       <workItem from="1673857376309" duration="1622000" />
       <workItem from="1673873599190" duration="6937000" />
       <workItem from="1674027110397" duration="11946000" />
-      <workItem from="1674127429563" duration="2889000" />
+      <workItem from="1674127429563" duration="3323000" />
     </task>
     <servers />
   </component>

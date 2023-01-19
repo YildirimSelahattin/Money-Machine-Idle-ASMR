@@ -178,7 +178,6 @@ public class UIManager : MonoBehaviour
 
     public void AdOnBeltSpeedUpgradeButton()
     {
-        Debug.LogError("AdOnBelt");
         buttonIndex = 1;
         RewardedAdManager.Instance.UpgradeButtonRewardAd();
         
@@ -243,6 +242,8 @@ public class UIManager : MonoBehaviour
             "LEVEL " + GameDataManager.Instance.incomeButtonLevel;
         incomeButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
             "LEVEL " + (GameDataManager.Instance.incomeButtonLevel + 1);
+        
+        GameDataManager.Instance.SaveData();
     }
 
     public void RewardedIncomeUpgradeButton()
@@ -300,6 +301,8 @@ public class UIManager : MonoBehaviour
             "LEVEL " + GameDataManager.Instance.workerSpeedButtonLevel;
         workerSpeedButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
             "LEVEL " + (GameDataManager.Instance.workerSpeedButtonLevel + 1);
+        
+        GameDataManager.Instance.SaveData();
     }
 
     public void RewardedAdWorkerUpgradeButton()
@@ -393,6 +396,8 @@ public class UIManager : MonoBehaviour
             "LEVEL " + GameDataManager.Instance.addMachineButtonLevel;
         addMachineButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
             "LEVEL " + (GameDataManager.Instance.addMachineButtonLevel + 1);
+        
+        GameDataManager.Instance.SaveData();
     }
 
     public void RewardedAddMachineButton()
