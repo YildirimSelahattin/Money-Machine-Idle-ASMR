@@ -79,6 +79,13 @@ public class GettingTouchManager : MonoBehaviour
                     }
                     moneyTapParticle.gameObject.transform.position=new Vector3(hit.point.x ,hit.point.y+1,hit.point.z);
                     moneyTapParticle.Play();
+                    //If Vibration 
+                    //Vibrate
+                    if (GameDataManager.Instance.playVibrate==1)
+                    {
+                        Handheld.Vibrate();
+                    }
+                    
                     GameDataManager.Instance.TotalMoney += GameDataManager.Instance.IncomePerTap;
                     UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumberForTotalMoney(GameDataManager.Instance.TotalMoney);
                     moneyTapNumber++;
