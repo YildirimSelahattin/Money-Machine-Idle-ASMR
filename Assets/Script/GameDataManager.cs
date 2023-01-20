@@ -59,7 +59,7 @@ public class GameDataManager : MonoBehaviour
     public int workerSpeedButtonLevel = 1;
     public long moneyToBeCollected = 0;
     public float totalMoney = 0;
-    public float IncomePercantage = 12;
+    public float IncomePercantage = 4;
 
     public float TotalMoney
     {
@@ -118,7 +118,7 @@ public class GameDataManager : MonoBehaviour
         WorkerSpeedButtonMoney = PlayerPrefs.GetFloat("WorkerSpeedButtonMoney", 5);
         BeltSpeedButtonMoney = PlayerPrefs.GetFloat("BeltSpeedButtonMoney", 7);
         AddMachineButtonMoney = PlayerPrefs.GetFloat("AddMachineButtonMoney", 7);
-        IncomePerTap = PlayerPrefs.GetFloat("IncomePerTap", 1);
+        IncomePerTap = PlayerPrefs.GetFloat("IncomePerTap", 2);
         beltSpeed = PlayerPrefs.GetFloat("BeltSpeed", -0.05f);
         workerBaseSpeed = PlayerPrefs.GetFloat("WorkerSpeed", 3);
         TotalMoney = PlayerPrefs.GetFloat("TotalMoney", 3);
@@ -145,6 +145,7 @@ public class GameDataManager : MonoBehaviour
         PlayerPrefs.SetInt("BeltSpeedButtonLevel", beltSpeedButtonLevel);
         PlayerPrefs.SetFloat("BeltSpeed", beltSpeed);
         PlayerPrefs.SetFloat("IncomePercentage", IncomePercantage);
+        PlayerPrefs.SetFloat("IncomePerTap", IncomePerTap);
         PlayerPrefs.SetFloat("WorkerSpeed", workerBaseSpeed);
         PlayerPrefs.SetFloat("IncomeButtonMoney", incomeButtonMoney);
         PlayerPrefs.SetFloat("WorkerSpeedButtonMoney", workerSpeedButtonMoney);

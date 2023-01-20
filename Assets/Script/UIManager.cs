@@ -106,7 +106,7 @@ public class UIManager : MonoBehaviour
             AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.AddMachineButtonMoney) + " $";
 
         GameDataManager.Instance.ControlButtons();
-        StartCoroutine(OpeningAdButtonsAfterDelay(3));
+        StartCoroutine(OpeningAdButtonsAfterDelay(50));
     }
 
     IEnumerator AdButtonsDelay()
@@ -228,7 +228,8 @@ public class UIManager : MonoBehaviour
             incomeButton.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
                 AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.IncomeButtonMoney) + " $";
 
-            GameDataManager.Instance.IncomePercantage += GameDataManager.Instance.IncomePercantage * 0.12f;
+            GameDataManager.Instance.IncomePercantage += GameDataManager.Instance.IncomePercantage * 0.04f;
+            GameDataManager.Instance.IncomePerTap += GameDataManager.Instance.IncomePerTap * .5f;
 
             GameDataManager.Instance.SaveData();
         }
@@ -253,7 +254,8 @@ public class UIManager : MonoBehaviour
         GameDataManager.Instance.incomeButtonLevel++;
         GameDataManager.Instance.IncomePerTap++;
 
-        GameDataManager.Instance.IncomePercantage += GameDataManager.Instance.IncomePercantage * 0.12f;
+        GameDataManager.Instance.IncomePercantage += GameDataManager.Instance.IncomePercantage * 0.04f;
+        GameDataManager.Instance.IncomePerTap += GameDataManager.Instance.IncomePerTap * .5f;
 
         GameDataManager.Instance.SaveData();
         
@@ -496,6 +498,7 @@ public class UIManager : MonoBehaviour
             adButton.SetActive(false);
         }
     }
+    
     public IEnumerator DeactivateForSeconds(Button button, float waitTime)
     {
         button.interactable = false;
@@ -508,17 +511,20 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         adBeltSpeedButton.SetActive(false);
     }
+    
     public IEnumerator AdIncomeButtonsDelay(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
         adIncomeButton.SetActive(false);
     }
+    
     public IEnumerator AdWorkerButtonsDelay(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
         adWorkerSpeedButton.SetActive(false);
         StartCoroutine(OpeningAdButtonsAfterDelay(3));
     }
+    
     public IEnumerator AdMachineButtonsDelay(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);

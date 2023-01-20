@@ -20901,7 +20901,7 @@ MonoBehaviour:
   workerSpeedButtonLevel: 1
   moneyToBeCollected: 0
   totalMoney: 0
-  IncomePercantage: 0.12
+  IncomePercantage: 0.04
   workerBaseSpeed: 0
   beltSpeed: 0
   machineIncomeMoney: 0
