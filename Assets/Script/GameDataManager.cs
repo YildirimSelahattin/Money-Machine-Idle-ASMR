@@ -7,6 +7,7 @@ public class GameDataManager : MonoBehaviour
     public static GameDataManager Instance;
     public int playSound;
     public int playMusic;
+    public int playVibrate = 1;
     public AudioClip brushMachineMusic;
     public GameObject[] moneyMachineArray;
     public int[] gridArray = new int[6];
@@ -84,8 +85,11 @@ public class GameDataManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            playSound = PlayerPrefs.GetInt("PlaySoundKey", 1);
-            playMusic = PlayerPrefs.GetInt("PlayMusicKey", 1);
+            playSound = PlayerPrefs.GetInt("PlaySoundKey",1);
+            playMusic = PlayerPrefs.GetInt("PlayMusicKey",1);
+            playVibrate = PlayerPrefs.GetInt("PlayVibrateKey",1);
+
+           
         }
 
         LoadData();
@@ -154,6 +158,7 @@ public class GameDataManager : MonoBehaviour
 
     private void OnDisable()
     {
+        Debug.Log("sa");
         SaveData();
         PlayerPrefs.SetInt("PlaySoundKey", playSound);
         PlayerPrefs.SetInt("PlayMusicKey", playMusic);
