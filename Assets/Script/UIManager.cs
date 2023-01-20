@@ -563,7 +563,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateVibrate()
     {
-        isSoundOn = GameDataManager.Instance.playSound;
+        isVibrateOn = GameDataManager.Instance.playVibrate;
         if (isVibrateOn == 0)
         {
             vibrationOff.gameObject.SetActive(true);

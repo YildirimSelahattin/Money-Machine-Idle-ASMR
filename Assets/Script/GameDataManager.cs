@@ -7,7 +7,7 @@ public class GameDataManager : MonoBehaviour
     public static GameDataManager Instance;
     public int playSound;
     public int playMusic;
-    public int playVibrate = 1;
+    public int playVibrate;
     public AudioClip brushMachineMusic;
     public GameObject[] moneyMachineArray;
     public int[] gridArray = new int[6];
@@ -158,10 +158,11 @@ public class GameDataManager : MonoBehaviour
 
     private void OnDisable()
     {
-        Debug.Log("sa");
+        
         SaveData();
         PlayerPrefs.SetInt("PlaySoundKey", playSound);
         PlayerPrefs.SetInt("PlayMusicKey", playMusic);
+        PlayerPrefs.SetInt("PlayVibrateKey",playVibrate);
     }
 
     public long GetOnly1DigitAfterPoint(float number)
