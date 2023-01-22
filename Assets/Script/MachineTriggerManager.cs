@@ -10,6 +10,7 @@ public class MachineTriggerManager : MonoBehaviour
 {
     // Start is called before the first frame update
     GameObject comingWorkerObject = null;
+    public int mergeCounter = 0;
 
     // Update is called once per frame
     private void OnTriggerExit(Collider other)
@@ -32,6 +33,14 @@ public class MachineTriggerManager : MonoBehaviour
                     UIManager.Instance.MergeHand.transform.DOKill();
                     UIManager.Instance.MergeHand.SetActive(false);
                 }
+
+                mergeCounter++;
+
+                if (mergeCounter % 3 == 0)
+                {
+                    InterstitialAdManager.Instance.ShowInterstitial();
+                }
+                
                 int targetGrid = other.gameObject.GetComponent<MachineManager>().gridIndexNumberOfObject;
                 int currentGrid = gameObject.transform.parent.tag[transform.parent.tag.Length - 1] - '0';
                 //make changes on grid array

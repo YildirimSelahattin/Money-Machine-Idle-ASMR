@@ -143,10 +143,9 @@ public class MachineManager : MonoBehaviour
         moneyTemp.transform.DORotate(new Vector3(-90f, 0, 0), 0.2f);
         moneyTemp.transform.DOLocalJump(posToMoveForThisMoney, 10,1,1.5f).SetEase(Ease.OutBounce).OnComplete(()=>
         {
-            machineIncomeMoney += machineIncomeMoney * GameDataManager.Instance.IncomePercantage;
-            
-            GameDataManager.Instance.moneyToBeCollected += GameDataManager.Instance.GetOnly1DigitAfterPoint(machineIncomeMoney);
-            
+            //GameDataManager.Instance.moneyToBeCollected += ((long)(machineIncomeMoney + (long)(machineIncomeMoney * (1 + (GameDataManager.Instance.IncomePercantage * GameDataManager.Instance.incomeButtonLevel + GameDataManager.Instance.IncomePercantage * GameDataManager.Instance.IncomePercantage * GameDataManager.Instance.incomeButtonLevel - 1)))));
+            GameDataManager.Instance.moneyToBeCollected = (long)(machineIncomeMoney * GameDataManager.Instance.IncomePercantage);
+            //GameDataManager.Instance.moneyToBeCollected = (long)(machineIncomeMoney * (1 + GameDataManager.Instance.IncomePercantage)) / 10;
             _tempText.text = AbbrevationUtility.AbbreviateNumberForTotalMoney(GameDataManager.Instance.moneyToBeCollected);
             GameDataManager.Instance.SaveData();
         });

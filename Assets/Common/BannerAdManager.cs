@@ -16,7 +16,7 @@ public class BannerAdManager : MonoBehaviour
     {
 
 #if UNITY_ANDROID
-            string adUnitId = "ca-app-pub-4384667521830956/5916748189"; //ca-app-pub-4384667521830956/2742164828
+            string adUnitId = "ca-app-pub-4384667521830956/4636424017"; //ca-app-pub-4384667521830956/2742164828
 #else
         string adUnitId = "unexpected_platform";
 #endif

@@ -59,7 +59,7 @@ public class GameDataManager : MonoBehaviour
     public int workerSpeedButtonLevel = 1;
     public long moneyToBeCollected = 0;
     public float totalMoney = 0;
-    public float IncomePercantage = 4;
+    public float IncomePercantage = 0.04f;
 
     public float TotalMoney
     {

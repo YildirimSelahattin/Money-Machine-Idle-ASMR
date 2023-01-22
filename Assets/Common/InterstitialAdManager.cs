@@ -23,7 +23,7 @@ public class InterstitialAdManager : MonoBehaviour
     private void RequestInterstitial()
     {
 #if UNITY_ANDROID
-        string adUnitId = "ca-app-pub-4384667521830956/1913063435";
+        string adUnitId = "ca-app-pub-4384667521830956/4444852325";
 #elif UNITY_IPHONE
         string adUnitId = "ca-app-pub-3940256099942544/4411468910";
 #else

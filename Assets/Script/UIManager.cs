@@ -106,7 +106,7 @@ public class UIManager : MonoBehaviour
             AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.AddMachineButtonMoney) + " $";
 
         GameDataManager.Instance.ControlButtons();
-        StartCoroutine(OpeningAdButtonsAfterDelay(50));
+        StartCoroutine(OpeningAdButtonsAfterDelay(30));
     }
 
     IEnumerator AdButtonsDelay()
@@ -216,7 +216,6 @@ public class UIManager : MonoBehaviour
                 StartCoroutine(AdIncomeButtonsDelay(10));
             }*/
             
-            GameDataManager.Instance.IncomePerTap++;
             GameDataManager.Instance.TotalMoney -= moneyToDecrrease;
             TotalMoneyText.GetComponent<TextMeshProUGUI>().text =
                 AbbrevationUtility.AbbreviateNumberForTotalMoney(GameDataManager.Instance.TotalMoney);
@@ -228,7 +227,7 @@ public class UIManager : MonoBehaviour
             incomeButton.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
                 AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.IncomeButtonMoney) + " $";
 
-            GameDataManager.Instance.IncomePercantage += GameDataManager.Instance.IncomePercantage * 0.04f;
+            GameDataManager.Instance.IncomePercantage =(1 + 0.04f * GameDataManager.Instance.incomeButtonLevel + 0.04f * 0.04f * (GameDataManager.Instance.incomeButtonLevel - 1));
             GameDataManager.Instance.IncomePerTap += GameDataManager.Instance.IncomePerTap * .5f;
 
             GameDataManager.Instance.SaveData();
@@ -252,7 +251,6 @@ public class UIManager : MonoBehaviour
         GameDataManager.Instance.IncomeButtonMoney += GameDataManager.Instance.GetOnly1DigitAfterPoint(GameDataManager.Instance.IncomeButtonMoney / 2);
         GameDataManager.Instance.offlineProgressNum += GameDataManager.Instance.offlineProgressNum / 5;
         GameDataManager.Instance.incomeButtonLevel++;
-        GameDataManager.Instance.IncomePerTap++;
 
         GameDataManager.Instance.IncomePercantage += GameDataManager.Instance.IncomePercantage * 0.04f;
         GameDataManager.Instance.IncomePerTap += GameDataManager.Instance.IncomePerTap * .5f;
@@ -522,7 +520,7 @@ public class UIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         adWorkerSpeedButton.SetActive(false);
-        StartCoroutine(OpeningAdButtonsAfterDelay(3));
+        StartCoroutine(OpeningAdButtonsAfterDelay(30));
     }
     
     public IEnumerator AdMachineButtonsDelay(float waitTime)
