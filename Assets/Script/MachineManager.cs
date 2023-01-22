@@ -155,7 +155,12 @@ public class MachineManager : MonoBehaviour
         parentOfMoney.SetActive(true);
         for (int i = 0; i < 10; i++)
         {
+            if (GameDataManager.Instance.playSound == 1)
+            {
             _moneySound.Play();
+                
+            }
+            
             if (levelIndexOfObject !=3)
             {
                 MoveMoneyInRoundedMachine(parentOfMoney.transform.GetChild(i).gameObject, i,countWaitTime);

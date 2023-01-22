@@ -58,6 +58,10 @@ public class UIManager : MonoBehaviour
         {
             Instance = this;
         }
+        UpdateSound();
+        UpdateMusic();
+        UpdateVibrate();
+        
         addMachineTapAmount = PlayerPrefs.GetInt("addMachineAmount", 0);
         if (addMachineTapAmount == 2)
         {
@@ -563,17 +567,17 @@ public class UIManager : MonoBehaviour
 
     public void UpdateVibrate()
     {
-        isSoundOn = GameDataManager.Instance.playSound;
+        isVibrateOn = GameDataManager.Instance.playVibrate;
         if (isVibrateOn == 0)
         {
             vibrationOff.gameObject.SetActive(true);
-            SoundsOff();
+            VibrationOff();
         }
 
         if (isVibrateOn == 1)
         {
             vibrationOn.gameObject.SetActive(true);
-            SoundsOn();
+            VibrationOn();
         }
     }
 
@@ -582,6 +586,8 @@ public class UIManager : MonoBehaviour
         GameDataManager.Instance.playMusic = 0;
         musicOn.gameObject.SetActive(false);
         musicOff.gameObject.SetActive(true);
+        //UpdateMusic();
+
     }
 
     public void MusicOn()
@@ -589,6 +595,7 @@ public class UIManager : MonoBehaviour
         GameDataManager.Instance.playMusic = 1;
         musicOff.gameObject.SetActive(false);
         musicOn.gameObject.SetActive(true);
+        //UpdateMusic();
     }
 
     public void SoundsOff()
@@ -596,6 +603,7 @@ public class UIManager : MonoBehaviour
         GameDataManager.Instance.playSound = 0;
         soundOn.gameObject.SetActive(false);
         soundOff.gameObject.SetActive(true);
+        //UpdateSound();
     }
 
     public void SoundsOn()
@@ -603,20 +611,26 @@ public class UIManager : MonoBehaviour
         GameDataManager.Instance.playSound = 1;
         soundOff.gameObject.SetActive(false);
         soundOn.gameObject.SetActive(true);
+        //UpdateSound();
     }
 
     public void VibrationOff()
     {
-        GameDataManager.Instance.playSound = 0;
+        GameDataManager.Instance.playVibrate = 0;
         vibrationOn.gameObject.SetActive(false);
         vibrationOff.gameObject.SetActive(true);
+        Handheld.Vibrate();
+        //UpdateVibrate();
     }
 
     public void VibrationOn()
     {
-        GameDataManager.Instance.playSound = 1;
+        GameDataManager.Instance.playVibrate = 1;
         vibrationOff.gameObject.SetActive(false);
         vibrationOn.gameObject.SetActive(true);
+        Handheld.Vibrate();
+       // UpdateVibrate();
+
     }
 
     public void OnOpenOptionsPanel()
@@ -633,6 +647,9 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void VibratePhone(){
+        Handheld.Vibrate();
+    }
     public void OnOpenInfoPanel()
     {
         InfoPanel.SetActive(true);
@@ -643,4 +660,8 @@ public class UIManager : MonoBehaviour
         OptionsPanel.SetActive(false);
         InfoPanel.SetActive(false);
     }
+    
+    
+
+    
 }
