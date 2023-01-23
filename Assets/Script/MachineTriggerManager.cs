@@ -77,7 +77,6 @@ public class MachineTriggerManager : MonoBehaviour
             int currentGridOfMachine = gameObject.transform.parent.tag[transform.parent.tag.Length - 1] - '0';
             int targetGrid = other.gameObject.transform.tag[other.gameObject.transform.tag.Length - 1] - '0';
             int levelIndexOfDraggedMachine = gameObject.GetComponent<MachineManager>().levelIndexOfObject;
-            GameObject worker = Spawner.Instance.gridWorkerArray[currentGridOfMachine];
             gameObject.GetComponent<MachineManager>().gridIndexNumberOfObject = targetGrid; // save it on the new grid
             GameManager.Instance.gridParent.transform.GetChild(currentGridOfMachine).GetComponent<BoxCollider>().enabled = true;
             GameManager.Instance.gridParent.transform.GetChild(targetGrid).GetComponent<BoxCollider>().enabled = false;
@@ -88,12 +87,18 @@ public class MachineTriggerManager : MonoBehaviour
             Spawner.Instance.gridWorkerArray[currentGridOfMachine] = null;
             Destroy(workerToDelete);
             //ad the new grids worker to the array
-            StartCoroutine(Spawner.Instance.AddWorkerAfterDelay(targetGrid,1));
+            StartCoroutine(Spawner.Instance.AddWorkerAfterDelay(targetGrid,0.1f));
             ///
             gameObject.transform.SetParent(other.gameObject.transform);
             gameObject.transform.DOKill();
-            gameObject.transform.DOLocalMove(GameDataManager.Instance.moneyMachineArray[levelIndexOfDraggedMachine].transform.position, 0.3f)
-                .OnComplete(() => GettingTouchManager.Instance.objectToDrag = null).OnComplete(()=> worker.GetComponent<WorkerManager>().MoveMachineAndComeBackByIndex());// when snapping to neew grid job finishes, start worker movement
+            /*gameObject.transform.DOLocalMove(GameDataManager.Instance.moneyMachineArray[levelIndexOfDraggedMachine].transform.position, 0.1f)
+                .OnComplete(() => {
+                    GettingTouchManager.Instance.objectToDrag = null;
+                    worker.GetComponent<WorkerManager>().MoveMachineAndComeBackByIndex();
+                }
+                );// when snapping to neew grid job finishes, start worker movement*/
+            gameObject.transform.localPosition = GameDataManager.Instance.moneyMachineArray[levelIndexOfDraggedMachine].transform.position;
+            GettingTouchManager.Instance.objectToDrag = null;
             GameDataManager.Instance.SaveData();
         }
     }

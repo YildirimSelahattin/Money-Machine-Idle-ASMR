@@ -68,7 +68,7 @@ public class UIManager : MonoBehaviour
         {
             MergeHand.SetActive(true);
         }
-        if (addMachineTapAmount == 0)
+        if (addMachineTapAmount == 0 && GameDataManager.Instance.AddMachineButtonMoney<GameDataManager.Instance.TotalMoney)
         {
             addMachineHand.SetActive(true);
         }
@@ -154,9 +154,9 @@ public class UIManager : MonoBehaviour
     {
         if (GameDataManager.Instance.TotalMoney >= GameDataManager.Instance.BeltSpeedButtonMoney)
         {
-            float moneyToDecrease = GameDataManager.Instance.BeltSpeedButtonMoney;
+            long moneyToDecrease = GameDataManager.Instance.BeltSpeedButtonMoney;
 
-            GameDataManager.Instance.BeltSpeedButtonMoney += GameDataManager.Instance.BeltSpeedButtonMoney / 1.5f;
+            GameDataManager.Instance.BeltSpeedButtonMoney += (long) (GameDataManager.Instance.BeltSpeedButtonMoney / 1.5f);
             GameDataManager.Instance.beltSpeedButtonLevel++;
 
             /*if (GameDataManager.Instance.beltSpeedButtonLevel % 3 == 0)
@@ -200,7 +200,7 @@ public class UIManager : MonoBehaviour
     public IEnumerator RewardedBeltSpeedUpgradeButton()
     {
         yield return new WaitForEndOfFrame();
-        GameDataManager.Instance.BeltSpeedButtonMoney += GameDataManager.Instance.BeltSpeedButtonMoney / 1.5f;
+        GameDataManager.Instance.BeltSpeedButtonMoney += (long)(GameDataManager.Instance.BeltSpeedButtonMoney / 1.5f);
         GameDataManager.Instance.beltSpeedButtonLevel++;
         GameDataManager.Instance.beltSpeed += (GameDataManager.Instance.beltSpeed * 0.04f);
         GameDataManager.Instance.SaveData();
@@ -212,7 +212,7 @@ public class UIManager : MonoBehaviour
     {
         if (GameDataManager.Instance.TotalMoney >= GameDataManager.Instance.IncomeButtonMoney)
         {
-            float moneyToDecrrease = GameDataManager.Instance.IncomeButtonMoney;
+            long moneyToDecrrease = GameDataManager.Instance.IncomeButtonMoney;
             GameDataManager.Instance.IncomeButtonMoney += GameDataManager.Instance.IncomeButtonMoney / 2;
             GameDataManager.Instance.offlineProgressNum += GameDataManager.Instance.offlineProgressNum / 5;
             GameDataManager.Instance.incomeButtonLevel++;
@@ -274,7 +274,7 @@ public class UIManager : MonoBehaviour
     {
         if (GameDataManager.Instance.TotalMoney >= GameDataManager.Instance.WorkerSpeedButtonMoney)
         {
-            float moneyToDecrease = GameDataManager.Instance.WorkerSpeedButtonMoney;
+            long moneyToDecrease = GameDataManager.Instance.WorkerSpeedButtonMoney;
             GameDataManager.Instance.WorkerSpeedButtonMoney += GameDataManager.Instance.WorkerSpeedButtonMoney / 2;
             GameDataManager.Instance.workerSpeedButtonLevel++;
 
@@ -335,7 +335,7 @@ public class UIManager : MonoBehaviour
         {
             bool controllForButtonInteract = false;
             bool closeInteractibility = true;
-            float moneyToDecrease = GameDataManager.Instance.AddMachineButtonMoney;
+            long moneyToDecrease = GameDataManager.Instance.AddMachineButtonMoney;
             GameDataManager.Instance.AddMachineButtonMoney += GameDataManager.Instance.AddMachineButtonMoney / 2;
             GameDataManager.Instance.addMachineButtonLevel++;
 

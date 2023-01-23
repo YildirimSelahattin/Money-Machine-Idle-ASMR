@@ -135,9 +135,9 @@ public class RewardedAdManager : MonoBehaviour
 
     public void HandleUserEarnedReward(object sender, Reward args)
     {
-        float tempTotalMoney = PlayerPrefs.GetFloat("TotalMoney", 0);
-        tempTotalMoney += OfflineProgress.Instance.offlineRewardMoney * 3;
-        UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumberForTotalMoney(tempTotalMoney);
+        long tempTotalMoney = Convert.ToInt64(PlayerPrefs.GetString("TotalMoney", 0.ToString())); 
+        tempTotalMoney += (long)OfflineProgress.Instance.offlineRewardMoney * 3;
+        UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumberForTotalMoney((long)tempTotalMoney);
         OfflineProgress.Instance.OfflineRewardPanel.SetActive(false);
         
         RequestRewarded();

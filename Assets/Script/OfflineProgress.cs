@@ -34,9 +34,9 @@ public class OfflineProgress : MonoBehaviour
 
             if (ts.TotalSeconds < 86400)
             {
-                offlineRewardMoney = AbbrevationUtility.RoundNumberLikeText(GameDataManager.Instance.offlineProgressNum * (float)ts.TotalSeconds);
+                offlineRewardMoney = AbbrevationUtility.RoundNumberLikeText((long)(GameDataManager.Instance.offlineProgressNum * (float)ts.TotalSeconds));
                 Debug.Log(offlineRewardMoney);
-                offlineMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumber(offlineRewardMoney);
+                offlineMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumber((long)offlineRewardMoney);
             }
             else
             {
@@ -64,7 +64,7 @@ public class OfflineProgress : MonoBehaviour
     {
         InterstitialAdManager.Instance.ShowInterstitial();
         
-        GameDataManager.Instance.TotalMoney += offlineRewardMoney;
+        GameDataManager.Instance.TotalMoney +=(long) offlineRewardMoney;
         UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
         OfflineRewardPanel.SetActive(false);
     }

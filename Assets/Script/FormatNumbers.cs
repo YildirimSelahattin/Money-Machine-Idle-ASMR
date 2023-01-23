@@ -12,12 +12,13 @@ public static class AbbrevationUtility
          {1000," k"},
          {1000000, " m" },
          {1000000000, " b" },
-         {1000000000000, " t" }
+         {1000000000000, " t" },
+         {1000000000000000, " q" }
      };
 
-    public static string AbbreviateNumber(float number)
+    public static string AbbreviateNumber(long number)
     {
-        float roundedNumber = Mathf.FloorToInt(number);
+        long roundedNumber = number;
         Debug.Log("gg"+roundedNumber);
         for (int i = abbrevations.Count - 1; i >= 0; i--)
         {
@@ -33,9 +34,9 @@ public static class AbbrevationUtility
         }
         return number.ToString();
     }
-    public static string AbbreviateNumberForTotalMoney(float number)
+    public static string AbbreviateNumberForTotalMoney(long number)
      {
-        float roundedNumber = Mathf.FloorToInt(number);
+        long roundedNumber = number;
         Debug.Log("ss"+roundedNumber);
         for (int i = abbrevations.Count - 1; i >= 0; i--)
         {
@@ -52,7 +53,7 @@ public static class AbbrevationUtility
         return number.ToString();
     }
 
-    public static long RoundNumberLikeText(float number)
+    public static long RoundNumberLikeText(long number)
     {
         for (int i = abbrevations.Count - 1; i >= 0; i--)
         {

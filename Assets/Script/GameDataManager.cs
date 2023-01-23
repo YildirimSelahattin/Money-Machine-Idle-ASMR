@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,46 +13,46 @@ public class GameDataManager : MonoBehaviour
     public GameObject[] moneyMachineArray;
     public int[] gridArray = new int[6];
     public int maxLevelMachineAmount;
-    public float beltSpeedButtonMoney;
-    public float[] gridOpenWithMoneyPrices;
+    public long beltSpeedButtonMoney;
+    public long[] gridOpenWithMoneyPrices;
 
-    public float BeltSpeedButtonMoney
+    public long BeltSpeedButtonMoney
     {
         // = 5f;
         get { return beltSpeedButtonMoney; }
         set { beltSpeedButtonMoney = AbbrevationUtility.RoundNumberLikeText(beltSpeedButtonMoney); }
     }
 
-    [SerializeField] public float incomeButtonMoney;
+    [SerializeField] public long incomeButtonMoney;
 
-    public float IncomeButtonMoney
+    public long IncomeButtonMoney
     {
         get { return incomeButtonMoney; }
         set { incomeButtonMoney = AbbrevationUtility.RoundNumberLikeText(value); }
     }
 
-    [SerializeField] public float addMachineButtonMoney;
+    [SerializeField] public long addMachineButtonMoney;
 
-    public float AddMachineButtonMoney
+    public long AddMachineButtonMoney
     {
         get { return addMachineButtonMoney; }
         set { addMachineButtonMoney = AbbrevationUtility.RoundNumberLikeText(value); }
     }
 
-    [SerializeField] public float workerSpeedButtonMoney;
+    [SerializeField] public long workerSpeedButtonMoney;
 
-    public float WorkerSpeedButtonMoney
+    public long WorkerSpeedButtonMoney
     {
         get { return workerSpeedButtonMoney; }
         set { workerSpeedButtonMoney = AbbrevationUtility.RoundNumberLikeText(value); }
     }
 
-    public float incomePerTap;
+    public long incomePerTap;
 
     public float IncomePerTap
     {
         get { return incomePerTap; }
-        set { incomePerTap = AbbrevationUtility.RoundNumberLikeText(value); }
+        set { incomePerTap = AbbrevationUtility.RoundNumberLikeText((long)value); }
     }
 
     public int beltSpeedButtonLevel = 1;
@@ -59,10 +60,10 @@ public class GameDataManager : MonoBehaviour
     public int addMachineButtonLevel = 1;
     public int workerSpeedButtonLevel = 1;
     public long moneyToBeCollected = 0;
-    public float totalMoney = 0;
+    public long totalMoney = 0;
     public float IncomePercantage = 0.04f;
 
-    public float TotalMoney
+    public long TotalMoney
     {
         get { return totalMoney; }
 
@@ -77,7 +78,7 @@ public class GameDataManager : MonoBehaviour
 
     public float workerBaseSpeed;
     public float beltSpeed;
-    public float machineIncomeMoney;
+    public long machineIncomeMoney;
     public float offlineProgressNum = 2;
 
     void Awake()
@@ -101,13 +102,12 @@ public class GameDataManager : MonoBehaviour
         //grid jobs
         for (int i = 0; i < 6; i++)
         {
-            /*gridArray[i] = PlayerPrefs.GetInt("GridValue" + i.ToString(), 0); //open default
+            gridArray[i] = PlayerPrefs.GetInt("GridValue" + i.ToString(), 0); //open default
             if (i > 1)
             {
                 gridArray[i] = PlayerPrefs.GetInt("GridValue" + i.ToString(),-1); //closed default
             }
-            */
-            gridArray[i] = i + 1;
+           
         }
 
         // worker jobs
@@ -120,14 +120,19 @@ public class GameDataManager : MonoBehaviour
         addMachineButtonLevel = PlayerPrefs.GetInt("AddMachineButtonLevel", addMachineButtonLevel);
         incomeButtonLevel = PlayerPrefs.GetInt("IncomeButtonLevel", incomeButtonLevel);
         beltSpeedButtonLevel = PlayerPrefs.GetInt("BeltSpeedButtonLevel", beltSpeedButtonLevel);
-        IncomeButtonMoney = PlayerPrefs.GetFloat("IncomeButtonMoney", incomeButtonMoney);
-        WorkerSpeedButtonMoney = PlayerPrefs.GetFloat("WorkerSpeedButtonMoney", 5);
-        BeltSpeedButtonMoney = PlayerPrefs.GetFloat("BeltSpeedButtonMoney", 7);
-        AddMachineButtonMoney = PlayerPrefs.GetFloat("AddMachineButtonMoney", 7);
+        string temp= PlayerPrefs.GetString("IncomeButtonMoney", incomeButtonMoney.ToString());
+        IncomeButtonMoney = Convert.ToInt64(temp);
+        temp = PlayerPrefs.GetString("WorkerSpeedButtonMoney", 5.ToString());
+        WorkerSpeedButtonMoney= Convert.ToInt64(temp);
+        temp = PlayerPrefs.GetString("BeltSpeedButtonMoney", 7.ToString());
+        BeltSpeedButtonMoney = Convert.ToInt64(temp);
+        temp = PlayerPrefs.GetString("AddMachineButtonMoney", 7.ToString());
+        AddMachineButtonMoney = Convert.ToInt64(temp);
         IncomePerTap = PlayerPrefs.GetFloat("IncomePerTap", 2);
         beltSpeed = PlayerPrefs.GetFloat("BeltSpeed", -0.05f);
         workerBaseSpeed = PlayerPrefs.GetFloat("WorkerSpeed", 3);
-        TotalMoney = PlayerPrefs.GetFloat("TotalMoney", 3);
+        temp = PlayerPrefs.GetString("TotalMoney", 3.ToString());
+        TotalMoney = Convert.ToInt64(temp);
         IncomePercantage = PlayerPrefs.GetFloat("IncomePercentage", IncomePercantage);
     }
 
@@ -153,10 +158,11 @@ public class GameDataManager : MonoBehaviour
         PlayerPrefs.SetFloat("IncomePercentage", IncomePercantage);
         PlayerPrefs.SetFloat("IncomePerTap", IncomePerTap);
         PlayerPrefs.SetFloat("WorkerSpeed", workerBaseSpeed);
-        PlayerPrefs.SetFloat("IncomeButtonMoney", incomeButtonMoney);
-        PlayerPrefs.SetFloat("WorkerSpeedButtonMoney", workerSpeedButtonMoney);
-        PlayerPrefs.SetFloat("BeltSpeedButtonMoney", beltSpeedButtonMoney);
-        PlayerPrefs.SetFloat("AddMachineButtonMoney", addMachineButtonMoney);
+        PlayerPrefs.SetString("TotalMoney", totalMoney.ToString());
+        PlayerPrefs.SetString("IncomeButtonMoney", incomeButtonMoney.ToString());
+        PlayerPrefs.SetString("WorkerSpeedButtonMoney", workerSpeedButtonMoney.ToString());
+        PlayerPrefs.SetString("BeltSpeedButtonMoney", beltSpeedButtonMoney.ToString());
+        PlayerPrefs.SetString("AddMachineButtonMoney", addMachineButtonMoney.ToString());
     }
 
     private void OnDisable()
@@ -212,6 +218,10 @@ public class GameDataManager : MonoBehaviour
                 if (valueOfGrid == 0)
                 {
                     UIManager.Instance.addMachineButton.GetComponent<Button>().interactable = true;
+                    if(UIManager.Instance.addMachineTapAmount == 0)
+                    {
+                        UIManager.Instance.addMachineHand.SetActive(true);
+                    }
                     break;
                 }
             }

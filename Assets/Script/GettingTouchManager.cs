@@ -87,7 +87,7 @@ public class GettingTouchManager : MonoBehaviour
                         Handheld.Vibrate();
                     }
                     
-                    GameDataManager.Instance.TotalMoney += GameDataManager.Instance.IncomePerTap;
+                    GameDataManager.Instance.TotalMoney +=(long ) GameDataManager.Instance.IncomePerTap;
                     UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumberForTotalMoney(GameDataManager.Instance.TotalMoney);
                     moneyTapNumber++;
                     if ( moneyTapNumber > maxTapNumberUntilInterstitial)
