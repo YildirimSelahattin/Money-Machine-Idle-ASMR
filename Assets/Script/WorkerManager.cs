@@ -37,12 +37,12 @@ public class WorkerManager : MonoBehaviour
                 transform.DOLocalRotate(new Vector3(0, -40, 0), 0.4f);
             }
             transform.DOLocalMove(Spawner.Instance.firstRoadBreakdown[indexThatWorkerGoing % 2].position,
-            Vector3.Distance(transform.position, Spawner.Instance.firstRoadBreakdown[indexThatWorkerGoing % 2].position) / (GameDataManager.Instance.workerBaseSpeed * 0.5f)).SetEase(Ease.Linear).OnComplete(() =>
+            Vector3.Distance(transform.position, Spawner.Instance.firstRoadBreakdown[indexThatWorkerGoing % 2].position) / (GameDataManager.Instance.workerBaseSpeed )).SetEase(Ease.Linear).OnComplete(() =>
                 {
                     moveStage = 2;
                     transform.DOLocalRotate(new Vector3(0, 0, 0), 0.4f);
                     transform.DOLocalMove(
-                    lastBreakPoint.transform.position, Vector3.Distance(transform.position,lastBreakPoint.transform.position) / (GameDataManager.Instance.workerBaseSpeed * 0.5f)).SetEase(Ease.Linear).OnComplete(
+                    lastBreakPoint.transform.position, Vector3.Distance(transform.position,lastBreakPoint.transform.position) / (GameDataManager.Instance.workerBaseSpeed )).SetEase(Ease.Linear).OnComplete(
                     () =>
                     {
                         moveStage = 3;
@@ -55,7 +55,7 @@ public class WorkerManager : MonoBehaviour
                             transform.DOLocalRotate(new Vector3(0, -90, 0), 0.4f);
                         }
 
-                        transform.DOLocalMove(finalPoint.transform.position,Vector3.Distance(finalPoint.transform.position, transform.position) / (GameDataManager.Instance.workerBaseSpeed * 0.5f)).SetEase(Ease.Linear).OnComplete(() =>
+                        transform.DOLocalMove(finalPoint.transform.position,Vector3.Distance(finalPoint.transform.position, transform.position) / (GameDataManager.Instance.workerBaseSpeed )).SetEase(Ease.Linear).OnComplete(() =>
                             {
                                 GoBackToPile();
                                 Debug.Log(gridThatWorkerGoing.transform.GetChild(GameManager.Instance.GRID_MACHINE_INDEX).gameObject.GetComponent<MachineManager>());
@@ -69,7 +69,7 @@ public class WorkerManager : MonoBehaviour
 
             transform.DOLocalRotate(new Vector3(0, 0, 0), 0.4f);
             transform.DOLocalMove(
-            lastBreakPoint.transform.position, Vector3.Distance(transform.position, lastBreakPoint.transform.position)/ (GameDataManager.Instance.workerBaseSpeed * 0.5f)).SetEase(Ease.Linear).OnComplete(
+            lastBreakPoint.transform.position, Vector3.Distance(transform.position, lastBreakPoint.transform.position)/ (GameDataManager.Instance.workerBaseSpeed)).SetEase(Ease.Linear).OnComplete(
             () =>
             {
                 moveStage = 3;
@@ -81,7 +81,7 @@ public class WorkerManager : MonoBehaviour
                 {
                     transform.DOLocalRotate(new Vector3(0, -90, 0), 0.4f);
                 }
-                transform.DOLocalMove(finalPoint.transform.position, Vector3.Distance(finalPoint.transform.position, transform.position) / (GameDataManager.Instance.workerBaseSpeed * 0.5f)).OnComplete(() =>
+                transform.DOLocalMove(finalPoint.transform.position, Vector3.Distance(finalPoint.transform.position, transform.position) / (GameDataManager.Instance.workerBaseSpeed )).OnComplete(() =>
                     {
                         GoBackToPile();
                         Debug.Log(gridThatWorkerGoing.transform.GetChild(GameManager.Instance.GRID_MACHINE_INDEX).gameObject.GetComponent<MachineManager>());
@@ -101,7 +101,7 @@ public class WorkerManager : MonoBehaviour
                 transform.DOLocalRotate(new Vector3(0, -90, 0), 0.4f);
             }
 
-            transform.DOLocalMove(finalPoint.transform.position, Vector3.Distance(finalPoint.transform.position, transform.position) / (GameDataManager.Instance.workerBaseSpeed * 0.5f)).SetEase(Ease.Linear).OnComplete(() =>
+            transform.DOLocalMove(finalPoint.transform.position, Vector3.Distance(finalPoint.transform.position, transform.position) / (GameDataManager.Instance.workerBaseSpeed )).SetEase(Ease.Linear).OnComplete(() =>
                 {
                     GoBackToPile();
                     Debug.Log(gridThatWorkerGoing.transform.GetChild(GameManager.Instance.GRID_MACHINE_INDEX).gameObject.GetComponent<MachineManager>());
