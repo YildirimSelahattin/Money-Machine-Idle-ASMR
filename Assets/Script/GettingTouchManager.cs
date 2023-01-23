@@ -65,6 +65,7 @@ public class GettingTouchManager : MonoBehaviour
                     }
                     else if(hit.collider.gameObject.transform.CompareTag("MoneyOpenButton")) { // upgrade money
                         GameDataManager.Instance.TotalMoney -= GameDataManager.Instance.gridOpenWithMoneyPrices[hit.collider.gameObject.transform.parent.parent.tag[hit.collider.gameObject.transform.parent.parent.tag.Length - 1]-'0'];
+                        UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumberForTotalMoney( GameDataManager.Instance.TotalMoney);
                          StartCoroutine(GiveGridReward());
                         
                     }

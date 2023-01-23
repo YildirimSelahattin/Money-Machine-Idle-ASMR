@@ -17,8 +17,8 @@ public class GameDataManager : MonoBehaviour
     public float BeltSpeedButtonMoney
     {
         // = 5f;
-        get { return GameDataManager.Instance.GetOnly1DigitAfterPoint(beltSpeedButtonMoney); }
-        set { beltSpeedButtonMoney = GetOnly1DigitAfterPoint(value); }
+        get { return beltSpeedButtonMoney; }
+        set { beltSpeedButtonMoney = AbbrevationUtility.RoundNumberLikeText(beltSpeedButtonMoney); }
     }
 
     [SerializeField] public float incomeButtonMoney;
@@ -26,7 +26,7 @@ public class GameDataManager : MonoBehaviour
     public float IncomeButtonMoney
     {
         get { return incomeButtonMoney; }
-        set { incomeButtonMoney = GetOnly1DigitAfterPoint(value); }
+        set { incomeButtonMoney = AbbrevationUtility.RoundNumberLikeText(value); }
     }
 
     [SerializeField] public float addMachineButtonMoney;
@@ -34,7 +34,7 @@ public class GameDataManager : MonoBehaviour
     public float AddMachineButtonMoney
     {
         get { return addMachineButtonMoney; }
-        set { addMachineButtonMoney = GetOnly1DigitAfterPoint(value); }
+        set { addMachineButtonMoney = AbbrevationUtility.RoundNumberLikeText(value); }
     }
 
     [SerializeField] public float workerSpeedButtonMoney;
@@ -42,7 +42,7 @@ public class GameDataManager : MonoBehaviour
     public float WorkerSpeedButtonMoney
     {
         get { return workerSpeedButtonMoney; }
-        set { workerSpeedButtonMoney = GetOnly1DigitAfterPoint(value); }
+        set { workerSpeedButtonMoney = AbbrevationUtility.RoundNumberLikeText(value); }
     }
 
     public float incomePerTap;
@@ -50,7 +50,7 @@ public class GameDataManager : MonoBehaviour
     public float IncomePerTap
     {
         get { return incomePerTap; }
-        set { incomePerTap = GetOnly1DigitAfterPoint(value); }
+        set { incomePerTap = AbbrevationUtility.RoundNumberLikeText(value); }
     }
 
     public int beltSpeedButtonLevel = 1;
@@ -159,10 +159,7 @@ public class GameDataManager : MonoBehaviour
         PlayerPrefs.SetInt("PlayMusicKey", playMusic);
     }
 
-    public long GetOnly1DigitAfterPoint(float number)
-    {
-        return Mathf.FloorToInt(number);
-}
+    
     public void ControlButtons()
     {
         // UI BUTTON 

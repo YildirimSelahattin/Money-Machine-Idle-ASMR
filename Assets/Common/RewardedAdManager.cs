@@ -137,7 +137,7 @@ public class RewardedAdManager : MonoBehaviour
     {
         float tempTotalMoney = PlayerPrefs.GetFloat("TotalMoney", 0);
         tempTotalMoney += OfflineProgress.Instance.offlineRewardMoney * 3;
-        UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumber(tempTotalMoney);
+        UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumberForTotalMoney(tempTotalMoney);
         OfflineProgress.Instance.OfflineRewardPanel.SetActive(false);
         
         RequestRewarded();
@@ -146,7 +146,7 @@ public class RewardedAdManager : MonoBehaviour
     {
         if(UIManager.Instance != null)
         {
-            UIManager.Instance.OpenGridAdButtons();
+            StartCoroutine(UIManager.Instance.OpenGridAdButtons());
         }
     }
     public void HandleUserEarnedGridReward(object sender, Reward args)
@@ -158,13 +158,13 @@ public class RewardedAdManager : MonoBehaviour
     public void HandleUserEarnedUpgradeButtonReward(object sender, Reward args)
     {
         if (UIManager.Instance.buttonIndex == 1)
-            UIManager.Instance.RewardedBeltSpeedUpgradeButton();
+            StartCoroutine( UIManager.Instance.RewardedBeltSpeedUpgradeButton());
         if (UIManager.Instance.buttonIndex == 2)
-            UIManager.Instance.RewardedIncomeUpgradeButton();
+            StartCoroutine(UIManager.Instance.RewardedIncomeUpgradeButton());
         if (UIManager.Instance.buttonIndex == 3)
-            UIManager.Instance.RewardedAdWorkerUpgradeButton();
+            StartCoroutine(UIManager.Instance.RewardedAdWorkerUpgradeButton());
         if (UIManager.Instance.buttonIndex == 4)
-            UIManager.Instance.RewardedAddMachineButton();
+            StartCoroutine(UIManager.Instance.RewardedAddMachineButton());
 
         RequestRewarded();
     }

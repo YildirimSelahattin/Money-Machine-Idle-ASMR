@@ -145,7 +145,7 @@ public class MachineManager : MonoBehaviour
         {
             machineIncomeMoney += machineIncomeMoney * GameDataManager.Instance.IncomePercantage;
             
-            GameDataManager.Instance.moneyToBeCollected += GameDataManager.Instance.GetOnly1DigitAfterPoint(machineIncomeMoney);
+            GameDataManager.Instance.moneyToBeCollected += AbbrevationUtility.RoundNumberLikeText(machineIncomeMoney);
             
             _tempText.text = AbbrevationUtility.AbbreviateNumberForTotalMoney(GameDataManager.Instance.moneyToBeCollected);
             GameDataManager.Instance.SaveData();
