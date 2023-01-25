@@ -13,6 +13,13 @@ public class OfflineProgress : MonoBehaviour
     public GameObject offlineMoneyText;
     public static OfflineProgress Instance;
 
+    /*
+     * isLoaded == true ise offlinePnale'i göster
+     * App Iconunu ekle
+     * Oyun girişinde DMM logosunu ekle
+     * 3k para veriyoruz onu geri al
+     */
+    
     void Awake()
     {
         if (Instance == null)
@@ -22,7 +29,7 @@ public class OfflineProgress : MonoBehaviour
         }
     }
 
-    void Start()
+    public void OfflinePanelControl()
     {
         if (PlayerPrefs.HasKey("LAST_LOGIN"))
         {
