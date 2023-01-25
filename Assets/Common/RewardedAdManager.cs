@@ -152,7 +152,7 @@ public class RewardedAdManager : MonoBehaviour
     public void HandleUserEarnedGridReward(object sender, Reward args)
     {
         GettingTouchManager.Instance.StartCoroutine(GettingTouchManager.Instance.GiveGridReward());
-        RequestRewarded();
+        RequestGridRewarded();
     }    
     
     public void HandleUserEarnedUpgradeButtonReward(object sender, Reward args)
@@ -166,7 +166,7 @@ public class RewardedAdManager : MonoBehaviour
         if (UIManager.Instance.buttonIndex == 4)
             StartCoroutine(UIManager.Instance.RewardedAddMachineButton());
 
-        RequestRewarded();
+        RequestRewardedUpgradeButtonsAd();
     }
     
     public void GridRewardAd()
@@ -175,7 +175,7 @@ public class RewardedAdManager : MonoBehaviour
         {
             this.rewardedGridAd.Show();
         }
-        RequestRewarded();
+        RequestGridRewarded();
     }
     
     public void UpgradeButtonRewardAd()
@@ -196,7 +196,7 @@ public class RewardedAdManager : MonoBehaviour
         }
         else
         {
-            RequestGridRewarded();
+            RequestRewarded();
         }
     }
 }

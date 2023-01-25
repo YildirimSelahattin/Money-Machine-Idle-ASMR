@@ -11,6 +11,7 @@ using TMPro;
 using Unity.VisualScripting;
 using DG.Tweening;
 using GoogleMobileAds.Api;
+using JetBrains.Annotations;
 
 public class UIManager : MonoBehaviour
 {
@@ -20,7 +21,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject ButtonPanel;
     public GameObject MoneyFromSellText;
     public GameObject TotalMoneyText;
-    public GameObject Grid;
     public GameObject beltSpeedButton;
     public GameObject incomeButton;
     public GameObject workerSpeedButton;
@@ -52,7 +52,7 @@ public class UIManager : MonoBehaviour
     public GameObject MergeHand;
     public GameObject addMachineHand;
     public int addMachineTapAmount;
-
+    public GameObject gameMusic;
     void Start()
     {
         if (Instance == null)
@@ -155,8 +155,7 @@ public class UIManager : MonoBehaviour
         if (GameDataManager.Instance.TotalMoney >= GameDataManager.Instance.BeltSpeedButtonMoney)
         {
             long moneyToDecrease = GameDataManager.Instance.BeltSpeedButtonMoney;
-
-            GameDataManager.Instance.BeltSpeedButtonMoney += (long) (GameDataManager.Instance.BeltSpeedButtonMoney / 1.5f);
+            GameDataManager.Instance.BeltSpeedButtonMoney += (long)(GameDataManager.Instance.BeltSpeedButtonMoney / 1.5f);
             GameDataManager.Instance.beltSpeedButtonLevel++;
 
             /*if (GameDataManager.Instance.beltSpeedButtonLevel % 3 == 0)
@@ -236,7 +235,6 @@ public class UIManager : MonoBehaviour
             incomeButton.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
                 AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.IncomeButtonMoney) + " $";
 
-            GameDataManager.Instance.IncomePercantage =(1 + 0.04f * GameDataManager.Instance.incomeButtonLevel + 0.04f * 0.04f * (GameDataManager.Instance.incomeButtonLevel - 1));
             GameDataManager.Instance.IncomePerTap += GameDataManager.Instance.IncomePerTap * .5f;
 
             GameDataManager.Instance.SaveData();
@@ -303,9 +301,8 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public IEnumerator AdOnWorkerUpgradeButton()
+    public void AdOnWorkerUpgradeButton()
     {
-        yield return new WaitForEndOfFrame();
         buttonIndex = 3;
         RewardedAdManager.Instance.UpgradeButtonRewardAd();
         adWorkerSpeedButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text =
@@ -333,8 +330,12 @@ public class UIManager : MonoBehaviour
     {
         if (GameDataManager.Instance.TotalMoney >= GameDataManager.Instance.AddMachineButtonMoney)
         {
-            bool controllForButtonInteract = false;
-            bool closeInteractibility = true;
+            int emptySpotsLeft = 0;
+            int minLevelOnGrid = 6;
+            bool allGridsOpened = true;
+            int indexToInstantiate=0;
+            int[] machineIndexArray = new int[7];
+            bool isMergeable = false;
             long moneyToDecrease = GameDataManager.Instance.AddMachineButtonMoney;
             GameDataManager.Instance.AddMachineButtonMoney += GameDataManager.Instance.AddMachineButtonMoney / 2;
             GameDataManager.Instance.addMachineButtonLevel++;
@@ -349,57 +350,77 @@ public class UIManager : MonoBehaviour
                 "LEVEL " + GameDataManager.Instance.addMachineButtonLevel;
             addMachineButton.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
                 AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.AddMachineButtonMoney) + " $";
-
-            for (int gridIndex = 0; gridIndex < GameDataManager.Instance.gridArray.Length; gridIndex++)
+            for (int gridIndex = GameDataManager.Instance.gridArray.Length-1; gridIndex >=0; gridIndex--)
             {
-                int valueOfGrid = GameDataManager.Instance.gridArray[gridIndex];
-                if (valueOfGrid == 0) //found a position that has no machines
+                if (GameDataManager.Instance.gridArray[gridIndex] == -1)
                 {
-                    if (controllForButtonInteract == false)
-                    {
-                        addMachineTapAmount++;
-                        if (addMachineTapAmount == 1)
-                        {
-                            addMachineHand.SetActive(false);
-                        }
-                        if (addMachineTapAmount == 2)
-                        {
-                            MergeHand.SetActive(true);
-                        }
-                        PlayerPrefs.SetInt("addMachineAmount", addMachineTapAmount);
-                        //level 1 şu an veriliyor !!sadece
-                        GameManager.Instance.gridParent.transform.GetChild(gridIndex).gameObject
-                            .GetComponent<BoxCollider>()
-                            .enabled = false;
-                        Instantiate(
-                            GameDataManager.Instance.moneyMachineArray[
-                                GameDataManager.Instance.maxLevelMachineAmount + 1],
-                            GameManager.Instance.gridParent.transform.GetChild(gridIndex).transform);
-                        GameDataManager.Instance.gridArray[gridIndex] = 1;
+                    allGridsOpened = false;
+                }
+                if (GameDataManager.Instance.gridArray[gridIndex] == 0)
+                {
+                    emptySpotsLeft++;
+                    indexToInstantiate = gridIndex;
 
-                        //Instantiate worker and add to stack
-                        StartCoroutine(Spawner.Instance.AddWorkerAfterDelay(gridIndex, 1));
-                        controllForButtonInteract = true;
-                    }
-                    else
+                }
+                if (GameDataManager.Instance.gridArray[gridIndex] > 0)
+                {
+                    if(minLevelOnGrid> GameDataManager.Instance.gridArray[gridIndex])
                     {
-                        closeInteractibility = false;
+                        minLevelOnGrid = GameDataManager.Instance.gridArray[gridIndex];
                     }
+                    machineIndexArray[GameDataManager.Instance.gridArray[gridIndex]]++;
+                }
+               
+            }
+            foreach (int numberOfMachines in machineIndexArray)
+            {
+                if (numberOfMachines > 2)
+                {
+                    isMergeable = true;
+                    break;
                 }
             }
-
-            if (closeInteractibility == true) //CLOSEINTERACT
+            if (emptySpotsLeft == 1)
             {
                 addMachineButton.GetComponent<Button>().interactable = false;
             }
-            
-            /*if (GameDataManager.Instance.addMachineButtonLevel % 3 == 0 && closeInteractibility == false)
+            addMachineTapAmount++;
+            if (addMachineTapAmount == 1)
             {
-                adAddMachineButton.SetActive(true);
-                addMachineButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
-                    "LEVEL " + GameDataManager.Instance.addMachineButtonLevel;
-                StartCoroutine(AdMachineButtonsDelay(10));
-            }*/
+                addMachineHand.SetActive(false);
+            }
+            if (addMachineTapAmount == 2)
+            {
+                MergeHand.SetActive(true);
+            }
+            PlayerPrefs.SetInt("addMachineAmount", addMachineTapAmount);
+            //level 1 şu an veriliyor !!sadece
+            GameManager.Instance.gridParent.transform.GetChild(indexToInstantiate).gameObject
+                .GetComponent<BoxCollider>()
+                .enabled = false;
+
+            if (emptySpotsLeft == 1 && allGridsOpened == true && isMergeable == false)
+            {
+                Instantiate(
+                GameDataManager.Instance.moneyMachineArray[
+                minLevelOnGrid],
+                GameManager.Instance.gridParent.transform.GetChild(indexToInstantiate).transform);
+                GameDataManager.Instance.gridArray[indexToInstantiate] = minLevelOnGrid;
+
+            }
+            else
+            {
+                Instantiate(
+            GameDataManager.Instance.moneyMachineArray[
+                GameDataManager.Instance.maxLevelMachineAmount + 1],
+            GameManager.Instance.gridParent.transform.GetChild(indexToInstantiate).transform);
+                GameDataManager.Instance.gridArray[indexToInstantiate] = GameDataManager.Instance.maxLevelMachineAmount + 1;
+
+            }
+
+            //Instantiate worker and add to stack
+            StartCoroutine(Spawner.Instance.AddWorkerAfterDelay(indexToInstantiate, 1));
+            
             GameDataManager.Instance.SaveData();
         }
     }
@@ -418,50 +439,76 @@ public class UIManager : MonoBehaviour
 
     public IEnumerator RewardedAddMachineButton()
     {
+        
         yield return new WaitForEndOfFrame();
-        bool controllForButtonInteract = false;
-        bool closeInteractibility = true;
-
+        int[] machineIndexArray = new int[7];
+        bool isMergeable = false;
+        int emptySpotsLeft = 0;
+        int minLevelOnGrid = 6;
+        bool allGridsOpened = true;
+        int indexToInstantiate = 0;
         GameDataManager.Instance.AddMachineButtonMoney += GameDataManager.Instance.AddMachineButtonMoney / 2;
         GameDataManager.Instance.addMachineButtonLevel++;
-
         for (int gridIndex = 0; gridIndex < GameDataManager.Instance.gridArray.Length; gridIndex++)
         {
-            int valueOfGrid = GameDataManager.Instance.gridArray[gridIndex];
-            if (valueOfGrid == 0) //found a position that has no machines
+            if (GameDataManager.Instance.gridArray[gridIndex] == -1)
             {
-                if (controllForButtonInteract == false)
+                allGridsOpened = false;
+            }
+            if (GameDataManager.Instance.gridArray[gridIndex] == 0)
+            {
+                emptySpotsLeft++;
+                indexToInstantiate = gridIndex;
+
+            }
+            if (GameDataManager.Instance.gridArray[gridIndex] > 0)
+            {
+                if (minLevelOnGrid > GameDataManager.Instance.gridArray[gridIndex])
                 {
+                    minLevelOnGrid = GameDataManager.Instance.gridArray[gridIndex];
+                }
+            }
+            machineIndexArray[GameDataManager.Instance.gridArray[gridIndex]]++;
+        }
+        foreach(int numberOfMachines in machineIndexArray)
+        {
+            if(numberOfMachines > 2)
+            {
+                isMergeable = true;
+                break;
+            }
+        }
+            
+            
                     //level 1 şu an veriliyor !!sadece
-                    GameManager.Instance.gridParent.transform.GetChild(gridIndex).gameObject
+                    GameManager.Instance.gridParent.transform.GetChild(indexToInstantiate).gameObject
                         .GetComponent<BoxCollider>()
                         .enabled = false;
+                if (emptySpotsLeft == 1 && allGridsOpened == true&&isMergeable == false)
+                {
                     Instantiate(
                         GameDataManager.Instance.moneyMachineArray[
-                            GameDataManager.Instance.maxLevelMachineAmount + 1],
-                        GameManager.Instance.gridParent.transform.GetChild(gridIndex).transform);
-                    GameDataManager.Instance.gridArray[gridIndex] = 1;
-
-                    //Instantiate worker and add to stack
-                    StartCoroutine(Spawner.Instance.AddWorkerAfterDelay(gridIndex, 1));
-                    controllForButtonInteract = true;
+                        minLevelOnGrid],
+                        GameManager.Instance.gridParent.transform.GetChild(indexToInstantiate).transform);
+                        GameDataManager.Instance.gridArray[indexToInstantiate] = minLevelOnGrid;
                 }
                 else
                 {
-                    closeInteractibility = false;
+                    Instantiate(
+                        GameDataManager.Instance.moneyMachineArray[
+                        GameDataManager.Instance.maxLevelMachineAmount + 1],
+                        GameManager.Instance.gridParent.transform.GetChild(indexToInstantiate).transform);
+                        GameDataManager.Instance.gridArray[indexToInstantiate] = GameDataManager.Instance.maxLevelMachineAmount + 1;
                 }
-            }
-        }
 
-        if (closeInteractibility == true) //CLOSEINTERACT
-        {
-            addMachineButton.GetComponent<Button>().interactable = false;
-        }
+                //Instantiate worker and add to stack
+                StartCoroutine(Spawner.Instance.AddWorkerAfterDelay(indexToInstantiate, 1));
 
         GameDataManager.Instance.SaveData();
-        
         adAddMachineButton.SetActive(false);
     }
+       
+    
     
     public IEnumerator OpeningAdButtonsAfterDelay(float waitingTime)
     {
@@ -602,6 +649,7 @@ public class UIManager : MonoBehaviour
     public void MusicOff()
     {
         GameDataManager.Instance.playMusic = 0;
+        gameMusic.SetActive(false);
         musicOn.gameObject.SetActive(false);
         musicOff.gameObject.SetActive(true);
         //UpdateMusic();
@@ -611,6 +659,7 @@ public class UIManager : MonoBehaviour
     public void MusicOn()
     {
         GameDataManager.Instance.playMusic = 1;
+        gameMusic.SetActive(true);
         musicOff.gameObject.SetActive(false);
         musicOn.gameObject.SetActive(true);
         //UpdateMusic();
@@ -678,8 +727,5 @@ public class UIManager : MonoBehaviour
         OptionsPanel.SetActive(false);
         InfoPanel.SetActive(false);
     }
-    
-    
-
     
 }

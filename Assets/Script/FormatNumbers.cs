@@ -2,7 +2,6 @@
  using System.Collections.Generic;
  using System.Linq;
 using UnityEngine.UIElements;
-using UnityEditor.ShaderGraph.Drawing;
 using Unity.VisualScripting;
 
 public static class AbbrevationUtility
@@ -25,7 +24,7 @@ public static class AbbrevationUtility
             KeyValuePair<long, string> pair = abbrevations.ElementAt(i);
             if (Mathf.Abs(number) >= pair.Key)
             {
-                float temp = (int)((roundedNumber / pair.Key) * 10);
+                float temp = (int)(((double)roundedNumber / pair.Key) * 10);
                 Debug.Log("dsa" + temp);
                 float returningNumber = temp / 10;
                 Debug.Log("asd" + returningNumber);
@@ -43,8 +42,8 @@ public static class AbbrevationUtility
             KeyValuePair<long, string> pair = abbrevations.ElementAt(i);
             if (Mathf.Abs(roundedNumber) >= pair.Key)
             {
-                float temp =(int)((roundedNumber / pair.Key)*1000);
-                float returningNumber = temp / 1000;
+                double temp =(int)(((double)roundedNumber / pair.Key)*1000);
+                double returningNumber = temp / 1000;
                 
                 Debug.Log("asd"+ returningNumber);
                 return returningNumber.ToString() + pair.Value;
@@ -60,9 +59,9 @@ public static class AbbrevationUtility
             KeyValuePair<long, string> pair = abbrevations.ElementAt(i);
             if (Mathf.Abs(number) >= pair.Key)
             {
-                float temp = (int)((number / pair.Key) * 1000);
-                return (long)(temp / 1000*pair.Key);
-                
+                Debug.Log(" pair.Key" + pair.Key + " result" + ((double)number / pair.Key) * 1000);
+                double temp = (long)(((double)number / pair.Key) * 1000);
+                return (long)((temp / 1000)*pair.Key);
             }
 
         }

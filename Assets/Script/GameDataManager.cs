@@ -20,7 +20,7 @@ public class GameDataManager : MonoBehaviour
     {
         // = 5f;
         get { return beltSpeedButtonMoney; }
-        set { beltSpeedButtonMoney = AbbrevationUtility.RoundNumberLikeText(beltSpeedButtonMoney); }
+        set { beltSpeedButtonMoney = AbbrevationUtility.RoundNumberLikeText(value); }
     }
 
     [SerializeField] public long incomeButtonMoney;
@@ -131,7 +131,7 @@ public class GameDataManager : MonoBehaviour
         IncomePerTap = PlayerPrefs.GetFloat("IncomePerTap", 2);
         beltSpeed = PlayerPrefs.GetFloat("BeltSpeed", -0.05f);
         workerBaseSpeed = PlayerPrefs.GetFloat("WorkerSpeed", 3);
-        temp = PlayerPrefs.GetString("TotalMoney", 3.ToString());
+        temp = PlayerPrefs.GetString("TotalMoney", 3000000000.ToString());
         TotalMoney = Convert.ToInt64(temp);
         IncomePercantage = PlayerPrefs.GetFloat("IncomePercentage", IncomePercantage);
     }
@@ -158,11 +158,11 @@ public class GameDataManager : MonoBehaviour
         PlayerPrefs.SetFloat("IncomePercentage", IncomePercantage);
         PlayerPrefs.SetFloat("IncomePerTap", IncomePerTap);
         PlayerPrefs.SetFloat("WorkerSpeed", workerBaseSpeed);
-        PlayerPrefs.SetString("TotalMoney", totalMoney.ToString());
-        PlayerPrefs.SetString("IncomeButtonMoney", incomeButtonMoney.ToString());
-        PlayerPrefs.SetString("WorkerSpeedButtonMoney", workerSpeedButtonMoney.ToString());
-        PlayerPrefs.SetString("BeltSpeedButtonMoney", beltSpeedButtonMoney.ToString());
-        PlayerPrefs.SetString("AddMachineButtonMoney", addMachineButtonMoney.ToString());
+        PlayerPrefs.SetString("TotalMoney", TotalMoney.ToString());
+        PlayerPrefs.SetString("IncomeButtonMoney", IncomeButtonMoney.ToString());
+        PlayerPrefs.SetString("WorkerSpeedButtonMoney", WorkerSpeedButtonMoney.ToString());
+        PlayerPrefs.SetString("BeltSpeedButtonMoney", BeltSpeedButtonMoney.ToString());
+        PlayerPrefs.SetString("AddMachineButtonMoney", AddMachineButtonMoney.ToString());
     }
 
     private void OnDisable()

@@ -10,7 +10,7 @@ public class MachineTriggerManager : MonoBehaviour
 {
     // Start is called before the first frame update
     GameObject comingWorkerObject = null;
-    public int mergeCounter = 0;
+    public static int mergeCounter = 0;
 
     // Update is called once per frame
     private void OnTriggerExit(Collider other)
@@ -23,24 +23,19 @@ public class MachineTriggerManager : MonoBehaviour
     {
         // merge job
         if (other.gameObject.transform.CompareTag(this.gameObject.transform.tag) &&
-            gameObject.GetComponent<MachineManager>().dropped == true) //if they are same level
+            gameObject.GetComponent<MachineManager>().dropped == true&&
+            gameObject.GetComponent<MachineManager>().inMergeArea != false) //if they are same level
         {
             if (gameObject.GetComponent<MachineManager>().levelIndexOfObject < 6) //if the machine is mergeable
             {
+                gameObject.GetComponent<MachineManager>().inMergeArea = false;
                 if (PlayerPrefs.GetInt("isFirstMerge", 1)==1)
                 {
                     PlayerPrefs.SetInt("isFirstMerge", -1);
                     UIManager.Instance.MergeHand.transform.DOKill();
                     UIManager.Instance.MergeHand.SetActive(false);
                 }
-
                 mergeCounter++;
-
-                if (mergeCounter % 3 == 0)
-                {
-                    InterstitialAdManager.Instance.ShowInterstitial();
-                }
-                
                 int targetGrid = other.gameObject.GetComponent<MachineManager>().gridIndexNumberOfObject;
                 int currentGrid = gameObject.transform.parent.tag[transform.parent.tag.Length - 1] - '0';
                 //make changes on grid array
@@ -57,14 +52,19 @@ public class MachineTriggerManager : MonoBehaviour
                 {
                     GameDataManager.Instance.maxLevelMachineAmount++;
                 }
-                Destroy(other.gameObject);
-                Destroy(gameObject);
                 Instantiate(
                     GameDataManager.Instance.moneyMachineArray[
                         other.gameObject.GetComponent<MachineManager>().levelIndexOfObject + 1],
                     other.transform.parent);
-                GameDataManager.Instance.SaveData();
                 GameDataManager.Instance.ControlButtons();
+                if (mergeCounter % 3 == 0)
+                {
+                    Debug.Log("emir");
+                    InterstitialAdManager.Instance.ShowInterstitial();
+                }
+                Destroy(other.gameObject);
+                Destroy(gameObject);
+                GameDataManager.Instance.SaveData();
 
             }
         }
@@ -91,14 +91,8 @@ public class MachineTriggerManager : MonoBehaviour
             ///
             gameObject.transform.SetParent(other.gameObject.transform);
             gameObject.transform.DOKill();
-            /*gameObject.transform.DOLocalMove(GameDataManager.Instance.moneyMachineArray[levelIndexOfDraggedMachine].transform.position, 0.1f)
-                .OnComplete(() => {
-                    GettingTouchManager.Instance.objectToDrag = null;
-                    worker.GetComponent<WorkerManager>().MoveMachineAndComeBackByIndex();
-                }
-                );// when snapping to neew grid job finishes, start worker movement*/
-            gameObject.transform.localPosition = GameDataManager.Instance.moneyMachineArray[levelIndexOfDraggedMachine].transform.position;
             GettingTouchManager.Instance.objectToDrag = null;
+            gameObject.transform.localPosition = GameDataManager.Instance.moneyMachineArray[levelIndexOfDraggedMachine].transform.position;
             GameDataManager.Instance.SaveData();
         }
     }
