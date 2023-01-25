@@ -42,24 +42,16 @@ public class OfflineProgress : MonoBehaviour
             {
                 offlineRewardMoney = GameDataManager.Instance.offlineProgressNum * 86400;
             }
-            
         }
         else
         {
             Debug.Log("First Login");
             OfflineRewardPanel.SetActive(false);
         }
-    }
-
-    private void OnApplicationQuit()
-    {
+        
         PlayerPrefs.SetString("LAST_LOGIN", DateTime.Now.ToString());
     }
-
-    private void OnDisable()
-    {
-        PlayerPrefs.SetString("LAST_LOGIN", DateTime.Now.ToString());
-    }
+    
     public void OnOfflineReward()
     {
         InterstitialAdManager.Instance.ShowInterstitial();
