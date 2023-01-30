@@ -51,6 +51,7 @@ public class UIManager : MonoBehaviour
     public GameObject tappingHand;
     public GameObject MergeHand;
     public GameObject addMachineHand;
+    public GameObject gridOpenHand;
     public int addMachineTapAmount;
     public GameObject gameMusic;
     void Start()
@@ -236,6 +237,7 @@ public class UIManager : MonoBehaviour
                 AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.IncomeButtonMoney) + " $";
 
             GameDataManager.Instance.IncomePerTap += GameDataManager.Instance.IncomePerTap * .5f;
+            GameDataManager.Instance.IncomePercantage *= 1.04f; 
 
             GameDataManager.Instance.SaveData();
         }
