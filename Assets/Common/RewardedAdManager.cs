@@ -152,6 +152,7 @@ public class RewardedAdManager : MonoBehaviour
     }
     public void HandleRewardedAdLoaded(object sender, EventArgs args)
     {
+        OfflineProgress.Instance.OfflineRewardPanel.SetActive(true);
         OfflineProgress.Instance.OfflinePanelControl();
     }
     
