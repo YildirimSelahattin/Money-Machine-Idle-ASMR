@@ -264,7 +264,7 @@ public class UIManager : MonoBehaviour
         GameDataManager.Instance.incomeButtonLevel++;
 
         GameDataManager.Instance.IncomePercantage += GameDataManager.Instance.IncomePercantage * 0.04f;
-        GameDataManager.Instance.IncomePerTap += GameDataManager.Instance.IncomePerTap * .5f;
+        GameDataManager.Instance.IncomePerTap += GameDataManager.Instance.IncomePerTap /2.5f;
 
         GameDataManager.Instance.SaveData();
         
