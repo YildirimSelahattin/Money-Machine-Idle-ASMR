@@ -54,6 +54,7 @@ public class UIManager : MonoBehaviour
     public GameObject gridOpenHand;
     public int addMachineTapAmount;
     public GameObject gameMusic;
+    
     void Start()
     {
         if (Instance == null)
@@ -437,6 +438,7 @@ public class UIManager : MonoBehaviour
             "LEVEL " + (GameDataManager.Instance.addMachineButtonLevel + 1);
         
         GameDataManager.Instance.SaveData();
+        TinySauce.OnGameFinished(GameDataManager.Instance.addMachineButtonLevel + 1);
     }
 
     public IEnumerator RewardedAddMachineButton()

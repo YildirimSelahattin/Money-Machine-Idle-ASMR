@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedAppIndex: 0
   clientTokens:
-  - 
+  - 5f25076bd5326a3b0161abd1bf5c5840
   appIds:
-  - 0
+  - 711928977061366
   appLabels:
-  - App Name
+  - IdleMoneyCounter
   cookie: 1
   logging: 1
   status: 1

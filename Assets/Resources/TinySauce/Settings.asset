@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameAnalyticsIosGameKey: 
   gameAnalyticsIosSecretKey: 
-  gameAnalyticsAndroidGameKey: 
-  gameAnalyticsAndroidSecretKey: 
-  facebookAppId: 
-  facebookClientToken: 
+  gameAnalyticsAndroidGameKey: 744ce4f8b65bd6ef4cd14a4a639e02cf
+  gameAnalyticsAndroidSecretKey: 3030cb5c83fd28f3b16379192db4ef6019dabe20
+  facebookAppId: 711928977061366
+  facebookClientToken: 5f25076bd5326a3b0161abd1bf5c5840
   adjustIOSToken: 
-  adjustAndroidToken: 
-  EditorIdfa: 
+  adjustAndroidToken: khumh58p89og
+  EditorIdfa: dcb150c2-2059-490e-bb0f-1b964c80d440
   UseRemoteConfig: 0
   UseVoodooAnalytics: 1
-  companyName: 
-  privacyPolicyURL: 
-  developerContactEmail: 
+  companyName: DigiMindMarket
+  privacyPolicyURL: https://digimindmarket.com/privacy.html
+  developerContactEmail: info@digimindmarket.com
