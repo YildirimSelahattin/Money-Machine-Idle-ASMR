@@ -21986,7 +21986,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f886ced9c8c2c4797cdf8aa55ef775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenShotName: 19201080_5
 --- !u!4 &1557539147
 Transform:
   m_ObjectHideFlags: 0
@@ -22073,7 +22072,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1559043253}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e9786d15dfa6c94a99d669b52ad3fe9, type: 3}
   m_Name: 
