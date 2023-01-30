@@ -361,6 +361,7 @@ public class UIManager : MonoBehaviour
                 }
                 if (GameDataManager.Instance.gridArray[gridIndex] == 0)
                 {
+
                     emptySpotsLeft++;
                     indexToInstantiate = gridIndex;
 
@@ -383,10 +384,7 @@ public class UIManager : MonoBehaviour
                     break;
                 }
             }
-            if (emptySpotsLeft == 1)
-            {
-                addMachineButton.GetComponent<Button>().interactable = false;
-            }
+
             addMachineTapAmount++;
             if (addMachineTapAmount == 1)
             {

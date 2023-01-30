@@ -69,6 +69,7 @@ public class GettingTouchManager : MonoBehaviour
                          StartCoroutine(GiveGridReward());
                         
                     }
+                    UIManager.Instance.gridOpenHand.SetActive(false);//close the hand
                 }
                 
                 else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyTapToCollect)) // if it is money tap
