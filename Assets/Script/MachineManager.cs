@@ -174,9 +174,7 @@ public class MachineManager : MonoBehaviour
             }
             
             RadialSegmentNumber--;
-            Debug.Log(RadialSegmentNumber);
             RadialSegment.SetRemovedSegments(RadialSegmentNumber);
-            Debug.Log(RadialSegment.name);
             yield return new WaitForSeconds(countWaitTime);
             if (i == 9)
             {

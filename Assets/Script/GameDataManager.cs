@@ -53,7 +53,7 @@ public class GameDataManager : MonoBehaviour
     public float IncomePerTap
     {
         get { return incomePerTap; }
-        set { incomePerTap = AbbrevationUtility.RoundNumberLikeText((long)value); }
+        set { incomePerTap = (long)Math.Ceiling(value); }
     }
 
     public int beltSpeedButtonLevel = 1;

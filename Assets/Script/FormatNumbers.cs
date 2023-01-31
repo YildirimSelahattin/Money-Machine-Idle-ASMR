@@ -18,16 +18,14 @@ public static class AbbrevationUtility
     public static string AbbreviateNumber(long number)
     {
         long roundedNumber = number;
-        Debug.Log("gg"+roundedNumber);
+        
         for (int i = abbrevations.Count - 1; i >= 0; i--)
         {
             KeyValuePair<long, string> pair = abbrevations.ElementAt(i);
             if (Mathf.Abs(number) >= pair.Key)
             {
                 float temp = (int)(((double)roundedNumber / pair.Key) * 10);
-                Debug.Log("dsa" + temp);
                 float returningNumber = temp / 10;
-                Debug.Log("asd" + returningNumber);
                 return returningNumber.ToString() + pair.Value;
             }
         }
@@ -36,7 +34,7 @@ public static class AbbrevationUtility
     public static string AbbreviateNumberForTotalMoney(long number)
      {
         long roundedNumber = number;
-        Debug.Log("ss"+roundedNumber);
+      
         for (int i = abbrevations.Count - 1; i >= 0; i--)
         {
             KeyValuePair<long, string> pair = abbrevations.ElementAt(i);
@@ -45,7 +43,6 @@ public static class AbbrevationUtility
                 double temp =(int)(((double)roundedNumber / pair.Key)*1000);
                 double returningNumber = temp / 1000;
                 
-                Debug.Log("asd"+ returningNumber);
                 return returningNumber.ToString() + pair.Value;
             }
         }
@@ -59,11 +56,9 @@ public static class AbbrevationUtility
             KeyValuePair<long, string> pair = abbrevations.ElementAt(i);
             if (Mathf.Abs(number) >= pair.Key)
             {
-                Debug.Log(" pair.Key" + pair.Key + " result" + ((double)number / pair.Key) * 1000);
                 double temp = (long)(((double)number / pair.Key) * 1000);
                 return (long)((temp / 1000)*pair.Key);
             }
-
         }
         return (long)number;
     }

@@ -245,6 +245,8 @@ public class UIManager : MonoBehaviour
                 AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.IncomeButtonMoney) + " $";
 
             GameDataManager.Instance.IncomePerTap += GameDataManager.Instance.IncomePerTap / 2.5f;
+            Debug.Log("qqqqqqqqqqqqqqq: " + GameDataManager.Instance.IncomePerTap / 2.5f);
+            Debug.Log("qqqqqqqqqqqqqqq: " +GameDataManager.Instance.IncomePerTap);
             GameDataManager.Instance.IncomePercantage *= 1.04f;
 
             GameDataManager.Instance.SaveData();
