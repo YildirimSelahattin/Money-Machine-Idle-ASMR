@@ -30,7 +30,8 @@ public class OfflineProgress : MonoBehaviour
     }
 
     public void OfflinePanelControl()
-    {
+        {
+            Debug.Log("oldu");
         if (PlayerPrefs.HasKey("LAST_LOGIN"))
         {
             DateTime lastLogIn = DateTime.Parse(PlayerPrefs.GetString("LAST_LOGIN"));

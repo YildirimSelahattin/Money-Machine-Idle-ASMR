@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12e15ff2-c41a-445c-99a6-3e761c781f24" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/3rdPartyAssets/UltimateCircularHealthBar/ShaderGraphs/RadialBarShader.shadergraph.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3rdPartyAssets/UltimateCircularHealthBar/ShaderGraphs/RadialBarShader.shadergraph.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/ProBuilder/5.0.6/Universal Render Pipeline Support/Shader/Standard Vertex Color.shadergraph.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/ProBuilder/5.0.6/Universal Render Pipeline Support/Shader/Standard Vertex Color.shadergraph.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/GvhProjectSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GvhProjectSettings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Money-Machine-Idle-ASMR/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Money-Machine-Idle-ASMR/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Common/RewardedAdManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Common/RewardedAdManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/GameDataManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/GameDataManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/OfflineProgress.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/OfflineProgress.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +130,8 @@
       <workItem from="1674204748676" duration="10249000" />
       <workItem from="1674631601432" duration="3936000" />
       <workItem from="1675089078617" duration="591000" />
-      <workItem from="1675149799788" duration="1249000" />
+      <workItem from="1675149799788" duration="2615000" />
+      <workItem from="1675162915462" duration="1329000" />
     </task>
     <servers />
   </component>

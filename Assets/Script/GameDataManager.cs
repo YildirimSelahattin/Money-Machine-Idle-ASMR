@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -81,19 +82,23 @@ public class GameDataManager : MonoBehaviour
     public long machineIncomeMoney;
     public float offlineProgressNum = 2;
 
-    void Awake()
+    private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            playSound = PlayerPrefs.GetInt("PlaySoundKey",1);
-            playMusic = PlayerPrefs.GetInt("PlayMusicKey",1);
-            playVibrate = PlayerPrefs.GetInt("PlayVibrateKey",1);
-
-           
         }
 
         LoadData();
+    }
+    
+    void Start()
+    {
+        playSound = PlayerPrefs.GetInt("PlaySoundKey", 1);
+        playMusic = PlayerPrefs.GetInt("PlayMusicKey", 1);
+        playVibrate = PlayerPrefs.GetInt("PlayVibrateKey", 1);
+        
+        OfflineProgress.Instance.OfflinePanelControl();
     }
 
     public void LoadData()
@@ -105,9 +110,8 @@ public class GameDataManager : MonoBehaviour
             gridArray[i] = PlayerPrefs.GetInt("GridValue" + i.ToString(), 0); //open default
             if (i > 1)
             {
-                gridArray[i] = PlayerPrefs.GetInt("GridValue" + i.ToString(),-1); //closed default
+                gridArray[i] = PlayerPrefs.GetInt("GridValue" + i.ToString(), -1); //closed default
             }
-           
         }
 
         // worker jobs
@@ -120,10 +124,10 @@ public class GameDataManager : MonoBehaviour
         addMachineButtonLevel = PlayerPrefs.GetInt("AddMachineButtonLevel", addMachineButtonLevel);
         incomeButtonLevel = PlayerPrefs.GetInt("IncomeButtonLevel", incomeButtonLevel);
         beltSpeedButtonLevel = PlayerPrefs.GetInt("BeltSpeedButtonLevel", beltSpeedButtonLevel);
-        string temp= PlayerPrefs.GetString("IncomeButtonMoney", incomeButtonMoney.ToString());
+        string temp = PlayerPrefs.GetString("IncomeButtonMoney", incomeButtonMoney.ToString());
         IncomeButtonMoney = Convert.ToInt64(temp);
         temp = PlayerPrefs.GetString("WorkerSpeedButtonMoney", 5.ToString());
-        WorkerSpeedButtonMoney= Convert.ToInt64(temp);
+        WorkerSpeedButtonMoney = Convert.ToInt64(temp);
         temp = PlayerPrefs.GetString("BeltSpeedButtonMoney", 7.ToString());
         BeltSpeedButtonMoney = Convert.ToInt64(temp);
         temp = PlayerPrefs.GetString("AddMachineButtonMoney", 7.ToString());
@@ -168,14 +172,13 @@ public class GameDataManager : MonoBehaviour
 
     private void OnDisable()
     {
-        
         SaveData();
         PlayerPrefs.SetInt("PlaySoundKey", playSound);
         PlayerPrefs.SetInt("PlayMusicKey", playMusic);
-        PlayerPrefs.SetInt("PlayVibrateKey",playVibrate);
+        PlayerPrefs.SetInt("PlayVibrateKey", playVibrate);
     }
 
-    
+
     public void ControlButtons()
     {
         // UI BUTTON 
@@ -219,10 +222,11 @@ public class GameDataManager : MonoBehaviour
                 if (valueOfGrid == 0)
                 {
                     UIManager.Instance.addMachineButton.GetComponent<Button>().interactable = true;
-                    if(UIManager.Instance.addMachineTapAmount == 0)
+                    if (UIManager.Instance.addMachineTapAmount == 0)
                     {
                         UIManager.Instance.addMachineHand.SetActive(true);
                     }
+
                     break;
                 }
             }
@@ -244,10 +248,12 @@ public class GameDataManager : MonoBehaviour
                     UIManager.Instance.gridMoneyOpenInteractableArray[gridIndex].gameObject.SetActive(true);
                     if (UIManager.Instance.gridOpenHand.active != true)
                     {
-                        UIManager.Instance.gridOpenHand.transform.position = UIManager.Instance.gridMoneyOpenInteractableArray[gridIndex].gameObject.transform.position+Vector3.up*4f;
+                        UIManager.Instance.gridOpenHand.transform.position =
+                            UIManager.Instance.gridMoneyOpenInteractableArray[gridIndex].gameObject.transform.position +
+                            Vector3.up * 4f;
                         UIManager.Instance.gridOpenHand.SetActive(true);
-
                     }
+
                     UIManager.Instance.gridMoneyOpenNotInteractableArray[gridIndex].gameObject.SetActive(false);
                 }
                 else

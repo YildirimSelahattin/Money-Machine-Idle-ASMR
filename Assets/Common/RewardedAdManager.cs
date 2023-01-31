@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using GoogleMobileAds.Api;
@@ -21,6 +22,7 @@ public class RewardedAdManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+
         RequestRewarded();
         RequestGridRewarded();
         RequestRewardedUpgradeButtonsAd();
@@ -61,7 +63,7 @@ public class RewardedAdManager : MonoBehaviour
         // Load the rewarded ad with the request.
         this.rewardedAd.LoadAd(request);
     }
-    
+
     private void RequestGridRewarded()
     {
         string adUnitId;
@@ -97,7 +99,7 @@ public class RewardedAdManager : MonoBehaviour
         // Load the rewarded ad with the request.
         this.rewardedGridAd.LoadAd(request);
     }
-    
+
     private void RequestRewardedUpgradeButtonsAd()
     {
         string adUnitId;
@@ -125,7 +127,7 @@ public class RewardedAdManager : MonoBehaviour
                 // Called when the ad is closed.
                 this.rewardedAd.OnAdClosed += HandleRewardedAdClosed;
         */
-        
+
         // Called when the user should be rewarded for interacting with the ad.
         this.rewardedUpgradeButtonsAd.OnUserEarnedReward += HandleUserEarnedUpgradeButtonReward;
         // Create an empty ad request.
@@ -136,36 +138,45 @@ public class RewardedAdManager : MonoBehaviour
 
     public void HandleUserEarnedReward(object sender, Reward args)
     {
-        long tempTotalMoney = Convert.ToInt64(PlayerPrefs.GetString("TotalMoney", 0.ToString())); 
+        long tempTotalMoney = Convert.ToInt64(PlayerPrefs.GetString("TotalMoney", 0.ToString()));
         tempTotalMoney += (long)OfflineProgress.Instance.offlineRewardMoney * 3;
-        UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumberForTotalMoney((long)tempTotalMoney);
+        UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text =
+            AbbrevationUtility.AbbreviateNumberForTotalMoney((long)tempTotalMoney);
         OfflineProgress.Instance.OfflineRewardPanel.SetActive(false);
     }
-    
+
     public void HandleRewardedAdLoadedGrid(object sender, EventArgs args)
     {
-        if(UIManager.Instance != null)
+        if (UIManager.Instance != null)
         {
             StartCoroutine(UIManager.Instance.OpenGridAdButtons());
         }
     }
-    
+
     public void HandleRewardedAdLoaded(object sender, EventArgs args)
     {
-        OfflineProgress.Instance.OfflineRewardPanel.SetActive(true);
-        OfflineProgress.Instance.OfflinePanelControl();
+        if (OfflineProgress.Instance != null)
+        {
+            StartCoroutine(OpenOfflinePanel());
+        }
     }
-    
+
+    IEnumerator OpenOfflinePanel()
+    {
+        yield return new WaitForEndOfFrame();
+        OfflineProgress.Instance.OfflineRewardPanel.SetActive(true);
+    }
+
     public void HandleUserEarnedGridReward(object sender, Reward args)
     {
         GettingTouchManager.Instance.StartCoroutine(GettingTouchManager.Instance.GiveGridReward());
         RequestGridRewarded();
-    }    
-    
+    }
+
     public void HandleUserEarnedUpgradeButtonReward(object sender, Reward args)
     {
         if (UIManager.Instance.buttonIndex == 1)
-            StartCoroutine( UIManager.Instance.RewardedBeltSpeedUpgradeButton());
+            StartCoroutine(UIManager.Instance.RewardedBeltSpeedUpgradeButton());
         if (UIManager.Instance.buttonIndex == 2)
             StartCoroutine(UIManager.Instance.RewardedIncomeUpgradeButton());
         if (UIManager.Instance.buttonIndex == 3)
@@ -175,22 +186,24 @@ public class RewardedAdManager : MonoBehaviour
 
         RequestRewardedUpgradeButtonsAd();
     }
-    
+
     public void GridRewardAd()
     {
         if (this.rewardedGridAd.IsLoaded())
         {
             this.rewardedGridAd.Show();
         }
+
         RequestGridRewarded();
     }
-    
+
     public void UpgradeButtonRewardAd()
     {
         if (this.rewardedUpgradeButtonsAd.IsLoaded())
         {
             this.rewardedUpgradeButtonsAd.Show();
         }
+
         RequestRewardedUpgradeButtonsAd();
     }
 
