@@ -140,9 +140,8 @@ public class RewardedAdManager : MonoBehaviour
         tempTotalMoney += (long)OfflineProgress.Instance.offlineRewardMoney * 3;
         UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumberForTotalMoney((long)tempTotalMoney);
         OfflineProgress.Instance.OfflineRewardPanel.SetActive(false);
-        
-        RequestRewarded();
     }
+    
     public void HandleRewardedAdLoadedGrid(object sender, EventArgs args)
     {
         if(UIManager.Instance != null)
@@ -150,8 +149,10 @@ public class RewardedAdManager : MonoBehaviour
             StartCoroutine(UIManager.Instance.OpenGridAdButtons());
         }
     }
+    
     public void HandleRewardedAdLoaded(object sender, EventArgs args)
     {
+        OfflineProgress.Instance.OfflineRewardPanel.SetActive(true);
         OfflineProgress.Instance.OfflinePanelControl();
     }
     
@@ -199,10 +200,6 @@ public class RewardedAdManager : MonoBehaviour
         {
             this.rewardedAd.Show();
             OfflineProgress.Instance.OfflineRewardPanel.SetActive(false);
-        }
-        else
-        {
-            RequestRewarded();
         }
     }
 }

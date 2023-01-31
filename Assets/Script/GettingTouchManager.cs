@@ -67,8 +67,8 @@ public class GettingTouchManager : MonoBehaviour
                         GameDataManager.Instance.TotalMoney -= GameDataManager.Instance.gridOpenWithMoneyPrices[hit.collider.gameObject.transform.parent.parent.tag[hit.collider.gameObject.transform.parent.parent.tag.Length - 1]-'0'];
                         UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumberForTotalMoney( GameDataManager.Instance.TotalMoney);
                          StartCoroutine(GiveGridReward());
-                        
                     }
+                    UIManager.Instance.gridOpenHand.SetActive(false);//close the hand
                 }
                 
                 else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyTapToCollect)) // if it is money tap

@@ -131,7 +131,7 @@ public class GameDataManager : MonoBehaviour
         IncomePerTap = PlayerPrefs.GetFloat("IncomePerTap", 2);
         beltSpeed = PlayerPrefs.GetFloat("BeltSpeed", -0.05f);
         workerBaseSpeed = PlayerPrefs.GetFloat("WorkerSpeed", 3);
-        temp = PlayerPrefs.GetString("TotalMoney", 3000000000.ToString());
+        temp = PlayerPrefs.GetString("TotalMoney", 1.ToString());
         TotalMoney = Convert.ToInt64(temp);
         IncomePercantage = PlayerPrefs.GetFloat("IncomePercentage", IncomePercantage);
     }
@@ -163,6 +163,7 @@ public class GameDataManager : MonoBehaviour
         PlayerPrefs.SetString("WorkerSpeedButtonMoney", WorkerSpeedButtonMoney.ToString());
         PlayerPrefs.SetString("BeltSpeedButtonMoney", BeltSpeedButtonMoney.ToString());
         PlayerPrefs.SetString("AddMachineButtonMoney", AddMachineButtonMoney.ToString());
+        PlayerPrefs.SetInt("MaxLevelMachineAmount", maxLevelMachineAmount);
     }
 
     private void OnDisable()
@@ -241,6 +242,12 @@ public class GameDataManager : MonoBehaviour
                 if (totalMoney > gridOpenWithMoneyPrices[gridIndex])
                 {
                     UIManager.Instance.gridMoneyOpenInteractableArray[gridIndex].gameObject.SetActive(true);
+                    if (UIManager.Instance.gridOpenHand.active != true)
+                    {
+                        UIManager.Instance.gridOpenHand.transform.position = UIManager.Instance.gridMoneyOpenInteractableArray[gridIndex].gameObject.transform.position+Vector3.up*4f;
+                        UIManager.Instance.gridOpenHand.SetActive(true);
+
+                    }
                     UIManager.Instance.gridMoneyOpenNotInteractableArray[gridIndex].gameObject.SetActive(false);
                 }
                 else

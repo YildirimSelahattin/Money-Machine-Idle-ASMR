@@ -1,44 +1,9 @@
 fileFormatVersion: 2
-guid: 773b4c5b0209bde4eb9878e9384cce25
+guid: 6e31d456018e50746a3e2a2e5900501d
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bucket_defaultMat
-    second: {fileID: 2100000, guid: a284d873fdd67004b8c0d9676c016bc9, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: grips_defaultMat
-    second: {fileID: 2100000, guid: 8abb0b93b00d0dc47b93a90bcaede7d3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: handles_defaultMat
-    second: {fileID: 2100000, guid: f0cb9fdc48b46b64597310a220efceec, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: legs_defaultMat
-    second: {fileID: 2100000, guid: f780770fbabceea4f91b61d283623932, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: rim_defaultMat
-    second: {fileID: 2100000, guid: 09409cdace6b5cc4da052a1c03ebfa78, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tire_defaultMat
-    second: {fileID: 2100000, guid: d79e238b3a5188c4b8eb39155f39b8cb, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: wheelguard_defaultMat
-    second: {fileID: 2100000, guid: 1c2b83f07e18ec14ab47145f0d073fbe, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
