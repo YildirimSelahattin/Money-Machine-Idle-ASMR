@@ -164,7 +164,12 @@ public class RewardedAdManager : MonoBehaviour
     IEnumerator OpenOfflinePanel()
     {
         yield return new WaitForEndOfFrame();
-        OfflineProgress.Instance.OfflineRewardPanel.SetActive(true);
+        Debug.LogError(OfflineProgress.Instance.isLogin);
+        if (OfflineProgress.Instance.isLogin)
+        {
+            Debug.Log("asdasdasdasdddsdsdsdasdassdasdasdasdasdas");
+            OfflineProgress.Instance.OfflineRewardPanel.SetActive(true);
+        }
     }
 
     public void HandleUserEarnedGridReward(object sender, Reward args)

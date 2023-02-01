@@ -208,7 +208,6 @@ public class UIManager : MonoBehaviour
     public IEnumerator RewardedBeltSpeedUpgradeButton()
     {
         yield return new WaitForEndOfFrame();
-        GameDataManager.Instance.BeltSpeedButtonMoney += (long)(GameDataManager.Instance.BeltSpeedButtonMoney / 1.5f);
         GameDataManager.Instance.beltSpeedButtonLevel++;
         GameDataManager.Instance.beltSpeed += (GameDataManager.Instance.beltSpeed * 0.04f);
         GameDataManager.Instance.SaveData();
@@ -268,7 +267,6 @@ public class UIManager : MonoBehaviour
     public IEnumerator RewardedIncomeUpgradeButton()
     {
         yield return new WaitForEndOfFrame();
-        GameDataManager.Instance.IncomeButtonMoney += GameDataManager.Instance.IncomeButtonMoney / 2;
         GameDataManager.Instance.offlineProgressNum += GameDataManager.Instance.offlineProgressNum / 5;
         GameDataManager.Instance.incomeButtonLevel++;
 
@@ -328,7 +326,6 @@ public class UIManager : MonoBehaviour
     public IEnumerator RewardedAdWorkerUpgradeButton()
     {
         yield return new WaitForEndOfFrame();
-        GameDataManager.Instance.WorkerSpeedButtonMoney += GameDataManager.Instance.WorkerSpeedButtonMoney / 2;
         GameDataManager.Instance.workerSpeedButtonLevel++;
 
         GameDataManager.Instance.workerBaseSpeed += GameDataManager.Instance.workerBaseSpeed * 0.03f;
@@ -463,7 +460,6 @@ public class UIManager : MonoBehaviour
         int minLevelOnGrid = 6;
         bool allGridsOpened = true;
         int indexToInstantiate = 0;
-        GameDataManager.Instance.AddMachineButtonMoney += GameDataManager.Instance.AddMachineButtonMoney / 2;
         GameDataManager.Instance.addMachineButtonLevel++;
         for (int gridIndex = 0; gridIndex < GameDataManager.Instance.gridArray.Length; gridIndex++)
         {

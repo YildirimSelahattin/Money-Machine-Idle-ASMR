@@ -88,7 +88,6 @@ public class GameDataManager : MonoBehaviour
         {
             Instance = this;
         }
-
         LoadData();
     }
     
