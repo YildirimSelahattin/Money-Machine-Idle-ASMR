@@ -39,15 +39,13 @@ public class OfflineProgress : MonoBehaviour
             DateTime lastLogIn = DateTime.Parse(PlayerPrefs.GetString("LAST_LOGIN"));
 
             TimeSpan ts = DateTime.Now - lastLogIn;
-
-            Debug.Log(ts.TotalSeconds);
+            
 
             if (ts.TotalSeconds < 86400)
             {
                 offlineRewardMoney =
                     AbbrevationUtility.RoundNumberLikeText((long)(GameDataManager.Instance.offlineProgressNum *
                                                                   (float)ts.TotalSeconds));
-                Debug.Log(offlineRewardMoney);
                 offlineMoneyText.GetComponent<TextMeshProUGUI>().text =
                     AbbrevationUtility.AbbreviateNumber((long)offlineRewardMoney);
             }
