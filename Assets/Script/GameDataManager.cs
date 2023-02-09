@@ -106,12 +106,11 @@ public class GameDataManager : MonoBehaviour
         //grid jobs
         for (int i = 0; i < 6; i++)
         {
-            /*gridArray[i] = PlayerPrefs.GetInt("GridValue" + i.ToString(), 0); //open default
-            if (i > 1)
+            gridArray[i] = PlayerPrefs.GetInt("GridValue" + i.ToString(), 0); //open default
+            if (i > 2)
             {
                 gridArray[i] = PlayerPrefs.GetInt("GridValue" + i.ToString(), -1); //closed default
-            }*/
-            gridArray[i] = i + 1;
+            }
 
         }
 
@@ -136,9 +135,9 @@ public class GameDataManager : MonoBehaviour
         IncomePerTap = PlayerPrefs.GetFloat("IncomePerTap", 2);
         beltSpeed = PlayerPrefs.GetFloat("BeltSpeed", -0.05f);
         workerBaseSpeed = PlayerPrefs.GetFloat("WorkerSpeed", 3);
-        temp = PlayerPrefs.GetString("TotalMoney", 1.ToString());
+        temp = PlayerPrefs.GetString("TotalMoney", 5.ToString());
         TotalMoney = Convert.ToInt64(temp);
-        IncomePercantage = PlayerPrefs.GetFloat("IncomePercentage", IncomePercantage);
+        IncomePercantage = PlayerPrefs.GetFloat("IncomePercentage", 1);
     }
 
     public void SaveData()

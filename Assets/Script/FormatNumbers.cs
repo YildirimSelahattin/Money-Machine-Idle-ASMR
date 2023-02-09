@@ -3,6 +3,7 @@
  using System.Linq;
 using UnityEngine.UIElements;
 using Unity.VisualScripting;
+using System;
 
 public static class AbbrevationUtility
  {
@@ -15,6 +16,11 @@ public static class AbbrevationUtility
          {1000000000000000, " q" }
      };
 
+    private static readonly SortedDictionary<float, string> abbrevationsMeter = new SortedDictionary<float, string>
+     {
+         {100, " m/s" },
+         {1000, " km/s" },
+     };
     public static string AbbreviateNumber(long number)
     {
         long roundedNumber = number;
@@ -62,4 +68,21 @@ public static class AbbrevationUtility
         }
         return (long)number;
     }
- }
+
+    public static string AbbreviateMeter(float meter)
+    {
+        float roundedNumber = meter;
+
+        for (int i = abbrevationsMeter.Count - 1; i >= 0; i--)
+        {
+            KeyValuePair<float, string> pair = abbrevationsMeter.ElementAt(i);
+            if (Mathf.Abs(meter) >= pair.Key)
+            {
+                float temp = (roundedNumber / pair.Key) * 10;
+                float returningNumber = temp / 10;
+                return String.Format("{0:0.0}", returningNumber) + pair.Value;
+            }
+        }
+        return String.Format("{0:0.0}", meter) + " cm/s";
+    }
+}

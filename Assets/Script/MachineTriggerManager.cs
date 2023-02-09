@@ -57,11 +57,12 @@ public class MachineTriggerManager : MonoBehaviour
                         other.gameObject.GetComponent<MachineManager>().levelIndexOfObject + 1],
                     other.transform.parent);
                 GameDataManager.Instance.ControlButtons();
-                if (mergeCounter % 4 == 0)
+                /*
+                 if (mergeCounter % 4 == 0)
                 {
                     Debug.Log("emir");
                     InterstitialAdManager.Instance.ShowInterstitial();
-                }
+                }*/
                 Destroy(other.gameObject);
                 Destroy(gameObject);
                 GameDataManager.Instance.SaveData();

@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using GoogleMobileAds.Api;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -66,7 +65,7 @@ public class OfflineProgress : MonoBehaviour
 
     public void OnOfflineReward()
     {
-        InterstitialAdManager.Instance.ShowInterstitial();
+        //InterstitialAdManager.Instance.ShowInterstitial();
         GameDataManager.Instance.TotalMoney += (long)offlineRewardMoney;
         UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text =
             AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);
@@ -75,6 +74,10 @@ public class OfflineProgress : MonoBehaviour
 
     public void OnOffine3MultipleReward()
     {
-        RewardedAdManager.Instance.MultipleOfflineProgressRewardAd();
+
+        long tempTotalMoney = Convert.ToInt64(PlayerPrefs.GetString("TotalMoney", 0.ToString()));
+        tempTotalMoney += (long)OfflineProgress.Instance.offlineRewardMoney * 3;
+        UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumberForTotalMoney((long)tempTotalMoney);
+        OfflineProgress.Instance.OfflineRewardPanel.SetActive(false);
     }
 }
