@@ -43,8 +43,8 @@ public class MachineTriggerManager : MonoBehaviour
                 GameDataManager.Instance.gridArray[currentGrid] = 0;
                 //worker deleting
                 GameObject workerThatWorksForCurrentGrid = Spawner.Instance.gridWorkerArray[currentGrid];
-                Spawner.Instance.gridWorkerArray[currentGrid] = null;
                 Destroy(workerThatWorksForCurrentGrid);
+                Spawner.Instance.gridWorkerArray[currentGrid] = null;
                 ////
                 GameManager.Instance.gridParent.transform.GetChild(targetGrid).GetComponent<BoxCollider>().enabled = false;
                 GameManager.Instance.gridParent.transform.GetChild(currentGrid).GetComponent<BoxCollider>().enabled = true;
