@@ -73,7 +73,7 @@ MonoBehaviour:
   machineIncomeMoney: 5000
   inSnapArea: 0
   isAtBank: 0
-  _moneyPrefab: {fileID: 8410266551750965172, guid: 20664b20497b915449a7c06943102354,
+  _moneyPrefab: {fileID: 8410266551750965172, guid: 3231d83915116c44581bb2728b963393,
     type: 3}
   isFinishedCount: 0
   _firstStep: {x: 0, y: 0, z: 0}
@@ -84,6 +84,7 @@ MonoBehaviour:
   parentOfMoney: {fileID: 5487239621765985751}
   stopPosForMachineMoneys: {fileID: 2336152644607239318}
   firstPosForMachineMoneys: {fileID: 6187974922378374878}
+  moneyMatAfterCount: {fileID: 2100000, guid: 0b58f8ade3c7d60428a1e4d0c5eb2e0e, type: 2}
 --- !u!54 &2604359735765762205
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -621,7 +622,7 @@ PrefabInstance:
     - target: {fileID: 2949005365120001801, guid: 4a7e3f8e0fa6060468f607e7d76282a6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.9
+      value: 1.962
       objectReference: {fileID: 0}
     - target: {fileID: 2949005365120001801, guid: 4a7e3f8e0fa6060468f607e7d76282a6,
         type: 3}
@@ -667,6 +668,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: -10.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5758434053949402354, guid: 4a7e3f8e0fa6060468f607e7d76282a6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.26
       objectReference: {fileID: 0}
     - target: {fileID: 5758434053949402354, guid: 4a7e3f8e0fa6060468f607e7d76282a6,
         type: 3}
