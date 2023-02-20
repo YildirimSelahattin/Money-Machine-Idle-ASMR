@@ -36,6 +36,7 @@ public class MachineManager : MonoBehaviour
     [SerializeField] Transform firstPosForMachineMoneys;
     public static  float x, y, z;
     public Material moneyMatAfterCount;
+    public Material baseMoneyMat;
 
     private void Awake()
     {
@@ -62,6 +63,7 @@ public class MachineManager : MonoBehaviour
         myPos.y += 0.6f;
         firstPos.x -= 1f;
         GameObject moneyTemp = Instantiate(_moneyPrefab, myPos, _moneyPrefab.transform.rotation);
+
         Spawner.Instance.movingMoneyBaleList.Add(moneyTemp);
         if (gridIndexNumberOfObject % 2 == 0) // if money is on the left side
         {
@@ -185,6 +187,7 @@ public class MachineManager : MonoBehaviour
                 isFinishedCount = true;
             }
         }
+        
     }
 
     public void MoveMoneyInRoundedMachine(GameObject moneyToMove,float zOffset,float waitAmount)
@@ -224,6 +227,7 @@ public class MachineManager : MonoBehaviour
         {
             parentOfMoney.transform.GetChild(i).transform.localPosition = new Vector3(0,0,(float)i/10f);
             parentOfMoney.SetActive(false);//disable money bale 
+            parentOfMoney.transform.GetChild(i).gameObject.GetComponent<MeshRenderer>().material = baseMoneyMat;
         }
     }
 }
