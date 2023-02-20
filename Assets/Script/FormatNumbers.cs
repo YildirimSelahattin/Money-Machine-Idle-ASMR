@@ -18,7 +18,6 @@ public static class AbbrevationUtility
 
     private static readonly SortedDictionary<float, string> abbrevationsMeter = new SortedDictionary<float, string>
      {
-         {100, " m/s" },
          {1000, " km/s" },
      };
     public static string AbbreviateNumber(long number)
@@ -83,6 +82,6 @@ public static class AbbrevationUtility
                 return String.Format("{0:0.0}", returningNumber) + pair.Value;
             }
         }
-        return String.Format("{0:0.0}", meter) + " cm/s";
+        return String.Format("{0:0.0}", meter) + " m/s";
     }
 }

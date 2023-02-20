@@ -85,6 +85,7 @@ MonoBehaviour:
   stopPosForMachineMoneys: {fileID: 4357355482779468579}
   firstPosForMachineMoneys: {fileID: 5328844274327865707}
   moneyMatAfterCount: {fileID: 2100000, guid: 11a66daa8e8eba64389e1fd6cb204223, type: 2}
+  baseMoneyMat: {fileID: 2100000, guid: 75aa3ab6ae2e8304cb7d87c176300a64, type: 2}
 --- !u!54 &2604359735765762205
 Rigidbody:
   m_ObjectHideFlags: 0
