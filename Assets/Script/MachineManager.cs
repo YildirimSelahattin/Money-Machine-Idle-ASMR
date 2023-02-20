@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using RengeGames.HealthBars;
 using Unity.VisualScripting;
+using static System.Net.Mime.MediaTypeNames;
 
 public class MachineManager : MonoBehaviour
 {
@@ -34,10 +35,10 @@ public class MachineManager : MonoBehaviour
     [SerializeField] GameObject parentOfMoney;
     [SerializeField] Transform stopPosForMachineMoneys;
     [SerializeField] Transform firstPosForMachineMoneys;
-    public static  float x, y, z;
+    public static float x, y, z;
     public Material moneyMatAfterCount;
     public Material baseMoneyMat;
-
+    public int moneyPileNumber;
     private void Awake()
     {
         if (Instance == null)
@@ -58,76 +59,15 @@ public class MachineManager : MonoBehaviour
 
     public void MoneyMove()
     {
+
         Vector3 myPos = GameManager.Instance.gridParent.transform.GetChild(gridIndexNumberOfObject).GetChild(1)
-            .transform.position;
+        .transform.position;
         myPos.y += 0.6f;
         firstPos.x -= 1f;
-        GameObject moneyTemp = Instantiate(_moneyPrefab, myPos, _moneyPrefab.transform.rotation);
+        GameObject movingMoneyParent = Instantiate(_moneyPrefab, myPos, _moneyPrefab.transform.rotation);
 
-        Spawner.Instance.movingMoneyBaleList.Add(moneyTemp);
-        if (gridIndexNumberOfObject % 2 == 0) // if money is on the left side
-        {
-            firstPos = GameManager.Instance.gridParent.transform.GetChild(gridIndexNumberOfObject).GetChild(0)
-                .transform.position;
-            firstPos.y += 0.6f;
-            moneyTemp.transform.DOMove(firstPos, 1f).SetEase(Ease.Linear)
-                .OnComplete(() =>
-                {
-                    float dist = Vector3.Distance(firstPos, new Vector3(-7f, 1.1f, -20f));
-                    float speed = GameDataManager.Instance.beltSpeed;
-                    moneyTemp.transform.DOMove(new Vector3(-7.4f, 2f, -21f), (dist / -speed)*Time.deltaTime).SetEase(Ease.Linear)
-                        .OnComplete(
-                            () =>
-                            {
-                                LastMoveToTruck(new Vector3(x, y, z), moneyTemp);
-                                x += 0.10f;
-                                if (x > 0.1f && z != -0.3f)
-                                {
-                                    z -= 0.3f;
-                                    x = -0.4f;
-                                }
-                                else if (x > 0.1f && z == -0.3f)
-                                {
-                                    y += 0.5f;
-                                    x = -0.4f;
-                                    z = 0.3f;
-                                }
-                            });
-                });
-        }
-        else // if money is on the right side 
-        {
-            firstPos = GameManager.Instance.gridParent.transform.GetChild(gridIndexNumberOfObject).GetChild(0)
-                .transform.position;
-            firstPos.y += 0.6f;
-            firstPos.x -= 1f;
-            moneyTemp.transform.DOMove(firstPos, 1f).SetEase(Ease.Linear)
-                .OnComplete(() =>
-                {
-                    float dist = Vector3.Distance(firstPos, new Vector3(7f, 1.1f, -20f));
-                    float speed = GameDataManager.Instance.beltSpeed;
-                    //doKill
-                    if (UIManager.Instance.isSell == true)
-                        Debug.Log("Sell");
-                    moneyTemp.transform.DOMove(new Vector3(6.5f, 2f, -20f), (dist / -speed) * Time.deltaTime).SetEase(Ease.Linear)
-                        .OnComplete(() =>
-                        {
-                            LastMoveToTruck(new Vector3(x, y, z),moneyTemp);
-                            x += 0.1f;
-                            if (x > 0.1f && z!= -0.3f) 
-                            {
-                                z -= 0.3f;
-                                x = -0.4f;
-                            }
-                            else if (x>0.1f && z == -0.3f) 
-                            {
-                                y += 0.5f;
-                                x = -0.4f;
-                                z = 0.3f;
-                            }
-                        });
-                });
-        }
+        movingMoneyParent.GetComponent<MoneyMove>().MoveMoney(gridIndexNumberOfObject,firstPos,machineIncomeMoney,_tempText,movingMoneyParent);
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -137,25 +77,7 @@ public class MachineManager : MonoBehaviour
             Debug.Log("* * * < Geldim > * * *");
         }
     }
-    public void LastMoveToTruck(Vector3 posToMoveForThisMoney, GameObject moneyTemp)
-    {
-        int _incomeLevel = PlayerPrefs.GetInt("IncomeButtonLevel", 0);
-        Transform goPos = PickupManager.Instance.tempPickup.transform;
-        Spawner.Instance.movingMoneyBaleList.Remove(moneyTemp);
-        moneyTemp.transform.SetParent(goPos.transform);
-        moneyTemp.transform.DORotate(new Vector3(-90f, 0, 0), 0.2f);
-        moneyTemp.transform.DOLocalJump(posToMoveForThisMoney, 10,1,1.5f).SetEase(Ease.OutBounce).OnComplete(()=>
-        {
-            
-            GameDataManager.Instance.moneyToBeCollected += AbbrevationUtility.RoundNumberLikeText((long)(machineIncomeMoney *GameDataManager.Instance.IncomePercantage));
-            
-            //GameDataManager.Instance.moneyToBeCollected += ((long)(machineIncomeMoney + (long)(machineIncomeMoney * (1 + (GameDataManager.Instance.IncomePercantage * GameDataManager.Instance.incomeButtonLevel + GameDataManager.Instance.IncomePercantage * GameDataManager.Instance.IncomePercantage * GameDataManager.Instance.incomeButtonLevel - 1)))));
-           
-            //GameDataManager.Instance.moneyToBeCollected = (long)(machineIncomeMoney * (1 + GameDataManager.Instance.IncomePercantage)) / 10;
-            _tempText.text = AbbrevationUtility.AbbreviateNumberForTotalMoney(GameDataManager.Instance.moneyToBeCollected);
-            GameDataManager.Instance.SaveData();
-        });
-    }
+    
     public IEnumerator WaitAndPrint()
     {
         parentOfMoney.SetActive(true);
@@ -163,19 +85,19 @@ public class MachineManager : MonoBehaviour
         {
             if (GameDataManager.Instance.playSound == 1)
             {
-            _moneySound.Play();
-                
+                _moneySound.Play();
+
             }
-            
-            if (levelIndexOfObject !=3)
+
+            if (levelIndexOfObject != 3)
             {
-                MoveMoneyInRoundedMachine(parentOfMoney.transform.GetChild(i).gameObject, i,countWaitTime);
+                MoveMoneyInRoundedMachine(parentOfMoney.transform.GetChild(i).gameObject, i, countWaitTime);
             }
             else
             {
-                MoveMoneyInNormalMachine(parentOfMoney.transform.GetChild(i).gameObject, i,countWaitTime);
+                MoveMoneyInNormalMachine(parentOfMoney.transform.GetChild(i).gameObject, i, countWaitTime);
             }
-            
+
             RadialSegmentNumber--;
             RadialSegment.SetRemovedSegments(RadialSegmentNumber);
             yield return new WaitForSeconds(countWaitTime);
@@ -187,16 +109,16 @@ public class MachineManager : MonoBehaviour
                 isFinishedCount = true;
             }
         }
-        
+
     }
 
-    public void MoveMoneyInRoundedMachine(GameObject moneyToMove,float zOffset,float waitAmount)
+    public void MoveMoneyInRoundedMachine(GameObject moneyToMove, float zOffset, float waitAmount)
     {
-        moneyToMove.transform.DORotate(new Vector3(90, 180, 90),waitAmount*25/100);
+        moneyToMove.transform.DORotate(new Vector3(90, 180, 90), waitAmount * 25 / 100);
         moneyToMove.transform.DOLocalMove(firstPosForMachineMoneys.localPosition, waitAmount * 25 / 100).OnComplete(() =>
         {
             moneyToMove.GetComponent<MeshRenderer>().material = moneyMatAfterCount;
-            moneyToMove.transform.DORotate(new Vector3(0,180,90),waitAmount*75/100);
+            moneyToMove.transform.DORotate(new Vector3(0, 180, 90), waitAmount * 75 / 100);
             moneyToMove.transform.DOLocalMove(new Vector3(stopPosForMachineMoneys.localPosition.x, stopPosForMachineMoneys.localPosition.y, stopPosForMachineMoneys.localPosition.z + (0.2f * zOffset)), waitAmount * 75 / 100).OnComplete(() =>
             {
                 if (zOffset == 9)
@@ -205,7 +127,7 @@ public class MachineManager : MonoBehaviour
                 }
             });
         });
-        
+
     }
     public void MoveMoneyInNormalMachine(GameObject moneyToMove, float zOffset, float waitAmount)
     {
@@ -223,9 +145,9 @@ public class MachineManager : MonoBehaviour
     }
     public void ResetMachineMoneyPositions()
     {
-        for(int i = 0; i < 10; i++)
+        for (int i = 0; i < 10; i++)
         {
-            parentOfMoney.transform.GetChild(i).transform.localPosition = new Vector3(0,0,(float)i/10f);
+            parentOfMoney.transform.GetChild(i).transform.localPosition = new Vector3(0, 0, (float)i / 10f);
             parentOfMoney.SetActive(false);//disable money bale 
             parentOfMoney.transform.GetChild(i).gameObject.GetComponent<MeshRenderer>().material = baseMoneyMat;
         }

@@ -246,7 +246,7 @@ MonoBehaviour:
   machineIncomeMoney: 200
   inSnapArea: 0
   isAtBank: 0
-  _moneyPrefab: {fileID: 8410266551750965172, guid: 7c094e68064e65b44a34823f878767eb,
+  _moneyPrefab: {fileID: 3604130136348512551, guid: 86c65da923c74ea4891152e80c018476,
     type: 3}
   isFinishedCount: 0
   _firstStep: {x: 0, y: 0, z: 0}
@@ -257,8 +257,9 @@ MonoBehaviour:
   parentOfMoney: {fileID: 1978500476152492060}
   stopPosForMachineMoneys: {fileID: 8590671942240608605}
   firstPosForMachineMoneys: {fileID: 194647120176655125}
-  moneyMatAfterCount: {fileID: 2100000, guid: ec56a8f2a43ded8429e1dbee34d3ea04, type: 2}
+  moneyMatAfterCount: {fileID: 2100000, guid: 0b58f8ade3c7d60428a1e4d0c5eb2e0e, type: 2}
   baseMoneyMat: {fileID: 2100000, guid: 75aa3ab6ae2e8304cb7d87c176300a64, type: 2}
+  moneyPileNumber: 0
 --- !u!54 &4821791449367649135
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -285,7 +286,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 81e078748b3462c4fb7e4ebb06e904da, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 70870618ff56d9f48ba2a2fa8a1b2e32, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -411,7 +412,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 175718886b72dc1408810cb445d7f945,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 175718886b72dc1408810cb445d7f945,
         type: 3}
@@ -586,7 +587,7 @@ PrefabInstance:
     - target: {fileID: 5758434053949402354, guid: 4a7e3f8e0fa6060468f607e7d76282a6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.16
+      value: -8.44
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a7e3f8e0fa6060468f607e7d76282a6, type: 3}

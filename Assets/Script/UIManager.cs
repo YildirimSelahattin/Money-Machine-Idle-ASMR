@@ -684,6 +684,7 @@ public class UIManager : MonoBehaviour
     public void MusicOff()
     {
         GameDataManager.Instance.playMusic = 0;
+        PlayerPrefs.SetInt("MusicKey" , 0);
         gameMusic.SetActive(false);
         musicOn.gameObject.SetActive(false);
         musicOff.gameObject.SetActive(true);
@@ -693,6 +694,7 @@ public class UIManager : MonoBehaviour
     public void MusicOn()
     {
         GameDataManager.Instance.playMusic = 1;
+        PlayerPrefs.SetInt("MusicKey" , 1);
         gameMusic.SetActive(true);
         musicOff.gameObject.SetActive(false);
         musicOn.gameObject.SetActive(true);
@@ -702,6 +704,7 @@ public class UIManager : MonoBehaviour
     public void SoundsOff()
     {
         GameDataManager.Instance.playSound = 0;
+        PlayerPrefs.SetInt("SoundKey" , 0);
         soundOn.gameObject.SetActive(false);
         soundOff.gameObject.SetActive(true);
         //UpdateSound();
@@ -710,6 +713,7 @@ public class UIManager : MonoBehaviour
     public void SoundsOn()
     {
         GameDataManager.Instance.playSound = 1;
+        PlayerPrefs.SetInt("SoundKey" , 1);
         soundOff.gameObject.SetActive(false);
         soundOn.gameObject.SetActive(true);
         //UpdateSound();
@@ -718,6 +722,7 @@ public class UIManager : MonoBehaviour
     public void VibrationOff()
     {
         GameDataManager.Instance.playVibrate = 0;
+        PlayerPrefs.SetInt("VibrateKey" , 0);
         vibrationOn.gameObject.SetActive(false);
         vibrationOff.gameObject.SetActive(true);
         Handheld.Vibrate();
@@ -727,6 +732,7 @@ public class UIManager : MonoBehaviour
     public void VibrationOn()
     {
         GameDataManager.Instance.playVibrate = 1;
+        PlayerPrefs.SetInt("VibrateKey" , 1);
         vibrationOff.gameObject.SetActive(false);
         vibrationOn.gameObject.SetActive(true);
         Handheld.Vibrate();

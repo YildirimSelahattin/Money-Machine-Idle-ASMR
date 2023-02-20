@@ -73,7 +73,7 @@ MonoBehaviour:
   machineIncomeMoney: 50000
   inSnapArea: 0
   isAtBank: 0
-  _moneyPrefab: {fileID: 8410266551750965172, guid: 6f25f86f36d122e4d824fc9bb40c1b7f,
+  _moneyPrefab: {fileID: 5764850063828063173, guid: 689abbe62ab8e5940b8c749100969a2f,
     type: 3}
   isFinishedCount: 0
   _firstStep: {x: 0, y: 0, z: 0}
@@ -84,8 +84,9 @@ MonoBehaviour:
   parentOfMoney: {fileID: 8453147425126204235}
   stopPosForMachineMoneys: {fileID: 1802185204044911114}
   firstPosForMachineMoneys: {fileID: 7820802014669690946}
-  moneyMatAfterCount: {fileID: 2100000, guid: aba358eba054f6440ae7051c058af54e, type: 2}
+  moneyMatAfterCount: {fileID: 2100000, guid: ec56a8f2a43ded8429e1dbee34d3ea04, type: 2}
   baseMoneyMat: {fileID: 2100000, guid: 75aa3ab6ae2e8304cb7d87c176300a64, type: 2}
+  moneyPileNumber: 0
 --- !u!54 &2604359735765762205
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -112,7 +113,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 68756e5b8546d934a9704d73c2b773a1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 505fcfc27c45e384283e76473d664388, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -224,7 +225,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6146313636921251356}
   m_LocalRotation: {x: 0.2164396, y: 0, z: 0, w: 0.97629607}
-  m_LocalPosition: {x: 0, y: 0, z: -1.6}
+  m_LocalPosition: {x: 0, y: 0, z: -1.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -411,7 +412,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a294342bd27b23e468ed18b81bd0b3f1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a294342bd27b23e468ed18b81bd0b3f1,
         type: 3}
@@ -421,7 +422,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a294342bd27b23e468ed18b81bd0b3f1,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a294342bd27b23e468ed18b81bd0b3f1,
         type: 3}
@@ -431,7 +432,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a294342bd27b23e468ed18b81bd0b3f1,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a294342bd27b23e468ed18b81bd0b3f1,
         type: 3}
@@ -561,7 +562,7 @@ PrefabInstance:
     - target: {fileID: 5758434053949402354, guid: 4a7e3f8e0fa6060468f607e7d76282a6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.02
+      value: -7.68
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a7e3f8e0fa6060468f607e7d76282a6, type: 3}

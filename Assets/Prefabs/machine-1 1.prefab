@@ -246,7 +246,7 @@ MonoBehaviour:
   machineIncomeMoney: 100
   inSnapArea: 0
   isAtBank: 0
-  _moneyPrefab: {fileID: 8410266551750965172, guid: 20664b20497b915449a7c06943102354,
+  _moneyPrefab: {fileID: 3433400705485330209, guid: dbcd59651594dca4bb7f1327a130f9e4,
     type: 3}
   isFinishedCount: 0
   _firstStep: {x: 0, y: 0, z: 0}
@@ -259,6 +259,7 @@ MonoBehaviour:
   firstPosForMachineMoneys: {fileID: 2451225389445657850}
   moneyMatAfterCount: {fileID: 2100000, guid: 75aa3ab6ae2e8304cb7d87c176300a64, type: 2}
   baseMoneyMat: {fileID: 2100000, guid: 75aa3ab6ae2e8304cb7d87c176300a64, type: 2}
+  moneyPileNumber: 0
 --- !u!54 &4821791449367649135
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -285,7 +286,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 68756e5b8546d934a9704d73c2b773a1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 505fcfc27c45e384283e76473d664388, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

@@ -93,9 +93,9 @@ public class GameDataManager : MonoBehaviour
     
     void Start()
     {
-        playSound = PlayerPrefs.GetInt("PlaySoundKey", 1);
-        playMusic = PlayerPrefs.GetInt("PlayMusicKey", 1);
-        playVibrate = PlayerPrefs.GetInt("PlayVibrateKey", 1);
+        playSound = PlayerPrefs.GetInt("SoundKey", 1);
+        playMusic = PlayerPrefs.GetInt("MusicKey", 1);
+        playVibrate = PlayerPrefs.GetInt("VibrateKey", 1);
         
         OfflineProgress.Instance.OfflinePanelControl();
     }
@@ -106,14 +106,14 @@ public class GameDataManager : MonoBehaviour
         //grid jobs
         for (int i = 0; i < 6; i++)
         {
-            /*
+            
             gridArray[i] = PlayerPrefs.GetInt("GridValue" + i.ToString(), 0); //open default
             if (i > 2)
             {
                 gridArray[i] = PlayerPrefs.GetInt("GridValue" + i.ToString(), -1); //closed default
             }
-            */
-            gridArray[i] = i + 1;
+            
+            
         }
 
         // worker jobs
