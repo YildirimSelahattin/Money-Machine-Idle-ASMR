@@ -528,6 +528,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 99250531754f3bb44b259712930077f1, type: 2}
+    - target: {fileID: 2907583452670840788, guid: 4a7e3f8e0fa6060468f607e7d76282a6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.9
+      objectReference: {fileID: 0}
     - target: {fileID: 2949005365120001801, guid: 4a7e3f8e0fa6060468f607e7d76282a6,
         type: 3}
       propertyPath: m_RootOrder
@@ -541,7 +546,7 @@ PrefabInstance:
     - target: {fileID: 2949005365120001801, guid: 4a7e3f8e0fa6060468f607e7d76282a6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.9
+      value: 1.51
       objectReference: {fileID: 0}
     - target: {fileID: 2949005365120001801, guid: 4a7e3f8e0fa6060468f607e7d76282a6,
         type: 3}
@@ -592,7 +597,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 99250531754f3bb44b259712930077f1, type: 2}
+      objectReference: {fileID: 2100000, guid: 548b8cddb697a594b8b47b52bca86cdc, type: 2}
     - target: {fileID: 5326011840167914435, guid: 4a7e3f8e0fa6060468f607e7d76282a6,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -602,12 +607,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 99250531754f3bb44b259712930077f1, type: 2}
+      objectReference: {fileID: 2100000, guid: 548b8cddb697a594b8b47b52bca86cdc, type: 2}
     - target: {fileID: 5558744301440141083, guid: 4a7e3f8e0fa6060468f607e7d76282a6,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 99250531754f3bb44b259712930077f1, type: 2}
+      objectReference: {fileID: 2100000, guid: 548b8cddb697a594b8b47b52bca86cdc, type: 2}
     - target: {fileID: 5572418540660184637, guid: 4a7e3f8e0fa6060468f607e7d76282a6,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
