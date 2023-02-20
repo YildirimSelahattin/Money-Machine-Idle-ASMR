@@ -35,6 +35,7 @@ public class MachineManager : MonoBehaviour
     [SerializeField] Transform stopPosForMachineMoneys;
     [SerializeField] Transform firstPosForMachineMoneys;
     public static  float x, y, z;
+    public Material moneyMatAfterCount;
 
     private void Awake()
     {
@@ -191,7 +192,7 @@ public class MachineManager : MonoBehaviour
         moneyToMove.transform.DORotate(new Vector3(90, 0, 0),waitAmount*25/100);
         moneyToMove.transform.DOLocalMove(firstPosForMachineMoneys.localPosition, waitAmount * 25 / 100).OnComplete(() =>
         {
-            
+            moneyToMove.GetComponent<MeshRenderer>().material = moneyMatAfterCount;
             moneyToMove.transform.DORotate(new Vector3(0,0,0),waitAmount*75/100);
             moneyToMove.transform.DOLocalMove(new Vector3(stopPosForMachineMoneys.localPosition.x, stopPosForMachineMoneys.localPosition.y, stopPosForMachineMoneys.localPosition.z + (0.2f * zOffset)), waitAmount * 75 / 100).OnComplete(() =>
             {
@@ -207,6 +208,7 @@ public class MachineManager : MonoBehaviour
     {
         moneyToMove.transform.DOLocalMove(firstPosForMachineMoneys.localPosition, waitAmount * 25 / 100).OnComplete(() =>
         {
+            moneyToMove.GetComponent<MeshRenderer>().material = moneyMatAfterCount;
             moneyToMove.transform.DOLocalMove(new Vector3(stopPosForMachineMoneys.localPosition.x, stopPosForMachineMoneys.localPosition.y, stopPosForMachineMoneys.localPosition.z + (0.2f * zOffset)), waitAmount * 75 / 100).OnComplete(() =>
             {
                 if (zOffset == 9)
