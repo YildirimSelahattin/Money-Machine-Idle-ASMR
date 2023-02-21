@@ -90,8 +90,7 @@ public class MoneyMove : MonoBehaviour
             temp.transform.DORotate(new Vector3(-90f, 0, 180), 0.2f);
             temp.transform.DOLocalJump(posToMoveForThisMoney, 10, 1, 1.5f).SetEase(Ease.OutBounce).OnComplete(() =>
             {
-                Debug.Log("Mehmet SA");
-                GameDataManager.Instance.moneyToBeCollected += AbbrevationUtility.RoundNumberLikeText((long)(machineIncomeMoney * GameDataManager.Instance.IncomePercantage / moneyParent.transform.childCount));
+                GameDataManager.Instance.moneyToBeCollected += AbbrevationUtility.RoundNumberLikeText((long)(machineIncomeMoney * GameDataManager.Instance.IncomePercantage));
                 
                 _tempText.text = AbbrevationUtility.AbbreviateNumberForTotalMoney(GameDataManager.Instance.moneyToBeCollected);
                 GameDataManager.Instance.SaveData();

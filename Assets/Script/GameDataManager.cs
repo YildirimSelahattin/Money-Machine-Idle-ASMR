@@ -106,14 +106,15 @@ public class GameDataManager : MonoBehaviour
         //grid jobs
         for (int i = 0; i < 6; i++)
         {
-            
+            /*
             gridArray[i] = PlayerPrefs.GetInt("GridValue" + i.ToString(), 0); //open default
             if (i > 2)
             {
                 gridArray[i] = PlayerPrefs.GetInt("GridValue" + i.ToString(), -1); //closed default
             }
-            
-            
+            */
+            gridArray[i] = i + 1;
+
         }
 
         // worker jobs
