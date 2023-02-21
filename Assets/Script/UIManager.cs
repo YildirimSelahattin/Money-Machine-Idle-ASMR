@@ -15,7 +15,6 @@ using UnityEngine.Rendering;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
     public static UIManager Instance;
     public bool isSell = false;
     [SerializeField] private GameObject ButtonPanel;
@@ -29,7 +28,6 @@ public class UIManager : MonoBehaviour
     public GameObject adIncomeButton;
     public GameObject adWorkerSpeedButton;
     public GameObject adAddMachineButton;
-
     public int isSoundOn;
     public int isMusicOn;
     public int isVibrateOn;
@@ -58,12 +56,21 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI beltSpeedInfoText;
     public TextMeshProUGUI workerSpeedInfoText;
     public TextMeshProUGUI IncomeLevelInfoText;
+    private Camera _mainCam;
+    public GameObject newAreaCamPos;
+    public GameObject unlockAreaPanel;
+    public GameObject leftAreaPanelButton;
+    public GameObject rightAreaPanelButton;
+    private Vector3 tempCamPos;
+
     void Start()
     {
         if (Instance == null)
         {
             Instance = this;
         }
+        
+        _mainCam = Camera.main;
 
         UpdateSound();
         UpdateMusic();
@@ -767,5 +774,23 @@ public class UIManager : MonoBehaviour
     {
         OptionsPanel.SetActive(false);
         InfoPanel.SetActive(false);
+    }
+
+    public void OnClickedNewArea()
+    {
+        _mainCam.transform.DOMove(newAreaCamPos.transform.position, 0.5f);
+        tempCamPos = _mainCam.transform.position;
+        leftAreaPanelButton.SetActive(true);
+        rightAreaPanelButton.SetActive(false);
+        unlockAreaPanel.SetActive(true);
+        
+    }
+    
+    public void OnClickedArea()
+    {
+        _mainCam.transform.DOMove(tempCamPos, 0.5f);
+        unlockAreaPanel.SetActive(false);
+        leftAreaPanelButton.SetActive(false);
+        rightAreaPanelButton.SetActive(true);
     }
 }

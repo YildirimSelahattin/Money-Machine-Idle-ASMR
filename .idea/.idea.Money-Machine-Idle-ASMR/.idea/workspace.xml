@@ -3,50 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="12e15ff2-c41a-445c-99a6-3e761c781f24" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Money-Machine-Idle-ASMR/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Money-Machine-Idle-ASMR/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/1/Material.001.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/1/Material.001.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/1/Material.002.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/1/Material.002.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/1/Material.005.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/1/Material.005.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/1/Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/1/Material.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/2/Material.001.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/2/Material.001.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/2/Material.002.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/2/Material.002.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/2/Material.007.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/2/Material.007.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/2/Material.008.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/2/Material.008.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/2/Material.009.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/2/Material.009.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/2/Material.012.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/2/Material.012.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/3/Material.002.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/3/Material.002.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/3/Material.004.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/3/Material.004.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/3/Material.006.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/3/Material.006.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/3/Material.007.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/3/Material.007.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/4/Material.001.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/4/Material.001.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/4/Material.002.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/4/Material.002.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/4/Material.003.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/4/Material.003.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/4/Material.012.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/4/Material.012.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/4/Material.013.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/4/Material.013.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/4/Material.018.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/4/Material.018.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/5/Material.001.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/5/Material.001.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/5/Material.002.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/5/Material.002.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/5/Material.015.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/5/Material.015.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/5/Material.016.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/5/Material.016.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/6/Material.002.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/6/Material.002.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/6/Material.010.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/6/Material.010.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/6/Material.015.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/6/Material.015.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/6/Material.017.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/6/Material.017.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/-Test/NewMachines/6/Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/-Test/NewMachines/6/Material.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/MoneyMats/Money mat  - 6.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/MoneyMats/Money mat  - 6.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/MoneyMats/Money mat - 1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/MoneyMats/Money mat - 1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/MoneyMats/Money mat - 2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/MoneyMats/Money mat - 2.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/MoneyMats/Money mat - 3.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/MoneyMats/Money mat - 3.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/MoneyMats/Money mat - 4.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/MoneyMats/Money mat - 4.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/MoneyMats/Money mat - 5.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/MoneyMats/Money mat - 5.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/machine-1 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/machine-1 1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3rdPartyAssets/PartyMonsterRumblePBR/SRP.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3rdPartyAssets/PartyMonsterRumblePBR/SRP/URP.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3rdPartyAssets/PartyMonsterRumblePBR/SRP/URP.zip.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Material/BeltMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Material/BeltMat.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/machine-1 2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/machine-1 2.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/machine-1 3.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/machine-1 3.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/machine-1 4.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/machine-1 4.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/machine-1 5.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/machine-1 5.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/machine-1 6.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/machine-1 6.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/GameDataManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/GameDataManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/MoneyMove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MoneyMove.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/UIManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/Fonts/Poppins-Bold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/Fonts/Poppins-Bold SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/TargetHand/mergeHandMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/TargetHand/mergeHandMat.mat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +21,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../../../../../../Program Files/unityy/2021.3.5f1/Editor/Data/CGIncludes/UnityShaderVariables.cginc" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Common/Admob/IntersititalAdManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Common/FpsCounter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Common/StartScreenRes.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Common/StartScreenRes1.cs" root0="FORCE_HIGHLIGHTING" />
@@ -173,7 +140,7 @@
       <workItem from="1675162915462" duration="1329000" />
       <workItem from="1675238491559" duration="1625000" />
       <workItem from="1676875973968" duration="8118000" />
-      <workItem from="1676961269540" duration="1194000" />
+      <workItem from="1676961269540" duration="4016000" />
     </task>
     <servers />
   </component>
