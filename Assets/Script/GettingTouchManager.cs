@@ -60,11 +60,11 @@ public class GettingTouchManager : MonoBehaviour
                 else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyUpgrade)) // when it hits to upgrade button
                 {
                     gridObjectToOpen = hit.collider.gameObject.transform.parent.transform.parent.gameObject;
-                    /*
+                    
                      if (hit.collider.gameObject.transform.CompareTag("AdOpenButton"))// upgrade with ad
                     {
                         RewardedAdManager.Instance.GridRewardAd();
-                    }*/
+                    }
                     if (hit.collider.gameObject.transform.CompareTag("MoneyOpenButton")) { // upgrade money
                         GameDataManager.Instance.TotalMoney -= GameDataManager.Instance.gridOpenWithMoneyPrices[hit.collider.gameObject.transform.parent.parent.tag[hit.collider.gameObject.transform.parent.parent.tag.Length - 1]-'0'];
                         UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumberForTotalMoney( GameDataManager.Instance.TotalMoney);

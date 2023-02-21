@@ -3,16 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="12e15ff2-c41a-445c-99a6-3e761c781f24" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Money-Machine-Idle-ASMR/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Money-Machine-Idle-ASMR/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/3rdPartyAssets/PartyMonsterRumblePBR/SRP.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/3rdPartyAssets/PartyMonsterRumblePBR/SRP/URP.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/3rdPartyAssets/PartyMonsterRumblePBR/SRP/URP.zip.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Material/BeltMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Material/BeltMat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/machine-1 2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/machine-1 2.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/GameDataManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/GameDataManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/GettingTouchManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/GettingTouchManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/OfflineProgress.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/OfflineProgress.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/UIManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Fonts/Poppins-Bold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/Fonts/Poppins-Bold SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/TargetHand/mergeHandMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/TargetHand/mergeHandMat.mat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +14,9 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../../../../../../Program Files/unityy/2021.3.5f1/Editor/Data/CGIncludes/UnityShaderVariables.cginc" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Common/Admob/IntersititalAdManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Common/Admob/BannerAdManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Common/Admob/InterstitialAdManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Common/Admob/RewardedAdManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Common/FpsCounter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Common/StartScreenRes.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Common/StartScreenRes1.cs" root0="FORCE_HIGHLIGHTING" />
@@ -140,7 +135,7 @@
       <workItem from="1675162915462" duration="1329000" />
       <workItem from="1675238491559" duration="1625000" />
       <workItem from="1676875973968" duration="8118000" />
-      <workItem from="1676961269540" duration="4016000" />
+      <workItem from="1676961269540" duration="5526000" />
     </task>
     <servers />
   </component>

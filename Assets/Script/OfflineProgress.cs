@@ -57,7 +57,6 @@ public class OfflineProgress : MonoBehaviour
         {
             Debug.Log("First Login");
             isLogin = false;
-            OfflineRewardPanel.SetActive(false);
         }
 
         PlayerPrefs.SetString("LAST_LOGIN", DateTime.Now.ToString());
@@ -65,7 +64,7 @@ public class OfflineProgress : MonoBehaviour
 
     public void OnOfflineReward()
     {
-        //InterstitialAdManager.Instance.ShowInterstitial();
+        InterstitialAdManager.Instance.ShowInterstitial();
         GameDataManager.Instance.TotalMoney += (long)offlineRewardMoney;
         UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text =
             AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);

@@ -138,7 +138,7 @@ public class UIManager : MonoBehaviour
             IncomeLevelInfoText.text = "%" + String.Format("{0:0.00}",(GameDataManager.Instance.IncomePercantage) * 100);
         }
         GameDataManager.Instance.ControlButtons();
-        //StartCoroutine(OpeningAdButtonsAfterDelay(30));
+        StartCoroutine(OpeningAdButtonsAfterDelay(30));
     }
 
     IEnumerator AdButtonsDelay()
