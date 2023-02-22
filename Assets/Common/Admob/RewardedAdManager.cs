@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using GoogleMobileAds.Api;
@@ -53,7 +53,7 @@ public class RewardedAdManager : MonoBehaviour
                 this.rewardedAd.OnUserEarnedReward += HandleUserEarnedReward;
                 // Called when the ad is closed.
                 this.rewardedAd.OnAdClosed += HandleRewardedAdClosed;
-        */
+        
         // Called when the user should be rewarded for interacting with the ad.
         this.rewardedAd.OnUserEarnedReward += HandleUserEarnedReward;
         // Create an empty ad request.
@@ -89,7 +89,7 @@ public class RewardedAdManager : MonoBehaviour
                 this.rewardedAd.OnUserEarnedReward += HandleUserEarnedReward;
                 // Called when the ad is closed.
                 this.rewardedAd.OnAdClosed += HandleRewardedAdClosed;
-        */
+        
         // Called when the user should be rewarded for interacting with the ad.
         this.rewardedGridAd.OnUserEarnedReward += HandleUserEarnedGridReward;
         // Create an empty ad request.
@@ -124,7 +124,7 @@ public class RewardedAdManager : MonoBehaviour
                 this.rewardedAd.OnUserEarnedReward += HandleUserEarnedReward;
                 // Called when the ad is closed.
                 this.rewardedAd.OnAdClosed += HandleRewardedAdClosed;
-        */
+        
         
         // Called when the user should be rewarded for interacting with the ad.
         this.rewardedUpgradeButtonsAd.OnUserEarnedReward += HandleUserEarnedUpgradeButtonReward;
@@ -206,4 +206,4 @@ public class RewardedAdManager : MonoBehaviour
             RequestRewarded();
         }
     }
-}
+}*/

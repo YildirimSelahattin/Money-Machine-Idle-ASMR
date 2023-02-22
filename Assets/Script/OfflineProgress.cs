@@ -64,7 +64,6 @@ public class OfflineProgress : MonoBehaviour
 
     public void OnOfflineReward()
     {
-        InterstitialAdManager.Instance.ShowInterstitial();
         GameDataManager.Instance.TotalMoney += (long)offlineRewardMoney;
         UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text =
             AbbrevationUtility.AbbreviateNumber(GameDataManager.Instance.TotalMoney);

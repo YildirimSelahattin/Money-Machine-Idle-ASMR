@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using GoogleMobileAds.Api;
@@ -88,7 +88,7 @@ public class InterstitialAdManager : MonoBehaviour
                 Destroy(sound, GameDataManager.Instance.loseSound.length); // Creates new object, add to it audio source, play sound, destroy this object after playing is done
             }
         }
-        */
+        
     }
     public void ShowInterstitial()
     {
@@ -98,4 +98,4 @@ public class InterstitialAdManager : MonoBehaviour
         }
         RequestInterstitial();
     }
-}
+}*/

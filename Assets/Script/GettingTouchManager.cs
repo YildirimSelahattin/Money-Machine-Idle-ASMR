@@ -63,7 +63,7 @@ public class GettingTouchManager : MonoBehaviour
                     
                      if (hit.collider.gameObject.transform.CompareTag("AdOpenButton"))// upgrade with ad
                     {
-                        RewardedAdManager.Instance.GridRewardAd();
+                       
                     }
                     if (hit.collider.gameObject.transform.CompareTag("MoneyOpenButton")) { // upgrade money
                         GameDataManager.Instance.TotalMoney -= GameDataManager.Instance.gridOpenWithMoneyPrices[hit.collider.gameObject.transform.parent.parent.tag[hit.collider.gameObject.transform.parent.parent.tag.Length - 1]-'0'];
