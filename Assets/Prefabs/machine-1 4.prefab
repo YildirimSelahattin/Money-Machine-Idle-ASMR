@@ -309,8 +309,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280756007
-  m_fontColor: {r: 0.15294118, g: 0.15294118, b: 0.15294118, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -604,6 +604,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1488954605156408836, guid: 41dd36208627fdc4095d4e1097d98437,
         type: 3}
+      propertyPath: <BorderWidth>k__BackingField._value
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488954605156408836, guid: 41dd36208627fdc4095d4e1097d98437,
+        type: 3}
       propertyPath: <InnerColor>k__BackingField._value.b
       value: 0.13843165
       objectReference: {fileID: 0}
@@ -624,6 +629,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1488954605156408836, guid: 41dd36208627fdc4095d4e1097d98437,
         type: 3}
+      propertyPath: <BorderSpacing>k__BackingField._value
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488954605156408836, guid: 41dd36208627fdc4095d4e1097d98437,
+        type: 3}
       propertyPath: <RemoveSegments>k__BackingField._value
       value: 10
       objectReference: {fileID: 0}
@@ -636,6 +646,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488954605156408839, guid: 41dd36208627fdc4095d4e1097d98437,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4804481248758940574, guid: 41dd36208627fdc4095d4e1097d98437,
         type: 3}

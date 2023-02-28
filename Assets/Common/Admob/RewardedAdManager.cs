@@ -1,4 +1,4 @@
-/*using System;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using GoogleMobileAds.Api;
@@ -53,7 +53,7 @@ public class RewardedAdManager : MonoBehaviour
                 this.rewardedAd.OnUserEarnedReward += HandleUserEarnedReward;
                 // Called when the ad is closed.
                 this.rewardedAd.OnAdClosed += HandleRewardedAdClosed;
-        
+        */
         // Called when the user should be rewarded for interacting with the ad.
         this.rewardedAd.OnUserEarnedReward += HandleUserEarnedReward;
         // Create an empty ad request.
@@ -89,7 +89,7 @@ public class RewardedAdManager : MonoBehaviour
                 this.rewardedAd.OnUserEarnedReward += HandleUserEarnedReward;
                 // Called when the ad is closed.
                 this.rewardedAd.OnAdClosed += HandleRewardedAdClosed;
-        
+        */
         // Called when the user should be rewarded for interacting with the ad.
         this.rewardedGridAd.OnUserEarnedReward += HandleUserEarnedGridReward;
         // Create an empty ad request.
@@ -124,7 +124,7 @@ public class RewardedAdManager : MonoBehaviour
                 this.rewardedAd.OnUserEarnedReward += HandleUserEarnedReward;
                 // Called when the ad is closed.
                 this.rewardedAd.OnAdClosed += HandleRewardedAdClosed;
-        
+        */
         
         // Called when the user should be rewarded for interacting with the ad.
         this.rewardedUpgradeButtonsAd.OnUserEarnedReward += HandleUserEarnedUpgradeButtonReward;
@@ -141,7 +141,6 @@ public class RewardedAdManager : MonoBehaviour
         UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumberForTotalMoney((long)tempTotalMoney);
         OfflineProgress.Instance.OfflineRewardPanel.SetActive(false);
         
-        RequestRewarded();
     }
     public void HandleRewardedAdLoadedGrid(object sender, EventArgs args)
     {
@@ -152,8 +151,14 @@ public class RewardedAdManager : MonoBehaviour
     }
     public void HandleRewardedAdLoaded(object sender, EventArgs args)
     {
-        OfflineProgress.Instance.OfflineRewardPanel.SetActive(true);
-        OfflineProgress.Instance.OfflinePanelControl();
+        if (PlayerPrefs.HasKey("LAST_LOGIN"))
+        {
+            OfflineProgress.Instance.OfflineRewardPanel.SetActive(true);
+            OfflineProgress.Instance.OfflinePanelControl();
+        }
+        else{
+            PlayerPrefs.SetString("LAST_LOGIN", DateTime.Now.ToString());
+        }
     }
     
     public void HandleUserEarnedGridReward(object sender, Reward args)
@@ -206,4 +211,4 @@ public class RewardedAdManager : MonoBehaviour
             RequestRewarded();
         }
     }
-}*/
+}

@@ -5,7 +5,6 @@ using DG.Tweening;
 using Unity.VisualScripting;
 using TMPro;
 using UnityEngine.UI;
-using Voodoo.Utils;
 
 public class GettingTouchManager : MonoBehaviour
 {
@@ -31,7 +30,7 @@ public class GettingTouchManager : MonoBehaviour
     Vector3 originalPosOrDraggingObject;
     RaycastHit hit;
     Ray ray;
-    public DemoManager vibrationscript;
+
     void Start()
     {
         if (Instance == null)
@@ -42,10 +41,9 @@ public class GettingTouchManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.touchCount > 0)
-        {
-            ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)                // This is actions when finger/cursor hit screen
+        
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Input.GetButtonDown("Fire1"))                // This is actions when finger/cursor hit screen
             {
                 if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyMachines)) // if it hit to a machine object
                 {
@@ -60,12 +58,11 @@ public class GettingTouchManager : MonoBehaviour
                 else if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, touchableLayerOnlyUpgrade)) // when it hits to upgrade button
                 {
                     gridObjectToOpen = hit.collider.gameObject.transform.parent.transform.parent.gameObject;
-                    
-                     if (hit.collider.gameObject.transform.CompareTag("AdOpenButton"))// upgrade with ad
+                    if (hit.collider.gameObject.transform.CompareTag("AdOpenButton"))// upgrade with ad
                     {
-                       
+                        RewardedAdManager.Instance.GridRewardAd();
                     }
-                    if (hit.collider.gameObject.transform.CompareTag("MoneyOpenButton")) { // upgrade money
+                    else if(hit.collider.gameObject.transform.CompareTag("MoneyOpenButton")) { // upgrade money
                         GameDataManager.Instance.TotalMoney -= GameDataManager.Instance.gridOpenWithMoneyPrices[hit.collider.gameObject.transform.parent.parent.tag[hit.collider.gameObject.transform.parent.parent.tag.Length - 1]-'0'];
                         UIManager.Instance.TotalMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumberForTotalMoney( GameDataManager.Instance.TotalMoney);
                          StartCoroutine(GiveGridReward());
@@ -86,7 +83,7 @@ public class GettingTouchManager : MonoBehaviour
                     //Vibrate
                     if (GameDataManager.Instance.playVibrate==1)
                     {
-                        vibrationscript.TriggerVibrate();
+                        Handheld.Vibrate();
                     }
                     
                     GameDataManager.Instance.TotalMoney +=(long ) GameDataManager.Instance.IncomePerTap;
@@ -96,7 +93,7 @@ public class GettingTouchManager : MonoBehaviour
                     {
                         maxTapNumberUntilInterstitial += 10;
                         //request interstitial here
-                        //InterstitialAdManager.Instance.ShowInterstitial();
+                        StartCoroutine(InterstitialAdManager.Instance.ShowInterstitial());
                         moneyTapNumber = 0;
                     }
                 }
@@ -107,7 +104,7 @@ public class GettingTouchManager : MonoBehaviour
                 }
             }
  
-            else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved && objectToDrag != null)
+            else if (Input.GetButton("Fire1")&& objectToDrag != null)
             {
                 
                 // This is actions when finger/cursor pressed on screen
@@ -118,11 +115,12 @@ public class GettingTouchManager : MonoBehaviour
                 }
             }
 
-            else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+            else if (Input.GetButtonUp("Fire1"))
             {
                 // This is actions when finger/cursor get out from screen
                 if (objectToDrag != null)
                 {
+                    
                     objectToDrag.GetComponent<MachineManager>().dropped = true;
                     if (objectToDrag.GetComponent<MachineManager>().inMergeArea != true &&
                         objectToDrag.GetComponent<MachineManager>().inSnapArea != true)
@@ -139,7 +137,7 @@ public class GettingTouchManager : MonoBehaviour
                         objectToDrag = null;
                     }
                 }
-            }
+            
         }
     }
     

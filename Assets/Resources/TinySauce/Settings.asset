@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faa11ec82e9746928e211e7f096812ca, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
-  gameAnalyticsIosGameKey: 
-  gameAnalyticsIosSecretKey: 
+  gameAnalyticsIosGameKey: e99b1be06fae95b5641a62d907204365
+  gameAnalyticsIosSecretKey: 64be72bf86cec975b6810bcea18afb18aa88e4d9
   gameAnalyticsAndroidGameKey: 744ce4f8b65bd6ef4cd14a4a639e02cf
   gameAnalyticsAndroidSecretKey: 3030cb5c83fd28f3b16379192db4ef6019dabe20
   facebookAppId: 711928977061366
   facebookClientToken: 5f25076bd5326a3b0161abd1bf5c5840
-  adjustIOSToken: 
-  adjustAndroidToken: khumh58p89og
-  EditorIdfa: dcb150c2-2059-490e-bb0f-1b964c80d440
+  adjustIOSToken: 9ilsspnkdhj4
+  adjustAndroidToken: 
+  EditorIdfa: 47a00da8-78f1-46d1-8218-0df461ba8321
   UseRemoteConfig: 0
   UseVoodooAnalytics: 1
   companyName: DigiMindMarket

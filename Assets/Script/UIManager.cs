@@ -217,7 +217,7 @@ public class UIManager : MonoBehaviour
     public void AdOnBeltSpeedUpgradeButton()
     {
         buttonIndex = 1;
-        //RewardedAdManager.Instance.UpgradeButtonRewardAd();
+        RewardedAdManager.Instance.UpgradeButtonRewardAd();
 
         adBeltSpeedButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text =
             "LEVEL " + GameDataManager.Instance.beltSpeedButtonLevel;
@@ -232,6 +232,8 @@ public class UIManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         GameDataManager.Instance.beltSpeedButtonLevel++;
         GameDataManager.Instance.beltSpeed += (GameDataManager.Instance.beltSpeed * 0.04f);
+        beltSpeedInfoText.text = AbbrevationUtility.AbbreviateMeter(GameDataManager.Instance.beltSpeed*-100);
+
         GameDataManager.Instance.SaveData();
 
         adBeltSpeedButton.SetActive(false);
@@ -279,12 +281,12 @@ public class UIManager : MonoBehaviour
     public void AdOnIncomeUpgradeButton()
     {
         buttonIndex = 2;
-        //RewardedAdManager.Instance.UpgradeButtonRewardAd();
+        RewardedAdManager.Instance.UpgradeButtonRewardAd();
         adIncomeButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text =
             "LEVEL " + GameDataManager.Instance.incomeButtonLevel;
         incomeButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
             "LEVEL " + (GameDataManager.Instance.incomeButtonLevel + 1);
-
+        
         GameDataManager.Instance.SaveData();
     }
 
@@ -296,7 +298,7 @@ public class UIManager : MonoBehaviour
 
         GameDataManager.Instance.IncomePercantage += GameDataManager.Instance.IncomePercantage * 0.04f;
         GameDataManager.Instance.IncomePerTap += GameDataManager.Instance.IncomePerTap / 2.5f;
-
+IncomeLevelInfoText.text = "%"+String.Format("{0:0.00}",  (GameDataManager.Instance.IncomePercantage)*100);
         GameDataManager.Instance.SaveData();
 
         adIncomeButton.SetActive(false);
@@ -338,12 +340,11 @@ public class UIManager : MonoBehaviour
     public void AdOnWorkerUpgradeButton()
     {
         buttonIndex = 3;
-        //RewardedAdManager.Instance.UpgradeButtonRewardAd();
+        RewardedAdManager.Instance.UpgradeButtonRewardAd();
         adWorkerSpeedButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text =
             "LEVEL " + GameDataManager.Instance.workerSpeedButtonLevel;
         workerSpeedButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
             "LEVEL " + (GameDataManager.Instance.workerSpeedButtonLevel + 1);
-
         GameDataManager.Instance.SaveData();
     }
 
@@ -466,7 +467,7 @@ public class UIManager : MonoBehaviour
     public void AdOnAddMachineButton()
     {
         buttonIndex = 4;
-        //RewardedAdManager.Instance.UpgradeButtonRewardAd();
+        RewardedAdManager.Instance.UpgradeButtonRewardAd();
         adAddMachineButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text =
             "LEVEL " + GameDataManager.Instance.addMachineButtonLevel;
         addMachineButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =

@@ -1,6 +1,7 @@
-/*using System;
+using System;
 using UnityEngine;
 using GoogleMobileAds.Api;
+
 public class BannerAdManager : MonoBehaviour
 {
     private BannerView bannerView;
@@ -29,4 +30,4 @@ public class BannerAdManager : MonoBehaviour
         // Load the banner with the request.
         this.bannerView.LoadAd(request);
     }
-}*/
+}

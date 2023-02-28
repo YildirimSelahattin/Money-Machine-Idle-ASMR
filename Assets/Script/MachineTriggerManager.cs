@@ -28,6 +28,7 @@ public class MachineTriggerManager : MonoBehaviour
         {
             if (gameObject.GetComponent<MachineManager>().levelIndexOfObject < 6) //if the machine is mergeable
             {
+                TinySauce.OnGameFinished((float)mergeCounter);
                 gameObject.GetComponent<MachineManager>().inMergeArea = false;
                 if (PlayerPrefs.GetInt("isFirstMerge", 1)==1)
                 {
@@ -57,15 +58,15 @@ public class MachineTriggerManager : MonoBehaviour
                         other.gameObject.GetComponent<MachineManager>().levelIndexOfObject + 1],
                     other.transform.parent);
                 GameDataManager.Instance.ControlButtons();
-                /*
-                 if (mergeCounter % 4 == 0)
-                {
-                    Debug.Log("emir");
-                    InterstitialAdManager.Instance.ShowInterstitial();
-                }*/
+                
+                 
                 Destroy(other.gameObject);
                 Destroy(gameObject);
                 GameDataManager.Instance.SaveData();
+                
+                if(mergeCounter%4==0){
+                    StartCoroutine(InterstitialAdManager.Instance.ShowInterstitial());
+                }
 
             }
         }
