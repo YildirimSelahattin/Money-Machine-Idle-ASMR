@@ -10,16 +10,9 @@ public class OfflineProgress : MonoBehaviour
 {
     public float offlineRewardMoney;
     public GameObject OfflineRewardPanel;
-    public GameObject offlineMoneyText;
+    public TextMeshProUGUI offlineMoneyText;
     public static OfflineProgress Instance;
 
-    /*
-     * isLoaded == true ise offlinePnale'i göster
-     * App Iconunu ekle
-     * Oyun girişinde DMM logosunu ekle
-     * 3k para veriyoruz onu geri al
-     */
-    
     void Awake()
     {
         if (Instance == null)
@@ -31,10 +24,10 @@ public class OfflineProgress : MonoBehaviour
 
     public void OfflinePanelControl()
     {
-        if (PlayerPrefs.HasKey("LAST_LOGIN"))
+        if (PlayerPrefs.HasKey("LAST_LOGIN_NEW"))
         {
-            DateTime lastLogIn = DateTime.Parse(PlayerPrefs.GetString("LAST_LOGIN"));
-
+            DateTime lastLogIn = DateTime.Parse(PlayerPrefs.GetString("LAST_LOGIN_NEW"));
+            OfflineProgress.Instance.OfflineRewardPanel.SetActive(true);
             TimeSpan ts = DateTime.Now - lastLogIn;
             
             Debug.Log(ts.TotalSeconds);
@@ -43,7 +36,7 @@ public class OfflineProgress : MonoBehaviour
             {
                 offlineRewardMoney = AbbrevationUtility.RoundNumberLikeText((long)(GameDataManager.Instance.offlineProgressNum * (float)ts.TotalSeconds));
                 Debug.Log(offlineRewardMoney);
-                offlineMoneyText.GetComponent<TextMeshProUGUI>().text = AbbrevationUtility.AbbreviateNumber((long)offlineRewardMoney);
+                offlineMoneyText.text = AbbrevationUtility.AbbreviateNumber((long)offlineRewardMoney);
             }
             else
             {
@@ -56,7 +49,7 @@ public class OfflineProgress : MonoBehaviour
             OfflineRewardPanel.SetActive(false);
         }
         
-        PlayerPrefs.SetString("LAST_LOGIN", DateTime.Now.ToString());
+        PlayerPrefs.SetString("LAST_LOGIN_NEW", DateTime.Now.ToString());
     }
     
     public void OnOfflineReward()
@@ -70,6 +63,5 @@ public class OfflineProgress : MonoBehaviour
     public void OnOffine3MultipleReward()
     {
         RewardedAdManager.Instance.MultipleOfflineProgressRewardAd();
-        
     }
 }

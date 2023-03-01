@@ -149,16 +149,11 @@ public class RewardedAdManager : MonoBehaviour
             StartCoroutine(UIManager.Instance.OpenGridAdButtons());
         }
     }
+
     public void HandleRewardedAdLoaded(object sender, EventArgs args)
     {
-        if (PlayerPrefs.HasKey("LAST_LOGIN"))
-        {
-            OfflineProgress.Instance.OfflineRewardPanel.SetActive(true);
-            OfflineProgress.Instance.OfflinePanelControl();
-        }
-        else{
-            PlayerPrefs.SetString("LAST_LOGIN", DateTime.Now.ToString());
-        }
+        
+        OfflineProgress.Instance.OfflinePanelControl();
     }
     
     public void HandleUserEarnedGridReward(object sender, Reward args)

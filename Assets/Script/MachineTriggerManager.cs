@@ -28,7 +28,6 @@ public class MachineTriggerManager : MonoBehaviour
         {
             if (gameObject.GetComponent<MachineManager>().levelIndexOfObject < 6) //if the machine is mergeable
             {
-                TinySauce.OnGameFinished((float)mergeCounter);
                 gameObject.GetComponent<MachineManager>().inMergeArea = false;
                 if (PlayerPrefs.GetInt("isFirstMerge", 1)==1)
                 {

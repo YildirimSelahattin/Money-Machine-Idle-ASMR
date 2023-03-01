@@ -16,22 +16,17 @@ public class GameManager : MonoBehaviour
     public Material openedGridMat;
     // Start is called before the first frame update
 
-
     void Awake() 
     {
-        
         if(Instance == null)
         {
             Instance = this;
         }
-        
     }
     
     void Start()
     {
-        TinySauce.OnGameStarted();
-        
-        DesignLevel();
+       DesignLevel();
     }
 
     public void DesignLevel()
